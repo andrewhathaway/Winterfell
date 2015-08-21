@@ -1,0 +1,29 @@
+{
+  "name": "winterfell",
+  "version": "1.0.0",
+  "description": "Easily generate dynamic validation forms with conditional questions, based in React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "winterfell",
+    "form",
+    "react",
+    "validation",
+    "difficult",
+    "extensive",
+    "conditional",
+    "questions"
+  ],
+  "author": "Andrew Hathaway <andrew@andrewhathaway.net>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^3.10.1",
+    "react": "^0.13.3",
+    "validator": "^4.0.5"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  }
+}
