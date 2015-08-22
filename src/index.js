@@ -10,7 +10,10 @@ class Winterfell extends React.Component {
 
     this.panelHistory = [];
 
-    var schema = this.props.schema; //@todo: Validate. Order things.
+    var schema = this.props.schema;
+    if (!schema.classes) {
+      schema.classes = {};
+    }
 
     var currentPanel = typeof schema !== 'undefined'
                          && typeof schema.formPanels !== 'undefined'
@@ -99,9 +102,10 @@ class Winterfell extends React.Component {
             encType={this.props.encType}
             action={this.state.action}
             ref={this.props.ref}
-            className={this.props.formClass}>
-        <div className={this.props.wrapperClass}>
+            className={this.state.schema.classes.form}>
+        <div className={this.state.schema.classes.questionPanels}>
           <QuestionPanel schema={this.state.schema}
+                         classes={this.state.schema.classes}
                          panelId={currentPanel.panelId}
                          panelIndex={currentPanel.panelIndex}
                          action={currentPanel.action}
@@ -109,6 +113,7 @@ class Winterfell extends React.Component {
                          questionSets={currentPanel.questionSets}
                          questionAnswers={this.state.questionAnswers}
                          panelHistory={this.panelHistory}
+                         renderError={this.props.renderError}
                          onAnswerChange={this.handleAnswerChange.bind(this)}
                          onPanelBack={this.handleBackButtonClick.bind(this)}
                          onSwitchPanel={this.handleSwitchPanel.bind(this)}
@@ -126,22 +131,21 @@ class Winterfell extends React.Component {
 };
 
 // @todo: Proptypes
-
 Winterfell.defaultProps = {
   schema          : {
     formPanels     : [],
     questionPanels : [],
-    questionSets   : []
+    questionSets   : [],
+    classes        : {}
   },
+  questionAnswers : {},
+  ref             : 'form',
   encType         : 'application/x-www-form-urlencoded',
   method          : 'POST',
   action          : '',
-  ref             : 'form',
-  formClass       : '',
   panelId         : 'panel-1',
-  wrapperClass    : '',
-  questionAnswers : {},
   disableSubmit   : false,
+  renderError     : undefined,
   onSubmit        : () => {},
   onUpdate        : () => {},
   onSwitchPanel   : () => {},

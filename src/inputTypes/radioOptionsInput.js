@@ -18,15 +18,16 @@ class RadioOptionsInput extends React.Component {
 
   render() {
     return (
-      <ul className={this.props.className}>
+      <ul className={this.props.classes.radioList}>
         {this.props.options.map(opt =>
-          <li key={opt.value}>
-            <label>
+          <li key={opt.value}
+              className={this.props.classes.radioListItem}>
+            <label className={this.props.classes.radioLabel}>
               <input type="radio"
                      name={this.props.name}
                      checked={this.state.value == opt.value}
                      onChange={this.handleChange.bind(this, opt.value)}
-                     className={this.props.radioClassName} />
+                     className={this.props.classes.radio} />
               {opt.text}
             </label>
           </li>
@@ -38,12 +39,11 @@ class RadioOptionsInput extends React.Component {
 };
 
 RadioOptionsInput.defaultProps = {
-  className      : undefined,
-  radioClassName : undefined,
-  name           : undefined,
-  value          : undefined,
-  options        : [],
-  onChange       : () => {}
+  classes  : {},
+  name     : undefined,
+  value    : undefined,
+  options  : [],
+  onChange : () => {}
 };
 
 module.exports = RadioOptionsInput;

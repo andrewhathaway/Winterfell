@@ -20,7 +20,7 @@ class EmailInput extends React.Component {
     return (
       <input type="email"
              name={this.props.name}
-             className={this.props.className}
+             className={this.props.classes.input}
              placeholder={this.props.placeholder}
              value={this.state.value}
              onChange={this.handleChange.bind(this)} />
@@ -30,7 +30,7 @@ class EmailInput extends React.Component {
 };
 
 EmailInput.defaultProps = {
-  className   : undefined,
+  classes     : {},
   name        : undefined,
   value       : undefined,
   placeholder : undefined,

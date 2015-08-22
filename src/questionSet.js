@@ -15,6 +15,8 @@ class QuestionSet extends React.Component {
                   validations={question.validations}
                   value={this.props.questionAnswers[question.questionId]}
                   input={question.input}
+                  classes={this.props.classes}
+                  renderError={this.props.renderError}
                   questionAnswers={this.props.questionAnswers}
                   validationErrors={this.props.validationErrors}
                   onAnswerChange={this.props.onAnswerChange} />
@@ -22,7 +24,7 @@ class QuestionSet extends React.Component {
     });
 
     return (
-      <div>
+      <div className={this.props.classes.questionSet}>
         {questions}
       </div>
     );
@@ -35,7 +37,9 @@ QuestionSet.defaultProps = {
   name             : '',
   questions        : [],
   questionAnswers  : {},
+  classes          : {},
   validationErrors : {},
+  renderError      : undefined,
   onAnswerChange   : () => {}
 };
 

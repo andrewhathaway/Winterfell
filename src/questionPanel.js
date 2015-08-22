@@ -142,29 +142,32 @@ class QuestionPanel extends React.Component {
       }
 
       return (
-        <div key={questionSet.questionSetId}>
-          <QuestionSet id={questionSet.questionSetId}
-                       name={questionSet.name}
-                       questions={questionSet.questions}
-                       questionAnswers={this.props.questionAnswers}
-                       validationErrors={this.state.validationErrors}
-                       onAnswerChange={this.handleAnswerChange.bind(this)} />
-        </div>
+        <QuestionSet key={questionSet.questionSetId}
+                     id={questionSet.questionSetId}
+                     name={questionSet.name}
+                     questions={questionSet.questions}
+                     classes={this.props.classes}
+                     questionAnswers={this.props.questionAnswers}
+                     renderError={this.props.renderError}
+                     validationErrors={this.state.validationErrors}
+                     onAnswerChange={this.handleAnswerChange.bind(this)} />
       );
     });
 
     return (
-      <div>
+      <div className={this.props.classes.questionPanel}>
         {questionSets}
-        <div className={this.props.buttonBarClassName}>
+        <div className={this.props.classes.buttonBar}>
           {this.props.panelHistory.length > 1
             ? (
                 <Button text={this.props.backButtonText}
-                        onClick={this.handleBackButtonClick.bind(this)} />
+                        onClick={this.handleBackButtonClick.bind(this)}
+                        className={this.props.classes.backButton} />
               )
             : undefined}
           <Button text={this.props.button.text}
-                  onClick={this.handleMainButtonClick.bind(this)} />
+                  onClick={this.handleMainButtonClick.bind(this)}
+                  className={this.props.classes.controlButton} />
         </div>
       </div>
     );
@@ -175,6 +178,7 @@ class QuestionPanel extends React.Component {
 QuestionPanel.defaultProps = {
   validationErrors   : {},
   schema             : {},
+  classes            : {},
   panelId            : undefined,
   panelIndex         : undefined,
   action             : {
@@ -182,14 +186,14 @@ QuestionPanel.defaultProps = {
     conditions : []
   },
   button             : {
-    text : 'Submit'
+    text  : 'Submit'
   },
   questionSets       : [],
   questionAnswers    : {},
+  renderError        : undefined,
   onAnswerChange     : () => {},
   onSwitchPanel      : () => {},
   onPanelBack        : () => {},
-  buttonBarClassName : '',
   panelHistory       : [],
   backButtonText     : 'Back'
 };

@@ -24,7 +24,8 @@ class Question extends React.Component {
       this.props.input.options
           .filter(option => {
             return this.props.value == option.value
-                     && typeof option.conditionalQuestions !== 'undefined';
+                     && typeof option.conditionalQuestions !== 'undefined'
+                     && option.conditionalQuestions.length > 0;
           })
           .forEach(option =>
             [].forEach.bind(option.conditionalQuestions, conditionalQuestion => {
@@ -36,6 +37,8 @@ class Question extends React.Component {
                           validations={conditionalQuestion.validations}
                           value={this.props.questionAnswers[conditionalQuestion.questionId]}
                           input={conditionalQuestion.input}
+                          classes={this.props.classes}
+                          renderError={this.props.renderError}
                           questionAnswers={this.props.questionAnswers}
                           validationErrors={this.props.validationErrors}
                           onAnswerChange={this.props.onAnswerChange.bind(this)} />
@@ -57,7 +60,7 @@ class Question extends React.Component {
                                               ? this.props.renderError(error, this.props.questionId)
                                               : (
                                                   <div key={this.props.questionId + 'Error' + error.type}
-                                                       className={this.props.errorClassName}>
+                                                       className={this.props.classes.errorMessage}>
                                                     {error.message}
                                                   </div>
                                                 );
@@ -65,14 +68,17 @@ class Question extends React.Component {
                              : [];
 
     return (
-      <div>
-        <label>{this.props.question}</label>
+      <div className={this.props.classes.question}>
+        <label className={this.props.classes.label}>
+          {this.props.question}
+        </label>
         {validationErrors}
         <Input name={this.props.questionId}
                value={value}
                text={this.props.input.text}
                options={this.props.input.options}
                placeholder={this.props.input.placeholder}
+               classes={this.props.classes}
                onChange={this.handleInputChange.bind(this, this.props.questionId)} />
         {conditionalItems}
       </div>
@@ -105,11 +111,11 @@ Question.defaultProps = {
     limit       : undefined,
     placeholder : undefined
   },
+  classes          : {},
   questionAnswers  : {},
   validationErrors : {},
   onAnswerChange   : () => {},
-  renderError      : undefined,
-  errorClassName   : undefined
+  renderError      : undefined
 };
 
 module.exports = Question;

@@ -27,16 +27,17 @@ class CheckboxOptionsInput extends React.Component {
 
   render() {
     return (
-      <ul className={this.props.className}>
+      <ul className={this.props.classes.checkboxList}>
         {this.props.options.map(opt =>
-          <li key={opt.value}>
-            <label>
+          <li key={opt.value}
+              className={this.props.classes.checkboxListItem}>
+            <label className={this.props.classes.checkboxLabel}>
               <input type="checkbox"
                      name={this.props.name}
                      value={opt.value}
                      checked={this.state.value.indexOf(opt.value) > -1}
                      onChange={this.handleChange.bind(this)}
-                     className={this.props.checkboxClassName} />
+                     className={this.props.classes.checkbox} />
               {opt.text}
             </label>
           </li>
@@ -48,12 +49,11 @@ class CheckboxOptionsInput extends React.Component {
 };
 
 CheckboxOptionsInput.defaultProps = {
-  className         : undefined,
-  checkboxClassName : undefined,
-  name              : undefined,
-  value             : [],
-  options           : [],
-  onChange          : () => {}
+  classes  : {},
+  name     : undefined,
+  value    : [],
+  options  : [],
+  onChange : () => {}
 };
 
 module.exports = CheckboxOptionsInput;

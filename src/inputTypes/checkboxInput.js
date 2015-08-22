@@ -22,10 +22,10 @@ class CheckboxInput extends React.Component {
 
   render() {
     return (
-      <label className={this.props.className}>
+      <label className={this.props.classes.checkboxLabel}>
         <input type="checkbox"
                name={this.props.name}
-               className={this.props.checkboxClassName}
+               className={this.props.classes.checkbox}
                checked={this.state.checked}
                value={this.props.value}
                onChange={this.handleChange.bind(this)} />
@@ -37,12 +37,11 @@ class CheckboxInput extends React.Component {
 };
 
 CheckboxInput.defaultProps = {
-  text              : '',
-  className         : undefined,
-  checkboxClassName : undefined,
-  name              : undefined,
-  value             : undefined,
-  onChange          : () => {}
+  text     : '',
+  classes  : {},
+  name     : undefined,
+  value    : undefined,
+  onChange : () => {}
 };
 
 module.exports = CheckboxInput;

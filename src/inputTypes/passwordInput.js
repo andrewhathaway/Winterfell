@@ -20,7 +20,7 @@ class PasswordInput extends React.Component {
     return (
       <input type="password"
              name={this.props.name}
-             className={this.props.className}
+             className={this.props.classes.input}
              placeholder={this.props.placeholder}
              value={this.state.value}
              onChange={this.handleChange.bind(this)} />
@@ -30,7 +30,7 @@ class PasswordInput extends React.Component {
 };
 
 PasswordInput.defaultProps = {
-  className   : undefined,
+  classes     : {},
   name        : undefined,
   value       : undefined,
   placeholder : undefined,
