@@ -10,17 +10,31 @@ class Winterfell extends React.Component {
 
     this.panelHistory = [];
 
-    var schema = this.props.schema;
-    if (!schema.classes) {
-      schema.classes = {};
-    }
+    var schema = _.extend({
+      classes        : {},
+      formPanels     : [],
+      questionPanels : [],
+      questionSets   : [],
+    }, this.props.schema);
+
+    schema.formPanels = schema.formPanels
+                              .sort((a, b) => a.index > b.index);
+    var panelId = (typeof this.props.panelId !== 'undefined'
+                     ? this.props.panelId
+                     : schema.formPanels.length > 0
+                         ? schema.formPanels[0].panelId
+                         : undefined);
 
     var currentPanel = typeof schema !== 'undefined'
                          && typeof schema.formPanels !== 'undefined'
+                         && typeof panelId !== 'undefined'
                          ? _.find(schema.formPanels,
-                               panel => panel.panelId == this.props.panelId)
+                               panel => panel.panelId == panelId)
                          : undefined;
 
+    if (!currentPanel) {
+      throw new Error('Winterfell: Could not find initial panel and failed to render.');
+    }
 
     this.state = {
       schema          : schema,
@@ -143,7 +157,7 @@ Winterfell.defaultProps = {
   encType         : 'application/x-www-form-urlencoded',
   method          : 'POST',
   action          : '',
-  panelId         : 'panel-1',
+  panelId         : undefined,
   disableSubmit   : false,
   renderError     : undefined,
   onSubmit        : () => {},
