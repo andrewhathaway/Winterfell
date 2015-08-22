@@ -1,6 +1,9 @@
 var React = require('react');
 var _     = require('lodash');
 
+var Validation    = require('./lib/validation');
+var ErrorMessages = require('./lib/errors');
+
 var Button      = require('./button');
 var QuestionSet = require('./questionSet');
 
@@ -50,6 +53,36 @@ class QuestionPanel extends React.Component {
     this.props.onPanelBack();
   }
 
+  handleAnswerChange(questionId, questionAnswer, validations) {
+    this.props.onAnswerChange(questionId, questionAnswer);
+
+    if (typeof validations === 'undefined'
+         || validations.length === 0) {
+      return;
+    }
+
+    var questionValidationErrors = [];
+    validations
+      .forEach(validation => {
+        if (Validation.validateAnswer(questionAnswer, validation)) {
+          return;
+        }
+
+        questionValidationErrors.push({
+          type    : validation.type,
+          message : ErrorMessages.getErrorMessage(validation)
+        });
+      });
+
+    var validationErrors = _.chain(this.state.validationErrors)
+                            .set(questionId, questionValidationErrors)
+                            .value();
+
+    this.setState({
+      validationErrors : validationErrors
+    });
+  }
+
   render() {
     var questionSets = this.props.questionSets.map(questionSetMeta => {
       var questionSet = _.find(this.props.schema.questionSets, {
@@ -67,7 +100,7 @@ class QuestionPanel extends React.Component {
                        questions={questionSet.questions}
                        questionAnswers={this.props.questionAnswers}
                        validationErrors={this.state.validationErrors}
-                       onAnswerChange={this.props.onAnswerChange} />
+                       onAnswerChange={this.handleAnswerChange.bind(this)} />
         </div>
       );
     });

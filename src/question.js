@@ -6,7 +6,7 @@ var InputTypes = require('./inputTypes');
 class Question extends React.Component {
 
   handleInputChange(questionId, value) {
-    this.props.onAnswerChange(questionId, value);
+    this.props.onAnswerChange(questionId, value, this.props.validations);
   }
 
   render() {
@@ -50,9 +50,24 @@ class Question extends React.Component {
                       ? this.props.input.default
                       : undefined;
 
+    var validationErrors = typeof this.props.validationErrors[this.props.questionId] !== 'undefined'
+                             ? this.props.validationErrors[this.props.questionId]
+                                   .map(error => {
+                                     return typeof this.props.renderError === 'function'
+                                              ? this.props.renderError(error, this.props.questionId)
+                                              : (
+                                                  <div key={this.props.questionId + 'Error' + error.type}
+                                                       className={this.props.errorClassName}>
+                                                    {error.message}
+                                                  </div>
+                                                );
+                                   })
+                             : [];
+
     return (
       <div>
         <label>{this.props.question}</label>
+        {validationErrors}
         <Input name={this.props.questionId}
                    value={value}
                    options={this.props.input.options}
@@ -91,7 +106,9 @@ Question.defaultProps = {
   },
   questionAnswers  : {},
   validationErrors : {},
-  onAnswerChange   : () => {}
+  onAnswerChange   : () => {},
+  renderError      : undefined,
+  errorClassName   : undefined
 };
 
 module.exports = Question;

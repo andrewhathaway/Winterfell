@@ -144,6 +144,8 @@ Winterfell.defaultProps = {
   onSubmit        : () => {}
 };
 
-Winterfell.inputTypes = require('./inputTypes');
+Winterfell.inputTypes    = require('./inputTypes');
+Winterfell.errorMessages = require('./lib/errors');
+Winterfell.validation    = require('./lib/validation');
 
 module.exports = Winterfell;
