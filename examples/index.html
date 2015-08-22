@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Winterfell Examples</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      padding-top: 70px;
+      padding-bottom: 30px;
+    }
+
+    .clean-list {
+      padding: 0;
+      margin: 0;
+    }
+
+    .form-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Bootstrap theme</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li class="dropdown-header">Nav header</li>
+              <li><a href="#">Separated link</a></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+   <div class="container theme-showcase" role="main">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <h1>Winterfell Example</h1>
+      <p>Awesome. I know.</p>
+    </div>
+    <div class="form-container">
+      <ul class="nav nav-tabs">
+        <li role="presentation"
+            class="active">
+          <a href="#render"
+             data-toggle="tab">
+            Render
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#schema"
+             data-toggle="tab">
+            Schema
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#js"
+             data-toggle="tab">
+            JavaScript
+          </a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div id="render"
+             class="tab-pane fade in active">
+          <h3>Survey</h3>
+          <div id="form"></div>
+        </div>
+        <div id="schema"
+             class="tab-pane fade">
+          <h3>Schema</h3>
+        </div>
+        <div id="js"
+             class="tab-pane fade">
+          <h3>JavaScript</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="build/app.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

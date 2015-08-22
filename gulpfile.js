@@ -4,6 +4,34 @@ var source     = require('vinyl-source-stream');
 var reactify   = require('reactify');
 var buffer     = require('vinyl-buffer');
 
+/**
+ * Examples Build
+ */
+gulp.task('build-examples', function() {
+  return browserify({
+           debug   : process.env.NODE_ENV != 'production',
+           entries : [
+             'examples/app.js'
+           ]
+         })
+         .transform(reactify, {
+           es6 : true
+         })
+         .bundle()
+         .pipe(source('app.js'))
+         .pipe(buffer())
+         .pipe(gulp.dest('examples/build'));
+});
+
+gulp.task('watch-examples', function() {
+  return gulp.watch([
+    'src/**/*.js',
+    'examples/**/*.js',
+    '!examples/build/app.js'
+  ], {}, function() {
+    return gulp.start('build-examples');
+  });
+});
 
 /**
  * Dev Build
