@@ -1,14 +1,15 @@
 var React = require('react');
 
 var inputTypes = {
-  emailInput        : require('./emailInput'),
-  fileInput         : require('./fileInput'),
-  hiddenInput       : require('./hiddenInput'),
-  passwordInput     : require('./passwordInput'),
-  radioOptionsInput : require('./radioOptionsInput'),
-  selectInput       : require('./selectInput'),
-  textareaInput     : require('./textareaInput'),
-  textInput         : require('./textInput')
+  checkboxOptionsInput : require('./checkboxOptionsInput'),
+  emailInput           : require('./emailInput'),
+  fileInput            : require('./fileInput'),
+  hiddenInput          : require('./hiddenInput'),
+  passwordInput        : require('./passwordInput'),
+  radioOptionsInput    : require('./radioOptionsInput'),
+  selectInput          : require('./selectInput'),
+  textareaInput        : require('./textareaInput'),
+  textInput            : require('./textInput')
 };
 
 /**
