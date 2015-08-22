@@ -42,7 +42,7 @@ class Winterfell extends React.Component {
 
     this.setState({
       questionAnswers : questionAnswers,
-    });
+    }, this.props.onUpdate.bind(null, questionAnswers));
   }
 
   handleSwitchPanel(panelId, preventHistory) {
@@ -61,7 +61,7 @@ class Winterfell extends React.Component {
 
     this.setState({
       currentPanel : panel
-    });
+    }, this.props.onSwitchPanel.bind(null, panel));
   }
 
   handleBackButtonClick() {
@@ -120,6 +120,7 @@ class Winterfell extends React.Component {
 
   componentDidMount() {
     this.panelHistory.push(this.state.currentPanel.panelId);
+    this.props.onRender();
   }
 
 };
@@ -141,7 +142,10 @@ Winterfell.defaultProps = {
   wrapperClass    : '',
   questionAnswers : {},
   disableSubmit   : false,
-  onSubmit        : () => {}
+  onSubmit        : () => {},
+  onUpdate        : () => {},
+  onSwitchPanel   : () => {},
+  onRender        : () => {}
 };
 
 Winterfell.inputTypes    = require('./inputTypes');
