@@ -144,4 +144,6 @@ Winterfell.defaultProps = {
   onSubmit        : () => {}
 };
 
+Winterfell.inputTypes = require('./inputTypes');
+
 module.exports = Winterfell;
