@@ -163,12 +163,12 @@ var getQuestionPanelInvalidQuestions = (questionSets, questionAnswers, validatio
  */
 var addValidationMethod = (name, method) => {
   if (typeof name !== 'string') {
-    throw new Error('Winterfell: First parmateter of addValidationMethod '
+    throw new Error('Winterfell: First parameter of addValidationMethod '
                     + 'must be of type string');
   }
 
   if (typeof method !== 'function') {
-    throw new Error('Winterfell: First parmateter of addValidationMethod '
+    throw new Error('Winterfell: Second parameter of addValidationMethod '
                     + 'must be of type function');
   }
 
@@ -182,7 +182,7 @@ var addValidationMethod = (name, method) => {
  */
 var addValidationMethods = (methods) => {
   if (typeof methods !== 'object') {
-    throw new Error('Winterfell: First parmateter of addValidationMethods '
+    throw new Error('Winterfell: First parameter of addValidationMethods '
                     + 'must be of type object');
   }
 
