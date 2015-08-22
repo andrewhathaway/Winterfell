@@ -94,34 +94,14 @@ var getActiveQuestionsFromQuestionSets = (questionSets, questionAnswers) => {
  *
  * @param  array  questionSets     All question sets
  * @param  object questionAnswers  Current answers for questions
- * @param  object validationErrors Any validation errors
  * @return object                  Set of questions and their invalidations
  */
-var getQuestionPanelInvalidQuestions = (questionSets, questionAnswers, validationErrors) => {
+var getQuestionPanelInvalidQuestions = (questionSets, questionAnswers) => {
   var questionsToCheck = getActiveQuestionsFromQuestionSets(questionSets, questionAnswers)
                            .filter(question => {
                              return question.validations instanceof Array
                                       && question.validations.length > 0;
                            });
-
-  /*
-   * We have a list of the questions in every active question set given.
-   * No we need to check if there are any validation errors associated
-   * with the questions we need to check.
-   */
-  var invalidatedQuestions = _.clone(questionsToCheck, true)
-                              .filter(question => {
-                                return typeof validationErrors[question.questionId] === 'undefined'
-                                         || validationErrors[question.questionId].length === 0;
-                              });
-
-  /*
-   * If there are any questions with validation errors,
-   * fail the test and do not continue.
-   */
-  if (questionsToCheck.length - invalidatedQuestions.length > 0) {
-    return false;
-  }
 
   /*
    * Now we run validations for the questions
@@ -132,7 +112,7 @@ var getQuestionPanelInvalidQuestions = (questionSets, questionAnswers, validatio
    * the validation method required.
    */
   var errors = {};
-  invalidatedQuestions
+  questionsToCheck
     .forEach(({questionId, validations}) =>
       [].forEach.bind(validations, validation => {
         var valid = validateAnswer(questionAnswers[questionId], validation);

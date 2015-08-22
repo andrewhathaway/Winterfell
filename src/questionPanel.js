@@ -35,7 +35,7 @@ class QuestionPanel extends React.Component {
      * Get any incorrect fields that need erorr messages.
      */
     var invalidQuestions = Validation.getQuestionPanelInvalidQuestions(
-      questionSets, this.props.questionAnswers, this.state.validationErrors
+      questionSets, this.props.questionAnswers
     );
 
     /*
@@ -57,15 +57,6 @@ class QuestionPanel extends React.Component {
       return;
     }
 
-    // if (!Validation.getQuestionPanelInvalidQuestions(
-    //       questionSets,
-    //       this.props.questionAnswers,
-    //       this.state.validationErrors)) {
-    //   console.log('invalid panel');
-    //   return;
-    // }
-    // console.log('good');
-    // return;
     /*
      * Panel is valid. So what do we do next?
      * Check our conditions and act upon them, or the default.
@@ -82,6 +73,10 @@ class QuestionPanel extends React.Component {
                    : action;
       });
 
+    /*
+     * Decide which action to take depending on
+     * the action decided upon.
+     */
     switch (action.action) {
 
       case 'GOTO':
@@ -110,6 +105,10 @@ class QuestionPanel extends React.Component {
       return;
     }
 
+    /*
+     * Run the question through its validations and
+     * show any error messages if invalid.
+     */
     var questionValidationErrors = [];
     validations
       .forEach(validation => {
