@@ -21,6 +21,55 @@ class QuestionPanel extends React.Component {
     var action     = this.props.action.default;
     var conditions = this.props.action.conditions || [];
 
+    /*
+     * We need to get all the question sets for this panel.
+     * Collate a list of the question set IDs required
+     * and run through the schema to grab the question sets.
+     */
+    var questionSetIds = this.props.questionSets.map(qS => qS.questionSetId);
+    var questionSets   = _.chain(this.props.schema.questionSets)
+                          .filter(qS => questionSetIds.indexOf(qS.questionSetId) > -1)
+                          .value();
+
+    /*
+     * Get any incorrect fields that need erorr messages.
+     */
+    var invalidQuestions = Validation.getQuestionPanelInvalidQuestions(
+      questionSets, this.props.questionAnswers, this.state.validationErrors
+    );
+
+    /*
+     * If the panel isn't valid...
+     */
+    if (Object.keys(invalidQuestions).length > 0) {
+      var validationErrors = _.mapValues(invalidQuestions, validations => {
+        return validations.map(validation => {
+          return {
+            type    : validation.type,
+            message : ErrorMessages.getErrorMessage(validation)
+          };
+        })
+      });
+
+      this.setState({
+        validationErrors : validationErrors
+      });
+      return;
+    }
+
+    // if (!Validation.getQuestionPanelInvalidQuestions(
+    //       questionSets,
+    //       this.props.questionAnswers,
+    //       this.state.validationErrors)) {
+    //   console.log('invalid panel');
+    //   return;
+    // }
+    // console.log('good');
+    // return;
+    /*
+     * Panel is valid. So what do we do next?
+     * Check our conditions and act upon them, or the default.
+     */
     conditions
       .forEach(condition => {
         var answer = this.props.questionAnswers[condition.questionId];
