@@ -8,6 +8,8 @@ class Winterfell extends React.Component {
   constructor(props) {
     super(props);
 
+    this.panelHistory = [];
+
     var schema = this.props.schema; //@todo: Validate. Order things.
 
     var currentPanel = typeof schema !== 'undefined'
@@ -43,19 +45,31 @@ class Winterfell extends React.Component {
     });
   }
 
-  handleSwitchPanel(paneId) {
+  handleSwitchPanel(panelId, preventHistory) {
     var panel = _.find(this.props.schema.formPanels, {
-      panelId : paneId
+      panelId : panelId
     });
 
     if (!panel) {
       throw new Error('Winterfell: Tried to switch to panel "'
-                      + paneId + '", which does not exist.');
+                      + panelId + '", which does not exist.');
+    }
+
+    if (!preventHistory) {
+      this.panelHistory.push(panel.panelId);
     }
 
     this.setState({
       currentPanel : panel
     });
+  }
+
+  handleBackButtonClick() {
+    this.panelHistory.pop();
+
+    this.handleSwitchPanel.call(
+      this, this.panelHistory[this.panelHistory.length - 1], true
+    );
   }
 
   handleSubmit(action) {
@@ -94,12 +108,18 @@ class Winterfell extends React.Component {
                          button={currentPanel.button}
                          questionSets={currentPanel.questionSets}
                          questionAnswers={this.state.questionAnswers}
+                         panelHistory={this.panelHistory}
                          onAnswerChange={this.handleAnswerChange.bind(this)}
+                         onPanelBack={this.handleBackButtonClick.bind(this)}
                          onSwitchPanel={this.handleSwitchPanel.bind(this)}
                          onSubmit={this.handleSubmit.bind(this)} />
         </div>
       </form>
     );
+  }
+
+  componentDidMount() {
+    this.panelHistory.push(this.state.currentPanel.panelId);
   }
 
 };

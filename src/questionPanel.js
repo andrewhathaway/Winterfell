@@ -42,6 +42,14 @@ class QuestionPanel extends React.Component {
     }
   }
 
+  handleBackButtonClick() {
+    if (this.props.panelHistory.length == 0) {
+      return;
+    }
+
+    this.props.onPanelBack();
+  }
+
   render() {
     var questionSets = this.props.questionSets.map(questionSetMeta => {
       var questionSet = _.find(this.props.schema.questionSets, {
@@ -68,6 +76,12 @@ class QuestionPanel extends React.Component {
       <div>
         {questionSets}
         <div className={this.props.buttonBarClassName}>
+          {this.props.panelHistory.length > 1
+            ? (
+                <Button text={this.props.backButtonText}
+                        onClick={this.handleBackButtonClick.bind(this)} />
+              )
+            : undefined}
           <Button text={this.props.button.text}
                   onClick={this.handleMainButtonClick.bind(this)} />
         </div>
@@ -93,7 +107,10 @@ QuestionPanel.defaultProps = {
   questionAnswers    : {},
   onAnswerChange     : () => {},
   onSwitchPanel      : () => {},
-  buttonBarClassName : ''
+  onPanelBack        : () => {},
+  buttonBarClassName : '',
+  panelHistory       : [],
+  backButtonText     : 'Back'
 };
 
 module.exports = QuestionPanel;
