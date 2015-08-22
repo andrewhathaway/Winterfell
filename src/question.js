@@ -69,10 +69,11 @@ class Question extends React.Component {
         <label>{this.props.question}</label>
         {validationErrors}
         <Input name={this.props.questionId}
-                   value={value}
-                   options={this.props.input.options}
-                   placeholder={this.props.input.placeholder}
-                   onChange={this.handleInputChange.bind(this, this.props.questionId)} />
+               value={value}
+               text={this.props.input.text}
+               options={this.props.input.options}
+               placeholder={this.props.input.placeholder}
+               onChange={this.handleInputChange.bind(this, this.props.questionId)} />
         {conditionalItems}
       </div>
     );

@@ -1,6 +1,7 @@
 var React = require('react');
 
 var inputTypes = {
+  checkboxInput        : require('./checkBoxInput'),
   checkboxOptionsInput : require('./checkboxOptionsInput'),
   emailInput           : require('./emailInput'),
   fileInput            : require('./fileInput'),
