@@ -29,18 +29,49 @@ var errorMessages = {
 
 };
 
-errorMessages.set = (type, message) => {
-  if (typeof type === 'object') {
-    for (var prop in type) {
-      setErrorMemssage(prop, type[prop]);
-    }
-
-    return;
+/**
+ * Add a single error message
+ *
+ * @param  string          type    Error message type
+ * @param  string|function message Message or function to get message
+ */
+errorMessages.addErrorMessage = (type, message) => {
+  if (typeof type !== 'string') {
+    throw new Error('Winterfell: First parameter of addErrorMessage '
+                    + 'must be of type string');
   }
 
-  setErrorMemssage(type, message);
+  if (typeof message !== 'function'
+       && typeof message !== 'string') {
+    throw new Error('Winterfell: Second parameter of addErrorMessage '
+                    + 'must be of type function or string');
+  }
+
+  setErrorMessage(type, message);
 };
 
+/**
+ * Add multiple error messages
+ *
+ * @param  object messages Error messages to add. type => func|string
+ */
+errorMessages.addErrorMessages = (messages) => {
+  if (typeof messages !== 'object') {
+    throw new Error('Winterfell: First parameter of addErrorMessages '
+                    + 'must be of type object');
+  }
+
+  for (type in messages) {
+    errorMessages.addErrorMessage(type, messages[type]);
+  }
+};
+
+/**
+ * Get an error message for a validationItem
+ *
+ * @param  object  validationItem Validation error item
+ * @return string                 Error message to display
+ */
 errorMessages.getErrorMessage = (validationItem) => {
   var errorMessage = typeof validationItem.message !== 'undefined'
                        ? validationItem.message
@@ -53,7 +84,13 @@ errorMessages.getErrorMessage = (validationItem) => {
            : errorMessage;
 };
 
-var setErrorMemssage = (type, message) => {
+/**
+ * [description]
+ * @param  {[type]} type    [description]
+ * @param  {[type]} message [description]
+ * @return {[type]}         [description]
+ */
+var setErrorMessage = (type, message) => {
   errorMessages[type] = message;
 };
 

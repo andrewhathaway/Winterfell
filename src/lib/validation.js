@@ -4,10 +4,11 @@ var Validator = require('validator');
 var extraValidators = {};
 
 /**
- * [description]
- * @param  {[type]} value          [description]
- * @param  {[type]} validationItem [description]
- * @return {[type]}                [description]
+ * Validate a value against a validation item
+ *
+ * @param  any     value          Value being tested
+ * @param  object  validationItem Rule set for validator
+ * @return boolean                Valid?
  */
 var validateAnswer = (value, validationItem) => {
   var validationMethod = typeof extraValidators[validationItem.type] !== 'undefined'
@@ -29,11 +30,13 @@ var validateAnswer = (value, validationItem) => {
 };
 
 /**
- * [description]
- * @param  {[type]} questions       [description]
- * @param  {[type]} questionAnswers [description]
- * @param  {[type]} activeQuestions [description]
- * @return {[type]}                 [description]
+ * Get active questions from an array of questions,
+ * recursively. Follows active conditions.
+ *
+ * @param  array  questions       Questions to run through
+ * @param  object questionAnswers Current answers for questions
+ * @param  array  activeQuestions
+ * @return array                  All active questions
  */
 var getActiveQuestions = (questions, questionAnswers, activeQuestions) => {
   activeQuestions = activeQuestions || [];
@@ -69,10 +72,11 @@ var getActiveQuestions = (questions, questionAnswers, activeQuestions) => {
 };
 
 /**
- * [description]
- * @param  {[type]} questionSets    [description]
- * @param  {[type]} questionAnswers [description]
- * @return {[type]}                 [description]
+ * Get active questions from multiple question sets
+ *
+ * @param  array  questionSets    All question sets
+ * @param  object questionAnswers Current answers for questions
+ * @return array                  All active questions
  */
 var getActiveQuestionsFromQuestionSets = (questionSets, questionAnswers) => {
   var questionsToCheck = [];
@@ -86,11 +90,12 @@ var getActiveQuestionsFromQuestionSets = (questionSets, questionAnswers) => {
 };
 
 /**
- * [description]
- * @param  {[type]} questionSets     [description]
- * @param  {[type]} questionAnswers  [description]
- * @param  {[type]} validationErrors [description]
- * @return {[type]}                  [description]
+ * Get all invalid questions from question sets
+ *
+ * @param  array  questionSets     All question sets
+ * @param  object questionAnswers  Current answers for questions
+ * @param  object validationErrors Any validation errors
+ * @return object                  Set of questions and their invalidations
  */
 var getQuestionPanelInvalidQuestions = (questionSets, questionAnswers, validationErrors) => {
   var questionsToCheck = getActiveQuestionsFromQuestionSets(questionSets, questionAnswers)
@@ -151,10 +156,10 @@ var getQuestionPanelInvalidQuestions = (questionSets, questionAnswers, validatio
 };
 
 /**
- * [description]
- * @param  {[type]} name   [description]
- * @param  {[type]} method [description]
- * @return {[type]}        [description]
+ * Add a single validation method
+ *
+ * @param  string   name   Name of validation method
+ * @param  function method Validation method
  */
 var addValidationMethod = (name, method) => {
   if (typeof name !== 'string') {
@@ -171,9 +176,9 @@ var addValidationMethod = (name, method) => {
 };
 
 /**
- * [description]
- * @param  {[type]} methods [description]
- * @return {[type]}         [description]
+ * Add multiple validation methods
+ *
+ * @param  array methods Methods to add. name => func
  */
 var addValidationMethods = (methods) => {
   if (typeof methods !== 'object') {
