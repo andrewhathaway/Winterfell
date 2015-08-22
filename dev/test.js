@@ -1,6 +1,8 @@
 var React      = require('react');
 var Winterfell = require('../src/index');
 
+window.React = React;
+
 var formSchema = require('./form');
 
 window.onload = function() {
