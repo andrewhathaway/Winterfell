@@ -205,7 +205,7 @@ radioListItem    | Assigned to the LI inside of the `radioList` mentioned above
 radioLabel       | Assigned to the label inside of a radio button option
 radio            | Assigned to the radio button inside of a `radioOptionsInpout` 
 
-## Default Input Types
+## Default & Custom Input Types
 
 The default set of input types that ships with Winterfell are the following:
 
@@ -240,17 +240,98 @@ Winterfell
 
 ```
 
-## Props, Config & Events
+## Custom Error Messages
 
-## Other
+Error messages can be set strings, or methods that are called to generate an error message. They can be set like so:
 
-[Follow me on Twitter](http://twitter.com/andrewhathaway)
+```javascript
+var Winterfell = require('winterfell');
+
+Winterfell
+  .addErrorMessage('isLength', 'Please enter some text!');
+	
+Winterfell
+  .addErrorMessages({
+  	isLength : (validationItem) => {
+  	  /*
+  	   * validationItem = {
+  	   *   type   : 'isLength',
+  	   *   params : [] //Starts with answer
+  	   * }
+  	   */
+  	
+  	  return 'Please enter a value';
+  	}
+  });
+```
+
+## Custom Validation Methods
+
+Validation methods can be added and will be chosen over methods defined in the Validator package. 
+
+```javascript
+var Winterfell = require('winterfell');
+
+Winterfell
+  .addValidationMethod('isLength', value => {
+  	/*
+  	 * arguments == validation parameters
+  	 */
+  
+    return true; // Valid
+  });
+  
+Winterfell
+  .addValidationMethods({
+  	isLength : value => {
+  	  /*
+  	   * arguments == validation parameters
+  	   */
+  
+      return true; // valid
+    }
+  });
+```
+
+## Props & Config
+
+The following table shows the props Winterfell accepts, their types and descriptions. The only prop that is required is `schema`.
+
+Prop Name       | Type     | Description
+---             | ---      | ---
+panelId         | string   | Initial `panelId` to render
+schema          | object   | `schema` for the form to render
+ref             | string   | `ref` field for form element
+encType         | string   | `encType` field for the form element
+method          | string   | `method` field for the form element
+action          | string   | Default `action` field for the form element
+disableSubmit   | boolean  | Prevent the form from submitting naturally
+questionAnswers | object   | Existing `questionAnswers`. `questionId` => `answer`
+renderError     | function | Custom validation error render method. Return a React Component Or React Element.
+
+## Events
+
+The following events can be registered as props of Winterfell.
+
+Event Prop | Description | Arguments
+--- | --- | ---
+onRender      | Fired when Winterfell has initially rendered   | N/A
+onUpdate      | Fired when a questions answer has been changed | `questionAnswers`
+onSwitchPanel | Fired when a panel is switched or changed      | `panel`
+onSubmit      | Fired when the form is submitted successfully  | `questionAnswers`, `action`
+
+
+
+## Final Notes
+
+Pull requests are completely welcome. If you'd like to get in touch, [Tweet me](http://twitter.com/andrewhathaway).
 
 ## License
 
 MIT License (MIT)
 
-Copyright (c) 2014 Andrew Hathaway, [https://github.com/andrewhathaway/Winterfell](https://github.com/andrewhathaway/Winterfell)
+Copyright (c) 2015 Andrew Hathaway, [https://github.com/andrewhathaway/Winterfell](https://github.com/andrewhathaway/Winterfell)
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
