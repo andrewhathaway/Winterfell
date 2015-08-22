@@ -27,20 +27,12 @@ class SelectInput extends React.Component {
     return (
       <select name={this.props.name}
               className={this.props.className}
-              selected={this.state.selected}
+              value={this.state.value}
               ref="select"
               onChange={this.handleChange.bind(this)}>
         {options}
       </select>
     );
-  }
-
-  componentDidMount() {
-    this.handleChange.call(this, {
-      target : {
-        value : this.refs.select.getDOMNode().value
-      }
-    });
   }
 
 };

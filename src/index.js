@@ -25,6 +25,14 @@ class Winterfell extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      action          : nextProps.action,
+      schema          : nextProps.schema,
+      questionAnswers : nextProps.questionAnswers
+    });
+  }
+
   handleAnswerChange(questionId, questionAnswer) {
     var questionAnswers = _.chain(this.state.questionAnswers)
                            .set(questionId, questionAnswer)

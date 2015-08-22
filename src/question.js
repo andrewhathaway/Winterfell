@@ -38,7 +38,7 @@ class Question extends React.Component {
                           input={conditionalQuestion.input}
                           questionAnswers={this.props.questionAnswers}
                           validationErrors={this.props.validationErrors}
-                          onAnswerChange={this.props.onAnswerChange} />
+                          onAnswerChange={this.props.onAnswerChange.bind(this)} />
               );
             }
           )());
@@ -46,7 +46,7 @@ class Question extends React.Component {
 
     var value = typeof this.props.value !== 'undefined'
                   ? this.props.value
-                  : typeof this.props.input.defined !== 'undefined'
+                  : typeof this.props.input.default !== 'undefined'
                       ? this.props.input.default
                       : undefined;
 
@@ -69,6 +69,7 @@ class Question extends React.Component {
     }
 
     this.handleInputChange.call(
+      this,
       this.props.questionId,
       this.props.input.default
     );
