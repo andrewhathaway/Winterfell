@@ -21,6 +21,39 @@ var validateAnswer = (value, validationItem) => {
   return validationMethod.apply(null, validationParameters);
 };
 
+var getActiveQuestions = (questions, questionAnswers, activeQuestions) => {
+  activeQuestions = activeQuestions || [];
+
+  questions
+    .forEach(question => {
+      activeQuestions.push({
+        questionId  : question.questionId,
+        validations : question.validations
+      });
+
+      if (typeof question.input.options === 'undefined'
+          || question.input.options.length === 0) {
+        return;
+      }
+
+      question
+        .input
+        .options
+        .forEach(option => {
+          if (typeof option.conditionalQuestions === 'undefined'
+               || option.conditionalQuestions.length == 0
+               || questionAnswers[question.questionId] != option.value) {
+            return;
+          }
+
+          activeQuestions = getActiveQuestions(option.conditionalQuestions, questionAnswers, activeQuestions);
+        });
+
+    });
+
+  return activeQuestions;
+}
+
 var addValidationMethod = (name, method) => {
   if (typeof name !== 'string') {
     throw new Error('Winterfell: First parmateter of addValidationMethod '
@@ -48,6 +81,7 @@ var addValidationMethods = (methods) => {
 
 module.exports = {
   validateAnswer       : validateAnswer,
+  getActiveQuestions   : getActiveQuestions,
   addValidationMethod  : addValidationMethod,
   addValidationMethods : addValidationMethods
 };
