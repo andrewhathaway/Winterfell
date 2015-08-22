@@ -1,6 +1,7 @@
 var React = require('react');
 var _     = require('lodash');
 
+var Button      = require('./button');
 var QuestionSet = require('./questionSet');
 
 class QuestionPanel extends React.Component {
@@ -11,6 +12,34 @@ class QuestionPanel extends React.Component {
     this.state = {
       validationErrors : this.props.validationErrors
     };
+  }
+
+  handleMainButtonClick() {
+    var action     = this.props.action.default;
+    var conditions = this.props.action.conditions || [];
+
+    conditions
+      .forEach(condition => {
+        var answer = this.props.questionAnswers[condition.questionId];
+
+        action = answer == condition.value
+                   ? {
+                       action : condition.action,
+                       target : condition.target
+                     }
+                   : action;
+      });
+
+    switch (action.action) {
+
+      case 'GOTO':
+        this.props.onSwitchPanel(action.target);
+        break;
+
+      case 'SUBMIT':
+        this.props.onSubmit(action.target);
+        break;
+    }
   }
 
   render() {
@@ -38,6 +67,10 @@ class QuestionPanel extends React.Component {
     return (
       <div>
         {questionSets}
+        <div className={this.props.buttonBarClassName}>
+          <Button text={this.props.button.text}
+                  onClick={this.handleMainButtonClick.bind(this)} />
+        </div>
       </div>
     );
   }
@@ -45,20 +78,22 @@ class QuestionPanel extends React.Component {
 };
 
 QuestionPanel.defaultProps = {
-  validationErrors : {},
-  schema           : {},
-  panelId          : undefined,
-  panelIndex       : undefined,
-  action           : {
+  validationErrors   : {},
+  schema             : {},
+  panelId            : undefined,
+  panelIndex         : undefined,
+  action             : {
     default    : {},
     conditions : []
   },
-  button           : {
+  button             : {
     text : 'Submit'
   },
-  questionSets     : [],
-  questionAnswers  : {},
-  onAnswerChange   : () => {}
+  questionSets       : [],
+  questionAnswers    : {},
+  onAnswerChange     : () => {},
+  onSwitchPanel      : () => {},
+  buttonBarClassName : ''
 };
 
 module.exports = QuestionPanel;

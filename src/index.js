@@ -43,6 +43,39 @@ class Winterfell extends React.Component {
     });
   }
 
+  handleSwitchPanel(paneId) {
+    var panel = _.find(this.props.schema.formPanels, {
+      panelId : paneId
+    });
+
+    if (!panel) {
+      throw new Error('Winterfell: Tried to switch to panel "'
+                      + paneId + '", which does not exist.');
+    }
+
+    this.setState({
+      currentPanel : panel
+    });
+  }
+
+  handleSubmit(action) {
+    if (this.props.disableSubmit) {
+      this.props.onSubmit(this.state.questionAnswers, action);
+      return;
+    }
+
+    /*
+     * If we are not disabling the functionality of the form,
+     * we need to set the action provided in the form, then submit.
+     */
+    this.setState({
+      action : action
+    }, () => {
+      React.findDOMNode(this.refs[this.props.ref])
+           .submit();
+    });
+  }
+
   render() {
     var currentPanel = _.find(this.state.schema.questionPanels,
                           panel => panel.panelId == this.state.currentPanel.panelId);
@@ -61,7 +94,9 @@ class Winterfell extends React.Component {
                          button={currentPanel.button}
                          questionSets={currentPanel.questionSets}
                          questionAnswers={this.state.questionAnswers}
-                         onAnswerChange={this.handleAnswerChange.bind(this)} />
+                         onAnswerChange={this.handleAnswerChange.bind(this)}
+                         onSwitchPanel={this.handleSwitchPanel.bind(this)}
+                         onSubmit={this.handleSubmit.bind(this)} />
         </div>
       </form>
     );
@@ -76,7 +111,6 @@ Winterfell.defaultProps = {
     formPanels     : [],
     questionPanels : [],
     questionSets   : []
-
   },
   encType         : 'application/x-www-form-urlencoded',
   method          : 'POST',
@@ -85,7 +119,9 @@ Winterfell.defaultProps = {
   formClass       : '',
   panelId         : 'panel-1',
   wrapperClass    : '',
-  questionAnswers : {}
+  questionAnswers : {},
+  disableSubmit   : false,
+  onSubmit        : () => {}
 };
 
 module.exports = Winterfell;
