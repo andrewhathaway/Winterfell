@@ -52,7 +52,7 @@ gulp.task('build-dev', function() {
 
 gulp.task('watch-dev', function() {
   return gulp.watch([
-    'dist/winterfell.js',
+    'src/**/*.js',
     'dev/**/*.js',
     '!dev/build/app.js'
   ], {}, function() {
