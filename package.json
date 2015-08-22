@@ -1,7 +1,7 @@
 {
   "name": "winterfell",
   "version": "1.0.0",
-  "description": "Generate complex forms via a JSON schema that includes conditional questions, validation and more",
+  "description": "Generate complex, validated and extendable JSON-based forms in React",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,9 +14,14 @@
     "difficult",
     "extensive",
     "conditional",
-    "questions"
+    "questions",
+    "react-component"
   ],
   "author": "Andrew Hathaway <andrew@andrewhathaway.net>",
+  "repository" : {
+    "type": "git",
+    "url": "git://github.com/andrewhathaway/winterfell.git"
+  },
   "license": "MIT",
   "dependencies": {
     "lodash": "^3.10.1",
