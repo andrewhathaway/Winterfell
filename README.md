@@ -170,7 +170,7 @@ Validation item where the value msut be a minimum length of 1.
 ```json
 {
   "type" : "isLength",
-	"params" : [1]
+  "params" : [1]
 }
 ```
 
