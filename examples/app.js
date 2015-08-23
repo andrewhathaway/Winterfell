@@ -32,4 +32,10 @@ window.onload = function() {
                 onSubmit={onSubmit} />,
     document.getElementById('form')
   );
+
+  /*
+   * JSON View
+   */
+  $('#json-view')
+    .JSONView($('#json-view').html());
 };
