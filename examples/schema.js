@@ -49,7 +49,7 @@ module.exports = {
   }, {
     "panelId" : "register-panel",
     "panelHeader" : "My Awesome Form",
-    "panelText" : "Play around a little, you might find some surprises depending on what you answer!",
+    "panelText" : "We don't have a survey for you yet, how about we get you subscribed?",
     "action" : {
       "conditions" : [],
       "default" : {
@@ -67,7 +67,7 @@ module.exports = {
   }, {
     "panelId" : "final-panel",
     "panelHeader" : "My Awesome Form",
-    "panelText" : "Play around a little, you might find some surprises depending on what you answer!",
+    "panelText" : "Do you even check the console yet? Keep going though!",
     "action" : {
       "conditions" : [],
       "default" : {
