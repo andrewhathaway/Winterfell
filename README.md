@@ -42,6 +42,8 @@ React.render(
 - Custom error rendering
 - Custom classes
 - Custom InputTypes
+- Question pre and post text
+- Question panel header and text
 - Default values
 - Events
 
@@ -72,10 +74,14 @@ The initial `formPanels` entry is used as a page of questions, or `questionSets`
 
 Question Panels are the fleshed-out details about a page of questions. We defined the `questionSets` that exist on this page, any conditions for submitting the panel and button information. You should have one of these for every panel defined in formPanels above.
 
+Each `questionPanel` has the ability to have a header and some text along with it that is displayed above the questions. You can define these via the `panelHeader` and `panelText` fields.
+
 ```json
 {
 	"questionPanels" : [{
 		"panelId" : "intro-panel",
+		"panelHeader" : "A quick survey?",
+		"panelText" : "Please could you take a few minutes to fill out our survey?",
 		"action" : {
 			"conditions" : [{
 				"questionId" : "existing-user",
@@ -107,6 +113,8 @@ Questions Sets are groups of questions. Here is where you define questions with 
 
 The questionSet below has an initial radio button with `yes` and `no` options. When you select `yes`, a question asking for the users email address will render.
 
+Each question has the ability to have some `text` associated with it which gets rendered below the questions-label and some `postText` which will be rendered below the questions input.
+
 
 ```json
 {
@@ -115,6 +123,7 @@ The questionSet below has an initial radio button with `yes` and `no` options. W
 		"questions" : [{
 			"questionId" : "existing-user",
 			"question" : "Are you an existing user?",
+			"text" : "We'd just like to know so we can get you in the right place.",
 			"input" : {
 				"type" : "radioOptionsInput",
 				"options" : [{
@@ -123,6 +132,7 @@ The questionSet below has an initial radio button with `yes` and `no` options. W
 					"conditionalQuestions" : [{
 						"questionId" : "register-user-email",
 						"question" : "Please enter the email address your account is registered with",
+						"postText" : "We will not spam your email address.",
 						"input" : {
 							"type" : "emailInput",
 							"placeholder" : "Email Address"
@@ -183,29 +193,34 @@ The table below describes the current set of classes.
 
 Class Name | Description
 --- | ---
-form             | The form element itself
-questionPanels   | The div that wraps around the active `questionPanel`
-questionPanel    | The div that wraps around the active `questionSets` and the button bar
-questionSet      | The div that wraps around the `questions` inside a `questionSet`
-question         | The div that wraps around the `question`
-label            | Label inside of a `question`
-backButton       | Panel-back button, shown when on a second panel
-controlButton    | Typically the Next or Submit button, depending on panel
-buttonBar        | The div wrapped around the buttons described above
-errorMessage     | Error Message div class - Not used if custom renderError method used
-input            | Assigned to the inputs for types `textInput`, `textareaInput`, `emailInput` and `passwordInput`
-select           | Assigned to the `selectInput` select-element
-file             | Assigned to the `fileInput` file-element
-checkboxInput    | The div that wraps around the `checkboxInput`
-checkbox         | Assigned to the `checkboxOptionsInput` and `checkboxInput` checkbox-input
-checkboxList     | Assigned the to UL wrapped around the checkbox items in `checkboxOptionsInput`
-checkboxListItem | Assigned to the LI inside of the `checkboxList` mentioned above
-checkboxLabel    | Assigned to the label inside of a checkbox option
-radioList        | Assigned to the UL wrapped around the radio items in `radioOptionsInput`
-radioListItem    | Assigned to the LI inside of the `radioList` mentioned above
-radioLabel       | Assigned to the label inside of a radio button option
-radio            | Assigned to the radio button inside of a `radioOptionsInpout`
-
+form                         | The form element itself
+questionPanels               | The div that wraps around the active `questionPanel`
+questionPanel                | The div that wraps around the active `questionSets` and the button bar
+questionPanelHeaderContainer | The div that wraps around the `questionPanels` header text and text
+questionPanelHeaderText      | The h3 tag that holds the `questionPanel` header text
+questionPanelText            | The p tag that holds the `questionPanel` text
+questionSets                 | The div that wraps around the `questionSets` inside of a `questionPanel`
+questionSet                  | The div that wraps around the `questions` inside a `questionSet`
+question                     | The div that wraps around the `question`
+questionText                 | The p tag that holds the `question` text
+questionPostText             | The p tag that holds the `question` post-text
+label                        | Label inside of a `question`
+backButton                   | Panel-back button, shown when on a second panel
+controlButton                | Typically the Next or Submit button, depending on panel
+buttonBar                    | The div wrapped around the buttons described above
+errorMessage                 | Error Message div class - Not used if custom renderError method used
+input                        | Assigned to the inputs for types `textInput`, `textareaInput`, `emailInput` and `passwordInput`
+select                       | Assigned to the `selectInput` select-element
+file                         | Assigned to the `fileInput` file-element
+checkboxInput                | The div that wraps around the `checkboxInput`
+checkbox                     | Assigned to the `checkboxOptionsInput` and `checkboxInput` checkbox-input
+checkboxList                 | Assigned the to UL wrapped around the checkbox items in `checkboxOptionsInput`
+checkboxListItem             | Assigned to the LI inside of the `checkboxList` mentioned above
+checkboxLabel                | Assigned to the label inside of a checkbox option
+radioList                    | Assigned to the UL wrapped around the radio items in `radioOptionsInput`
+radioListItem                | Assigned to the LI inside of the `radioList` mentioned above
+radioLabel                   | Assigned to the label inside of a radio button option
+radio                        | Assigned to the radio button inside of a `radioOptionsInpout`
 ## Default & Custom Input Types
 
 The default set of input types that ships with Winterfell are the following:
