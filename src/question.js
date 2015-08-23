@@ -80,6 +80,13 @@ class Question extends React.Component {
               </label>
             )
           : undefined}
+        {!!this.props.text
+          ? (
+              <p className={this.props.classes.questionText}>
+                {this.props.text}
+              </p>
+            )
+          : undefined}
         {validationErrors}
         <Input name={this.props.questionId}
                value={value}
@@ -88,6 +95,13 @@ class Question extends React.Component {
                placeholder={this.props.input.placeholder}
                classes={this.props.classes}
                onChange={this.handleInputChange.bind(this, this.props.questionId)} />
+        {!!this.props.postText
+          ? (
+              <p className={this.props.classes.questionPostText}>
+                {this.props.postText}
+              </p>
+            )
+          : undefined}
         {conditionalItems}
       </div>
     );
@@ -112,6 +126,8 @@ Question.defaultProps = {
   questionId       : undefined,
   question         : '',
   validations      : [],
+  text             : undefined,
+  postText         : undefined,
   value            : undefined,
   input            : {
     default     : undefined,

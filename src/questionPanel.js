@@ -156,7 +156,30 @@ class QuestionPanel extends React.Component {
 
     return (
       <div className={this.props.classes.questionPanel}>
-        {questionSets}
+        {typeof this.props.panelHeader !== 'undefined'
+          || typeof this.props.panelText !== 'undefined'
+          ? (
+              <div className={this.props.classes.questionPanelHeaderContainer}>
+                {typeof this.props.panelHeader
+                  ? (
+                      <h3 className={this.props.questionPanelHeaderText}>
+                        {this.props.panelHeader}
+                      </h3>
+                    )
+                  : undefined}
+                {typeof this.props.panelText
+                  ? (
+                      <p className={this.props.questionPanelText}>
+                        {this.props.panelText}
+                      </p>
+                    )
+                  : undefined}
+              </div>
+            )
+          : undefined}
+        <div className={this.props.classes.questionSets}>
+          {questionSets}
+        </div>
         <div className={this.props.classes.buttonBar}>
           {this.props.panelHistory.length > 1
             ? (
@@ -181,6 +204,8 @@ QuestionPanel.defaultProps = {
   classes            : {},
   panelId            : undefined,
   panelIndex         : undefined,
+  panelHeader        : undefined,
+  panelText          : undefined,
   action             : {
     default    : {},
     conditions : []

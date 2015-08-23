@@ -13,6 +13,8 @@ class QuestionSet extends React.Component {
                   questionId={question.questionId}
                   question={question.question}
                   validations={question.validations}
+                  text={question.text}
+                  postText={question.postText}
                   value={this.props.questionAnswers[question.questionId]}
                   input={question.input}
                   classes={this.props.classes}
