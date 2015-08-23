@@ -22,15 +22,17 @@ class CheckboxInput extends React.Component {
 
   render() {
     return (
-      <label className={this.props.classes.checkboxLabel}>
-        <input type="checkbox"
-               name={this.props.name}
-               className={this.props.classes.checkbox}
-               checked={this.state.checked}
-               value={this.props.value}
-               onChange={this.handleChange.bind(this)} />
-        {this.props.text}
-      </label>
+      <div className={this.props.classes.checkboxInput}>
+        <label className={this.props.classes.checkboxLabel}>
+          <input type="checkbox"
+                 name={this.props.name}
+                 className={this.props.classes.checkbox}
+                 checked={this.state.checked}
+                 value={this.props.value}
+                 onChange={this.handleChange.bind(this)} />
+          {this.props.text}
+        </label>
+      </div>
     );
   }
 

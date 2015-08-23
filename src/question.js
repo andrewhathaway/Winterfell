@@ -73,9 +73,13 @@ class Question extends React.Component {
 
     return (
       <div className={this.props.classes.question}>
-        <label className={this.props.classes.label}>
-          {this.props.question}
-        </label>
+        {!!this.props.question
+          ? (
+              <label className={this.props.classes.label}>
+                {this.props.question}
+              </label>
+            )
+          : undefined}
         {validationErrors}
         <Input name={this.props.questionId}
                value={value}
