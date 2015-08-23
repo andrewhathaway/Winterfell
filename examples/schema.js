@@ -257,6 +257,17 @@ module.exports = {
                     "type" : "isLength",
                     "params" : [1]
                   }]
+                }, {
+                  "questionId" : "laptop-os-other-reason",
+                  'question' : "What do you like about this OS?",
+                  "input" : {
+                    "type" : "textareaInput",
+                    "placeholder" : "What do you like about this OS?"
+                  },
+                  "validations" : [{
+                    "type" : "isLength",
+                    "params" : [1]
+                  }]
                 }]
               }]
             }
