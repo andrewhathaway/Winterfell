@@ -1,7 +1,16 @@
 var _         = require('lodash');
 var Validator = require('validator');
 
-var extraValidators = {};
+var extraValidators = {
+
+  /*
+   * isAccepted Validation Mehod
+   */
+  isAccepted : (value, expected) => {
+    return value == expected;
+  }
+
+};
 
 /**
  * Validate a value against a validation item

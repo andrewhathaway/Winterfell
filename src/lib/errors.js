@@ -131,7 +131,12 @@ var errorMessages = {
   /*
    * URL Only
    */
-  isURL          : 'Please enter a valid URL'
+  isURL          : 'Please enter a valid URL',
+
+  /*
+   * isAccepted - checkbox
+   */
+  isAccepted     : 'Please accept by clicking the checkbox'
 };
 
 /**
@@ -190,10 +195,10 @@ errorMessages.getErrorMessage = (validationItem) => {
 };
 
 /**
- * [description]
- * @param  {[type]} type    [description]
- * @param  {[type]} message [description]
- * @return {[type]}         [description]
+ * setErrorMessage
+ *
+ * @param  string          type    Error message type
+ * @param  stirng|function message essage or function to get message
  */
 var setErrorMessage = (type, message) => {
   errorMessages[type] = message;
