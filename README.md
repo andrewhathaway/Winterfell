@@ -39,6 +39,8 @@ React.render(
 - Conditional form submitting
 - Disable regular submissions
 - Instant form validation
+- Predefined validation types
+- Predefined error messages
 - Custom validation types
 - Custom error messages
 - Custom error rendering
