@@ -14,7 +14,7 @@ Winterfell was initially made for a project in the legal sector that required a 
 First install [Winterfell via npm](https://www.npmjs.com/package/winterfell)
 
 ```bash
-$ npm install winterfell
+$ npm install winterfell --save
 ```
 
 Winterfell uses a JSON schema to render your form. We will go through that later.
