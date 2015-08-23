@@ -108,7 +108,9 @@ class Question extends React.Component {
   }
 
   componentDidMount() {
-    if (typeof this.props.input.default === 'undefined') {
+    if (typeof this.props.input.default === 'undefined'
+          || (this.props.input.type === 'checkboxInput'
+                && typeof this.props.questionAnswers[this.props.questionId] === 'undefined')) {
       return;
     }
 

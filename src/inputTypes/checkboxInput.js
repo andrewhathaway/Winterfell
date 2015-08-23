@@ -6,7 +6,7 @@ class CheckboxInput extends React.Component {
     super(props);
 
     this.state = {
-      checked : true
+      checked : false
     };
   }
 

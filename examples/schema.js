@@ -92,8 +92,10 @@ module.exports = {
       "questionId" : "existing-user",
       "question" : "Are you currently subscribed?",
       "validations" : [{
-        "type"    : "isLength",
-        "params" : [1]
+        "type"    : "isIn",
+        "params" : [
+          ["yes", "no"]
+        ]
       }],
       "input" : {
         "type" : "radioOptionsInput",
@@ -162,6 +164,7 @@ module.exports = {
       "questionId" : "reg-accept",
       "question" : "",
       "input" : {
+        "default" : "yes",
         "type" : "checkboxInput",
         "text" : "Do you accept the terms and conditions?"
       }
