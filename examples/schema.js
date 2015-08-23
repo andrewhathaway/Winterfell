@@ -1,9 +1,13 @@
 module.exports = {
   "classes" : {
     "input" : "form-control",
+    "select" : "form-control",
     "question" : "form-group",
     "radioListItem" : "radio",
     "radioList" : "clean-list",
+    "checkboxInput" : "checkbox",
+    "checkboxListItem" : "checkbox",
+    "checkboxList" : "clean-list",
     "controlButton" : "btn btn-primary pull-right",
     "backButton" : "btn btn-default pull-left",
     "errorMessage" : "alert alert-danger"
@@ -49,7 +53,7 @@ module.exports = {
       }
     },
     "button" : {
-      "text" : "Submit"
+      "text" : "Subscribe"
     },
     "questionSets" : [{
       "index" : 1,
@@ -69,7 +73,7 @@ module.exports = {
     },
     "questionSets" : [{
       "index" : 1,
-      "questionSetId" : "final-set"
+      "questionSetId" : "info-set"
     }, {
       "index" : 2,
       "questionSetId" : "survey-set"
@@ -79,7 +83,7 @@ module.exports = {
     "questionSetId" : "intro-set",
     "questions" : [{
       "questionId" : "existing-user",
-      "question" : "Are you an existing user?",
+      "question" : "Are you currently subscribed?",
       "validations" : [{
         "type"    : "isLength",
         "params" : [1]
@@ -97,8 +101,7 @@ module.exports = {
               "placeholder" : "Email Address"
             },
             "validations" : [{
-              "type" : "isLength",
-              "params" : [1]
+              "type" : "isEmail"
             }]
           }],
           "validations" : [{
@@ -118,7 +121,8 @@ module.exports = {
       "questionId" : "reg-first-name",
       "question" : "First Name",
       "input" : {
-        "type" : "textInput"
+        "type" : "textInput",
+        "placeholder" : "First Name"
       },
       "validations" : [{
         "type" : "isLength",
@@ -128,25 +132,43 @@ module.exports = {
       "questionId" : "reg-last-name",
       "question" : "Last Name",
       "input" : {
-        "type" : "textInput"
+        "type" : "textInput",
+        "placeholder" : "Last Name"
       },
       "validations" : [{
         "type" : "isLength",
         "params" : [1]
       }]
+    }, {
+      "questionId" : "reg-email",
+      "question" : "Email Address",
+      "input" : {
+        "type" : "emailInput",
+        "placeholder" : "Email Address"
+      },
+      "validations" : [{
+        "type" : "isEmail"
+      }]
+    }, {
+      "questionId" : "reg-accept",
+      "question" : "",
+      "input" : {
+        "type" : "checkboxInput",
+        "text" : "Do you accept the terms and conditions?"
+      }
     }]
   }, {
-    "questionSetId" : "final-set",
+    "questionSetId" : "info-set",
     "questions" : [{
       "questionId" : "gender",
       "question" : "Gender",
       "input" : {
-        "type" : "radioOptionsInput",
+        "type" : "selectInput",
         "options" : [{
           "text" : "Male",
           "value" : "male"
         }, {
-          "text" : "Femle",
+          "text" : "Female",
           "value" : "female"
         }]
       }
@@ -154,25 +176,93 @@ module.exports = {
   }, {
     "questionSetId" : "survey-set",
     "questions" : [{
-      "questionId" : "survey-first-name",
-      "question" : "First Name",
+      "questionId" : "survey-hours-spent",
+      "question" : "How many hours do you spend on a computer weekly?",
       "input" : {
-        "type" : "textInput"
+        "type" : "radioOptionsInput",
+        "options" : [{
+          "text" : "0-10 Hours",
+          "value" : "1"
+        }, {
+          "text" : "11-20 Hours",
+          "value" : "2"
+        }, {
+          "text" : "21-30 Hours",
+          "value" : "3"
+        }, {
+          "text" : "31+ Hours",
+          "value" : "4"
+        }]
       },
       "validations" : [{
         "type" : "isLength",
         "params" : [1]
       }]
     }, {
-      "questionId" : "survey-last-name",
-      "question" : "Last Name",
+      "questionId" : "survey-devices-owned",
+      "question" : "Which of the following devices do you own?",
       "input" : {
-        "type" : "textInput"
-      },
-      "validations" : [{
-        "type" : "isLength",
-        "params" : [1]
-      }]
+        "type" : "checkboxOptionsInput",
+        "options" : [{
+          "text" : "Laptop",
+          "value" : "laptop",
+          "conditionalQuestions" : [{
+            "questionId" : "laptop-os",
+            "question" : "What is your preferred operation system?",
+            "input" : {
+              "type" : "radioOptionsInput",
+              "options" : [{
+                "text" : "OS X",
+                "value" : "osx"
+              }, {
+                "text" : "Windows",
+                "value" : "windows"
+              }, {
+                "text" : "Any Linux Distro",
+                "value" : "linux"
+              }, {
+                "text" : "Other",
+                "value" : "other",
+                "conditionalQuestions" : [{
+                  "questionId" : "laptop-os-other-text",
+                  "question" : "Please name the other OS",
+                  "input" : {
+                    "type" : "textInput",
+                    "placeholder" : "Other Operating System"
+                  },
+                  "validations" : [{
+                    "type" : "isLength",
+                    "params" : [1]
+                  }]
+                }]
+              }]
+            }
+          }]
+        }, {
+          "text" : "Desktop Computer",
+          "value" : "desktop"
+        }, {
+          "text" : "Tablet",
+          "value" : "tablet"
+        }, {
+          "text" : "Mobile",
+          "value" : "mobile"
+        }, {
+          "text" : "Smart Watch",
+          "value" : "watch"
+        }, {
+          "text" : "None",
+          "value" : "none",
+          "conditionalQuestions" : [{
+            "questionId" : "no-devices-how",
+            "question" : "How are you accessing this form then?",
+            "input" : {
+              "type" : "textInput",
+              "placeholder" : "Form access"
+            }
+          }]
+        }]
+      }
     }]
   }]
 };
