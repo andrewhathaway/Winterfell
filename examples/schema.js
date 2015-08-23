@@ -11,7 +11,8 @@ module.exports = {
     "controlButton" : "btn btn-primary pull-right",
     "backButton" : "btn btn-default pull-left",
     "errorMessage" : "alert alert-danger",
-    "questionPostText" : "push-top"
+    "questionPostText" : "push-top",
+    "buttonBar" : "button-bar"
   },
   "formPanels" : [{
     "index" : 1,

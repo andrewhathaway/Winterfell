@@ -13,6 +13,7 @@ body {
 .form-container {
   max-width: 700px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .push-top {
@@ -24,6 +25,16 @@ body {
   display: inline-block;
   margin-left: 10px;
   position: relative;
+}
+
+.button-bar {
+  height: 35px;
+}
+
+.footer {
+  margin-top: 20px;
+  border-top: 1px solid #EEE;
+  padding: 10px 0;
 }
 
 /*
