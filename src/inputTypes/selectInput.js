@@ -35,6 +35,18 @@ class SelectInput extends React.Component {
     );
   }
 
+  componentDidMount() {
+    /*
+     * Selects automatically pick the first item, so
+     * make sure we set it.
+     */
+    this.handleChange({
+      target : {
+        value : this.refs.select.getDOMNode().value
+      }
+    });
+  }
+
 };
 
 SelectInput.defaultProps = {
