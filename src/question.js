@@ -23,8 +23,12 @@ class Question extends React.Component {
     if (typeof this.props.input.options !== 'undefined') {
       this.props.input.options
           .filter(option => {
-            return this.props.value == option.value
-                     && typeof option.conditionalQuestions !== 'undefined'
+            return this.props.value instanceof Array
+                     ? this.props.value.indexOf(option.value) > -1
+                     : this.props.value == option.value;
+          })
+          .filter(option => {
+            return typeof option.conditionalQuestions !== 'undefined'
                      && option.conditionalQuestions.length > 0;
           })
           .forEach(option =>
