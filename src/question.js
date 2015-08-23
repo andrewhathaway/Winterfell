@@ -38,6 +38,8 @@ class Question extends React.Component {
                           questionSetId={this.props.questionSetId}
                           questionId={conditionalQuestion.questionId}
                           question={conditionalQuestion.question}
+                          text={conditionalQuestion.text}
+                          postText={conditionalQuestion.postText}
                           validations={conditionalQuestion.validations}
                           value={this.props.questionAnswers[conditionalQuestion.questionId]}
                           input={conditionalQuestion.input}
