@@ -80,6 +80,8 @@ Question Panels are the fleshed-out details about a page of questions. We define
 
 Each `questionPanel` has the ability to have a header and some text along with it that is displayed above the questions. You can define these via the `panelHeader` and `panelText` fields.
 
+Supported actions are `GOTO` and `SUBMIT`. When using `GOTO`, the `target` can be any `questionPanelId`. `SUBMIT` places the `target` in to the action field of the form element.
+
 ```json
 {
 	"questionPanels" : [{
@@ -94,9 +96,7 @@ Each `questionPanel` has the ability to have a header and some text along with i
 				"target" : "register-panel"
 			}],
 			"default" : {
-				// Can also be 'SUBMIT' to fire a submission
 				"action" : "GOTO",
-				// If action is 'SUBMIT' set action to a URL
 				"target" : "final-panel"
 			}
 		},
@@ -165,16 +165,20 @@ Validations are handled via the [Validator](https://www.npmjs.com/package/valida
 
 Validations `params` key must be an array of parameters for the validation method. The value will be unshifted to the start of the array and called up on the validation method in order. For example:
 
+Validation item where the value msut be a minimum length of 1.
+
+```json
+{
+  "type" : "isLength",
+	"params" : [1]
+}
+```
+
+Validation item where the value msut be a minimum length of 1 and a maximum of 20.
+
 ```json
 {
 	"type" : "isLength",
-	// Value must be a min-length of 1
-	"params" : [1]
-}
-
-{
-	"type" : "isLength",
-	// Value must be a min-length of 1 and max-length of 20
 	"params" : [1, 20]
 }
 ```
