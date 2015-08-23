@@ -221,6 +221,7 @@ module.exports = {
     }, {
       "questionId" : "survey-devices-owned",
       "question" : "Which of the following devices do you own?",
+      "text" : "Try playing around the the laptop or none options!",
       "input" : {
         "type" : "checkboxOptionsInput",
         "options" : [{
@@ -229,6 +230,8 @@ module.exports = {
           "conditionalQuestions" : [{
             "questionId" : "laptop-os",
             "question" : "What is your preferred operation system?",
+            "text" : "Awesome, you found me. ",
+            "postText" : "The other option will also open up a textInput",
             "input" : {
               "type" : "radioOptionsInput",
               "options" : [{
