@@ -8,6 +8,16 @@ var extraValidators = {
    */
   isAccepted : (value, expected) => {
     return value == expected;
+  },
+
+  isAllIn : (value, options) => {
+    if (!value) {
+      return false;
+    }
+
+    return _.every(value, (item) => {
+      return options.indexOf(item) > -1;
+    });
   }
 
 };

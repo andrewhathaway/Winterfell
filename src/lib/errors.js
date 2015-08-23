@@ -99,6 +99,11 @@ var errorMessages = {
   isIn           : 'Please enter one of the allowed values',
 
   /*
+   * isAllIn array of items
+   */
+  isAllIn        : 'Please enter one of the allowed values',
+
+  /*
    * JSON Value
    */
   isJSON         : 'Please enter a valid JSON string',

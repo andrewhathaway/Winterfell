@@ -213,8 +213,10 @@ module.exports = {
         }]
       },
       "validations" : [{
-        "type" : "isLength",
-        "params" : [1]
+        "type" : "isIn",
+        "params" : [
+          [1, 2, 3, 4]
+        ]
       }]
     }, {
       "questionId" : "survey-devices-owned",
@@ -280,7 +282,20 @@ module.exports = {
             }
           }]
         }]
-      }
+      },
+      "validations" : [{
+        "type" : "isAllIn",
+        "params" : [
+          [
+            "laptop",
+            "desktop",
+            "tablet",
+            "mobile",
+            "watch",
+            "none"
+          ]
+        ]
+      }]
     }]
   }]
 };
