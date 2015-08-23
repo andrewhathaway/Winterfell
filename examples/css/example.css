@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 body {
-  padding-top: 70px;
+  padding-top: 50px;
   padding-bottom: 30px;
 }
 
@@ -17,6 +17,13 @@ body {
 
 .push-top {
   margin-top: 10px;
+}
+
+.star-btn {
+  top: 10px;
+  display: inline-block;
+  margin-left: 10px;
+  position: relative;
 }
 
 /*

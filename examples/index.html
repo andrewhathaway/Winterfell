@@ -20,7 +20,7 @@
         <a class="navbar-brand" href="/">Winterfell</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav pull-left">
           <li class="active">
             <a href="/">
               Demo
@@ -42,13 +42,27 @@
             </a>
           </li>
         </ul>
+        <ul class="nav navbar-nav pull-right">
+          <li>
+            <a href="https://github.com/andrewhathaway/Winterfell"><span class="hidden-xs"> View on GitHub </span></a>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>
-   <div class="container theme-showcase" role="main">
+   <div class="theme-showcase" role="main">
     <div class="jumbotron">
-      <h1>Winterfell</h1>
-      <p>Generate complex, validated and extendable JSON-based forms in React.</p>
+      <div class="container">
+        <h1>Winterfell</h1>
+        <p>Generate complex, validated and extendable JSON-based forms in React.</p>
+        <a href="#"
+           class="btn btn-primary">
+          View on Github
+        </a>
+        <div class="star-btn">
+          <a class="github-button" href="https://github.com/andrewhathaway/Winterfell" data-icon="octicon-star" data-style="mega" data-count-href="/andrewhathaway/Winterfell/stargazers" data-count-api="/repos/andrewhathaway/Winterfell#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star andrewhathaway/Winterfell on GitHub">Star</a>
+        </div>
+      </div>
     </div>
     <div class="form-container">
       <ul class="nav nav-tabs">
@@ -437,6 +451,7 @@ window.onload = function() {
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="build/prism.js"></script>
   <script src="build/jsonview.js"></script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
