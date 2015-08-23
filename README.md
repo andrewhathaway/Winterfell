@@ -4,7 +4,7 @@
 
 Winterfell allows you to build up complex, multi-page forms with conditional questions, validation and conditional-page switching via a JSON schema, rendered by React.
 
-[View Demo](http://winterfell.andrewhathaway.net) - 
+[View Demo](http://winterfell.andrewhathaway.net) -
 [Follow me on Twitter](http://twitter.com/andrewhathaway)
 
 ## Usage
@@ -30,7 +30,7 @@ React.render(
 ## Features
 
 - Easy, quick and extendable
-- JSON schema 
+- JSON schema
 - Multi-page forms
 - Infitely-recursive conditional questions
 - Conditional page switching
@@ -42,16 +42,16 @@ React.render(
 - Custom error rendering
 - Custom classes
 - Custom InputTypes
-- Default valiues
-- Events 
+- Default values
+- Events
 
 ## Schema
 
-The schema is built up of three main parts, `formPanels`, `questionPanels` and `questionSets`. 
+The schema is built up of three main parts, `formPanels`, `questionPanels` and `questionSets`.
 
 #### Form Panels
 
-The initial `formPanels` entry is used as a page of questions, or `questionSets` in Winterfells case. 
+The initial `formPanels` entry is used as a page of questions, or `questionSets` in Winterfells case.
 
 ```json
 {
@@ -85,9 +85,9 @@ Question Panels are the fleshed-out details about a page of questions. We define
 			}],
 			"default" : {
 				// Can also be 'SUBMIT' to fire a submission
-				"action" : "GOTO", 
+				"action" : "GOTO",
 				// If action is 'SUBMIT' set action to a URL
-				"target" : "final-panel" 
+				"target" : "final-panel"
 			}
 		},
 		"button" : {
@@ -105,7 +105,7 @@ Question Panels are the fleshed-out details about a page of questions. We define
 
 Questions Sets are groups of questions. Here is where you define questions with their validations, types, conditions etc. ConditionalQuestions are recursive and will work as expected.
 
-The questionSet below has an initial radio button with `yes` and `no` options. When you select `yes`, a question asking for the users email address will render. 
+The questionSet below has an initial radio button with `yes` and `no` options. When you select `yes`, a question asking for the users email address will render.
 
 
 ```json
@@ -196,6 +196,7 @@ errorMessage     | Error Message div class - Not used if custom renderError meth
 input            | Assigned to the inputs for types `textInput`, `textareaInput`, `emailInput` and `passwordInput`
 select           | Assigned to the `selectInput` select-element
 file             | Assigned to the `fileInput` file-element
+checkboxInput    | The div that wraps around the `checkboxInput`
 checkbox         | Assigned to the `checkboxOptionsInput` and `checkboxInput` checkbox-input
 checkboxList     | Assigned the to UL wrapped around the checkbox items in `checkboxOptionsInput`
 checkboxListItem | Assigned to the LI inside of the `checkboxList` mentioned above
@@ -203,7 +204,7 @@ checkboxLabel    | Assigned to the label inside of a checkbox option
 radioList        | Assigned to the UL wrapped around the radio items in `radioOptionsInput`
 radioListItem    | Assigned to the LI inside of the `radioList` mentioned above
 radioLabel       | Assigned to the label inside of a radio button option
-radio            | Assigned to the radio button inside of a `radioOptionsInpout` 
+radio            | Assigned to the radio button inside of a `radioOptionsInpout`
 
 ## Default & Custom Input Types
 
@@ -229,7 +230,7 @@ var MyAwesomeInputType = require('./awesomeInputType');
 Winterfell
   .inputTypes
   .addInputType('myAwesomeInputType', MyAwesomeInputType);
-			
+
 // OR
 
 Winterfell
@@ -249,7 +250,7 @@ var Winterfell = require('winterfell');
 
 Winterfell
   .addErrorMessage('isLength', 'Please enter some text!');
-	
+
 Winterfell
   .addErrorMessages({
   	isLength : (validationItem) => {
@@ -259,7 +260,7 @@ Winterfell
   	   *   params : [] //Starts with answer
   	   * }
   	   */
-  	
+
   	  return 'Please enter a value';
   	}
   });
@@ -267,7 +268,7 @@ Winterfell
 
 ## Custom Validation Methods
 
-Validation methods can be added and will be chosen over methods defined in the Validator package. 
+Validation methods can be added and will be chosen over methods defined in the Validator package.
 
 ```javascript
 var Winterfell = require('winterfell');
@@ -277,17 +278,17 @@ Winterfell
   	/*
   	 * arguments == validation parameters
   	 */
-  
+
     return true; // Valid
   });
-  
+
 Winterfell
   .addValidationMethods({
   	isLength : value => {
   	  /*
   	   * arguments == validation parameters
   	   */
-  
+
       return true; // valid
     }
   });
