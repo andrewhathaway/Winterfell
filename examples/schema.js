@@ -10,7 +10,8 @@ module.exports = {
     "checkboxList" : "clean-list",
     "controlButton" : "btn btn-primary pull-right",
     "backButton" : "btn btn-default pull-left",
-    "errorMessage" : "alert alert-danger"
+    "errorMessage" : "alert alert-danger",
+    "questionPostText" : "push-top"
   },
   "formPanels" : [{
     "index" : 1,
@@ -24,6 +25,8 @@ module.exports = {
   }],
   "questionPanels" : [{
     "panelId" : "intro-panel",
+    "panelHeader" : "My Awesome Form",
+    "panelText" : "Play around a little, you might find some surprises depending on what you answer!",
     "action" : {
       "conditions" : [{
         "questionId" : "existing-user",
@@ -45,6 +48,8 @@ module.exports = {
     }]
   }, {
     "panelId" : "register-panel",
+    "panelHeader" : "My Awesome Form",
+    "panelText" : "Play around a little, you might find some surprises depending on what you answer!",
     "action" : {
       "conditions" : [],
       "default" : {
@@ -61,6 +66,8 @@ module.exports = {
     }]
   }, {
     "panelId" : "final-panel",
+    "panelHeader" : "My Awesome Form",
+    "panelText" : "Play around a little, you might find some surprises depending on what you answer!",
     "action" : {
       "conditions" : [],
       "default" : {
@@ -120,6 +127,7 @@ module.exports = {
     "questions" : [{
       "questionId" : "reg-first-name",
       "question" : "First Name",
+      "text" : "Its nice to accompany a question with some extra text, is it not?",
       "input" : {
         "type" : "textInput",
         "placeholder" : "First Name"
@@ -142,6 +150,7 @@ module.exports = {
     }, {
       "questionId" : "reg-email",
       "question" : "Email Address",
+      "postText" : "We won't spam your email address! Yadda yadda! This is some post-question text",
       "input" : {
         "type" : "emailInput",
         "placeholder" : "Email Address"
