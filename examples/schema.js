@@ -167,7 +167,13 @@ module.exports = {
         "default" : "yes",
         "type" : "checkboxInput",
         "text" : "Do you accept the terms and conditions?"
-      }
+      },
+      "validations" : [{
+        "type"   : "isAccepted",
+        "params" : [
+          "yes"
+        ]
+      }]
     }]
   }, {
     "questionSetId" : "info-set",
