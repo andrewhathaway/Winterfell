@@ -1,14 +1,22 @@
 var errorMessages = {
 
-  default  : 'Please correct the field below',
+  /*
+   * Fallback Error Message
+   */
+  default        : 'Please correct the field below',
 
-  isLength : (validationItem) => {
+  /*
+   * Min and Max string left message
+   */
+  isLength       : (validationItem) => {
     switch (validationItem.params.length) {
 
       case 1:
         return 'Please enter a value with at least '
-                + validationItem.params[0] + ' characters';
-        // @todo: Plural checking
+                + validationItem.params[0] + ' character'
+                + (validationItem.params[0] != 1
+                    ? 's'
+                    : '');
         break;
 
       case 2:
@@ -25,8 +33,105 @@ var errorMessages = {
     return errorMessage;
   },
 
-  isEmail  : 'Please enter a valid email address'
+  /*
+   * Valid email address
+   */
+  isEmail        : 'Please enter a valid email address',
 
+  /*
+   * String contains seed
+   */
+  contains       : (validationItem) => {
+    return 'Please enter a value that contains "'
+           + validationItem.params[0] + '"';
+  },
+
+  /*
+   * String equals string
+   */
+  equals         : (validationItem) => {
+    return 'Value must equal ' + validationItem.params[0];
+  },
+
+  /*
+   * Characters A-Z only
+   */
+  isAlpha        : 'Please only enter letters',
+
+  /*
+   * Characters A-Z and 1-9 only
+   */
+  isAlphanumeric : 'Please only enter letters and numbers',
+
+  /*
+   * Credit card
+   */
+  isCreditCard   : 'Please enter a valid credit card number',
+
+  /*
+   * Currency
+   */
+  isCurrency     : 'Please enter a current value only',
+
+  /*
+   * Date
+   */
+  isDate         : 'Please enter a valid date',
+
+  /*
+   * Decimal value
+   */
+  isDecimal      : 'Please enter a decimal value only',
+
+  /*
+   * Float value
+   */
+  isFloat        : 'Please enter a float value only',
+
+  /*
+   * IP value
+   */
+  isIP           : 'Please enter a valid IP address',
+
+  /*
+   * isIn array of items
+   */
+  isIn           : 'Please enter one of the allowed values',
+
+  /*
+   * JSON Value
+   */
+  isJSON         : 'Please enter a valid JSON string',
+
+  /*
+   * Lowercase values only
+   */
+  isLowercase    : 'Please enter lowercase characters only',
+
+  /*
+   * Uppercase values only
+   */
+  isUppercase    : 'Please enter uppercase characters only',
+
+  /*
+   * Mobile phone
+   */
+  isMobilePhone  : 'Please enter a valid mobile phone',
+
+  /*
+   * MongoId only
+   */
+  isMongoId      : 'Please enter a valid MongoId',
+
+  /*
+   * Numbers only
+   */
+  isNumeric      : 'Please enter numbers only',
+
+  /*
+   * URL Only
+   */
+  isURL          : 'Please enter a valid URL'
 };
 
 /**
