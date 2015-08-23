@@ -34,7 +34,7 @@ React.render(
 - Easy, quick and extendable
 - JSON schema
 - Multi-page forms
-- Infitely-recursive conditional questions
+- Infinitely-recursive conditional questions
 - Conditional page switching
 - Conditional form submitting
 - Disable regular submissions
@@ -57,7 +57,7 @@ The schema is built up of three main parts, `formPanels`, `questionPanels` and `
 
 #### Form Panels
 
-The initial `formPanels` entry is used as a page of questions, or `questionSets` in Winterfells case.
+The initial `formPanels` entry is used as a page of questions, or `questionSets` in Winterfell's case.
 
 ```json
 {
@@ -161,7 +161,7 @@ Each question has the ability to have some `text` associated with it which gets 
 }
 ```
 
-Validations are handled via the [Validator](https://www.npmjs.com/package/validator) package on npm. In the `validations` key item, you can set your types of valiation for the field. The `type` must be a method on the Validator package, or a custom defined method.
+Validations are handled via the [Validator](https://www.npmjs.com/package/validator) package on npm. In the `validations` key item, you can set your types of validation for the field. The `type` must be a method on the Validator package, or a custom defined method.
 
 Validations `params` key must be an array of parameters for the validation method. The value will be unshifted to the start of the array and called up on the validation method in order. For example:
 
@@ -181,7 +181,7 @@ Validations `params` key must be an array of parameters for the validation metho
 
 #### HTML Classes
 
-Winterfell allows you to define classes for the rendered form in mutliple different areas. To use them, place them in the root of the form-schema like so:
+Winterfell allows you to define classes for the rendered form in multiple different areas. To use them, place them in the root of the form-schema like so:
 
 ```
 {
@@ -224,7 +224,7 @@ checkboxLabel                | Assigned to the label inside of a checkbox option
 radioList                    | Assigned to the UL wrapped around the radio items in `radioOptionsInput`
 radioListItem                | Assigned to the LI inside of the `radioList` mentioned above
 radioLabel                   | Assigned to the label inside of a radio button option
-radio                        | Assigned to the radio button inside of a `radioOptionsInpout`
+radio                        | Assigned to the radio button inside of a `radioOptionsInput`
 ## Default & Custom Input Types
 
 The default set of input types that ships with Winterfell are the following:
