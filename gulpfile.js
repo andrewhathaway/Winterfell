@@ -3,6 +3,7 @@ var browserify = require('browserify');
 var source     = require('vinyl-source-stream');
 var reactify   = require('reactify');
 var buffer     = require('vinyl-buffer');
+var uglify     = require('gulp-uglify');
 
 /**
  * Examples Build
@@ -20,6 +21,7 @@ gulp.task('build-examples', function() {
          .bundle()
          .pipe(source('app.js'))
          .pipe(buffer())
+         .pipe(uglify())
          .pipe(gulp.dest('examples/build'));
 });
 
