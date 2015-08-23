@@ -325,7 +325,7 @@ onSubmit      | Fired when the form is submitted successfully  | `questionAnswer
 
 ## Final Notes
 
-Pull requests are completely welcome. If you'd like to get in touch, [Tweet me](http://twitter.com/andrewhathaway).
+Pull requests are completely welcome. If you'd like to get in touch, [Tweet me](http://twitter.com/andrewhathaway). Initial schema design by [Jordan Appleson](http://twitter.com/jordanisonfire).
 
 ## License
 
