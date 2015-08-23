@@ -1,5 +1,5 @@
 .DS_Store
 node_modules
 dev/build
-examples/build
+examples/build/app.js
 dev/form.js
