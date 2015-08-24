@@ -4,7 +4,7 @@
 
 Winterfell allows you to build up complex, multi-page forms with conditional questions, validation and conditional-page switching via a JSON schema, rendered by React.
 
-Winterfell was initially made for a project in the legal sector that required a large, complex form with questions that would result in more questions or different pages when you clicked next. With an easy to write schema and a high level of customisation, comes a great power.
+Winterfell was initially made for a project in a sector that required a large, complex form with questions that would result in more questions or different pages when you clicked next. With an easy to write schema and a high level of customisation, comes a great power.
 
 [View Demo](http://winterfell.andrewhathaway.net) -
 [Follow me on Twitter](http://twitter.com/andrewhathaway)
@@ -57,7 +57,7 @@ The schema is built up of three main parts, `formPanels`, `questionPanels` and `
 
 #### Form Panels
 
-The initial `formPanels` entry is used as a page of questions, or `questionSets` in Winterfell's case.
+The initial `formPanels` entry is used as a page of questions, or `questionPanels` in Winterfell's case.
 
 ```json
 {
@@ -113,7 +113,7 @@ Supported actions are `GOTO` and `SUBMIT`. When using `GOTO`, the `target` can b
 
 #### Question Sets
 
-Questions Sets are groups of questions. Here is where you define questions with their validations, types, conditions etc. ConditionalQuestions are recursive and will work as expected.
+Questions Sets are groups of questions. Here is where you define questions with their validations, types, conditions etc. `conditionalQuestions` are recursive and will work as expected.
 
 The questionSet below has an initial radio button with `yes` and `no` options. When you select `yes`, a question asking for the users email address will render.
 
@@ -163,7 +163,7 @@ Each question has the ability to have some `text` associated with it which gets 
 
 Validations are handled via the [Validator](https://www.npmjs.com/package/validator) package on npm. In the `validations` key item, you can set your types of validation for the field. The `type` must be a method on the Validator package, or a custom defined method.
 
-Validations `params` key must be an array of parameters for the validation method. The value will be unshifted to the start of the array and called up on the validation method in order. For example:
+A validation-items `params` key must be an array of parameters for the validation method. The value will be unshifted to the start of the array and called up on the validation method in order. For example:
 
 Validation item where the value msut be a minimum length of 1.
 
@@ -291,7 +291,7 @@ Winterfell
 
 ## Custom Validation Methods
 
-Validation methods can be added and will be chosen over methods defined in the Validator package.
+Validation methods can be defined and will be chosen over methods defined in the Validator package.
 
 ```javascript
 var Winterfell = require('winterfell');
