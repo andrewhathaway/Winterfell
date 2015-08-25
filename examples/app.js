@@ -1,7 +1,8 @@
 var React      = window.React = require('react');
 var Winterfell = require('../src/index');
 
-var schema = require('./schema');
+var schema      = require('./schema');
+var loginSchema = require('./loginSchema');
 
 var onRender = () => {
   console.log('Great news! Winterfell rendered successfully');
@@ -24,6 +25,13 @@ var onSubmit = (questionAnswers, target) => {
 
 window.onload = function() {
   React.render(
+    <Winterfell schema={loginSchema}
+                onRender={onRender}
+                onUpdate={onUpdate} />,
+    document.getElementById('login-form')
+  );
+
+  React.render(
     <Winterfell schema={schema}
                 disableSubmit={true}
                 onRender={onRender}
@@ -38,4 +46,7 @@ window.onload = function() {
    */
   $('#json-view')
     .JSONView($('#json-view').html());
+
+  $('#login-json-view')
+    .JSONView($('#login-json-view').html());
 };

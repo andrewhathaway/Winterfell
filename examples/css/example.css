@@ -20,6 +20,13 @@ body {
   margin-top: 10px;
 }
 
+.separate {
+  width: 100%;
+  height: 0px;
+  margin: 20px 0;
+  border-bottom: 1px dashed #CCC;
+}
+
 .star-btn {
   top: 10px;
   display: inline-block;
@@ -35,6 +42,11 @@ body {
   margin-top: 20px;
   border-top: 1px solid #EEE;
   padding: 10px 0;
+}
+
+.login-form {
+  width: 400px;
+  margin: 0 auto;
 }
 
 /*

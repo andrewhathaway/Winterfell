@@ -66,6 +66,128 @@
       </div>
     </div>
     <div class="form-container">
+      <h3>Login Form (Basic)</h3>
+      <ul class="nav nav-tabs">
+        <li role="presentation"
+            class="active">
+          <a href="#login-render"
+             data-toggle="tab">
+            Render
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#login-schema"
+             data-toggle="tab">
+            Schema
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#login-js"
+             data-toggle="tab">
+            JavaScript
+          </a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div id="login-render"
+             class="tab-pane fade in active">
+          <div id="login-form"></div>
+        </div>
+        <div id="login-schema"
+             class="tab-pane fade">
+          <h3>Schema</h3>
+<div id="login-json-view">
+{
+  "classes" : {
+    "form" : "login-form",
+    "question" : "form-group",
+    "input" : "form-control",
+    "controlButton" : "btn btn-primary pull-right",
+    "backButton" : "btn btn-default pull-left",
+    "errorMessage" : "alert alert-danger",
+    "buttonBar" : "button-bar"
+  },
+  "formPanels" : [{
+    "index" : 1,
+    "panelId" : "register-panel"
+  }],
+  "questionPanels" : [{
+    "panelId" : "register-panel",
+    "panelHeader" : "Log in to MyAwesomeSite",
+    "panelText" : "Please enter your email address and password to log in.",
+    "action" : {
+      "default" : {
+        "action" : "SUBMIT"
+      }
+    },
+    "button" : {
+      "text" : "Submit"
+    },
+    "questionSets" : [{
+      "index" : 1,
+      "questionSetId" : "register-set"
+    }]
+  }],
+  "questionSets" : [{
+    "questionSetId" : "register-set",
+    "questions" : [{
+      "questionId" : "email",
+      "question" : "Email Address",
+      "input" : {
+        "type" : "emailInput",
+        "placeholder" : "Email Address"
+      },
+      "validations" : [{
+        "type" : "isEmail"
+      }]
+    }, {
+      "questionId" : "password",
+      "question" : "Password",
+      "input" : {
+        "type" : "passwordInput",
+        "placeholder" : "Password"
+      },
+      "validations" : [{
+        "type" : "isLength",
+        "params" : [1]
+      }]
+    }]
+  }]
+}
+</div>
+        </div>
+        <div id="login-js"
+             class="tab-pane fade">
+          <h3>JavaScript</h3>
+<pre>
+<code class="language-javascript">
+var React      = window.React = require('react');
+var Winterfell = require('winterfell');
+
+var loginSchema = require('./loginSchema');
+
+var onRender = () => {
+  console.log('Great news! Winterfell rendered successfully');
+};
+
+var onUpdate = (questionAnswers) => {
+  console.log('Question Updated! The current set of answers is: ', questionAnswers);
+};
+
+window.onload = function() {
+  React.render(
+    &#x3C;Winterfell schema={loginSchema}
+                onRender={onRender}
+                onUpdate={onUpdate} /&#x3E;,
+    document.getElementById('login-form')
+  );
+};
+</code>
+</pre>
+        </div>
+      </div>
+      <div class="separate"></div>
+      <h3>Random Form (Advanced)</h3>
       <ul class="nav nav-tabs">
         <li role="presentation"
             class="active">
@@ -409,7 +531,7 @@
 <pre>
 <code class="language-javascript">
 var React      = require('react');
-var Winterfell = require('../src/index');
+var Winterfell = require('winterfell');
 
 var schema = require('./schema');
 
