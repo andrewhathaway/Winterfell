@@ -10,6 +10,9 @@ var extraValidators = {
     return value == expected;
   },
 
+  /*
+   * isAllIn Validation Method
+   */
   isAllIn : (value, options) => {
     if (!value) {
       return false;
