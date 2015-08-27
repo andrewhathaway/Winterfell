@@ -6,7 +6,21 @@ var InputTypes = require('./inputTypes');
 class Question extends React.Component {
 
   handleInputChange(questionId, value) {
-    this.props.onAnswerChange(questionId, value, this.props.validations);
+    this.props.onAnswerChange(
+      questionId,
+      value,
+      this.props.validations,
+      this.props.validateOn
+    );
+  }
+
+  handleInputBlur(questionId, value) {
+    this.props.onQuestionBlur(
+      questionId,
+      value,
+      this.props.validations,
+      this.props.validateOn
+    );
   }
 
   render() {
@@ -40,6 +54,7 @@ class Question extends React.Component {
                           question={conditionalQuestion.question}
                           text={conditionalQuestion.text}
                           postText={conditionalQuestion.postText}
+                          validateOn={conditionalQuestion.validateOn}
                           validations={conditionalQuestion.validations}
                           value={this.props.questionAnswers[conditionalQuestion.questionId]}
                           input={conditionalQuestion.input}
@@ -47,7 +62,8 @@ class Question extends React.Component {
                           renderError={this.props.renderError}
                           questionAnswers={this.props.questionAnswers}
                           validationErrors={this.props.validationErrors}
-                          onAnswerChange={this.props.onAnswerChange.bind(this)} />
+                          onAnswerChange={this.props.onAnswerChange.bind(this)}
+                          onQuestionBlur={this.props.onQuestionBlur} />
               );
             }
           )());
@@ -96,7 +112,8 @@ class Question extends React.Component {
                options={this.props.input.options}
                placeholder={this.props.input.placeholder}
                classes={this.props.classes}
-               onChange={this.handleInputChange.bind(this, this.props.questionId)} />
+               onChange={this.handleInputChange.bind(this, this.props.questionId)}
+               onBlur={this.handleInputBlur.bind(this, this.props.questionId)} />
         {!!this.props.postText
           ? (
               <p className={this.props.classes.questionPostText}>
@@ -129,6 +146,7 @@ Question.defaultProps = {
   questionSetId    : undefined,
   questionId       : undefined,
   question         : '',
+  validateOn       : 'blur',
   validations      : [],
   text             : undefined,
   postText         : undefined,
@@ -143,6 +161,7 @@ Question.defaultProps = {
   questionAnswers  : {},
   validationErrors : {},
   onAnswerChange   : () => {},
+  onQuestionBlur   : () => {},
   renderError      : undefined
 };
 
