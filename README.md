@@ -39,6 +39,7 @@ React.render(
 - Conditional form submitting
 - Disable regular submissions
 - Instant form validation
+- Decide whent to validate per field
 - Predefined validation types
 - Predefined error messages
 - Custom validation types
@@ -141,6 +142,7 @@ Each question has the ability to have some `text` associated with it which gets 
 							"type" : "emailInput",
 							"placeholder" : "Email Address"
 						},
+						"validateOn" : "blur",
 						"validations" : [{
 							"type" : "isLength",
 							"params" : [1]
@@ -160,6 +162,8 @@ Each question has the ability to have some `text` associated with it which gets 
 	}]
 }
 ```
+
+The `validateOn` property is used to dictate when to validate the field. The default for this is `blur`, which results in the field being validated when the user unfocusses from the field. You can also set this field to `change` which will validate the field as the user types, or changes their answer. Setting `validateOn` to `submit` will result in the field being validated when the next or submit button being pressed and only then.
 
 Validations are handled via the [Validator](https://www.npmjs.com/package/validator) package on npm. In the `validations` key item, you can set your types of validation for the field. The `type` must be a method on the Validator package, or a custom defined method.
 
