@@ -114,6 +114,7 @@ module.exports = {
               "type" : "isEmail"
             }]
           }],
+          "validateOn" : "blur",
           "validations" : [{
             "type" : "isLength",
             "params" : [1]
