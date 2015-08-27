@@ -36,8 +36,9 @@ class CheckboxOptionsInput extends React.Component {
                      name={this.props.name}
                      value={opt.value}
                      checked={this.state.value.indexOf(opt.value) > -1}
+                     className={this.props.classes.checkbox}
                      onChange={this.handleChange.bind(this)}
-                     className={this.props.classes.checkbox} />
+                     onBlur={this.props.onBlur.bind(null, this.state.value)} />
               {opt.text}
             </label>
           </li>
@@ -53,7 +54,8 @@ CheckboxOptionsInput.defaultProps = {
   name     : undefined,
   value    : [],
   options  : [],
-  onChange : () => {}
+  onChange : () => {},
+  onBlur   : () => {}
 };
 
 module.exports = CheckboxOptionsInput;

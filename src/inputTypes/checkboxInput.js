@@ -29,7 +29,10 @@ class CheckboxInput extends React.Component {
                  className={this.props.classes.checkbox}
                  checked={this.state.checked}
                  value={this.props.value}
-                 onChange={this.handleChange.bind(this)} />
+                 onChange={this.handleChange.bind(this)}
+                 onBlur={this.props.onBlur.bind(null, (this.state.checked
+                                                        ? this.props.value
+                                                        : undefined))} />
           {this.props.text}
         </label>
       </div>
@@ -43,7 +46,8 @@ CheckboxInput.defaultProps = {
   classes  : {},
   name     : undefined,
   value    : undefined,
-  onChange : () => {}
+  onChange : () => {},
+  onBlur   : () => {}
 };
 
 module.exports = CheckboxInput;

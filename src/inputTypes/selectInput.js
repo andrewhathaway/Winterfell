@@ -29,7 +29,8 @@ class SelectInput extends React.Component {
               className={this.props.classes.select}
               value={this.state.value}
               ref="select"
-              onChange={this.handleChange.bind(this)}>
+              onChange={this.handleChange.bind(this)}
+              onBlur={this.props.onBlur.bind(null, this.state.value)}>
         {options}
       </select>
     );
@@ -54,7 +55,8 @@ SelectInput.defaultProps = {
   name        : undefined,
   value       : undefined,
   options     : [],
-  onChange    : () => {}
+  onChange    : () => {},
+  onBlur      : () => {}
 };
 
 module.exports = SelectInput;

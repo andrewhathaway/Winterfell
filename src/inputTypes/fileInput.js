@@ -20,7 +20,8 @@ class FileInput extends React.Component {
     return <input type="file"
                   name={this.props.name}
                   className={this.props.classes.file}
-                  onChange={this.handleChange.bind(this)} />
+                  onChange={this.handleChange.bind(this)}
+                  onBlur={this.props.onBlur.bind(null, this.state.value)} />
   }
 
 };
@@ -29,7 +30,8 @@ FileInput.defaultProps = {
   classes   : {},
   name      : undefined,
   value     : undefined,
-  onChange  : () => {}
+  onChange  : () => {},
+  onBlur    : () => {}
 };
 
 module.exports = FileInput;

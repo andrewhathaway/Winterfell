@@ -26,8 +26,9 @@ class RadioOptionsInput extends React.Component {
               <input type="radio"
                      name={this.props.name}
                      checked={this.state.value == opt.value}
+                     className={this.props.classes.radio}
                      onChange={this.handleChange.bind(this, opt.value)}
-                     className={this.props.classes.radio} />
+                     onBlur={this.props.onBlur.bind(null, this.state.value)} />
               {opt.text}
             </label>
           </li>
@@ -43,7 +44,8 @@ RadioOptionsInput.defaultProps = {
   name     : undefined,
   value    : undefined,
   options  : [],
-  onChange : () => {}
+  onChange : () => {},
+  onBlur   : () => {}
 };
 
 module.exports = RadioOptionsInput;
