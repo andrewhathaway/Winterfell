@@ -12,6 +12,7 @@ class QuestionSet extends React.Component {
                   questionSetId={this.props.id}
                   questionId={question.questionId}
                   question={question.question}
+                  validateOn={question.validateOn}
                   validations={question.validations}
                   text={question.text}
                   postText={question.postText}
@@ -21,7 +22,8 @@ class QuestionSet extends React.Component {
                   renderError={this.props.renderError}
                   questionAnswers={this.props.questionAnswers}
                   validationErrors={this.props.validationErrors}
-                  onAnswerChange={this.props.onAnswerChange} />
+                  onAnswerChange={this.props.onAnswerChange}
+                  onQuestionBlur={this.props.onQuestionBlur} />
       );
     });
 
@@ -42,7 +44,8 @@ QuestionSet.defaultProps = {
   classes          : {},
   validationErrors : {},
   renderError      : undefined,
-  onAnswerChange   : () => {}
+  onAnswerChange   : () => {},
+  onQuestionBlur   : () => {}
 };
 
 module.exports = QuestionSet;
