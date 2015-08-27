@@ -255,6 +255,7 @@ module.exports = {
                     "type" : "textInput",
                     "placeholder" : "Other Operating System"
                   },
+                  "validateOn" : "change",
                   "validations" : [{
                     "type" : "isLength",
                     "params" : [1]
