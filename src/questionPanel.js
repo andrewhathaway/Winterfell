@@ -1,5 +1,6 @@
-var React = require('react');
-var _     = require('lodash');
+var React    = require('react');
+var _        = require('lodash');
+var KeyCodez = require('keycodez');
 
 var Validation    = require('./lib/validation');
 var ErrorMessages = require('./lib/errors');
@@ -150,7 +151,10 @@ class QuestionPanel extends React.Component {
   }
 
   handleInputKeyDown(e) {
-
+    if (KeyCodez[e.keyCode] === 'enter') {
+      e.preventDefault();
+      this.handleMainButtonClick.call(this);
+    }
   }
 
   render() {
