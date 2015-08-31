@@ -149,6 +149,10 @@ class QuestionPanel extends React.Component {
     }
   }
 
+  handleInputKeyDown(e) {
+
+  }
+
   render() {
     var questionSets = this.props.questionSets.map(questionSetMeta => {
       var questionSet = _.find(this.props.schema.questionSets, {
@@ -169,7 +173,8 @@ class QuestionPanel extends React.Component {
                      renderError={this.props.renderError}
                      validationErrors={this.state.validationErrors}
                      onAnswerChange={this.handleAnswerChange.bind(this)}
-                     onQuestionBlur={this.handleQuestionBlur.bind(this)} />
+                     onQuestionBlur={this.handleQuestionBlur.bind(this)}
+                     onKeyDown={this.handleInputKeyDown.bind(this)} />
       );
     });
 
