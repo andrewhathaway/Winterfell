@@ -24,7 +24,8 @@ class PasswordInput extends React.Component {
              placeholder={this.props.placeholder}
              value={this.state.value}
              onChange={this.handleChange.bind(this)}
-             onBlur={this.props.onBlur.bind(null, this.state.value)} />
+             onBlur={this.props.onBlur.bind(null, this.state.value)}
+             onKeyDown={this.props.onKeyDown} />
     );
   }
 
@@ -36,7 +37,8 @@ PasswordInput.defaultProps = {
   value       : undefined,
   placeholder : undefined,
   onChange    : () => {},
-  onBlur      : () => {}
+  onBlur      : () => {},
+  onKeyDown   : () => {}
 };
 
 module.exports = PasswordInput;

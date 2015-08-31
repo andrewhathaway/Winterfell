@@ -23,7 +23,8 @@ class QuestionSet extends React.Component {
                   questionAnswers={this.props.questionAnswers}
                   validationErrors={this.props.validationErrors}
                   onAnswerChange={this.props.onAnswerChange}
-                  onQuestionBlur={this.props.onQuestionBlur} />
+                  onQuestionBlur={this.props.onQuestionBlur}
+                  onKeyDown={this.props.onKeyDown} />
       );
     });
 
@@ -45,7 +46,8 @@ QuestionSet.defaultProps = {
   validationErrors : {},
   renderError      : undefined,
   onAnswerChange   : () => {},
-  onQuestionBlur   : () => {}
+  onQuestionBlur   : () => {},
+  onKeyDown        : () => {}
 };
 
 module.exports = QuestionSet;

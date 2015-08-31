@@ -63,7 +63,8 @@ class Question extends React.Component {
                           questionAnswers={this.props.questionAnswers}
                           validationErrors={this.props.validationErrors}
                           onAnswerChange={this.props.onAnswerChange}
-                          onQuestionBlur={this.props.onQuestionBlur} />
+                          onQuestionBlur={this.props.onQuestionBlur}
+                          onKeyDown={this.props.onKeyDown} />
               );
             }
           )());
@@ -113,7 +114,8 @@ class Question extends React.Component {
                placeholder={this.props.input.placeholder}
                classes={this.props.classes}
                onChange={this.handleInputChange.bind(this, this.props.questionId)}
-               onBlur={this.handleInputBlur.bind(this, this.props.questionId)} />
+               onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
+               onKeyDown={this.props.onKeyDown} />
         {!!this.props.postText
           ? (
               <p className={this.props.classes.questionPostText}>
@@ -162,6 +164,7 @@ Question.defaultProps = {
   validationErrors : {},
   onAnswerChange   : () => {},
   onQuestionBlur   : () => {},
+  onKeyDown        : () => {},
   renderError      : undefined
 };
 

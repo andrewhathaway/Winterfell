@@ -1,5 +1,6 @@
-var React = require('react');
-var _     = require('lodash');
+var React    = require('react');
+var _        = require('lodash');
+var KeyCodez = require('keycodez');
 
 var Validation    = require('./lib/validation');
 var ErrorMessages = require('./lib/errors');
@@ -149,6 +150,13 @@ class QuestionPanel extends React.Component {
     }
   }
 
+  handleInputKeyDown(e) {
+    if (KeyCodez[e.keyCode] === 'enter') {
+      e.preventDefault();
+      this.handleMainButtonClick.call(this);
+    }
+  }
+
   render() {
     var questionSets = this.props.questionSets.map(questionSetMeta => {
       var questionSet = _.find(this.props.schema.questionSets, {
@@ -169,7 +177,8 @@ class QuestionPanel extends React.Component {
                      renderError={this.props.renderError}
                      validationErrors={this.state.validationErrors}
                      onAnswerChange={this.handleAnswerChange.bind(this)}
-                     onQuestionBlur={this.handleQuestionBlur.bind(this)} />
+                     onQuestionBlur={this.handleQuestionBlur.bind(this)}
+                     onKeyDown={this.handleInputKeyDown.bind(this)} />
       );
     });
 
