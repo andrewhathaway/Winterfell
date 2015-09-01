@@ -1,7 +1,7 @@
 var gulp       = require('gulp');
 var browserify = require('browserify');
 var source     = require('vinyl-source-stream');
-var reactify   = require('reactify');
+var babelify   = require('babelify');
 var buffer     = require('vinyl-buffer');
 var uglify     = require('gulp-uglify');
 
@@ -15,9 +15,7 @@ gulp.task('build-examples', function() {
              'examples/app.js'
            ]
          })
-         .transform(reactify, {
-           es6 : true
-         })
+         .transform(babelify)
          .bundle()
          .pipe(source('app.js'))
          .pipe(buffer())
@@ -45,9 +43,7 @@ gulp.task('build-dev', function() {
              'dev/test.js'
            ]
          })
-         .transform(reactify, {
-           es6 : true
-         })
+         .transform(babelify)
          .bundle()
          .pipe(source('app.js'))
          .pipe(buffer())
