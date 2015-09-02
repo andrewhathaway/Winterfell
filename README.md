@@ -39,7 +39,7 @@ React.render(
 - Conditional form submitting
 - Disable regular submissions
 - Instant form validation
-- Decide whent to validate per field
+- Decide when to validate per field
 - Predefined validation types
 - Predefined error messages
 - Custom validation types
@@ -169,7 +169,7 @@ Validations are handled via the [Validator](https://www.npmjs.com/package/valida
 
 A validation-items `params` key must be an array of parameters for the validation method. The value will be unshifted to the start of the array and called up on the validation method in order. For example:
 
-Validation item where the value msut be a minimum length of 1.
+Validation item where the value must be a minimum length of 1.
 
 ```json
 {
@@ -178,7 +178,7 @@ Validation item where the value msut be a minimum length of 1.
 }
 ```
 
-Validation item where the value msut be a minimum length of 1 and a maximum of 20.
+Validation item where the value must be a minimum length of 1 and a maximum of 20.
 
 ```json
 {
