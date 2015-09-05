@@ -190,14 +190,14 @@ class QuestionPanel extends React.Component {
               <div className={this.props.classes.questionPanelHeaderContainer}>
                 {typeof this.props.panelHeader
                   ? (
-                      <h3 className={this.props.questionPanelHeaderText}>
+                      <h3 className={this.props.classes.questionPanelHeaderText}>
                         {this.props.panelHeader}
                       </h3>
                     )
                   : undefined}
                 {typeof this.props.panelText
                   ? (
-                      <p className={this.props.questionPanelText}>
+                      <p className={this.props.classes.questionPanelText}>
                         {this.props.panelText}
                       </p>
                     )
