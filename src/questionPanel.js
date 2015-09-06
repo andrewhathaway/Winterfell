@@ -96,9 +96,11 @@ class QuestionPanel extends React.Component {
      */
     conditions
       .forEach(condition => {
-        var answer = this.props.questionAnswers[condition.questionId];
+        var conditionMet = typeof condition.predicates !== 'undefined'
+                             ? this.handleEvaluatePredicate(condition.predicates)
+                             : this.props.questionAnswers[condition.questionId] === condition.value;
 
-        action = answer == condition.value
+        action = conditionMet
                    ? {
                        action : condition.action,
                        target : condition.target
@@ -120,6 +122,18 @@ class QuestionPanel extends React.Component {
         this.props.onSubmit(action.target);
         break;
     }
+  }
+
+  handleEvaluatePredicate(predicateSet) {
+    var conditionsMet = true;
+    predicateSet
+      .forEach(set => {
+        conditionsMet = (!conditionsMet
+                  ? conditionsMet
+                  : this.props.questionAnswers[set.questionId] === set.value);
+      });
+
+    return conditionsMet;
   }
 
   handleBackButtonClick() {
