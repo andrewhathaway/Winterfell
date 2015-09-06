@@ -68,7 +68,7 @@ module.exports = {
   }, {
     "panelId" : "final-panel",
     "panelHeader" : "My Awesome Form",
-    "panelText" : "Do you even check the console yet? Keep going though!",
+    "panelText" : "Did you even check the console yet? Keep going though!",
     "action" : {
       "conditions" : [],
       "default" : {
