@@ -187,6 +187,16 @@ Validation item where the value must be a minimum length of 1 and a maximum of 2
 }
 ```
 
+You can also add a custom error message for the questions validaton item by using the `message` property.
+
+```json
+{
+  "type" : "isLength",
+  "params" : [1],
+  "message" : "Please select an option"
+}
+```
+
 #### HTML Classes
 
 Winterfell allows you to define classes for the rendered form in multiple different areas. To use them, place them in the root of the form-schema like so:
