@@ -29,6 +29,9 @@ class SelectInput extends React.Component {
               className={this.props.classes.select}
               value={this.state.value}
               ref="select"
+              required={this.props.required
+                          ? 'required'
+                          : undefined}
               onChange={this.handleChange.bind(this)}
               onBlur={this.props.onBlur.bind(null, this.state.value)}>
         {options}

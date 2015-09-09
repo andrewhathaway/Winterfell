@@ -23,6 +23,9 @@ class TextareaInput extends React.Component {
                 className={this.props.classes.input}
                 placeholder={this.props.placeholder}
                 value={this.state.value}
+                required={this.props.required
+                            ? 'required'
+                            : undefined}
                 onChange={this.handleChange.bind(this)}
                 onBlur={this.props.onBlur.bind(null, this.state.value)} />
     );

@@ -37,6 +37,9 @@ class CheckboxOptionsInput extends React.Component {
                      value={opt.value}
                      checked={this.state.value.indexOf(opt.value) > -1}
                      className={this.props.classes.checkbox}
+                     required={this.props.required
+                                 ? 'required'
+                                 : undefined}
                      onChange={this.handleChange.bind(this)}
                      onBlur={this.props.onBlur.bind(null, this.state.value)} />
               {opt.text}

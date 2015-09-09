@@ -20,6 +20,9 @@ class FileInput extends React.Component {
     return <input type="file"
                   name={this.props.name}
                   className={this.props.classes.file}
+                  required={this.props.required
+                              ? 'required'
+                              : undefined}
                   onChange={this.handleChange.bind(this)}
                   onBlur={this.props.onBlur.bind(null, this.state.value)} />
   }

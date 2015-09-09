@@ -27,6 +27,9 @@ class RadioOptionsInput extends React.Component {
                      name={this.props.name}
                      checked={this.state.value == opt.value}
                      className={this.props.classes.radio}
+                     required={this.props.required
+                                 ? 'required'
+                                 : undefined}
                      onChange={this.handleChange.bind(this, opt.value)}
                      onBlur={this.props.onBlur.bind(null, this.state.value)} />
               {opt.text}
