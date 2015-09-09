@@ -22,7 +22,7 @@ module.exports = {
   output: {
     libraryTarget: "var",
     library: "Winterfell",
-    filename: "Winterfell.min.js",
+    filename: "winterfell.min.js",
     path: __dirname + "/dist"
   },
   plugins: [
