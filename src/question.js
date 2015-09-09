@@ -156,7 +156,7 @@ Question.defaultProps = {
   value            : undefined,
   input            : {
     default     : undefined,
-    type        : 'TextInput',
+    type        : 'textInput',
     limit       : undefined,
     placeholder : undefined
   },
