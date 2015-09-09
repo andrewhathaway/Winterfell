@@ -36,7 +36,8 @@ module.exports = {
       "question" : "Email Address",
       "input" : {
         "type" : "emailInput",
-        "placeholder" : "Email Address"
+        "placeholder" : "Email Address",
+        "required" : true
       },
       "validations" : [{
         "type" : "isEmail"
