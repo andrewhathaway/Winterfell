@@ -112,6 +112,7 @@ class Question extends React.Component {
                text={this.props.input.text}
                options={this.props.input.options}
                placeholder={this.props.input.placeholder}
+               required={this.props.input.required}
                classes={this.props.classes}
                onChange={this.handleInputChange.bind(this, this.props.questionId)}
                onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
