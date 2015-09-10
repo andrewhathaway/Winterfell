@@ -164,13 +164,11 @@ errorMessages.addErrorMessage = function (type, message) {
  * @param  object messages Error messages to add. type => func|string
  */
 errorMessages.addErrorMessages = function (messages) {
-  var type = undefined;
-
   if (typeof messages !== 'object') {
     throw new Error('Winterfell: First parameter of addErrorMessages ' + 'must be of type object');
   }
 
-  for (type in messages) {
+  for (var type in messages) {
     errorMessages.addErrorMessage(type, messages[type]);
   }
 };
