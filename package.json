@@ -44,10 +44,5 @@
     "rimraf": "^2.4.3",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
-  },
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
   }
 }
