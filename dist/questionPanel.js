@@ -204,12 +204,12 @@ var QuestionPanel = (function (_React$Component) {
           { className: this.props.classes.questionPanelHeaderContainer },
           typeof this.props.panelHeader ? React.createElement(
             'h3',
-            { className: this.props.questionPanelHeaderText },
+            { className: this.props.classes.questionPanelHeaderText },
             this.props.panelHeader
           ) : undefined,
           typeof this.props.panelText ? React.createElement(
             'p',
-            { className: this.props.questionPanelText },
+            { className: this.props.classes.questionPanelText },
             this.props.panelText
           ) : undefined
         ) : undefined,
