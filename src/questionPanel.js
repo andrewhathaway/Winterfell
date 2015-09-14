@@ -31,7 +31,9 @@ class QuestionPanel extends React.Component {
     var questionValidationErrors = [];
     validations
       .forEach(validation => {
-        if (Validation.validateAnswer(questionAnswer, validation)) {
+        if (Validation.validateAnswer(questionAnswer,
+                                      validation,
+                                      this.props.questionAnswers)) {
           return;
         }
 

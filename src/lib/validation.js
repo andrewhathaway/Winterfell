@@ -1,5 +1,6 @@
-var _         = require('lodash');
-var Validator = require('validator');
+var _            = require('lodash');
+var Validator    = require('validator');
+var StringParser = require('./stringParser');
 
 var extraValidators = {
 
@@ -32,7 +33,7 @@ var extraValidators = {
  * @param  object  validationItem Rule set for validator
  * @return boolean                Valid?
  */
-var validateAnswer = (value, validationItem) => {
+var validateAnswer = (value, validationItem, questionAnswers) => {
   var validationMethod = typeof extraValidators[validationItem.type] !== 'undefined'
                            ? extraValidators[validationItem.type]
                            : Validator.hasOwnProperty(validationItem.type)
@@ -85,7 +86,9 @@ var getActiveQuestions = (questions, questionAnswers, activeQuestions) => {
             return;
           }
 
-          activeQuestions = getActiveQuestions(option.conditionalQuestions, questionAnswers, activeQuestions);
+          activeQuestions = getActiveQuestions(option.conditionalQuestions,
+                                               questionAnswers,
+                                               activeQuestions);
         });
 
     });
@@ -137,7 +140,9 @@ var getQuestionPanelInvalidQuestions = (questionSets, questionAnswers) => {
   questionsToCheck
     .forEach(({questionId, validations}) =>
       [].forEach.bind(validations, validation => {
-        var valid = validateAnswer(questionAnswers[questionId], validation);
+        var valid = validateAnswer(questionAnswers[questionId],
+                                   validation,
+                                   questionAnswers);
         if (valid) {
           return;
         }
