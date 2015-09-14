@@ -46,6 +46,18 @@ var validateAnswer = (value, validationItem, questionAnswers) => {
                     + validationItem.type + '"');
   }
 
+  /*
+   * Run the value string through the stringParser with the
+   * questionAnswers so that it sets the questionAnswer
+   * as the value.
+   */
+  value = StringParser(value, questionAnswers);
+
+  /*
+   * Clone the validation parameters so it doesn't effect the
+   * parameters by reference. Then push the value to the first
+   * parameter.
+   */
   var validationParameters = (validationItem.params || []).slice(0);
   validationParameters.unshift(value);
 
