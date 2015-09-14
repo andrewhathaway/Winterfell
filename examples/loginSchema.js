@@ -53,6 +53,18 @@ module.exports = {
         "type" : "isLength",
         "params" : [1]
       }]
+    }, {
+      "questionId" : "passwordConfirm",
+      "question" : "Confirm Password",
+      "input" : {
+        "type" : "passwordInput",
+        "placeholder" : "Confirm Password"
+      },
+      "validations" : [{
+        "type" : "equals",
+        "params" : ['{password}'],
+        "message" : "Confirm Password must match Password"
+      }]
     }]
   }]
 };
