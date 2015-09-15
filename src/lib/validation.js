@@ -47,20 +47,32 @@ var validateAnswer = (value, validationItem, questionAnswers) => {
   }
 
   /*
-   * Run the value string through the stringParser with the
-   * questionAnswers so that it sets the questionAnswer
-   * as the value.
-   */
-  value = StringParser(value, questionAnswers);
-
-  /*
    * Clone the validation parameters so it doesn't effect the
-   * parameters by reference. Then push the value to the first
-   * parameter.
+   * parameters elsewhere by reference.
    */
   var validationParameters = (validationItem.params || []).slice(0);
+
+  /*
+   * Run the parameters through the stringParser with the
+   * questionAnswers so that it sets the questionAnswer
+   * as the parameter.
+   */
+  validationParameters = validationParameters.map(p => {
+    return typeof p === 'string'
+             ? StringParser(p, questionAnswers)
+             : p;
+  });
+
+  /*
+   * Push the value of the question we're validating to
+   * the first parameter of the validationParameters
+   */
   validationParameters.unshift(value);
 
+  /*
+   * Return the result of the validation method running
+   * wtih the validationParameters.
+   */
   return validationMethod.apply(null, validationParameters);
 };
 
