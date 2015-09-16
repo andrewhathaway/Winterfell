@@ -40,6 +40,7 @@ React.render(
 - Disable regular submissions
 - Instant form validation
 - Decide when to validate per field
+- Validation against other fields values
 - Predefined validation types
 - Predefined error messages
 - Custom validation types
@@ -194,6 +195,17 @@ You can also add a custom error message for the questions validaton item by usin
   "type" : "isLength",
   "params" : [1],
   "message" : "Please select an option"
+}
+```
+
+To validate a questions answer against another questions answer, you can wrap curly-braces around a parameter in the `params` property and it will be turned in to a questions answer. For example:
+
+
+```json
+{
+  "type" : "equals",
+  "params" : ["{password}"],
+  "message" : "Confirm Password must match the Password field"
 }
 ```
 
