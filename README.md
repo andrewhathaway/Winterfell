@@ -33,6 +33,7 @@ React.render(
 
 - Easy, quick and extendable
 - JSON schema
+- Design agnostic and customisable
 - Multi-page forms
 - Infinitely-recursive conditional questions
 - Conditional page switching
