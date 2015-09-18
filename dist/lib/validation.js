@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Validator = require('validator');
+var StringParser = require('./stringParser');
 
 var extraValidators = {
 
@@ -34,16 +35,38 @@ var extraValidators = {
  * @param  object  validationItem Rule set for validator
  * @return boolean                Valid?
  */
-var validateAnswer = function validateAnswer(value, validationItem) {
+var validateAnswer = function validateAnswer(value, validationItem, questionAnswers) {
   var validationMethod = typeof extraValidators[validationItem.type] !== 'undefined' ? extraValidators[validationItem.type] : Validator.hasOwnProperty(validationItem.type) && typeof Validator[validationItem.type] === 'function' ? Validator[validationItem.type] : undefined;
 
   if (!validationMethod) {
     throw new Error('Winterfell: Attempted to validate for undefined method "' + validationItem.type + '"');
   }
 
+  /*
+   * Clone the validation parameters so it doesn't effect the
+   * parameters elsewhere by reference.
+   */
   var validationParameters = (validationItem.params || []).slice(0);
+
+  /*
+   * Run the parameters through the stringParser with the
+   * questionAnswers so that it sets the questionAnswer
+   * as the parameter.
+   */
+  validationParameters = validationParameters.map(function (p) {
+    return typeof p === 'string' ? StringParser(p, questionAnswers) : p;
+  });
+
+  /*
+   * Push the value of the question we're validating to
+   * the first parameter of the validationParameters
+   */
   validationParameters.unshift(value);
 
+  /*
+   * Return the result of the validation method running
+   * wtih the validationParameters.
+   */
   return validationMethod.apply(null, validationParameters);
 };
 
@@ -123,7 +146,7 @@ var getQuestionPanelInvalidQuestions = function getQuestionPanelInvalidQuestions
     var questionId = _ref.questionId;
     var validations = _ref.validations;
     return [].forEach.bind(validations, function (validation) {
-      var valid = validateAnswer(questionAnswers[questionId], validation);
+      var valid = validateAnswer(questionAnswers[questionId], validation, questionAnswers);
       if (valid) {
         return;
       }

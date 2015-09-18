@@ -34,6 +34,8 @@ var QuestionPanel = (function (_React$Component) {
   _createClass(QuestionPanel, [{
     key: 'handleAnswerValidate',
     value: function handleAnswerValidate(questionId, questionAnswer, validations) {
+      var _this = this;
+
       if (typeof validations === 'undefined' || validations.length === 0) {
         return;
       }
@@ -44,7 +46,7 @@ var QuestionPanel = (function (_React$Component) {
        */
       var questionValidationErrors = [];
       validations.forEach(function (validation) {
-        if (Validation.validateAnswer(questionAnswer, validation)) {
+        if (Validation.validateAnswer(questionAnswer, validation, _this.props.questionAnswers)) {
           return;
         }
 
@@ -63,7 +65,7 @@ var QuestionPanel = (function (_React$Component) {
   }, {
     key: 'handleMainButtonClick',
     value: function handleMainButtonClick() {
-      var _this = this;
+      var _this2 = this;
 
       var action = this.props.action['default'];
       var conditions = this.props.action.conditions || [];
@@ -109,7 +111,7 @@ var QuestionPanel = (function (_React$Component) {
        * Check our conditions and act upon them, or the default.
        */
       conditions.forEach(function (condition) {
-        var answer = _this.props.questionAnswers[condition.questionId];
+        var answer = _this2.props.questionAnswers[condition.questionId];
 
         action = answer == condition.value ? {
           action: condition.action,
@@ -172,10 +174,10 @@ var QuestionPanel = (function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var questionSets = this.props.questionSets.map(function (questionSetMeta) {
-        var questionSet = _.find(_this2.props.schema.questionSets, {
+        var questionSet = _.find(_this3.props.schema.questionSets, {
           questionSetId: questionSetMeta.questionSetId
         });
 
@@ -187,13 +189,13 @@ var QuestionPanel = (function (_React$Component) {
           id: questionSet.questionSetId,
           name: questionSet.name,
           questions: questionSet.questions,
-          classes: _this2.props.classes,
-          questionAnswers: _this2.props.questionAnswers,
-          renderError: _this2.props.renderError,
-          validationErrors: _this2.state.validationErrors,
-          onAnswerChange: _this2.handleAnswerChange.bind(_this2),
-          onQuestionBlur: _this2.handleQuestionBlur.bind(_this2),
-          onKeyDown: _this2.handleInputKeyDown.bind(_this2) });
+          classes: _this3.props.classes,
+          questionAnswers: _this3.props.questionAnswers,
+          renderError: _this3.props.renderError,
+          validationErrors: _this3.state.validationErrors,
+          onAnswerChange: _this3.handleAnswerChange.bind(_this3),
+          onQuestionBlur: _this3.handleQuestionBlur.bind(_this3),
+          onKeyDown: _this3.handleInputKeyDown.bind(_this3) });
       });
 
       return React.createElement(
