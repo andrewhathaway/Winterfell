@@ -133,6 +133,7 @@ Each question has the ability to have some `text` associated with it which gets 
 			"text" : "We'd just like to know so we can get you in the right place.",
 			"input" : {
 				"type" : "radioOptionsInput",
+        "default" : "yes",
 				"options" : [{
 					"text"	: "Yes",
 					"value" : "yes",
