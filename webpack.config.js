@@ -18,7 +18,7 @@ module.exports = {
     'react/addons' : 'React'
   },
   output    : {
-    libraryTarget : 'var/',
+    libraryTarget : 'var',
     library       : 'Winterfell',
     filename      : 'winterfell.min.js',
     path          : __dirname + '/dist'
