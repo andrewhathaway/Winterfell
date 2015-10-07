@@ -179,6 +179,7 @@ class QuestionPanel extends React.Component {
                      classes={this.props.classes}
                      questionAnswers={this.props.questionAnswers}
                      renderError={this.props.renderError}
+                     renderRequiredAsterisk={this.props.renderRequiredAsterisk}
                      validationErrors={this.state.validationErrors}
                      onAnswerChange={this.handleAnswerChange.bind(this)}
                      onQuestionBlur={this.handleQuestionBlur.bind(this)}
@@ -236,30 +237,31 @@ class QuestionPanel extends React.Component {
 };
 
 QuestionPanel.defaultProps = {
-  validationErrors   : {},
-  schema             : {},
-  classes            : {},
-  panelId            : undefined,
-  panelIndex         : undefined,
-  panelHeader        : undefined,
-  panelText          : undefined,
-  action             : {
+  validationErrors       : {},
+  schema                 : {},
+  classes                : {},
+  panelId                : undefined,
+  panelIndex             : undefined,
+  panelHeader            : undefined,
+  panelText              : undefined,
+  action                 : {
     default    : {},
     conditions : []
   },
-  button             : {
+  button                 : {
     text : 'Submit'
   },
-  backButton         : {
+  backButton             : {
     text : 'Back'
   },
-  questionSets       : [],
-  questionAnswers    : {},
-  renderError        : undefined,
-  onAnswerChange     : () => {},
-  onSwitchPanel      : () => {},
-  onPanelBack        : () => {},
-  panelHistory       : [],
+  questionSets           : [],
+  questionAnswers        : {},
+  renderError            : undefined,
+  renderRequiredAsterisk : undefined,
+  onAnswerChange         : () => {},
+  onSwitchPanel          : () => {},
+  onPanelBack            : () => {},
+  panelHistory           : [],
 };
 
 module.exports = QuestionPanel;

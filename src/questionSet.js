@@ -20,6 +20,7 @@ class QuestionSet extends React.Component {
                   input={question.input}
                   classes={this.props.classes}
                   renderError={this.props.renderError}
+                  renderRequiredAsterisk={this.props.renderRequiredAsterisk}
                   questionAnswers={this.props.questionAnswers}
                   validationErrors={this.props.validationErrors}
                   onAnswerChange={this.props.onAnswerChange}
@@ -55,18 +56,19 @@ class QuestionSet extends React.Component {
 };
 
 QuestionSet.defaultProps = {
-  id                : undefined,
-  name              : '',
-  questionSetHeader : undefined,
-  questionSetText   : undefined,
-  questions         : [],
-  questionAnswers   : {},
-  classes           : {},
-  validationErrors  : {},
-  renderError       : undefined,
-  onAnswerChange    : () => {},
-  onQuestionBlur    : () => {},
-  onKeyDown         : () => {}
+  id                     : undefined,
+  name                   : '',
+  questionSetHeader      : undefined,
+  questionSetText        : undefined,
+  questions              : [],
+  questionAnswers        : {},
+  classes                : {},
+  validationErrors       : {},
+  renderError            : undefined,
+  renderRequiredAsterisk : undefined,
+  onAnswerChange         : () => {},
+  onQuestionBlur         : () => {},
+  onKeyDown              : () => {}
 };
 
 module.exports = QuestionSet;
