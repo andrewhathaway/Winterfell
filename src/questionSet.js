@@ -1,5 +1,5 @@
 var React = require('react');
-var _     = require('lodash');
+var _     = require('lodash').noConflict();
 
 var Question = require('./question');
 
