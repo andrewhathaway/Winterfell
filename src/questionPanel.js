@@ -1,5 +1,5 @@
 var React    = require('react');
-var _        = require('lodash');
+var _        = require('lodash').noConflict();
 var KeyCodez = require('keycodez');
 
 var Validation    = require('./lib/validation');

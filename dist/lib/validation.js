@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('lodash');
+var _ = require('lodash').noConflict();
 var Validator = require('validator');
 var StringParser = require('./stringParser');
 
