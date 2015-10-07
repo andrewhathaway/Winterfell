@@ -47,6 +47,7 @@ React.render(
 - Custom validation types
 - Custom error messages
 - Custom error rendering
+- Custom required asterisk rendering
 - Custom classes
 - Custom InputTypes
 - Question pre and post text
@@ -359,17 +360,18 @@ Winterfell
 
 The following table shows the props Winterfell accepts, their types and descriptions. The only prop that is required is `schema`.
 
-Prop Name       | Type     | Description
----             | ---      | ---
-panelId         | string   | Initial `panelId` to render
-schema          | object   | `schema` for the form to render
-ref             | string   | `ref` field for form element
-encType         | string   | `encType` field for the form element
-method          | string   | `method` field for the form element
-action          | string   | Default `action` field for the form element
-disableSubmit   | boolean  | Prevent the form from submitting naturally
-questionAnswers | object   | Existing `questionAnswers`. `questionId` => `answer`
-renderError     | function | Custom validation error render method. Return a React Component Or React Element.
+Prop Name              | Type     | Description
+---                    | ---      | ---
+panelId                | string   | Initial `panelId` to render
+schema                 | object   | `schema` for the form to render
+ref                    | string   | `ref` field for form element
+encType                | string   | `encType` field for the form element
+method                 | string   | `method` field for the form element
+action                 | string   | Default `action` field for the form element
+disableSubmit          | boolean  | Prevent the form from submitting naturally
+questionAnswers        | object   | Existing `questionAnswers`. `questionId` => `answer`
+renderError            | function | Custom validation error render method. Return a React Component Or React Element.
+renderRequiredAsterisk | function | Custom require asterisk rendering method. Return a React Component or React Element.
 
 ## Events
 
