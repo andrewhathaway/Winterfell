@@ -126,6 +126,7 @@ class Winterfell extends React.Component {
                          panelText={currentPanel.panelText}
                          action={currentPanel.action}
                          button={currentPanel.button}
+                         backButton={currentPanel.backButton}
                          questionSets={currentPanel.questionSets}
                          questionAnswers={this.state.questionAnswers}
                          panelHistory={this.panelHistory}

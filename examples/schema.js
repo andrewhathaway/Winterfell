@@ -61,6 +61,9 @@ module.exports = {
     "button" : {
       "text" : "Subscribe"
     },
+    "backButton" : {
+      "disabled" : true
+    },
     "questionSets" : [{
       "index" : 1,
       "questionSetId" : "register-set"

@@ -212,8 +212,9 @@ class QuestionPanel extends React.Component {
         </div>
         <div className={this.props.classes.buttonBar}>
           {this.props.panelHistory.length > 1
+            && !this.props.backButton.disabled
             ? (
-                <Button text={this.props.backButtonText}
+                <Button text={this.props.backButton.text || 'Back'}
                         onClick={this.handleBackButtonClick.bind(this)}
                         className={this.props.classes.backButton} />
               )
@@ -247,6 +248,9 @@ QuestionPanel.defaultProps = {
   button             : {
     text  : 'Submit'
   },
+  backButton         : {
+    text : 'Back'
+  },
   questionSets       : [],
   questionAnswers    : {},
   renderError        : undefined,
@@ -254,7 +258,6 @@ QuestionPanel.defaultProps = {
   onSwitchPanel      : () => {},
   onPanelBack        : () => {},
   panelHistory       : [],
-  backButtonText     : 'Back'
 };
 
 module.exports = QuestionPanel;
