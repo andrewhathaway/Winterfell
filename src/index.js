@@ -173,4 +173,13 @@ Winterfell.inputTypes    = require('./inputTypes');
 Winterfell.errorMessages = require('./lib/errors');
 Winterfell.validation    = require('./lib/validation');
 
+Winterfell.addInputType  = Winterfell.inputTypes.addInputType;
+Winterfell.addInputTypes = Winterfell.inputTypes.addInputTypes;
+
+Winterfell.addErrorMessage  = Winterfell.errorMessages.addErrorMessage;
+Winterfell.addErrorMessages = Winterfell.errorMessages.addErrorMessages;
+
+Winterfell.addValidationMethod  = Winterfell.validation.addValidationMethod;
+Winterfell.addValidationMethods = Winterfell.validation.addValidationMethods;
+
 module.exports = Winterfell;

@@ -291,13 +291,11 @@ var Winterfell         = require('winterfell');
 var MyAwesomeInputType = require('./awesomeInputType');
 
 Winterfell
-  .inputTypes
   .addInputType('myAwesomeInputType', MyAwesomeInputType);
 
 // OR
 
 Winterfell
-  .inputTypes
   .addInputTypes({
     myAwesomeInputType : MyAwesomeInputType
   });
