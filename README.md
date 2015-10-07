@@ -51,6 +51,7 @@ React.render(
 - Custom InputTypes
 - Question pre and post text
 - Question panel header and text
+- Question set header and text
 - Ability to disable buttons
 - Default values
 - Events
@@ -133,6 +134,8 @@ Each question has the ability to have some `text` associated with it which gets 
 {
 	"questionSets" : [{
 		"questionSetId" : "intro-set",
+    "questionSetHeader" : "I am a question set header",
+    "questonSetText" : "I am a question set text",
 		"questions" : [{
 			"questionId" : "existing-user",
 			"question" : "Are you an existing user?",
@@ -241,6 +244,9 @@ questionPanel                | The div that wraps around the active `questionSet
 questionPanelHeaderContainer | The div that wraps around the `questionPanels` header text and text
 questionPanelHeaderText      | The h3 tag that holds the `questionPanel` header text
 questionPanelText            | The p tag that holds the `questionPanel` text
+questionSetHeader            | The h4 tag that holds the `questionSet` header
+questionSetText              | The p tag that holds the `questionSet` text
+questionSetHeaderContainer   | The div that wraps around the header and text of a `questionSet`
 questionSets                 | The div that wraps around the `questionSets` inside of a `questionPanel`
 questionSet                  | The div that wraps around the `questions` inside a `questionSet`
 question                     | The div that wraps around the `question`
