@@ -19,6 +19,7 @@ class Winterfell extends React.Component {
 
     schema.formPanels = schema.formPanels
                               .sort((a, b) => a.index > b.index);
+
     var panelId = (typeof this.props.panelId !== 'undefined'
                      ? this.props.panelId
                      : schema.formPanels.length > 0
