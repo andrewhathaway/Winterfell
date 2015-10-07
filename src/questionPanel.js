@@ -173,6 +173,8 @@ class QuestionPanel extends React.Component {
         <QuestionSet key={questionSet.questionSetId}
                      id={questionSet.questionSetId}
                      name={questionSet.name}
+                     questionSetHeader={questionSet.questionSetHeader}
+                     questionSetText={questionSet.questionSetText}
                      questions={questionSet.questions}
                      classes={this.props.classes}
                      questionAnswers={this.props.questionAnswers}
@@ -190,14 +192,14 @@ class QuestionPanel extends React.Component {
           || typeof this.props.panelText !== 'undefined'
           ? (
               <div className={this.props.classes.questionPanelHeaderContainer}>
-                {typeof this.props.panelHeader
+                {typeof this.props.panelHeader !== 'undefined'
                   ? (
                       <h3 className={this.props.classes.questionPanelHeaderText}>
                         {this.props.panelHeader}
                       </h3>
                     )
                   : undefined}
-                {typeof this.props.panelText
+                {typeof this.props.panelText !== 'undefined'
                   ? (
                       <p className={this.props.classes.questionPanelText}>
                         {this.props.panelText}
@@ -246,7 +248,7 @@ QuestionPanel.defaultProps = {
     conditions : []
   },
   button             : {
-    text  : 'Submit'
+    text : 'Submit'
   },
   backButton         : {
     text : 'Back'
