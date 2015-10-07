@@ -51,6 +51,7 @@ React.render(
 - Custom InputTypes
 - Question pre and post text
 - Question panel header and text
+- Ability to disable buttons
 - Default values
 - Events
 
@@ -104,8 +105,13 @@ Supported actions are `GOTO` and `SUBMIT`. When using `GOTO`, the `target` can b
 			}
 		},
 		"button" : {
-			"text" : "Next"
+			"text" : "Next",
+      "disabled" : false
 		},
+    "" : {
+      "text" : "Back",
+      "disable" : false
+    },
 		"questionSets" : [{
 			"index" : 1,
 			"questionSetId" : "intro-set"
