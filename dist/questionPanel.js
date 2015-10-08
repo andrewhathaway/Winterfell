@@ -188,10 +188,13 @@ var QuestionPanel = (function (_React$Component) {
         return React.createElement(QuestionSet, { key: questionSet.questionSetId,
           id: questionSet.questionSetId,
           name: questionSet.name,
+          questionSetHeader: questionSet.questionSetHeader,
+          questionSetText: questionSet.questionSetText,
           questions: questionSet.questions,
           classes: _this3.props.classes,
           questionAnswers: _this3.props.questionAnswers,
           renderError: _this3.props.renderError,
+          renderRequiredAsterisk: _this3.props.renderRequiredAsterisk,
           validationErrors: _this3.state.validationErrors,
           onAnswerChange: _this3.handleAnswerChange.bind(_this3),
           onQuestionBlur: _this3.handleQuestionBlur.bind(_this3),
@@ -204,12 +207,12 @@ var QuestionPanel = (function (_React$Component) {
         typeof this.props.panelHeader !== 'undefined' || typeof this.props.panelText !== 'undefined' ? React.createElement(
           'div',
           { className: this.props.classes.questionPanelHeaderContainer },
-          typeof this.props.panelHeader ? React.createElement(
+          typeof this.props.panelHeader !== 'undefined' ? React.createElement(
             'h3',
             { className: this.props.classes.questionPanelHeaderText },
             this.props.panelHeader
           ) : undefined,
-          typeof this.props.panelText ? React.createElement(
+          typeof this.props.panelText !== 'undefined' ? React.createElement(
             'p',
             { className: this.props.classes.questionPanelText },
             this.props.panelText
@@ -223,12 +226,12 @@ var QuestionPanel = (function (_React$Component) {
         React.createElement(
           'div',
           { className: this.props.classes.buttonBar },
-          this.props.panelHistory.length > 1 ? React.createElement(Button, { text: this.props.backButtonText,
+          this.props.panelHistory.length > 1 && !this.props.backButton.disabled ? React.createElement(Button, { text: this.props.backButton.text || 'Back',
             onClick: this.handleBackButtonClick.bind(this),
             className: this.props.classes.backButton }) : undefined,
-          React.createElement(Button, { text: this.props.button.text,
+          !this.props.button.disabled ? React.createElement(Button, { text: this.props.button.text,
             onClick: this.handleMainButtonClick.bind(this),
-            className: this.props.classes.controlButton })
+            className: this.props.classes.controlButton }) : undefined
         )
       );
     }
@@ -254,14 +257,17 @@ QuestionPanel.defaultProps = {
   button: {
     text: 'Submit'
   },
+  backButton: {
+    text: 'Back'
+  },
   questionSets: [],
   questionAnswers: {},
   renderError: undefined,
+  renderRequiredAsterisk: undefined,
   onAnswerChange: function onAnswerChange() {},
   onSwitchPanel: function onSwitchPanel() {},
   onPanelBack: function onPanelBack() {},
-  panelHistory: [],
-  backButtonText: 'Back'
+  panelHistory: []
 };
 
 module.exports = QuestionPanel;

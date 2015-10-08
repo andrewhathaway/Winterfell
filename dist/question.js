@@ -99,7 +99,8 @@ var Question = (function (_React$Component) {
         !!this.props.question ? React.createElement(
           'label',
           { className: this.props.classes.label },
-          this.props.question
+          this.props.question,
+          typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required ? this.props.renderRequiredAsterisk() : undefined
         ) : undefined,
         !!this.props.text ? React.createElement(
           'p',
@@ -163,7 +164,8 @@ Question.defaultProps = {
   onAnswerChange: function onAnswerChange() {},
   onQuestionBlur: function onQuestionBlur() {},
   onKeyDown: function onKeyDown() {},
-  renderError: undefined
+  renderError: undefined,
+  renderRequiredAsterisk: undefined
 };
 
 module.exports = Question;
