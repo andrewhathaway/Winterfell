@@ -1,5 +1,5 @@
 var React = require('react');
-var _     = require('lodash');
+var _     = require('lodash').noConflict();
 
 var Question = require('./question');
 
@@ -20,6 +20,7 @@ class QuestionSet extends React.Component {
                   input={question.input}
                   classes={this.props.classes}
                   renderError={this.props.renderError}
+                  renderRequiredAsterisk={this.props.renderRequiredAsterisk}
                   questionAnswers={this.props.questionAnswers}
                   validationErrors={this.props.validationErrors}
                   onAnswerChange={this.props.onAnswerChange}
@@ -30,6 +31,23 @@ class QuestionSet extends React.Component {
 
     return (
       <div className={this.props.classes.questionSet}>
+        {typeof this.props.questionSetHeader !== 'undefined'
+           || typeof this.props.questionSetText !== 'undefined'
+           ? (
+               <div className={this.props.classes.questionSetHeaderContainer}>
+                {typeof this.props.questionSetHeader !== 'undefined'
+                  ? <h4 className={this.props.classes.questionSetHeader}>
+                      {this.props.questionSetHeader}
+                    </h4>
+                  : undefined}
+                {typeof this.props.questionSetText !== 'undefined'
+                  ? <p className={this.props.classes.questionSetText}>
+                      {this.props.questionSetText}
+                    </p>
+                  : undefined}
+               </div>
+             )
+             : undefined}
         {questions}
       </div>
     );
@@ -38,16 +56,19 @@ class QuestionSet extends React.Component {
 };
 
 QuestionSet.defaultProps = {
-  id               : undefined,
-  name             : '',
-  questions        : [],
-  questionAnswers  : {},
-  classes          : {},
-  validationErrors : {},
-  renderError      : undefined,
-  onAnswerChange   : () => {},
-  onQuestionBlur   : () => {},
-  onKeyDown        : () => {}
+  id                     : undefined,
+  name                   : '',
+  questionSetHeader      : undefined,
+  questionSetText        : undefined,
+  questions              : [],
+  questionAnswers        : {},
+  classes                : {},
+  validationErrors       : {},
+  renderError            : undefined,
+  renderRequiredAsterisk : undefined,
+  onAnswerChange         : () => {},
+  onQuestionBlur         : () => {},
+  onKeyDown              : () => {}
 };
 
 module.exports = QuestionSet;

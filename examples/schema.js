@@ -61,6 +61,9 @@ module.exports = {
     "button" : {
       "text" : "Subscribe"
     },
+    "backButton" : {
+      "disabled" : true
+    },
     "questionSets" : [{
       "index" : 1,
       "questionSetId" : "register-set"
@@ -89,6 +92,8 @@ module.exports = {
   }],
   "questionSets" : [{
     "questionSetId" : "intro-set",
+    "questionSetHeader" : "I'm a question set header",
+    "questionSetText" : "I am a question set text",
     "questions" : [{
       "questionId" : "existing-user",
       "question" : "Are you currently subscribed?",

@@ -1,5 +1,5 @@
 var React    = require('react');
-var _        = require('lodash');
+var _        = require('lodash').noConflict();
 var KeyCodez = require('keycodez');
 
 var Validation    = require('./lib/validation');
@@ -173,10 +173,13 @@ class QuestionPanel extends React.Component {
         <QuestionSet key={questionSet.questionSetId}
                      id={questionSet.questionSetId}
                      name={questionSet.name}
+                     questionSetHeader={questionSet.questionSetHeader}
+                     questionSetText={questionSet.questionSetText}
                      questions={questionSet.questions}
                      classes={this.props.classes}
                      questionAnswers={this.props.questionAnswers}
                      renderError={this.props.renderError}
+                     renderRequiredAsterisk={this.props.renderRequiredAsterisk}
                      validationErrors={this.state.validationErrors}
                      onAnswerChange={this.handleAnswerChange.bind(this)}
                      onQuestionBlur={this.handleQuestionBlur.bind(this)}
@@ -190,14 +193,14 @@ class QuestionPanel extends React.Component {
           || typeof this.props.panelText !== 'undefined'
           ? (
               <div className={this.props.classes.questionPanelHeaderContainer}>
-                {typeof this.props.panelHeader
+                {typeof this.props.panelHeader !== 'undefined'
                   ? (
                       <h3 className={this.props.classes.questionPanelHeaderText}>
                         {this.props.panelHeader}
                       </h3>
                     )
                   : undefined}
-                {typeof this.props.panelText
+                {typeof this.props.panelText !== 'undefined'
                   ? (
                       <p className={this.props.classes.questionPanelText}>
                         {this.props.panelText}
@@ -212,15 +215,20 @@ class QuestionPanel extends React.Component {
         </div>
         <div className={this.props.classes.buttonBar}>
           {this.props.panelHistory.length > 1
+            && !this.props.backButton.disabled
             ? (
-                <Button text={this.props.backButtonText}
+                <Button text={this.props.backButton.text || 'Back'}
                         onClick={this.handleBackButtonClick.bind(this)}
                         className={this.props.classes.backButton} />
               )
             : undefined}
-          <Button text={this.props.button.text}
-                  onClick={this.handleMainButtonClick.bind(this)}
-                  className={this.props.classes.controlButton} />
+          {!this.props.button.disabled
+            ? (
+                <Button text={this.props.button.text}
+                        onClick={this.handleMainButtonClick.bind(this)}
+                        className={this.props.classes.controlButton} />
+              )
+            : undefined}
         </div>
       </div>
     );
@@ -229,28 +237,31 @@ class QuestionPanel extends React.Component {
 };
 
 QuestionPanel.defaultProps = {
-  validationErrors   : {},
-  schema             : {},
-  classes            : {},
-  panelId            : undefined,
-  panelIndex         : undefined,
-  panelHeader        : undefined,
-  panelText          : undefined,
-  action             : {
+  validationErrors       : {},
+  schema                 : {},
+  classes                : {},
+  panelId                : undefined,
+  panelIndex             : undefined,
+  panelHeader            : undefined,
+  panelText              : undefined,
+  action                 : {
     default    : {},
     conditions : []
   },
-  button             : {
-    text  : 'Submit'
+  button                 : {
+    text : 'Submit'
   },
-  questionSets       : [],
-  questionAnswers    : {},
-  renderError        : undefined,
-  onAnswerChange     : () => {},
-  onSwitchPanel      : () => {},
-  onPanelBack        : () => {},
-  panelHistory       : [],
-  backButtonText     : 'Back'
+  backButton             : {
+    text : 'Back'
+  },
+  questionSets           : [],
+  questionAnswers        : {},
+  renderError            : undefined,
+  renderRequiredAsterisk : undefined,
+  onAnswerChange         : () => {},
+  onSwitchPanel          : () => {},
+  onPanelBack            : () => {},
+  panelHistory           : [],
 };
 
 module.exports = QuestionPanel;

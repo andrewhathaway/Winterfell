@@ -27,7 +27,8 @@ window.onload = function() {
   React.render(
     <Winterfell schema={loginSchema}
                 onRender={onRender}
-                onUpdate={onUpdate} />,
+                onUpdate={onUpdate}
+                renderRequiredAsterisk={() => <span>{'*'}</span>} />,
     document.getElementById('login-form')
   );
 

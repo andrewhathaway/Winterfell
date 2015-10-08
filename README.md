@@ -47,10 +47,13 @@ React.render(
 - Custom validation types
 - Custom error messages
 - Custom error rendering
+- Custom required asterisk rendering
 - Custom classes
 - Custom InputTypes
 - Question pre and post text
 - Question panel header and text
+- Question set header and text
+- Ability to disable buttons
 - Default values
 - Events
 
@@ -104,8 +107,13 @@ Supported actions are `GOTO` and `SUBMIT`. When using `GOTO`, the `target` can b
 			}
 		},
 		"button" : {
-			"text" : "Next"
+			"text" : "Next",
+      "disabled" : false
 		},
+    "" : {
+      "text" : "Back",
+      "disable" : false
+    },
 		"questionSets" : [{
 			"index" : 1,
 			"questionSetId" : "intro-set"
@@ -127,6 +135,8 @@ Each question has the ability to have some `text` associated with it which gets 
 {
 	"questionSets" : [{
 		"questionSetId" : "intro-set",
+    "questionSetHeader" : "I am a question set header",
+    "questonSetText" : "I am a question set text",
 		"questions" : [{
 			"questionId" : "existing-user",
 			"question" : "Are you an existing user?",
@@ -235,6 +245,9 @@ questionPanel                | The div that wraps around the active `questionSet
 questionPanelHeaderContainer | The div that wraps around the `questionPanels` header text and text
 questionPanelHeaderText      | The h3 tag that holds the `questionPanel` header text
 questionPanelText            | The p tag that holds the `questionPanel` text
+questionSetHeader            | The h4 tag that holds the `questionSet` header
+questionSetText              | The p tag that holds the `questionSet` text
+questionSetHeaderContainer   | The div that wraps around the header and text of a `questionSet`
 questionSets                 | The div that wraps around the `questionSets` inside of a `questionPanel`
 questionSet                  | The div that wraps around the `questions` inside a `questionSet`
 question                     | The div that wraps around the `question`
@@ -279,13 +292,11 @@ var Winterfell         = require('winterfell');
 var MyAwesomeInputType = require('./awesomeInputType');
 
 Winterfell
-  .inputTypes
   .addInputType('myAwesomeInputType', MyAwesomeInputType);
 
 // OR
 
 Winterfell
-  .inputTypes
   .addInputTypes({
     myAwesomeInputType : MyAwesomeInputType
   });
@@ -349,17 +360,18 @@ Winterfell
 
 The following table shows the props Winterfell accepts, their types and descriptions. The only prop that is required is `schema`.
 
-Prop Name       | Type     | Description
----             | ---      | ---
-panelId         | string   | Initial `panelId` to render
-schema          | object   | `schema` for the form to render
-ref             | string   | `ref` field for form element
-encType         | string   | `encType` field for the form element
-method          | string   | `method` field for the form element
-action          | string   | Default `action` field for the form element
-disableSubmit   | boolean  | Prevent the form from submitting naturally
-questionAnswers | object   | Existing `questionAnswers`. `questionId` => `answer`
-renderError     | function | Custom validation error render method. Return a React Component Or React Element.
+Prop Name              | Type     | Description
+---                    | ---      | ---
+panelId                | string   | Initial `panelId` to render
+schema                 | object   | `schema` for the form to render
+ref                    | string   | `ref` field for form element
+encType                | string   | `encType` field for the form element
+method                 | string   | `method` field for the form element
+action                 | string   | Default `action` field for the form element
+disableSubmit          | boolean  | Prevent the form from submitting naturally
+questionAnswers        | object   | Existing `questionAnswers`. `questionId` => `answer`
+renderError            | function | Custom validation error render method. Return a React Component Or React Element.
+renderRequiredAsterisk | function | Custom require asterisk rendering method. Return a React Component or React Element.
 
 ## Events
 

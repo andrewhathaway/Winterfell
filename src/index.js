@@ -1,5 +1,5 @@
 var React = require('react');
-var _     = require('lodash');
+var _     = require('lodash').noConflict();
 
 var QuestionPanel = require('./questionPanel');
 
@@ -19,6 +19,7 @@ class Winterfell extends React.Component {
 
     schema.formPanels = schema.formPanels
                               .sort((a, b) => a.index > b.index);
+
     var panelId = (typeof this.props.panelId !== 'undefined'
                      ? this.props.panelId
                      : schema.formPanels.length > 0
@@ -126,10 +127,12 @@ class Winterfell extends React.Component {
                          panelText={currentPanel.panelText}
                          action={currentPanel.action}
                          button={currentPanel.button}
+                         backButton={currentPanel.backButton}
                          questionSets={currentPanel.questionSets}
                          questionAnswers={this.state.questionAnswers}
                          panelHistory={this.panelHistory}
                          renderError={this.props.renderError}
+                         renderRequiredAsterisk={this.props.renderRequiredAsterisk}
                          onAnswerChange={this.handleAnswerChange.bind(this)}
                          onPanelBack={this.handleBackButtonClick.bind(this)}
                          onSwitchPanel={this.handleSwitchPanel.bind(this)}
@@ -148,28 +151,38 @@ class Winterfell extends React.Component {
 
 // @todo: Proptypes
 Winterfell.defaultProps = {
-  schema          : {
+  schema                 : {
     formPanels     : [],
     questionPanels : [],
     questionSets   : [],
     classes        : {}
   },
-  questionAnswers : {},
-  ref             : 'form',
-  encType         : 'application/x-www-form-urlencoded',
-  method          : 'POST',
-  action          : '',
-  panelId         : undefined,
-  disableSubmit   : false,
-  renderError     : undefined,
-  onSubmit        : () => {},
-  onUpdate        : () => {},
-  onSwitchPanel   : () => {},
-  onRender        : () => {}
+  questionAnswers        : {},
+  ref                    : 'form',
+  encType                : 'application/x-www-form-urlencoded',
+  method                 : 'POST',
+  action                 : '',
+  panelId                : undefined,
+  disableSubmit          : false,
+  renderError            : undefined,
+  renderRequiredAsterisk : undefined,
+  onSubmit               : () => {},
+  onUpdate               : () => {},
+  onSwitchPanel          : () => {},
+  onRender               : () => {}
 };
 
 Winterfell.inputTypes    = require('./inputTypes');
 Winterfell.errorMessages = require('./lib/errors');
 Winterfell.validation    = require('./lib/validation');
+
+Winterfell.addInputType  = Winterfell.inputTypes.addInputType;
+Winterfell.addInputTypes = Winterfell.inputTypes.addInputTypes;
+
+Winterfell.addErrorMessage  = Winterfell.errorMessages.addErrorMessage;
+Winterfell.addErrorMessages = Winterfell.errorMessages.addErrorMessages;
+
+Winterfell.addValidationMethod  = Winterfell.validation.addValidationMethod;
+Winterfell.addValidationMethods = Winterfell.validation.addValidationMethods;
 
 module.exports = Winterfell;

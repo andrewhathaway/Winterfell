@@ -1,5 +1,5 @@
 var React = require('react');
-var _     = require('lodash');
+var _     = require('lodash').noConflict();
 
 var InputTypes = require('./inputTypes');
 
@@ -102,6 +102,10 @@ class Question extends React.Component {
           ? (
               <label className={this.props.classes.label}>
                 {this.props.question}
+                {typeof this.props.renderRequiredAsterisk !== 'undefined'
+                   && this.props.input.required
+                   ? this.props.renderRequiredAsterisk()
+                   : undefined}
               </label>
             )
           : undefined}
@@ -154,27 +158,28 @@ class Question extends React.Component {
 };
 
 Question.defaultProps = {
-  questionSetId    : undefined,
-  questionId       : undefined,
-  question         : '',
-  validateOn       : 'blur',
-  validations      : [],
-  text             : undefined,
-  postText         : undefined,
-  value            : undefined,
-  input            : {
+  questionSetId          : undefined,
+  questionId             : undefined,
+  question               : '',
+  validateOn             : 'blur',
+  validations            : [],
+  text                   : undefined,
+  postText               : undefined,
+  value                  : undefined,
+  input                  : {
     default     : undefined,
     type        : 'textInput',
     limit       : undefined,
     placeholder : undefined
   },
-  classes          : {},
-  questionAnswers  : {},
-  validationErrors : {},
-  onAnswerChange   : () => {},
-  onQuestionBlur   : () => {},
-  onKeyDown        : () => {},
-  renderError      : undefined
+  classes                : {},
+  questionAnswers        : {},
+  validationErrors       : {},
+  onAnswerChange         : () => {},
+  onQuestionBlur         : () => {},
+  onKeyDown              : () => {},
+  renderError            : undefined,
+  renderRequiredAsterisk : undefined
 };
 
 module.exports = Question;
