@@ -40,6 +40,7 @@ var QuestionSet = (function (_React$Component) {
           input: question.input,
           classes: _this.props.classes,
           renderError: _this.props.renderError,
+          renderRequiredAsterisk: _this.props.renderRequiredAsterisk,
           questionAnswers: _this.props.questionAnswers,
           validationErrors: _this.props.validationErrors,
           onAnswerChange: _this.props.onAnswerChange,
@@ -50,6 +51,20 @@ var QuestionSet = (function (_React$Component) {
       return React.createElement(
         'div',
         { className: this.props.classes.questionSet },
+        typeof this.props.questionSetHeader !== 'undefined' || typeof this.props.questionSetText !== 'undefined' ? React.createElement(
+          'div',
+          { className: this.props.classes.questionSetHeaderContainer },
+          typeof this.props.questionSetHeader !== 'undefined' ? React.createElement(
+            'h4',
+            { className: this.props.classes.questionSetHeader },
+            this.props.questionSetHeader
+          ) : undefined,
+          typeof this.props.questionSetText !== 'undefined' ? React.createElement(
+            'p',
+            { className: this.props.classes.questionSetText },
+            this.props.questionSetText
+          ) : undefined
+        ) : undefined,
         questions
       );
     }
@@ -63,11 +78,14 @@ var QuestionSet = (function (_React$Component) {
 QuestionSet.defaultProps = {
   id: undefined,
   name: '',
+  questionSetHeader: undefined,
+  questionSetText: undefined,
   questions: [],
   questionAnswers: {},
   classes: {},
   validationErrors: {},
   renderError: undefined,
+  renderRequiredAsterisk: undefined,
   onAnswerChange: function onAnswerChange() {},
   onQuestionBlur: function onQuestionBlur() {},
   onKeyDown: function onKeyDown() {}

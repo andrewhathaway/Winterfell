@@ -6,18 +6,30 @@ class CheckboxInput extends React.Component {
     super(props);
 
     this.state = {
-      checked : false
+      checked : props.defaultChecked
     };
   }
 
   handleChange(e) {
-    this.setState({
-      checked : !this.state.checked
-    }, () => {
+    if (e) {
+      this.setState({
+        'checked': !this.state.checked
+      }, () => {
+        this.props.onChange(this.state.checked
+                            ? this.props.value
+                            : undefined);
+      });
+    } else {
       this.props.onChange(this.state.checked
                             ? this.props.value
                             : undefined);
-    });
+    }
+  }
+
+  componentDidMount() {
+    if (this.state.checked) {
+      this.handleChange();
+    }
   }
 
   render() {
@@ -27,7 +39,7 @@ class CheckboxInput extends React.Component {
           <input type="checkbox"
                  name={this.props.name}
                  className={this.props.classes.checkbox}
-                 checked={this.state.checked}
+                 defaultChecked={this.state.checked}
                  value={this.props.value}
                  required={this.props.required
                              ? 'required'
@@ -46,6 +58,7 @@ class CheckboxInput extends React.Component {
 
 CheckboxInput.defaultProps = {
   text     : '',
+  defaultChecked: false,
   classes  : {},
   name     : undefined,
   value    : undefined,

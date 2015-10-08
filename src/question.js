@@ -90,6 +90,12 @@ class Question extends React.Component {
                                    })
                              : [];
 
+    let extraprops = {};
+
+    if (this.props.input.props) {
+      extraprops = this.props.input.props;
+    }
+
     return (
       <div className={this.props.classes.question}>
         {!!this.props.question
@@ -120,7 +126,9 @@ class Question extends React.Component {
                classes={this.props.classes}
                onChange={this.handleInputChange.bind(this, this.props.questionId)}
                onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
-               onKeyDown={this.props.onKeyDown} />
+               onKeyDown={this.props.onKeyDown}
+               {...extraprops}
+        />
         {!!this.props.postText
           ? (
               <p className={this.props.classes.questionPostText}>

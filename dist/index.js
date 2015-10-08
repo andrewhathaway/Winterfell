@@ -33,6 +33,7 @@ var Winterfell = (function (_React$Component) {
     schema.formPanels = schema.formPanels.sort(function (a, b) {
       return a.index > b.index;
     });
+
     var panelId = typeof this.props.panelId !== 'undefined' ? this.props.panelId : schema.formPanels.length > 0 ? schema.formPanels[0].panelId : undefined;
 
     var currentPanel = typeof schema !== 'undefined' && typeof schema.formPanels !== 'undefined' && typeof panelId !== 'undefined' ? _.find(schema.formPanels, function (panel) {
@@ -142,10 +143,12 @@ var Winterfell = (function (_React$Component) {
             panelText: currentPanel.panelText,
             action: currentPanel.action,
             button: currentPanel.button,
+            backButton: currentPanel.backButton,
             questionSets: currentPanel.questionSets,
             questionAnswers: this.state.questionAnswers,
             panelHistory: this.panelHistory,
             renderError: this.props.renderError,
+            renderRequiredAsterisk: this.props.renderRequiredAsterisk,
             onAnswerChange: this.handleAnswerChange.bind(this),
             onPanelBack: this.handleBackButtonClick.bind(this),
             onSwitchPanel: this.handleSwitchPanel.bind(this),
@@ -182,6 +185,7 @@ Winterfell.defaultProps = {
   panelId: undefined,
   disableSubmit: false,
   renderError: undefined,
+  renderRequiredAsterisk: undefined,
   onSubmit: function onSubmit() {},
   onUpdate: function onUpdate() {},
   onSwitchPanel: function onSwitchPanel() {},
@@ -191,5 +195,14 @@ Winterfell.defaultProps = {
 Winterfell.inputTypes = require('./inputTypes');
 Winterfell.errorMessages = require('./lib/errors');
 Winterfell.validation = require('./lib/validation');
+
+Winterfell.addInputType = Winterfell.inputTypes.addInputType;
+Winterfell.addInputTypes = Winterfell.inputTypes.addInputTypes;
+
+Winterfell.addErrorMessage = Winterfell.errorMessages.addErrorMessage;
+Winterfell.addErrorMessages = Winterfell.errorMessages.addErrorMessages;
+
+Winterfell.addValidationMethod = Winterfell.validation.addValidationMethod;
+Winterfell.addValidationMethods = Winterfell.validation.addValidationMethods;
 
 module.exports = Winterfell;

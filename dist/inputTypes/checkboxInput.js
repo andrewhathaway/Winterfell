@@ -19,7 +19,7 @@ var CheckboxInput = (function (_React$Component) {
     _get(Object.getPrototypeOf(CheckboxInput.prototype), 'constructor', this).call(this, props);
 
     this.state = {
-      checked: false
+      checked: props.defaultChecked
     };
   }
 
@@ -28,11 +28,22 @@ var CheckboxInput = (function (_React$Component) {
     value: function handleChange(e) {
       var _this = this;
 
-      this.setState({
-        checked: !this.state.checked
-      }, function () {
-        _this.props.onChange(_this.state.checked ? _this.props.value : undefined);
-      });
+      if (e) {
+        this.setState({
+          'checked': !this.state.checked
+        }, function () {
+          _this.props.onChange(_this.state.checked ? _this.props.value : undefined);
+        });
+      } else {
+        this.props.onChange(this.state.checked ? this.props.value : undefined);
+      }
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      if (this.state.checked) {
+        this.handleChange();
+      }
     }
   }, {
     key: 'render',
@@ -46,7 +57,7 @@ var CheckboxInput = (function (_React$Component) {
           React.createElement('input', { type: 'checkbox',
             name: this.props.name,
             className: this.props.classes.checkbox,
-            checked: this.state.checked,
+            defaultChecked: this.state.checked,
             value: this.props.value,
             required: this.props.required ? 'required' : undefined,
             onChange: this.handleChange.bind(this),
@@ -64,6 +75,7 @@ var CheckboxInput = (function (_React$Component) {
 
 CheckboxInput.defaultProps = {
   text: '',
+  defaultChecked: false,
   classes: {},
   name: undefined,
   value: undefined,
