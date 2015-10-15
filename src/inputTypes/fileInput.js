@@ -19,6 +19,7 @@ class FileInput extends React.Component {
   render() {
     return <input type="file"
                   name={this.props.name}
+                  id={this.props.id}
                   className={this.props.classes.file}
                   required={this.props.required
                               ? 'required'
@@ -32,6 +33,7 @@ class FileInput extends React.Component {
 FileInput.defaultProps = {
   classes   : {},
   name      : undefined,
+  id        : undefined,
   value     : undefined,
   onChange  : () => {},
   onBlur    : () => {}
