@@ -100,7 +100,8 @@ class Question extends React.Component {
       <div className={this.props.classes.question}>
         {!!this.props.question
           ? (
-              <label className={this.props.classes.label} htmlFor={this.props.questionId}>
+              <label className={this.props.classes.label}
+                     htmlFor={this.props.questionId}>
                 {this.props.question}
                 {typeof this.props.renderRequiredAsterisk !== 'undefined'
                    && this.props.input.required
