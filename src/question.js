@@ -100,7 +100,8 @@ class Question extends React.Component {
       <div className={this.props.classes.question}>
         {!!this.props.question
           ? (
-              <label className={this.props.classes.label}>
+              <label className={this.props.classes.label}
+                     htmlFor={this.props.questionId}>
                 {this.props.question}
                 {typeof this.props.renderRequiredAsterisk !== 'undefined'
                    && this.props.input.required
@@ -118,6 +119,7 @@ class Question extends React.Component {
           : undefined}
         {validationErrors}
         <Input name={this.props.questionId}
+               id={this.props.questionId}
                value={value}
                text={this.props.input.text}
                options={this.props.input.options}

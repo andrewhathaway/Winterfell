@@ -35,6 +35,7 @@ var FileInput = (function (_React$Component) {
     value: function render() {
       return React.createElement('input', { type: 'file',
         name: this.props.name,
+        id: this.props.id,
         className: this.props.classes.file,
         required: this.props.required ? 'required' : undefined,
         onChange: this.handleChange.bind(this),
@@ -50,6 +51,7 @@ var FileInput = (function (_React$Component) {
 FileInput.defaultProps = {
   classes: {},
   name: undefined,
+  id: undefined,
   value: undefined,
   onChange: function onChange() {},
   onBlur: function onBlur() {}

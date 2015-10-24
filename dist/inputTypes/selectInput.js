@@ -45,6 +45,7 @@ var SelectInput = (function (_React$Component) {
       return React.createElement(
         'select',
         { name: this.props.name,
+          id: this.props.id,
           className: this.props.classes.select,
           value: this.state.value,
           ref: 'select',
@@ -77,6 +78,7 @@ var SelectInput = (function (_React$Component) {
 SelectInput.defaultProps = {
   classes: {},
   name: undefined,
+  id: undefined,
   value: undefined,
   options: [],
   onChange: function onChange() {},

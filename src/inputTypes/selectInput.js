@@ -26,6 +26,7 @@ class SelectInput extends React.Component {
 
     return (
       <select name={this.props.name}
+              id={this.props.id}
               className={this.props.classes.select}
               value={this.state.value}
               ref="select"
@@ -56,6 +57,7 @@ class SelectInput extends React.Component {
 SelectInput.defaultProps = {
   classes     : {},
   name        : undefined,
+  id          : undefined,
   value       : undefined,
   options     : [],
   onChange    : () => {},
