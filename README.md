@@ -136,7 +136,7 @@ Each question has the ability to have some `text` associated with it which gets 
 	"questionSets" : [{
 		"questionSetId" : "intro-set",
     "questionSetHeader" : "I am a question set header",
-    "questonSetText" : "I am a question set text",
+    "questionSetText" : "I am a question set text",
 		"questions" : [{
 			"questionId" : "existing-user",
 			"question" : "Are you an existing user?",
