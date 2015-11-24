@@ -10,11 +10,11 @@ class Button extends React.Component {
 
   render() {
     return (
-      <a href="#"
+      <button href="#"
          className={this.props.className}
          onClick={this.handleClick.bind(this)}>
         {this.props.text}
-      </a>
+      </button>
     );
   }
 

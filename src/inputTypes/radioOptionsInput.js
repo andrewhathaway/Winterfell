@@ -22,9 +22,11 @@ class RadioOptionsInput extends React.Component {
         {this.props.options.map(opt =>
           <li key={opt.value}
               className={this.props.classes.radioListItem}>
-            <label className={this.props.classes.radioLabel}>
+            <label className={this.props.classes.radioLabel}
+                   id={this.props.labelId}>
               <input type="radio"
                      name={this.props.name}
+                     aria-labelledby={this.props.labelId}
                      checked={this.state.value == opt.value}
                      className={this.props.classes.radio}
                      required={this.props.required

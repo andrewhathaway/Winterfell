@@ -53,9 +53,11 @@ var CheckboxInput = (function (_React$Component) {
         { className: this.props.classes.checkboxInput },
         React.createElement(
           'label',
-          { className: this.props.classes.checkboxLabel },
+          { className: this.props.classes.checkboxLabel,
+            id: this.props.labelId },
           React.createElement('input', { type: 'checkbox',
             name: this.props.name,
+            'aria-labelledby': this.props.labelId,
             className: this.props.classes.checkbox,
             defaultChecked: this.state.checked,
             value: this.props.value,
