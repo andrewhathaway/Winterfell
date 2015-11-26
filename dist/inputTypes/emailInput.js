@@ -36,6 +36,7 @@ var EmailInput = (function (_React$Component) {
       return React.createElement('input', { type: 'email',
         name: this.props.name,
         id: this.props.id,
+        'aria-labelledby': this.props.labelId,
         className: this.props.classes.input,
         placeholder: this.props.placeholder,
         value: this.state.value,

@@ -35,9 +35,11 @@ class CheckboxInput extends React.Component {
   render() {
     return (
       <div className={this.props.classes.checkboxInput}>
-        <label className={this.props.classes.checkboxLabel}>
+        <label className={this.props.classes.checkboxLabel}
+               id={this.props.labelId}>
           <input type="checkbox"
                  name={this.props.name}
+                 aria-labelledby={this.props.labelId}
                  className={this.props.classes.checkbox}
                  defaultChecked={this.state.checked}
                  value={this.props.value}

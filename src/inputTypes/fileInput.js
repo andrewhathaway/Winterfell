@@ -20,6 +20,7 @@ class FileInput extends React.Component {
     return <input type="file"
                   name={this.props.name}
                   id={this.props.id}
+                  aria-labelledby={this.props.labelId}
                   className={this.props.classes.file}
                   required={this.props.required
                               ? 'required'

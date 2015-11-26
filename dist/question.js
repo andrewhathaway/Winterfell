@@ -93,12 +93,15 @@ var Question = (function (_React$Component) {
         extraprops = this.props.input.props;
       }
 
+      var labelId = this.props.questionId + '-label';
+
       return React.createElement(
         'div',
         { className: this.props.classes.question },
         !!this.props.question ? React.createElement(
           'label',
           { className: this.props.classes.label,
+            id: labelId,
             htmlFor: this.props.questionId },
           this.props.question,
           typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required ? this.props.renderRequiredAsterisk() : undefined
@@ -111,6 +114,7 @@ var Question = (function (_React$Component) {
         validationErrors,
         React.createElement(Input, _extends({ name: this.props.questionId,
           id: this.props.questionId,
+          labelId: labelId,
           value: value,
           text: this.props.input.text,
           options: this.props.input.options,

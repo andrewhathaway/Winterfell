@@ -36,6 +36,7 @@ var FileInput = (function (_React$Component) {
       return React.createElement('input', { type: 'file',
         name: this.props.name,
         id: this.props.id,
+        'aria-labelledby': this.props.labelId,
         className: this.props.classes.file,
         required: this.props.required ? 'required' : undefined,
         onChange: this.handleChange.bind(this),

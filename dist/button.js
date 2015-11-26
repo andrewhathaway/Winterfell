@@ -30,7 +30,7 @@ var Button = (function (_React$Component) {
     key: 'render',
     value: function render() {
       return React.createElement(
-        'a',
+        'button',
         { href: '#',
           className: this.props.className,
           onClick: this.handleClick.bind(this) },
