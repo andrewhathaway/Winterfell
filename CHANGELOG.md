@@ -1,5 +1,20 @@
 # Change Log
 
+
+# [1.0.6](https://github.com/andrewhathaway/Winterfell/releases/tag/1.0.6) (2016-01-02)
+
+**Implemented enhancements & merged pull requests:**
+
+- Add label/input associations for accessibility. [PR](https://github.com/andrewhathaway/Winterfell/pull/42)
+- Implement fixes recommended by react-a11y. [PR](https://github.com/andrewhathaway/Winterfell/pull/48)
+
+
+**Fixed bugs:**
+
+- Fixed typo in JSON Schema example in README. [Commit](https://github.com/andrewhathaway/Winterfell/commit/c63da73dc95c9f6fb1d418a582813165f5882378)
+- Fix validation check in `addInputTypes` to actually check the variable passed in. [Commit](https://github.com/andrewhathaway/Winterfell/commit/196609ee640deac5491dbb7ebcb9562072b7f459) [PR](https://github.com/andrewhathaway/Winterfell/pull/47)
+
+
 ## [1.0.5](https://github.com/andrewhathaway/Winterfell/releases/tag/1.0.5) (2015-10-08)
 
 **Implemented enhancements & merged pull requests:**
