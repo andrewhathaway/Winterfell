@@ -67,7 +67,7 @@ class QuestionPanel extends React.Component {
                           .value();
 
     /*
-     * Get any incorrect fields that need erorr messages.
+     * Get any incorrect fields that need error messages.
      */
     var invalidQuestions = Validation.getQuestionPanelInvalidQuestions(
       questionSets, this.props.questionAnswers
