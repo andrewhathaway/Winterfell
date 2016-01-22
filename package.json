@@ -41,6 +41,7 @@
     "babel-loader": "^5.3.2",
     "browserify": "^11.0.1",
     "gulp": "^3.9.0",
+    "gulp-run": "^1.6.12",
     "gulp-uglify": "^1.2.0",
     "react": "^0.13.3",
     "rimraf": "^2.4.3",
