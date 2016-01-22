@@ -118,11 +118,6 @@ module.exports = {
             "validations" : [{
               "type" : "isEmail"
             }]
-          }],
-          "validateOn" : "blur",
-          "validations" : [{
-            "type" : "isLength",
-            "params" : [1]
           }]
         }, {
           "text"  : "No",
