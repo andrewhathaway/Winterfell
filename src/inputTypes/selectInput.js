@@ -47,7 +47,7 @@ class SelectInput extends React.Component {
      */
     this.handleChange({
       target : {
-        value : this.refs.select.getDOMNode().value
+        value : this.refs.select.value
       }
     });
   }
