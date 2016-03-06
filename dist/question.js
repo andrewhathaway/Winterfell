@@ -2,26 +2,26 @@
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var React = require('react');
 var _ = require('lodash').noConflict();
 
 var InputTypes = require('./inputTypes');
 
-var Question = (function (_React$Component) {
+var Question = function (_React$Component) {
   _inherits(Question, _React$Component);
 
   function Question() {
     _classCallCheck(this, Question);
 
-    _get(Object.getPrototypeOf(Question.prototype), 'constructor', this).apply(this, arguments);
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Question).apply(this, arguments));
   }
 
   _createClass(Question, [{
@@ -37,7 +37,7 @@ var Question = (function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
       var Input = InputTypes[this.props.input.type];
       if (!Input) {
@@ -50,39 +50,39 @@ var Question = (function (_React$Component) {
       var conditionalItems = [];
       if (typeof this.props.input.options !== 'undefined') {
         this.props.input.options.filter(function (option) {
-          return _this.props.value instanceof Array ? _this.props.value.indexOf(option.value) > -1 : _this.props.value == option.value;
+          return _this2.props.value instanceof Array ? _this2.props.value.indexOf(option.value) > -1 : _this2.props.value == option.value;
         }).filter(function (option) {
           return typeof option.conditionalQuestions !== 'undefined' && option.conditionalQuestions.length > 0;
         }).forEach(function (option) {
           return [].forEach.bind(option.conditionalQuestions, function (conditionalQuestion) {
             conditionalItems.push(React.createElement(Question, { key: conditionalQuestion.questionId,
-              questionSetId: _this.props.questionSetId,
+              questionSetId: _this2.props.questionSetId,
               questionId: conditionalQuestion.questionId,
               question: conditionalQuestion.question,
               text: conditionalQuestion.text,
               postText: conditionalQuestion.postText,
               validateOn: conditionalQuestion.validateOn,
               validations: conditionalQuestion.validations,
-              value: _this.props.questionAnswers[conditionalQuestion.questionId],
+              value: _this2.props.questionAnswers[conditionalQuestion.questionId],
               input: conditionalQuestion.input,
-              classes: _this.props.classes,
-              renderError: _this.props.renderError,
-              questionAnswers: _this.props.questionAnswers,
-              validationErrors: _this.props.validationErrors,
-              onAnswerChange: _this.props.onAnswerChange,
-              onQuestionBlur: _this.props.onQuestionBlur,
-              onKeyDown: _this.props.onKeyDown }));
+              classes: _this2.props.classes,
+              renderError: _this2.props.renderError,
+              questionAnswers: _this2.props.questionAnswers,
+              validationErrors: _this2.props.validationErrors,
+              onAnswerChange: _this2.props.onAnswerChange,
+              onQuestionBlur: _this2.props.onQuestionBlur,
+              onKeyDown: _this2.props.onKeyDown }));
           })();
         });
       }
 
-      var value = typeof this.props.value !== 'undefined' ? this.props.value : typeof this.props.input['default'] !== 'undefined' ? this.props.input['default'] : undefined;
+      var value = typeof this.props.value !== 'undefined' ? this.props.value : typeof this.props.input.default !== 'undefined' ? this.props.input.default : undefined;
 
       var validationErrors = typeof this.props.validationErrors[this.props.questionId] !== 'undefined' ? this.props.validationErrors[this.props.questionId].map(function (error) {
-        return typeof _this.props.renderError === 'function' ? _this.props.renderError(error, _this.props.questionId) : React.createElement(
+        return typeof _this2.props.renderError === 'function' ? _this2.props.renderError(error, _this2.props.questionId) : React.createElement(
           'div',
-          { key: _this.props.questionId + 'Error' + error.type,
-            className: _this.props.classes.errorMessage },
+          { key: _this2.props.questionId + 'Error' + error.type,
+            className: _this2.props.classes.errorMessage },
           error.message
         );
       }) : [];
@@ -136,16 +136,16 @@ var Question = (function (_React$Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      if (typeof this.props.input['default'] === 'undefined' || this.props.input.type === 'checkboxInput' && typeof this.props.questionAnswers[this.props.questionId] === 'undefined') {
+      if (typeof this.props.input.default === 'undefined' || this.props.input.type === 'checkboxInput' && typeof this.props.questionAnswers[this.props.questionId] === 'undefined') {
         return;
       }
 
-      this.handleInputChange.call(this, this.props.questionId, this.props.input['default']);
+      this.handleInputChange.call(this, this.props.questionId, this.props.input.default);
     }
   }]);
 
   return Question;
-})(React.Component);
+}(React.Component);
 
 ;
 
@@ -159,7 +159,7 @@ Question.defaultProps = {
   postText: undefined,
   value: undefined,
   input: {
-    'default': undefined,
+    default: undefined,
     type: 'textInput',
     limit: undefined,
     placeholder: undefined

@@ -1,11 +1,13 @@
 'use strict';
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
 var errorMessages = {
 
   /*
    * Fallback Error Message
    */
-  'default': 'Please correct the field below',
+  default: 'Please correct the field below',
 
   /*
    * Min and Max string left message
@@ -22,7 +24,7 @@ var errorMessages = {
         break;
 
       default:
-        return errorMessages['default'];
+        return errorMessages.default;
         break;
 
     }
@@ -164,7 +166,7 @@ errorMessages.addErrorMessage = function (type, message) {
  * @param  object messages Error messages to add. type => func|string
  */
 errorMessages.addErrorMessages = function (messages) {
-  if (typeof messages !== 'object') {
+  if ((typeof messages === 'undefined' ? 'undefined' : _typeof(messages)) !== 'object') {
     throw new Error('Winterfell: First parameter of addErrorMessages ' + 'must be of type object');
   }
 
@@ -180,7 +182,7 @@ errorMessages.addErrorMessages = function (messages) {
  * @return string                 Error message to display
  */
 errorMessages.getErrorMessage = function (validationItem) {
-  var errorMessage = typeof validationItem.message !== 'undefined' ? validationItem.message : typeof errorMessages[validationItem.type] !== 'undefined' ? errorMessages[validationItem.type] : errorMessages['default'];
+  var errorMessage = typeof validationItem.message !== 'undefined' ? validationItem.message : typeof errorMessages[validationItem.type] !== 'undefined' ? errorMessages[validationItem.type] : errorMessages.default;
 
   return typeof errorMessage === 'function' ? errorMessage(validationItem) : errorMessage;
 };

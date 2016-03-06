@@ -1,5 +1,6 @@
-var React      = window.React = require('react');
-var Winterfell = require('../src/index');
+var React       = window.React = require('react');
+var ReactDom    = require('react-dom');
+var Winterfell  = require('../src/index');
 
 var schema      = require('./schema');
 var loginSchema = require('./loginSchema');
@@ -24,7 +25,7 @@ var onSubmit = (questionAnswers, target) => {
 };
 
 window.onload = function() {
-  React.render(
+  ReactDom.render(
     <Winterfell schema={loginSchema}
                 onRender={onRender}
                 onUpdate={onUpdate}
@@ -32,7 +33,7 @@ window.onload = function() {
     document.getElementById('login-form')
   );
 
-  React.render(
+  ReactDom.render(
     <Winterfell schema={schema}
                 disableSubmit={true}
                 onRender={onRender}

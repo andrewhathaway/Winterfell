@@ -1,12 +1,12 @@
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var React = require('react');
 var _ = require('lodash').noConflict();
@@ -18,23 +18,24 @@ var ErrorMessages = require('./lib/errors');
 var Button = require('./button');
 var QuestionSet = require('./questionSet');
 
-var QuestionPanel = (function (_React$Component) {
+var QuestionPanel = function (_React$Component) {
   _inherits(QuestionPanel, _React$Component);
 
   function QuestionPanel(props) {
     _classCallCheck(this, QuestionPanel);
 
-    _get(Object.getPrototypeOf(QuestionPanel.prototype), 'constructor', this).call(this, props);
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(QuestionPanel).call(this, props));
 
-    this.state = {
-      validationErrors: this.props.validationErrors
+    _this.state = {
+      validationErrors: _this.props.validationErrors
     };
+    return _this;
   }
 
   _createClass(QuestionPanel, [{
     key: 'handleAnswerValidate',
     value: function handleAnswerValidate(questionId, questionAnswer, validations) {
-      var _this = this;
+      var _this2 = this;
 
       if (typeof validations === 'undefined' || validations.length === 0) {
         return;
@@ -46,7 +47,7 @@ var QuestionPanel = (function (_React$Component) {
        */
       var questionValidationErrors = [];
       validations.forEach(function (validation) {
-        if (Validation.validateAnswer(questionAnswer, validation, _this.props.questionAnswers)) {
+        if (Validation.validateAnswer(questionAnswer, validation, _this2.props.questionAnswers)) {
           return;
         }
 
@@ -65,9 +66,9 @@ var QuestionPanel = (function (_React$Component) {
   }, {
     key: 'handleMainButtonClick',
     value: function handleMainButtonClick() {
-      var _this2 = this;
+      var _this3 = this;
 
-      var action = this.props.action['default'];
+      var action = this.props.action.default;
       var conditions = this.props.action.conditions || [];
 
       /*
@@ -111,7 +112,7 @@ var QuestionPanel = (function (_React$Component) {
        * Check our conditions and act upon them, or the default.
        */
       conditions.forEach(function (condition) {
-        var answer = _this2.props.questionAnswers[condition.questionId];
+        var answer = _this3.props.questionAnswers[condition.questionId];
 
         action = answer == condition.value ? {
           action: condition.action,
@@ -174,10 +175,10 @@ var QuestionPanel = (function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var questionSets = this.props.questionSets.map(function (questionSetMeta) {
-        var questionSet = _.find(_this3.props.schema.questionSets, {
+        var questionSet = _.find(_this4.props.schema.questionSets, {
           questionSetId: questionSetMeta.questionSetId
         });
 
@@ -191,14 +192,14 @@ var QuestionPanel = (function (_React$Component) {
           questionSetHeader: questionSet.questionSetHeader,
           questionSetText: questionSet.questionSetText,
           questions: questionSet.questions,
-          classes: _this3.props.classes,
-          questionAnswers: _this3.props.questionAnswers,
-          renderError: _this3.props.renderError,
-          renderRequiredAsterisk: _this3.props.renderRequiredAsterisk,
-          validationErrors: _this3.state.validationErrors,
-          onAnswerChange: _this3.handleAnswerChange.bind(_this3),
-          onQuestionBlur: _this3.handleQuestionBlur.bind(_this3),
-          onKeyDown: _this3.handleInputKeyDown.bind(_this3) });
+          classes: _this4.props.classes,
+          questionAnswers: _this4.props.questionAnswers,
+          renderError: _this4.props.renderError,
+          renderRequiredAsterisk: _this4.props.renderRequiredAsterisk,
+          validationErrors: _this4.state.validationErrors,
+          onAnswerChange: _this4.handleAnswerChange.bind(_this4),
+          onQuestionBlur: _this4.handleQuestionBlur.bind(_this4),
+          onKeyDown: _this4.handleInputKeyDown.bind(_this4) });
       });
 
       return React.createElement(
@@ -238,7 +239,7 @@ var QuestionPanel = (function (_React$Component) {
   }]);
 
   return QuestionPanel;
-})(React.Component);
+}(React.Component);
 
 ;
 
@@ -251,7 +252,7 @@ QuestionPanel.defaultProps = {
   panelHeader: undefined,
   panelText: undefined,
   action: {
-    'default': {},
+    default: {},
     conditions: []
   },
   button: {

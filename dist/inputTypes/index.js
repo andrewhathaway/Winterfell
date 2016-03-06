@@ -1,5 +1,7 @@
 'use strict';
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
 var React = require('react');
 
 var inputTypes = {
@@ -39,7 +41,7 @@ inputTypes.addInputType = function (name, instance) {
  * @param  object types InputTypes to add. string => Component
  */
 inputTypes.addInputTypes = function (types) {
-  if (typeof types !== 'object') {
+  if ((typeof types === 'undefined' ? 'undefined' : _typeof(types)) !== 'object') {
     throw new Error('Winterfell: First parameter of addInputTypes ' + 'must be of type object');
   }
 
