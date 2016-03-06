@@ -1,0 +1,48 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/5.7.1/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'test' ]
+2 info using npm@3.6.0
+3 info using node@v5.7.1
+4 verbose run-script [ 'pretest', 'test', 'posttest' ]
+5 info lifecycle winterfell@1.0.6~pretest: winterfell@1.0.6
+6 silly lifecycle winterfell@1.0.6~pretest: no script for pretest, continuing
+7 info lifecycle winterfell@1.0.6~test: winterfell@1.0.6
+8 verbose lifecycle winterfell@1.0.6~test: unsafe-perm in lifecycle true
+9 verbose lifecycle winterfell@1.0.6~test: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/tim/Source/Winterfell/node_modules/.bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+10 verbose lifecycle winterfell@1.0.6~test: CWD: /Users/tim/Source/Winterfell
+11 silly lifecycle winterfell@1.0.6~test: Args: [ '-c', 'jest' ]
+12 silly lifecycle winterfell@1.0.6~test: Returned: code: 1  signal: null
+13 info lifecycle winterfell@1.0.6~test: Failed to exec test script
+14 verbose stack Error: winterfell@1.0.6 test: `jest`
+14 verbose stack Exit status 1
+14 verbose stack     at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/lifecycle.js:232:16)
+14 verbose stack     at emitTwo (events.js:100:13)
+14 verbose stack     at EventEmitter.emit (events.js:185:7)
+14 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:24:14)
+14 verbose stack     at emitTwo (events.js:100:13)
+14 verbose stack     at ChildProcess.emit (events.js:185:7)
+14 verbose stack     at maybeClose (internal/child_process.js:827:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+15 verbose pkgid winterfell@1.0.6
+16 verbose cwd /Users/tim/Source/Winterfell
+17 error Darwin 15.0.0
+18 error argv "/usr/local/Cellar/node/5.7.1/bin/node" "/usr/local/bin/npm" "run" "test"
+19 error node v5.7.1
+20 error npm  v3.6.0
+21 error code ELIFECYCLE
+22 error winterfell@1.0.6 test: `jest`
+22 error Exit status 1
+23 error Failed at the winterfell@1.0.6 test script 'jest'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the winterfell package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     jest
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs winterfell
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls winterfell
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]
