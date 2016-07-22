@@ -20,7 +20,7 @@ var errorMessages = {
         break;
 
       case 2:
-        return 'Please enter a valiue between ' + validationItem.params[0]
+        return 'Please enter a value between ' + validationItem.params[0]
                + ' and ' + validationItem.params[1] + ' characters long';
         break;
 
@@ -121,7 +121,7 @@ var errorMessages = {
   /*
    * Mobile phone
    */
-  isMobilePhone  : 'Please enter a valid mobile phone',
+  isMobilePhone  : 'Please enter a valid mobile number',
 
   /*
    * MongoId only
