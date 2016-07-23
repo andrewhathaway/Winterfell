@@ -1,12 +1,16 @@
 var React = require('react');
 
+var CloneArray = require('../lib/cloneArray');
+
 class CheckboxOptionsInput extends React.Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      value : this.props.value
+      value : this.props.value.length > 0
+                ? cloneArray(this.props.value)
+                : []
     };
   }
 
