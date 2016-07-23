@@ -1,5 +1,12 @@
 # Change Log
 
+# [1.0.7](https://github.com/andrewhathaway/Winterfell/releases/tag/1.0.7) (2016-07-23)
+
+**Fixed bugs:**
+
+- CheckboxInputOptions stores values from all checkbox questions. [Commit](https://github.com/andrewhathaway/Winterfell/commit/f5854356c65ef0fc008cb71a4d53573ce4234d4c) [Issue](https://github.com/andrewhathaway/Winterfell/issues/45)
+- Fix addValidationMethods. [PR](https://github.com/andrewhathaway/Winterfell/pull/61)
+- Mistake in the default error message for isLength rule. [PR](https://github.com/andrewhathaway/Winterfell/pull/63) [Issue](https://github.com/andrewhathaway/Winterfell/issues/58)
 
 # [1.0.6](https://github.com/andrewhathaway/Winterfell/releases/tag/1.0.6) (2016-01-02)
 

@@ -195,7 +195,7 @@ var addValidationMethods = function addValidationMethods(methods) {
   }
 
   for (var methodName in methods) {
-    addValidationMethod[methodName] = methods[methodName];
+    addValidationMethod(methodName, methods[methodName]);
   }
 };
 
