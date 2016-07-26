@@ -1,6 +1,6 @@
 var React = require('react');
 
-var CloneArray = require('../lib/cloneArray');
+var cloneArray = require('../lib/cloneArray');
 
 class CheckboxOptionsInput extends React.Component {
 
