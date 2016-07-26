@@ -10,7 +10,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== 'function' 
 
 var React = require('react');
 
-var CloneArray = require('../lib/cloneArray');
+var cloneArray = require('../lib/cloneArray');
 
 var CheckboxOptionsInput = (function (_React$Component) {
   _inherits(CheckboxOptionsInput, _React$Component);
