@@ -1,5 +1,11 @@
 # Change Log
 
+# [1.0.8](https://github.com/andrewhathaway/Winterfell/releases/tag/1.0.8) (2016-07-26)
+
+**Fixed bugs:**
+
+- CheckboxInputOptions had a typo on a require statement. [Commit](https://github.com/andrewhathaway/Winterfell/commit/dd070dc3f0e1b1a35d156eb07023de3dd7f0d5e2)
+
 # [1.0.7](https://github.com/andrewhathaway/Winterfell/releases/tag/1.0.7) (2016-07-23)
 
 **Fixed bugs:**
