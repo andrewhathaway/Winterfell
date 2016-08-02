@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var _     = require('lodash').noConflict();
 
 var QuestionPanel = require('./questionPanel');
@@ -103,7 +104,7 @@ class Winterfell extends React.Component {
     this.setState({
       action : action
     }, () => {
-      React.findDOMNode(this.refs[this.props.ref])
+      ReactDOM.findDOMNode(this.refs[this.props.ref])
            .submit();
     });
   }
