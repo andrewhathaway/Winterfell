@@ -1,5 +1,11 @@
 # Change Log
 
+# [1.0.9](https://github.com/andrewhathaway/Winterfell/releases/tag/1.0.8) (2016-10-08)
+
+**Fixed bugs:**
+
+- `React.findDOMNode` is not a function on Submit [PR](https://github.com/andrewhathaway/Winterfell/pull/68) [Issue](https://github.com/andrewhathaway/Winterfell/issues/66)
+
 # [1.0.8](https://github.com/andrewhathaway/Winterfell/releases/tag/1.0.8) (2016-07-26)
 
 **Fixed bugs:**
