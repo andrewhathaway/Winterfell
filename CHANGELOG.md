@@ -1,5 +1,12 @@
 # Change Log
 
+# [1.1.0](https://github.com/andrewhathaway/Winterfell/releases/tag/1.1.0) (2016-11-25)
+
+**Fixed bugs:**
+
+- State leaks into prototype/form value sharing [PR](https://github.com/andrewhathaway/Winterfell/pull/77) [Issue](https://github.com/andrewhathaway/Winterfell/issues/76)
+- String vs. number mismatch in checkboxOptionsInput type [PR](https://github.com/andrewhathaway/Winterfell/pull/78) [Issue](https://github.com/andrewhathaway/Winterfell/issues/75)
+
 # [1.0.9](https://github.com/andrewhathaway/Winterfell/releases/tag/1.0.8) (2016-10-08)
 
 **Fixed bugs:**
