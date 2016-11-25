@@ -9,6 +9,29 @@ class Winterfell extends React.Component {
   constructor(props) {
     super(props);
 
+    // Set our default values for props.
+    var props = _.extend({
+      schema                 : {
+        formPanels     : [],
+        questionPanels : [],
+        questionSets   : [],
+        classes        : {}
+      },
+      questionAnswers        : {},
+      ref                    : 'form',
+      encType                : 'application/x-www-form-urlencoded',
+      method                 : 'POST',
+      action                 : '',
+      panelId                : undefined,
+      disableSubmit          : false,
+      renderError            : undefined,
+      renderRequiredAsterisk : undefined,
+      onSubmit               : () => {},
+      onUpdate               : () => {},
+      onSwitchPanel          : () => {},
+      onRender               : () => {}
+    }, this.props);
+
     this.panelHistory = [];
 
     var schema = _.extend({
@@ -16,13 +39,13 @@ class Winterfell extends React.Component {
       formPanels     : [],
       questionPanels : [],
       questionSets   : [],
-    }, this.props.schema);
+    }, props.schema);
 
     schema.formPanels = schema.formPanels
                               .sort((a, b) => a.index > b.index);
 
-    var panelId = (typeof this.props.panelId !== 'undefined'
-                     ? this.props.panelId
+    var panelId = (typeof props.panelId !== 'undefined'
+                     ? props.panelId
                      : schema.formPanels.length > 0
                          ? schema.formPanels[0].panelId
                          : undefined);
@@ -41,8 +64,8 @@ class Winterfell extends React.Component {
     this.state = {
       schema          : schema,
       currentPanel    : currentPanel,
-      action          : this.props.action,
-      questionAnswers : this.props.questionAnswers
+      action          : props.action,
+      questionAnswers : props.questionAnswers
     };
   }
 
@@ -148,29 +171,6 @@ class Winterfell extends React.Component {
     this.props.onRender();
   }
 
-};
-
-// @todo: Proptypes
-Winterfell.defaultProps = {
-  schema                 : {
-    formPanels     : [],
-    questionPanels : [],
-    questionSets   : [],
-    classes        : {}
-  },
-  questionAnswers        : {},
-  ref                    : 'form',
-  encType                : 'application/x-www-form-urlencoded',
-  method                 : 'POST',
-  action                 : '',
-  panelId                : undefined,
-  disableSubmit          : false,
-  renderError            : undefined,
-  renderRequiredAsterisk : undefined,
-  onSubmit               : () => {},
-  onUpdate               : () => {},
-  onSwitchPanel          : () => {},
-  onRender               : () => {}
 };
 
 Winterfell.inputTypes    = require('./inputTypes');
