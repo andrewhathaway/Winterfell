@@ -14,19 +14,19 @@ class CheckboxOptionsInput extends React.Component {
     };
   }
 
-  handleChange(e) {
-    var value = this.state.value;
+  handleChange(newVal, e) {
+    var currentValue = this.state.value;
 
     if (e.target.checked) {
-      value.push(e.target.value);
+      currentValue.push(newVal);
     } else {
-      value = value.filter(val => val != e.target.value);
+      currentValue = currentValue.filter(v => v != newVal);
     }
 
 
     this.setState({
-      value : value
-    }, this.props.onChange.bind(null, value));
+      value : currentValue
+    }, this.props.onChange.bind(null, currentValue));
   }
 
   render() {
@@ -46,7 +46,7 @@ class CheckboxOptionsInput extends React.Component {
                      required={this.props.required
                                  ? 'required'
                                  : undefined}
-                     onChange={this.handleChange.bind(this)}
+                     onChange={this.handleChange.bind(this, opt.value)}
                      onBlur={this.props.onBlur.bind(null, this.state.value)} />
               {opt.text}
             </label>
