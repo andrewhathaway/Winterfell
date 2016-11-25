@@ -27,20 +27,20 @@ var CheckboxOptionsInput = (function (_React$Component) {
 
   _createClass(CheckboxOptionsInput, [{
     key: 'handleChange',
-    value: function handleChange(e) {
-      var value = this.state.value;
+    value: function handleChange(newVal, e) {
+      var currentValue = this.state.value;
 
       if (e.target.checked) {
-        value.push(e.target.value);
+        currentValue.push(newVal);
       } else {
-        value = value.filter(function (val) {
-          return val != e.target.value;
+        currentValue = currentValue.filter(function (v) {
+          return v != newVal;
         });
       }
 
       this.setState({
-        value: value
-      }, this.props.onChange.bind(null, value));
+        value: currentValue
+      }, this.props.onChange.bind(null, currentValue));
     }
   }, {
     key: 'render',
@@ -66,7 +66,7 @@ var CheckboxOptionsInput = (function (_React$Component) {
                 checked: _this.state.value.indexOf(opt.value) > -1,
                 className: _this.props.classes.checkbox,
                 required: _this.props.required ? 'required' : undefined,
-                onChange: _this.handleChange.bind(_this),
+                onChange: _this.handleChange.bind(_this, opt.value),
                 onBlur: _this.props.onBlur.bind(null, _this.state.value) }),
               opt.text
             )

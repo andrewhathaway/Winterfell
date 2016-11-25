@@ -22,6 +22,29 @@ var Winterfell = (function (_React$Component) {
 
     _get(Object.getPrototypeOf(Winterfell.prototype), 'constructor', this).call(this, props);
 
+    // Set our default values for props.
+    var props = _.extend({
+      schema: {
+        formPanels: [],
+        questionPanels: [],
+        questionSets: [],
+        classes: {}
+      },
+      questionAnswers: {},
+      ref: 'form',
+      encType: 'application/x-www-form-urlencoded',
+      method: 'POST',
+      action: '',
+      panelId: undefined,
+      disableSubmit: false,
+      renderError: undefined,
+      renderRequiredAsterisk: undefined,
+      onSubmit: function onSubmit() {},
+      onUpdate: function onUpdate() {},
+      onSwitchPanel: function onSwitchPanel() {},
+      onRender: function onRender() {}
+    }, this.props);
+
     this.panelHistory = [];
 
     var schema = _.extend({
@@ -29,13 +52,13 @@ var Winterfell = (function (_React$Component) {
       formPanels: [],
       questionPanels: [],
       questionSets: []
-    }, this.props.schema);
+    }, props.schema);
 
     schema.formPanels = schema.formPanels.sort(function (a, b) {
       return a.index > b.index;
     });
 
-    var panelId = typeof this.props.panelId !== 'undefined' ? this.props.panelId : schema.formPanels.length > 0 ? schema.formPanels[0].panelId : undefined;
+    var panelId = typeof props.panelId !== 'undefined' ? props.panelId : schema.formPanels.length > 0 ? schema.formPanels[0].panelId : undefined;
 
     var currentPanel = typeof schema !== 'undefined' && typeof schema.formPanels !== 'undefined' && typeof panelId !== 'undefined' ? _.find(schema.formPanels, function (panel) {
       return panel.panelId == panelId;
@@ -48,8 +71,8 @@ var Winterfell = (function (_React$Component) {
     this.state = {
       schema: schema,
       currentPanel: currentPanel,
-      action: this.props.action,
-      questionAnswers: this.props.questionAnswers
+      action: props.action,
+      questionAnswers: props.questionAnswers
     };
   }
 
@@ -169,29 +192,6 @@ var Winterfell = (function (_React$Component) {
 })(React.Component);
 
 ;
-
-// @todo: Proptypes
-Winterfell.defaultProps = {
-  schema: {
-    formPanels: [],
-    questionPanels: [],
-    questionSets: [],
-    classes: {}
-  },
-  questionAnswers: {},
-  ref: 'form',
-  encType: 'application/x-www-form-urlencoded',
-  method: 'POST',
-  action: '',
-  panelId: undefined,
-  disableSubmit: false,
-  renderError: undefined,
-  renderRequiredAsterisk: undefined,
-  onSubmit: function onSubmit() {},
-  onUpdate: function onUpdate() {},
-  onSwitchPanel: function onSwitchPanel() {},
-  onRender: function onRender() {}
-};
 
 Winterfell.inputTypes = require('./inputTypes');
 Winterfell.errorMessages = require('./lib/errors');
