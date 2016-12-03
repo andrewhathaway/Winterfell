@@ -13,7 +13,7 @@ class CheckboxInput extends React.Component {
   handleChange(e) {
     if (e) {
       this.setState({
-        'checked': !this.state.checked
+        checked : !this.state.checked
       }, () => {
         this.props.onChange(this.state.checked
                             ? this.props.value
