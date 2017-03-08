@@ -83,7 +83,7 @@ var CheckboxOptionsInput = (function (_React$Component) {
 
 CheckboxOptionsInput.defaultProps = {
   classes: {},
-  name: undefined,
+  name: '',
   value: [],
   options: [],
   onChange: function onChange() {},

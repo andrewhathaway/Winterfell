@@ -26,6 +26,7 @@ var TextareaInput = (function (_React$Component) {
   _createClass(TextareaInput, [{
     key: 'handleChange',
     value: function handleChange(e) {
+      console.log('here textarea');
       this.setState({
         value: e.target.value
       }, this.props.onChange.bind(null, e.target.value));
@@ -53,10 +54,10 @@ var TextareaInput = (function (_React$Component) {
 
 TextareaInput.defaultProps = {
   classes: {},
-  name: undefined,
-  id: undefined,
-  value: undefined,
-  placeholder: undefined,
+  name: '',
+  id: '',
+  value: '',
+  placeholder: '',
   onChange: function onChange() {},
   onBlur: function onBlur() {}
 };
