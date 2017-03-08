@@ -26,7 +26,6 @@ var TextareaInput = (function (_React$Component) {
   _createClass(TextareaInput, [{
     key: 'handleChange',
     value: function handleChange(e) {
-      console.log('here textarea');
       this.setState({
         value: e.target.value
       }, this.props.onChange.bind(null, e.target.value));

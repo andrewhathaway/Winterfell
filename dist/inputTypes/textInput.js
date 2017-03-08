@@ -26,7 +26,6 @@ var TextInput = (function (_React$Component) {
   _createClass(TextInput, [{
     key: 'handleChange',
     value: function handleChange(e) {
-      console.log('here input');
       this.setState({
         value: e.target.value
       }, this.props.onChange.bind(null, e.target.value));
