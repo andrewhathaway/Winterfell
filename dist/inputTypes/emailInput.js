@@ -54,10 +54,10 @@ var EmailInput = (function (_React$Component) {
 
 EmailInput.defaultProps = {
   classes: {},
-  name: undefined,
-  id: undefined,
-  value: undefined,
-  placeholder: undefined,
+  name: '',
+  id: '',
+  value: '',
+  placeholder: '',
   onChange: function onChange() {},
   onBlur: function onBlur() {},
   onKeyDown: function onKeyDown() {}
