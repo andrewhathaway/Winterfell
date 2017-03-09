@@ -60,7 +60,7 @@ class CheckboxOptionsInput extends React.Component {
 
 CheckboxOptionsInput.defaultProps = {
   classes  : {},
-  name     : undefined,
+  name     : '',
   value    : [],
   options  : [],
   onChange : () => {},
