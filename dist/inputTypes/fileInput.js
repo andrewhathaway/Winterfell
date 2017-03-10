@@ -51,9 +51,9 @@ var FileInput = (function (_React$Component) {
 
 FileInput.defaultProps = {
   classes: {},
-  name: undefined,
-  id: undefined,
-  value: undefined,
+  name: '',
+  id: '',
+  value: '',
   onChange: function onChange() {},
   onBlur: function onBlur() {}
 };

@@ -79,8 +79,8 @@ CheckboxInput.defaultProps = {
   text: '',
   defaultChecked: false,
   classes: {},
-  name: undefined,
-  value: undefined,
+  name: '',
+  value: '',
   onChange: function onChange() {},
   onBlur: function onBlur() {}
 };

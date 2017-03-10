@@ -38,10 +38,10 @@ class TextInput extends React.Component {
 
 TextInput.defaultProps = {
   classes     : {},
-  name        : undefined,
-  id          : undefined,
-  value       : undefined,
-  placeholder : undefined,
+  name        : '',
+  id          : '',
+  value       : '',
+  placeholder : '',
   onChange    : () => {},
   onBlur      : () => {},
   onKeyDown   : () => {}

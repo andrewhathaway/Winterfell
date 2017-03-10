@@ -77,9 +77,9 @@ var SelectInput = (function (_React$Component) {
 
 SelectInput.defaultProps = {
   classes: {},
-  name: undefined,
-  id: undefined,
-  value: undefined,
+  name: '',
+  id: '',
+  value: '',
   options: [],
   onChange: function onChange() {},
   onBlur: function onBlur() {}
