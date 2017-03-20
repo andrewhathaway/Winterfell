@@ -33,9 +33,9 @@ class FileInput extends React.Component {
 
 FileInput.defaultProps = {
   classes   : {},
-  name      : undefined,
-  id        : undefined,
-  value     : undefined,
+  name      : '',
+  id        : '',
+  value     : '',
   onChange  : () => {},
   onBlur    : () => {}
 };
