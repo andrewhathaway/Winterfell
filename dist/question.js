@@ -46,6 +46,12 @@ var Question = (function (_React$Component) {
 
       /*
        * Conditional Questions
+       *
+       * Go through the inputs options and filter them down
+       * to options where the value matches the current questions
+       * value. If we have conditional questions on a given option,
+       * then render this component with the props for the conditional
+       * question.
        */
       var conditionalItems = [];
       if (typeof this.props.input.options !== 'undefined') {
@@ -76,8 +82,13 @@ var Question = (function (_React$Component) {
         });
       }
 
+      // Get the current value. If none is set, then use
+      // the default if given.
       var value = typeof this.props.value !== 'undefined' ? this.props.value : typeof this.props.input['default'] !== 'undefined' ? this.props.input['default'] : undefined;
 
+      // Retrieve the validation errors for the
+      // current question and map them in to
+      // error-message blocks.
       var validationErrors = typeof this.props.validationErrors[this.props.questionId] !== 'undefined' ? this.props.validationErrors[this.props.questionId].map(function (error) {
         return typeof _this.props.renderError === 'function' ? _this.props.renderError(error, _this.props.questionId) : React.createElement(
           'div',
@@ -86,12 +97,6 @@ var Question = (function (_React$Component) {
           error.message
         );
       }) : [];
-
-      var extraprops = {};
-
-      if (this.props.input.props) {
-        extraprops = this.props.input.props;
-      }
 
       var labelId = this.props.questionId + '-label';
 
@@ -124,7 +129,7 @@ var Question = (function (_React$Component) {
           onChange: this.handleInputChange.bind(this, this.props.questionId),
           onBlur: this.handleInputBlur.bind(this, this.props.questionId),
           onKeyDown: this.props.onKeyDown
-        }, extraprops)),
+        }, typeof this.props.input.props === 'object' ? this.props.input.props : {})),
         !!this.props.postText ? React.createElement(
           'p',
           { className: this.props.classes.questionPostText },

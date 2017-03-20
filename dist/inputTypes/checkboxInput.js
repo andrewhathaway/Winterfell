@@ -30,7 +30,7 @@ var CheckboxInput = (function (_React$Component) {
 
       if (e) {
         this.setState({
-          'checked': !this.state.checked
+          checked: !this.state.checked
         }, function () {
           _this.props.onChange(_this.state.checked ? _this.props.value : undefined);
         });
@@ -79,8 +79,8 @@ CheckboxInput.defaultProps = {
   text: '',
   defaultChecked: false,
   classes: {},
-  name: undefined,
-  value: undefined,
+  name: '',
+  value: '',
   onChange: function onChange() {},
   onBlur: function onBlur() {}
 };
