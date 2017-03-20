@@ -1,5 +1,11 @@
 # Change Log
 
+# [1.1.1](https://github.com/andrewhathaway/Winterfell/releases/tag/1.1.1) (2017-03-20)
+
+**Fixed bugs:**
+
+- Fix React warnings for uncontrolled components [PR](https://github.com/andrewhathaway/Winterfell/pull/84)
+
 # [1.1.0](https://github.com/andrewhathaway/Winterfell/releases/tag/1.1.0) (2016-11-25)
 
 **Fixed bugs:**
