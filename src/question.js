@@ -23,13 +23,7 @@ class Question extends React.Component {
     );
   }
 
-  render() {
-    var Input = InputTypes[this.props.input.type];
-    if (!Input) {
-      throw new Error('Winterfell: Input Type "' + this.props.input.type +
-                      '" not defined as Winterfell Input Type');
-    }
-
+  getConditionalQuestions() {
     /*
      * Conditional Questions
      */
@@ -70,6 +64,16 @@ class Question extends React.Component {
           )());
     }
 
+    return conditionalItems;
+  }
+
+  render() {
+    var Input = InputTypes[this.props.input.type];
+    if (!Input) {
+      throw new Error('Winterfell: Input Type "' + this.props.input.type +
+                      '" not defined as Winterfell Input Type');
+    }
+
     var value = typeof this.props.value !== 'undefined'
                   ? this.props.value
                   : typeof this.props.input.default !== 'undefined'
@@ -98,52 +102,65 @@ class Question extends React.Component {
 
     let labelId = `${this.props.questionId}-label`;
 
-    return (
+    const question = (
       <div className={this.props.classes.question}>
-        {!!this.props.question
-          ? (
-              <label className={this.props.classes.label}
-                     id={labelId}
-                     htmlFor={this.props.questionId}>
-                {this.props.question}
-                {typeof this.props.renderRequiredAsterisk !== 'undefined'
-                   && this.props.input.required
-                   ? this.props.renderRequiredAsterisk()
-                   : undefined}
-              </label>
-            )
-          : undefined}
-        {!!this.props.text
-          ? (
-              <p className={this.props.classes.questionText}>
-                {this.props.text}
-              </p>
-            )
-          : undefined}
-        {validationErrors}
-        <Input name={this.props.questionId}
-               id={this.props.questionId}
-               labelId={labelId}
-               value={value}
-               text={this.props.input.text}
-               options={this.props.input.options}
-               placeholder={this.props.input.placeholder}
-               required={this.props.input.required}
-               classes={this.props.classes}
-               onChange={this.handleInputChange.bind(this, this.props.questionId)}
-               onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
-               onKeyDown={this.props.onKeyDown}
-               {...extraprops}
-        />
-        {!!this.props.postText
-          ? (
-              <p className={this.props.classes.questionPostText}>
-                {this.props.postText}
-              </p>
-            )
-          : undefined}
+          {!!this.props.question
+            ? (
+                <label className={this.props.classes.label}
+                       id={labelId}
+                       htmlFor={this.props.questionId}>
+                  {this.props.question}
+                  {typeof this.props.renderRequiredAsterisk !== 'undefined'
+                     && this.props.input.required
+                     ? this.props.renderRequiredAsterisk()
+                     : undefined}
+                </label>
+              )
+            : null}
+          {!!this.props.text
+            ? (
+                <p className={this.props.classes.questionText}>
+                  {this.props.text}
+                </p>
+              )
+            : null}
+          {validationErrors}
+          <Input name={this.props.questionId}
+                 id={this.props.questionId}
+                 labelId={labelId}
+                 value={value}
+                 text={this.props.input.text}
+                 options={this.props.input.options}
+                 placeholder={this.props.input.placeholder}
+                 required={this.props.input.required}
+                 classes={this.props.classes}
+                 onChange={this.handleInputChange.bind(this, this.props.questionId)}
+                 onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
+                 onKeyDown={this.props.onKeyDown}
+                 {...extraprops}
+          />
+          {!!this.props.postText
+            ? (
+                <p className={this.props.classes.questionPostText}>
+                  {this.props.postText}
+                </p>
+              )
+            : null}
+          
+        </div>
+      );
+
+    const conditionalItems = this.getConditionalQuestions();
+
+    const output = conditionalItems.length ? (
+      <div className="conditional-questions">
+        {question}
         {conditionalItems}
       </div>
+    ) : question;
+
+    return (
+     output
     );
   }
 
