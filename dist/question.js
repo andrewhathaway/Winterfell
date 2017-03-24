@@ -35,14 +35,9 @@ var Question = (function (_React$Component) {
       this.props.onQuestionBlur(questionId, value, this.props.validations, this.props.validateOn);
     }
   }, {
-    key: 'render',
-    value: function render() {
+    key: 'getConditionalQuestions',
+    value: function getConditionalQuestions() {
       var _this = this;
-
-      var Input = InputTypes[this.props.input.type];
-      if (!Input) {
-        throw new Error('Winterfell: Input Type "' + this.props.input.type + '" not defined as Winterfell Input Type');
-      }
 
       /*
        * Conditional Questions
@@ -76,13 +71,25 @@ var Question = (function (_React$Component) {
         });
       }
 
+      return conditionalItems;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var Input = InputTypes[this.props.input.type];
+      if (!Input) {
+        throw new Error('Winterfell: Input Type "' + this.props.input.type + '" not defined as Winterfell Input Type');
+      }
+
       var value = typeof this.props.value !== 'undefined' ? this.props.value : typeof this.props.input['default'] !== 'undefined' ? this.props.input['default'] : undefined;
 
       var validationErrors = typeof this.props.validationErrors[this.props.questionId] !== 'undefined' ? this.props.validationErrors[this.props.questionId].map(function (error) {
-        return typeof _this.props.renderError === 'function' ? _this.props.renderError(error, _this.props.questionId) : React.createElement(
+        return typeof _this2.props.renderError === 'function' ? _this2.props.renderError(error, _this2.props.questionId) : React.createElement(
           'div',
-          { key: _this.props.questionId + 'Error' + error.type,
-            className: _this.props.classes.errorMessage },
+          { key: _this2.props.questionId + 'Error' + error.type,
+            className: _this2.props.classes.errorMessage },
           error.message
         );
       }) : [];
@@ -95,7 +102,7 @@ var Question = (function (_React$Component) {
 
       var labelId = this.props.questionId + '-label';
 
-      return React.createElement(
+      var question = React.createElement(
         'div',
         { className: this.props.classes.question },
         !!this.props.question ? React.createElement(
@@ -105,12 +112,12 @@ var Question = (function (_React$Component) {
             htmlFor: this.props.questionId },
           this.props.question,
           typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required ? this.props.renderRequiredAsterisk() : undefined
-        ) : undefined,
+        ) : null,
         !!this.props.text ? React.createElement(
           'p',
           { className: this.props.classes.questionText },
           this.props.text
-        ) : undefined,
+        ) : null,
         validationErrors,
         React.createElement(Input, _extends({ name: this.props.questionId,
           id: this.props.questionId,
@@ -129,9 +136,19 @@ var Question = (function (_React$Component) {
           'p',
           { className: this.props.classes.questionPostText },
           this.props.postText
-        ) : undefined,
-        conditionalItems
+        ) : null
       );
+
+      var conditionalItems = this.getConditionalQuestions();
+
+      var output = conditionalItems.length ? React.createElement(
+        'div',
+        { className: 'conditional-questions' },
+        question,
+        conditionalItems
+      ) : question;
+
+      return output;
     }
   }, {
     key: 'componentDidMount',
