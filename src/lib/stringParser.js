@@ -1,18 +1,18 @@
 module.exports = (template, params) => {
   template = template || '';
-  params   = params || {};
+  params = params || {};
 
   /*
    * Split up template in to array of characters
    */
-  var characters = template.split('');
+  const characters = template.split('');
 
-  var buffer         = '';
-  var parsedTemplate = '';
-  var collecting     = false;
+  let buffer = '';
+  let parsedTemplate = '';
+  let collecting = false;
 
-  for (var i = 0; i < characters.length; i++) {
-    var currentChar = characters[i];
+  for (let i = 0; i < characters.length; i++) {
+    const currentChar = characters[i];
 
     /*
      * If we're not collecting and we're not
@@ -52,7 +52,8 @@ module.exports = (template, params) => {
      * and add it to the parsedTemplate
      */
     if (currentChar == '}') {
-      var value = '';
+      let value = '';
+
       if (typeof params[buffer] !== 'undefined') {
         value = params[buffer];
       }

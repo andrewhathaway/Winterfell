@@ -1,16 +1,16 @@
-var React = require('react');
+const React = require('react');
 
-var inputTypes = {
-  checkboxInput        : require('./checkboxInput'),
-  checkboxOptionsInput : require('./checkboxOptionsInput'),
-  emailInput           : require('./emailInput'),
-  fileInput            : require('./fileInput'),
-  hiddenInput          : require('./hiddenInput'),
-  passwordInput        : require('./passwordInput'),
-  radioOptionsInput    : require('./radioOptionsInput'),
-  selectInput          : require('./selectInput'),
-  textareaInput        : require('./textareaInput'),
-  textInput            : require('./textInput')
+const inputTypes = {
+  checkboxInput: require('./checkboxInput'),
+  checkboxOptionsInput: require('./checkboxOptionsInput'),
+  emailInput: require('./emailInput'),
+  fileInput: require('./fileInput'),
+  hiddenInput: require('./hiddenInput'),
+  passwordInput: require('./passwordInput'),
+  radioOptionsInput: require('./radioOptionsInput'),
+  selectInput: require('./selectInput'),
+  textareaInput: require('./textareaInput'),
+  textInput: require('./textInput')
 };
 
 /**
@@ -25,8 +25,8 @@ inputTypes.addInputType = (name, instance) => {
                     + 'must be of type string');
   }
 
-  if (!React.Component instanceof instance.constructor) {
-    throw new Error('Winterfell: Cannot not assign "' + name + '" as an inputType. '
+  if (!(React.Component instanceof instance.constructor)) {
+    throw new Error(`Winterfell: Cannot not assign "${name}" as an inputType. `
                     + 'Second paramter expects a React component');
   }
 
@@ -44,7 +44,7 @@ inputTypes.addInputTypes = (types) => {
                     + 'must be of type object');
   }
 
-  for (var type in types) {
+  for (const type in types) {
     inputTypes.addInputType(type, types[type]);
   }
 };

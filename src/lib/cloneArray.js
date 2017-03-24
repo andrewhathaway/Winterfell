@@ -1,4 +1,4 @@
 
-module.exports = (array) => {
-  return array.slice(0);
-};
+module.exports = array =>
+   array.slice(0)
+;
