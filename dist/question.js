@@ -87,7 +87,7 @@ var Question = (function (_React$Component) {
 
       var validationErrors = typeof this.props.validationErrors[this.props.questionId] !== 'undefined' ? this.props.validationErrors[this.props.questionId].map(function (error) {
         return typeof _this2.props.renderError === 'function' ? _this2.props.renderError(error, _this2.props.questionId) : React.createElement(
-          'div',
+          'span',
           { key: _this2.props.questionId + 'Error' + error.type,
             className: _this2.props.classes.errorMessage },
           error.message
@@ -118,20 +118,24 @@ var Question = (function (_React$Component) {
           { className: this.props.classes.questionText },
           this.props.text
         ) : null,
-        validationErrors,
-        React.createElement(Input, _extends({ name: this.props.questionId,
-          id: this.props.questionId,
-          labelId: labelId,
-          value: value,
-          text: this.props.input.text,
-          options: this.props.input.options,
-          placeholder: this.props.input.placeholder,
-          required: this.props.input.required,
-          classes: this.props.classes,
-          onChange: this.handleInputChange.bind(this, this.props.questionId),
-          onBlur: this.handleInputBlur.bind(this, this.props.questionId),
-          onKeyDown: this.props.onKeyDown
-        }, extraprops)),
+        React.createElement(
+          Input,
+          _extends({ name: this.props.questionId,
+            id: this.props.questionId,
+            labelId: labelId,
+            value: value,
+            text: this.props.input.text,
+            options: this.props.input.options,
+            placeholder: this.props.input.placeholder,
+            required: this.props.input.required,
+            classes: this.props.classes,
+            onChange: this.handleInputChange.bind(this, this.props.questionId),
+            onBlur: this.handleInputBlur.bind(this, this.props.questionId),
+            onKeyDown: this.props.onKeyDown,
+            hasError: !!validationErrors.length
+          }, extraprops),
+          validationErrors
+        ),
         !!this.props.postText ? React.createElement(
           'p',
           { className: this.props.classes.questionPostText },

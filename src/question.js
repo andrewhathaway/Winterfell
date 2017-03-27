@@ -86,10 +86,10 @@ class Question extends React.Component {
                                      return typeof this.props.renderError === 'function'
                                               ? this.props.renderError(error, this.props.questionId)
                                               : (
-                                                  <div key={this.props.questionId + 'Error' + error.type}
+                                                  <span key={this.props.questionId + 'Error' + error.type}
                                                        className={this.props.classes.errorMessage}>
                                                     {error.message}
-                                                  </div>
+                                                  </span>
                                                 );
                                    })
                              : [];
@@ -124,7 +124,6 @@ class Question extends React.Component {
                 </p>
               )
             : null}
-          {validationErrors}
           <Input name={this.props.questionId}
                  id={this.props.questionId}
                  labelId={labelId}
@@ -137,8 +136,11 @@ class Question extends React.Component {
                  onChange={this.handleInputChange.bind(this, this.props.questionId)}
                  onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
                  onKeyDown={this.props.onKeyDown}
+                 hasError={!!validationErrors.length}
                  {...extraprops}
-          />
+          >
+          {validationErrors}
+          </Input>
           {!!this.props.postText
             ? (
                 <p className={this.props.classes.questionPostText}>
