@@ -1,7 +1,7 @@
 var React = require('react');
 var _     = require('lodash').noConflict();
 
-var InputTypes = require('./inputTypes');
+var Components = require('./components');
 
 class Question extends React.Component {
 
@@ -42,23 +42,25 @@ class Question extends React.Component {
           .forEach(option =>
             [].forEach.bind(option.conditionalQuestions, conditionalQuestion => {
               conditionalItems.push(
-                <Question key={conditionalQuestion.questionId}
-                          questionSetId={this.props.questionSetId}
-                          questionId={conditionalQuestion.questionId}
-                          question={conditionalQuestion.question}
-                          text={conditionalQuestion.text}
-                          postText={conditionalQuestion.postText}
-                          validateOn={conditionalQuestion.validateOn}
-                          validations={conditionalQuestion.validations}
-                          value={this.props.questionAnswers[conditionalQuestion.questionId]}
-                          input={conditionalQuestion.input}
-                          classes={this.props.classes}
-                          renderError={this.props.renderError}
-                          questionAnswers={this.props.questionAnswers}
-                          validationErrors={this.props.validationErrors}
-                          onAnswerChange={this.props.onAnswerChange}
-                          onQuestionBlur={this.props.onQuestionBlur}
-                          onKeyDown={this.props.onKeyDown} />
+                <Question 
+                  key={conditionalQuestion.questionId}
+                  questionSetId={this.props.questionSetId}
+                  questionId={conditionalQuestion.questionId}
+                  question={conditionalQuestion.question}
+                  text={conditionalQuestion.text}
+                  postText={conditionalQuestion.postText}
+                  validateOn={conditionalQuestion.validateOn}
+                  validations={conditionalQuestion.validations}
+                  value={this.props.questionAnswers[conditionalQuestion.questionId]}
+                  input={conditionalQuestion.input}
+                  classes={this.props.classes}
+                  renderError={this.props.renderError}
+                  questionAnswers={this.props.questionAnswers}
+                  validationErrors={this.props.validationErrors}
+                  onAnswerChange={this.props.onAnswerChange}
+                  onQuestionBlur={this.props.onQuestionBlur}
+                  onKeyDown={this.props.onKeyDown} 
+                />
               );
             }
           )());
@@ -67,8 +69,42 @@ class Question extends React.Component {
     return conditionalItems;
   }
 
+  getLabel(labelId) {
+    const Label = Components.Label || 'label';
+
+    const props = {
+      /**
+       * Additional class names coming from schema
+       */
+      className: this.props.classes.label,
+
+      /**
+       * id for the label
+       **/
+      id: labelId,
+
+      /**
+       * HTML "for" attribute
+       **/
+      htmlFor: this.props.questionId,
+
+      /**
+       * This will indicate required field (will add asterisk to label)
+       **/
+      required: this.props.input.required
+    }
+
+    return (
+      <Label {...props} >
+       { this.props.question }
+      </Label>
+    )
+}
+
   render() {
-    var Input = InputTypes[this.props.input.type];
+    const Input = Components[this.props.input.type];
+    const labelId = `${this.props.questionId}-label`;
+    const label = this.getLabel(labelId);
     if (!Input) {
       throw new Error('Winterfell: Input Type "' + this.props.input.type +
                       '" not defined as Winterfell Input Type');
@@ -94,29 +130,9 @@ class Question extends React.Component {
                                    })
                              : [];
 
-    let extraprops = {};
-
-    if (this.props.input.props) {
-      extraprops = this.props.input.props;
-    }
-
-    let labelId = `${this.props.questionId}-label`;
-
     const question = (
       <div className={this.props.classes.question}>
-          {!!this.props.question
-            ? (
-                <label className={this.props.classes.label}
-                       id={labelId}
-                       htmlFor={this.props.questionId}>
-                  {this.props.question}
-                  {typeof this.props.renderRequiredAsterisk !== 'undefined'
-                     && this.props.input.required
-                     ? this.props.renderRequiredAsterisk()
-                     : undefined}
-                </label>
-              )
-            : null}
+          {!!this.props.question ? label : null}
           {!!this.props.text
             ? (
                 <p className={this.props.classes.questionText}>
@@ -137,7 +153,7 @@ class Question extends React.Component {
                  onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
                  onKeyDown={this.props.onKeyDown}
                  hasError={!!validationErrors.length}
-                 {...extraprops}
+                 {...this.props.input.props}
           >
           {validationErrors}
           </Input>
@@ -195,7 +211,8 @@ Question.defaultProps = {
     default     : undefined,
     type        : 'textInput',
     limit       : undefined,
-    placeholder : undefined
+    placeholder : undefined,
+    props: {}
   },
   classes                : {},
   questionAnswers        : {},
@@ -203,8 +220,7 @@ Question.defaultProps = {
   onAnswerChange         : () => {},
   onQuestionBlur         : () => {},
   onKeyDown              : () => {},
-  renderError            : undefined,
-  renderRequiredAsterisk : undefined
+  renderError            : undefined
 };
 
 module.exports = Question;

@@ -173,12 +173,12 @@ class Winterfell extends React.Component {
 
 };
 
-Winterfell.inputTypes    = require('./inputTypes');
+Winterfell.components    = require('./components');
 Winterfell.errorMessages = require('./lib/errors');
 Winterfell.validation    = require('./lib/validation');
 
-Winterfell.addInputType  = Winterfell.inputTypes.addInputType;
-Winterfell.addInputTypes = Winterfell.inputTypes.addInputTypes;
+Winterfell.addCustomComponent  = Winterfell.components.addCustomComponent;
+Winterfell.addCustomComponents = Winterfell.components.addCustomComponents;
 
 Winterfell.addErrorMessage  = Winterfell.errorMessages.addErrorMessage;
 Winterfell.addErrorMessages = Winterfell.errorMessages.addErrorMessages;

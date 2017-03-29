@@ -1,4 +1,9 @@
-#Winterfell
+# Winterfell
+
+**PLEASE NOTE THAT THIS IS A FORK OF ORIGINAL [WINTERFELL](https://github.com/andrewhathaway/Winterfell) LIBRARY**
+We don't maintain a changelog for now but you can take a look at commits history in master branch.
+
+---
 
 **Generate complex, validated and extendable JSON-based forms in React**
 
@@ -270,9 +275,11 @@ radioList                    | Assigned to the UL wrapped around the radio items
 radioListItem                | Assigned to the LI inside of the `radioList` mentioned above
 radioLabel                   | Assigned to the label inside of a radio button option
 radio                        | Assigned to the radio button inside of a `radioOptionsInput`
-## Default & Custom Input Types
+## Default & Custom Components
 
-The default set of input types that ships with Winterfell are the following:
+### Input types
+
+The default set of components that ships with Winterfell are the following:
 
 - textInput
 - textareaInput
@@ -285,22 +292,41 @@ The default set of input types that ships with Winterfell are the following:
 - checkboxOptionsInput
 - radioOptionsInput
 
-You can also define custom input types like so:
+You can also define custom components like so:
 
 ```javascript
 var Winterfell         = require('winterfell');
 var MyAwesomeInputType = require('./awesomeInputType');
 
 Winterfell
-  .addInputType('myAwesomeInputType', MyAwesomeInputType);
+  .addCustomComponent('myAwesomeInputType', MyAwesomeInputType);
 
 // OR
 
 Winterfell
-  .addInputTypes({
+  .addCustomComponents({
     myAwesomeInputType : MyAwesomeInputType
   });
 
+```
+
+Then you can reference them in your schema like so:
+
+```json
+...
+"questions": [
+  {
+    "questionId": "enabled",
+    "input": {
+      "type": "myAwesomeInputType",
+```
+
+### Label
+
+You can overwrite default `label` element with your own label using addCustomComponent with the name `Label`:
+
+```javascript
+Winterfell.addCustomComponent('Label', customLabelComponent);
 ```
 
 ## Custom Error Messages

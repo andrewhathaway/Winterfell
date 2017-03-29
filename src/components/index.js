@@ -1,6 +1,6 @@
 var React = require('react');
 
-var inputTypes = {
+var components = {
   checkboxInput        : require('./checkboxInput'),
   checkboxOptionsInput : require('./checkboxOptionsInput'),
   emailInput           : require('./emailInput'),
@@ -14,39 +14,39 @@ var inputTypes = {
 };
 
 /**
- * Add an input type
+ * Add an custom  component
  *
- * @param  type      name     Name of InputType
+ * @param  type      name     Name of custom component
  * @param  Component instance Input Type Component
  */
-inputTypes.addInputType = (name, instance) => {
+components.addCustomComponent = (name, instance) => {
   if (typeof name !== 'string') {
-    throw new Error('Winterfell: First parameter of addInputType '
+    throw new Error('Winterfell: First parameter of addCustomComponent '
                     + 'must be of type string');
   }
 
   if (!React.Component instanceof instance.constructor) {
-    throw new Error('Winterfell: Cannot not assign "' + name + '" as an inputType. '
-                    + 'Second paramter expects a React component');
+    throw new Error('Winterfell: Cannot not assign "' + name + '" as a custom component. '
+                    + 'Second parameter expects a React component');
   }
 
-  inputTypes[name] = instance;
+  components[name] = instance;
 };
 
 /**
- * Add multiple InputTypes
+ * Add multiple custom compoennt
  *
- * @param  object types InputTypes to add. string => Component
+ * @param  object types customComponent to add. string => Component
  */
-inputTypes.addInputTypes = (types) => {
+components.addCustomComponents = (types) => {
   if (typeof types !== 'object') {
-    throw new Error('Winterfell: First parameter of addInputTypes '
+    throw new Error('Winterfell: First parameter of addCustomComponents '
                     + 'must be of type object');
   }
 
   for (var type in types) {
-    inputTypes.addInputType(type, types[type]);
+    components.addCustomComponent(type, types[type]);
   }
 };
 
-module.exports = inputTypes;
+module.exports = components;

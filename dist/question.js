@@ -13,7 +13,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== 'function' 
 var React = require('react');
 var _ = require('lodash').noConflict();
 
-var InputTypes = require('./inputTypes');
+var Components = require('./components');
 
 var Question = (function (_React$Component) {
   _inherits(Question, _React$Component);
@@ -50,7 +50,8 @@ var Question = (function (_React$Component) {
           return typeof option.conditionalQuestions !== 'undefined' && option.conditionalQuestions.length > 0;
         }).forEach(function (option) {
           return [].forEach.bind(option.conditionalQuestions, function (conditionalQuestion) {
-            conditionalItems.push(React.createElement(Question, { key: conditionalQuestion.questionId,
+            conditionalItems.push(React.createElement(Question, {
+              key: conditionalQuestion.questionId,
               questionSetId: _this.props.questionSetId,
               questionId: conditionalQuestion.questionId,
               question: conditionalQuestion.question,
@@ -66,7 +67,8 @@ var Question = (function (_React$Component) {
               validationErrors: _this.props.validationErrors,
               onAnswerChange: _this.props.onAnswerChange,
               onQuestionBlur: _this.props.onQuestionBlur,
-              onKeyDown: _this.props.onKeyDown }));
+              onKeyDown: _this.props.onKeyDown
+            }));
           })();
         });
       }
@@ -74,11 +76,46 @@ var Question = (function (_React$Component) {
       return conditionalItems;
     }
   }, {
+    key: 'getLabel',
+    value: function getLabel(labelId) {
+      var Label = Components.Label || 'label';
+
+      var props = {
+        /**
+         * Additional class names coming from schema
+         */
+        className: this.props.classes.label,
+
+        /**
+         * id for the label
+         **/
+        id: labelId,
+
+        /**
+         * HTML "for" attribute
+         **/
+        htmlFor: this.props.questionId,
+
+        /**
+         * This will indicate required field (will add asterisk to label)
+         **/
+        required: this.props.input.required
+      };
+
+      return React.createElement(
+        Label,
+        props,
+        this.props.question
+      );
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
-      var Input = InputTypes[this.props.input.type];
+      var Input = Components[this.props.input.type];
+      var labelId = this.props.questionId + '-label';
+      var label = this.getLabel(labelId);
       if (!Input) {
         throw new Error('Winterfell: Input Type "' + this.props.input.type + '" not defined as Winterfell Input Type');
       }
@@ -94,25 +131,10 @@ var Question = (function (_React$Component) {
         );
       }) : [];
 
-      var extraprops = {};
-
-      if (this.props.input.props) {
-        extraprops = this.props.input.props;
-      }
-
-      var labelId = this.props.questionId + '-label';
-
       var question = React.createElement(
         'div',
         { className: this.props.classes.question },
-        !!this.props.question ? React.createElement(
-          'label',
-          { className: this.props.classes.label,
-            id: labelId,
-            htmlFor: this.props.questionId },
-          this.props.question,
-          typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required ? this.props.renderRequiredAsterisk() : undefined
-        ) : null,
+        !!this.props.question ? label : null,
         !!this.props.text ? React.createElement(
           'p',
           { className: this.props.classes.questionText },
@@ -133,7 +155,7 @@ var Question = (function (_React$Component) {
             onBlur: this.handleInputBlur.bind(this, this.props.questionId),
             onKeyDown: this.props.onKeyDown,
             hasError: !!validationErrors.length
-          }, extraprops),
+          }, this.props.input.props),
           validationErrors
         ),
         !!this.props.postText ? React.createElement(
@@ -183,7 +205,8 @@ Question.defaultProps = {
     'default': undefined,
     type: 'textInput',
     limit: undefined,
-    placeholder: undefined
+    placeholder: undefined,
+    props: {}
   },
   classes: {},
   questionAnswers: {},
@@ -191,8 +214,7 @@ Question.defaultProps = {
   onAnswerChange: function onAnswerChange() {},
   onQuestionBlur: function onQuestionBlur() {},
   onKeyDown: function onKeyDown() {},
-  renderError: undefined,
-  renderRequiredAsterisk: undefined
+  renderError: undefined
 };
 
 module.exports = Question;
