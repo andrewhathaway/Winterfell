@@ -187,6 +187,8 @@ class QuestionPanel extends React.Component {
       );
     });
 
+    const submitButtonStyle = this.props.isSubmitHidden ? { display: 'none' } : null;
+
     return (
       <div className={this.props.classes.questionPanel}>
         {typeof this.props.panelHeader !== 'undefined'
@@ -226,7 +228,9 @@ class QuestionPanel extends React.Component {
             ? (
                 <Button text={this.props.button.text}
                         onClick={this.handleMainButtonClick.bind(this)}
-                        className={this.props.classes.controlButton} />
+                        className={this.props.classes.controlButton} 
+                        style={submitButtonStyle}
+                        />
               )
             : undefined}
         </div>

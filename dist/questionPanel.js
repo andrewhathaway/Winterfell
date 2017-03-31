@@ -201,6 +201,8 @@ var QuestionPanel = (function (_React$Component) {
           onKeyDown: _this3.handleInputKeyDown.bind(_this3) });
       });
 
+      var submitButtonStyle = this.props.isSubmitHidden ? { display: 'none' } : null;
+
       return React.createElement(
         'div',
         { className: this.props.classes.questionPanel },
@@ -231,7 +233,9 @@ var QuestionPanel = (function (_React$Component) {
             className: this.props.classes.backButton }) : undefined,
           !this.props.button.disabled ? React.createElement(Button, { text: this.props.button.text,
             onClick: this.handleMainButtonClick.bind(this),
-            className: this.props.classes.controlButton }) : undefined
+            className: this.props.classes.controlButton,
+            style: submitButtonStyle
+          }) : undefined
         )
       );
     }

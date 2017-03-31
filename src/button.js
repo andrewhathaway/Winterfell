@@ -9,8 +9,12 @@ class Button extends React.Component {
   }
 
   render() {
+    const { className, text, ...props } = this.props;
+
     return (
-      <button href="#"
+      <button
+         {...props}
+         href="#"
          className={this.props.className}
          onClick={this.handleClick.bind(this)}>
         {this.props.text}

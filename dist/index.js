@@ -17,6 +17,15 @@ var QuestionPanel = require('./questionPanel');
 var Winterfell = (function (_React$Component) {
   _inherits(Winterfell, _React$Component);
 
+  _createClass(Winterfell, null, [{
+    key: 'trySubmit',
+    value: function trySubmit(form) {
+      var formInstance = form ? form : Winterfell.form;
+
+      formInstance.panel.handleMainButtonClick();
+    }
+  }]);
+
   function Winterfell(props) {
     _classCallCheck(this, Winterfell);
 
@@ -74,6 +83,8 @@ var Winterfell = (function (_React$Component) {
       action: props.action,
       questionAnswers: props.questionAnswers
     };
+
+    Winterfell.form = this;
   }
 
   _createClass(Winterfell, [{
@@ -160,6 +171,10 @@ var Winterfell = (function (_React$Component) {
           'div',
           { className: this.state.schema.classes.questionPanels },
           React.createElement(QuestionPanel, { schema: this.state.schema,
+            ref: function (panel) {
+              _this2.panel = panel;
+            },
+            isSubmitHidden: this.props.isSubmitHidden,
             classes: this.state.schema.classes,
             panelId: currentPanel.panelId,
             panelIndex: currentPanel.panelIndex,

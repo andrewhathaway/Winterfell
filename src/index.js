@@ -6,6 +6,12 @@ var QuestionPanel = require('./questionPanel');
 
 class Winterfell extends React.Component {
 
+  static trySubmit(form) {
+    const formInstance = (form) ? form : Winterfell.form;
+
+    formInstance.panel.handleMainButtonClick();
+  }
+
   constructor(props) {
     super(props);
 
@@ -67,6 +73,8 @@ class Winterfell extends React.Component {
       action          : props.action,
       questionAnswers : props.questionAnswers
     };
+
+    Winterfell.form = this;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -144,6 +152,8 @@ class Winterfell extends React.Component {
             className={this.state.schema.classes.form}>
         <div className={this.state.schema.classes.questionPanels}>
           <QuestionPanel schema={this.state.schema}
+                         ref={(panel) => { this.panel = panel; }}
+                         isSubmitHidden={this.props.isSubmitHidden}
                          classes={this.state.schema.classes}
                          panelId={currentPanel.panelId}
                          panelIndex={currentPanel.panelIndex}
