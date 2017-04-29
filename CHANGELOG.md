@@ -1,5 +1,11 @@
 # Change Log
 
+# [1.1.2](https://github.com/andrewhathaway/Winterfell/releases/tag/1.1.2) (2017-04-29)
+
+**Fixed bugs:**
+
+- Fix onRender and other handlers not being passed not defaulting [Issue](https://github.com/andrewhathaway/Winterfell/issues/90)
+
 # [1.1.1](https://github.com/andrewhathaway/Winterfell/releases/tag/1.1.1) (2017-03-20)
 
 **Fixed bugs:**
