@@ -38,11 +38,7 @@ var Winterfell = (function (_React$Component) {
       panelId: undefined,
       disableSubmit: false,
       renderError: undefined,
-      renderRequiredAsterisk: undefined,
-      onSubmit: function onSubmit() {},
-      onUpdate: function onUpdate() {},
-      onSwitchPanel: function onSwitchPanel() {},
-      onRender: function onRender() {}
+      renderRequiredAsterisk: undefined
     }, this.props);
 
     this.panelHistory = [];
@@ -205,5 +201,12 @@ Winterfell.addErrorMessages = Winterfell.errorMessages.addErrorMessages;
 
 Winterfell.addValidationMethod = Winterfell.validation.addValidationMethod;
 Winterfell.addValidationMethods = Winterfell.validation.addValidationMethods;
+
+Winterfell.defaultPRops = {
+  onSubmit: function onSubmit() {},
+  onUpdate: function onUpdate() {},
+  onSwitchPanel: function onSwitchPanel() {},
+  onRender: function onRender() {}
+};
 
 module.exports = Winterfell;
