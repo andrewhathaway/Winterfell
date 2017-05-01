@@ -25,11 +25,7 @@ class Winterfell extends React.Component {
       panelId                : undefined,
       disableSubmit          : false,
       renderError            : undefined,
-      renderRequiredAsterisk : undefined,
-      onSubmit               : () => {},
-      onUpdate               : () => {},
-      onSwitchPanel          : () => {},
-      onRender               : () => {}
+      renderRequiredAsterisk : undefined
     }, this.props);
 
     this.panelHistory = [];
@@ -185,5 +181,12 @@ Winterfell.addErrorMessages = Winterfell.errorMessages.addErrorMessages;
 
 Winterfell.addValidationMethod  = Winterfell.validation.addValidationMethod;
 Winterfell.addValidationMethods = Winterfell.validation.addValidationMethods;
+
+Winterfell.defaultPRops = {
+  onSubmit      : () => {},
+  onUpdate      : () => {},
+  onSwitchPanel : () => {},
+  onRender      : () => {}
+};
 
 module.exports = Winterfell;
