@@ -1,6 +1,6 @@
 # Change Log
 
-# [1.1.2](https://github.com/andrewhathaway/Winterfell/releases/tag/1.1.2) (2017-04-29)
+# [1.1.3](https://github.com/andrewhathaway/Winterfell/releases/tag/1.1.3) (2017-05-01)
 
 **Fixed bugs:**
 
