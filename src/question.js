@@ -132,6 +132,7 @@ class Question extends React.Component {
                value={value}
                text={this.props.input.text}
                options={this.props.input.options}
+               defaultChecked={this.props.input.defaultChecked}
                placeholder={this.props.input.placeholder}
                required={this.props.input.required}
                classes={this.props.classes}
