@@ -1,5 +1,11 @@
 # Change Log
 
+# [1.1.4](https://github.com/andrewhathaway/Winterfell/releases/tag/1.1.4) (2017-07-13)
+
+**Fixed bugs:**
+
+- Switch to new React Ref handling from previous ways
+
 # [1.1.3](https://github.com/andrewhathaway/Winterfell/releases/tag/1.1.3) (2017-05-01)
 
 **Fixed bugs:**

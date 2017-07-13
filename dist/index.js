@@ -22,6 +22,8 @@ var Winterfell = (function (_React$Component) {
 
     _get(Object.getPrototypeOf(Winterfell.prototype), 'constructor', this).call(this, props);
 
+    this.formComponent = null;
+
     // Set our default values for props.
     var props = _.extend({
       schema: {
@@ -133,7 +135,11 @@ var Winterfell = (function (_React$Component) {
       this.setState({
         action: action
       }, function () {
-        ReactDOM.findDOMNode(_this.refs[_this.props.ref]).submit();
+        if (!_this.formComponent) {
+          return;
+        }
+
+        _this.formComponent.submit();
       });
     }
   }, {
@@ -150,7 +156,9 @@ var Winterfell = (function (_React$Component) {
         { method: this.props.method,
           encType: this.props.encType,
           action: this.state.action,
-          ref: this.props.ref,
+          ref: function (ref) {
+            return _this2.formComponent = ref;
+          },
           className: this.state.schema.classes.form },
         React.createElement(
           'div',
