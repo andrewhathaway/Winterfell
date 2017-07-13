@@ -9,6 +9,8 @@ class Winterfell extends React.Component {
   constructor(props) {
     super(props);
 
+    this.formComponent = null;
+
     // Set our default values for props.
     var props = _.extend({
       schema                 : {
@@ -123,8 +125,11 @@ class Winterfell extends React.Component {
     this.setState({
       action : action
     }, () => {
-      ReactDOM.findDOMNode(this.refs[this.props.ref])
-           .submit();
+      if (!this.formComponent) {
+        return;
+      }
+
+      this.formComponent.submit();
     });
   }
 
@@ -136,7 +141,7 @@ class Winterfell extends React.Component {
       <form method={this.props.method}
             encType={this.props.encType}
             action={this.state.action}
-            ref={this.props.ref}
+            ref={ref => this.formComponent = ref}
             className={this.state.schema.classes.form}>
         <div className={this.state.schema.classes.questionPanels}>
           <QuestionPanel schema={this.state.schema}
