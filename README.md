@@ -67,16 +67,20 @@ The initial `formPanels` entry is used as a page of questions, or `questionPanel
 
 ```json
 {
-	"formPanels" : [{
-		"index" : 1,
-		"panelId" : "intro-panel"
-	}, {
-		"index" : 2,
-		"panelId" : "register-panel"
-	}, {
-		"index" : 3,
-		"panelId" : "final-panel"
-	}]
+  "formPanels": [
+    {
+      "index": 1,
+      "panelId": "intro-panel"
+    },
+    {
+      "index": 2,
+      "panelId": "register-panel"
+    },
+    {
+      "index": 3,
+      "panelId": "final-panel"
+    }
+  ]
 }
 ```
 
@@ -90,35 +94,41 @@ Supported actions are `GOTO` and `SUBMIT`. When using `GOTO`, the `target` can b
 
 ```json
 {
-	"questionPanels" : [{
-		"panelId" : "intro-panel",
-		"panelHeader" : "A quick survey?",
-		"panelText" : "Please could you take a few minutes to fill out our survey?",
-		"action" : {
-			"conditions" : [{
-				"questionId" : "existing-user",
-				"value" : "no",
-				"action" : "GOTO",
-				"target" : "register-panel"
-			}],
-			"default" : {
-				"action" : "GOTO",
-				"target" : "final-panel"
-			}
-		},
-		"button" : {
-			"text" : "Next",
-      "disabled" : false
-		},
-    "" : {
-      "text" : "Back",
-      "disable" : false
-    },
-		"questionSets" : [{
-			"index" : 1,
-			"questionSetId" : "intro-set"
-		}]
-	}]
+  "questionPanels": [
+    {
+      "panelId": "intro-panel",
+      "panelHeader": "A quick survey?",
+      "panelText": "Please could you take a few minutes to fill out our survey?",
+      "action": {
+        "conditions": [
+          {
+            "questionId": "existing-user",
+            "value": "no",
+            "action": "GOTO",
+            "target": "register-panel"
+          }
+        ],
+        "default": {
+          "action": "GOTO",
+          "target": "final-panel"
+        }
+      },
+      "button": {
+        "text": "Next",
+        "disabled": false
+      },
+      "": {
+        "text": "Back",
+        "disable": false
+      },
+      "questionSets": [
+        {
+          "index": 1,
+          "questionSetId": "intro-set"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -133,46 +143,63 @@ Each question has the ability to have some `text` associated with it which gets 
 
 ```json
 {
-	"questionSets" : [{
-		"questionSetId" : "intro-set",
-    "questionSetHeader" : "I am a question set header",
-    "questionSetText" : "I am a question set text",
-		"questions" : [{
-			"questionId" : "existing-user",
-			"question" : "Are you an existing user?",
-			"text" : "We'd just like to know so we can get you in the right place.",
-			"input" : {
-				"type" : "radioOptionsInput",
-        "default" : "yes",
-				"options" : [{
-					"text"	: "Yes",
-					"value" : "yes",
-					"conditionalQuestions" : [{
-						"questionId" : "register-user-email",
-						"question" : "Please enter the email address your account is registered with",
-						"postText" : "We will not spam your email address.",
-						"input" : {
-							"type" : "emailInput",
-							"placeholder" : "Email Address"
-						},
-						"validateOn" : "blur",
-						"validations" : [{
-							"type" : "isLength",
-							"params" : [1]
-						}]
-					}],
-					"validations" : [{
-						"type" : "isLength",
-						"params" : [1]
-					}]
-				}, {
-					"text"	: "No",
-					"value" : "no",
-					"conditionalQuestions" : []
-				}]
-			}
-		}]
-	}]
+  "questionSets": [
+    {
+      "questionSetId": "intro-set",
+      "questionSetHeader": "I am a question set header",
+      "questionSetText": "I am a question set text",
+      "questions": [
+        {
+          "questionId": "existing-user",
+          "question": "Are you an existing user?",
+          "text": "We'd just like to know so we can get you in the right place.",
+          "input": {
+            "type": "radioOptionsInput",
+            "default": "yes",
+            "options": [
+              {
+                "text": "Yes",
+                "value": "yes",
+                "conditionalQuestions": [
+                  {
+                    "questionId": "register-user-email",
+                    "question": "Please enter the email address your account is registered with",
+                    "postText": "We will not spam your email address.",
+                    "input": {
+                      "type": "emailInput",
+                      "placeholder": "Email Address"
+                    },
+                    "validateOn": "blur",
+                    "validations": [
+                      {
+                        "type": "isLength",
+                        "params": [
+                          1
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "validations": [
+                  {
+                    "type": "isLength",
+                    "params": [
+                      1
+                    ]
+                  }
+                ]
+              },
+              {
+                "text": "No",
+                "value": "no",
+                "conditionalQuestions": []
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -186,8 +213,10 @@ Validation item where the value must be a minimum length of 1.
 
 ```json
 {
-  "type" : "isLength",
-  "params" : [1]
+  "type": "isLength",
+  "params": [
+    1
+  ]
 }
 ```
 
@@ -195,8 +224,11 @@ Validation item where the value must be a minimum length of 1 and a maximum of 2
 
 ```json
 {
-	"type" : "isLength",
-	"params" : [1, 20]
+  "type": "isLength",
+  "params": [
+    1,
+    20
+  ]
 }
 ```
 
@@ -204,9 +236,11 @@ You can also add a custom error message for the questions validaton item by usin
 
 ```json
 {
-  "type" : "isLength",
-  "params" : [1],
-  "message" : "Please select an option"
+  "type": "isLength",
+  "params": [
+    1
+  ],
+  "message": "Please select an option"
 }
 ```
 
@@ -215,9 +249,11 @@ To validate a questions answer against another questions answer, you can wrap cu
 
 ```json
 {
-  "type" : "equals",
-  "params" : ["{password}"],
-  "message" : "Confirm Password must match the Password field"
+  "type": "equals",
+  "params": [
+    "{password}"
+  ],
+  "message": "Confirm Password must match the Password field"
 }
 ```
 
@@ -227,11 +263,11 @@ Winterfell allows you to define classes for the rendered form in multiple differ
 
 ```
 {
-	"formPanels" : [],
-	"classes" : {
-		"form" : "form-wrapping-class",
-		"label" : "question-label"
-	}
+  "formPanels": [],
+  "classes": {
+    "form": "form-wrapping-class",
+    "label": "question-label"
+  }
 }
 ```
 
