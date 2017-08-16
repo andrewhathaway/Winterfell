@@ -210,7 +210,7 @@ Winterfell.addErrorMessages = Winterfell.errorMessages.addErrorMessages;
 Winterfell.addValidationMethod = Winterfell.validation.addValidationMethod;
 Winterfell.addValidationMethods = Winterfell.validation.addValidationMethods;
 
-Winterfell.defaultPRops = {
+Winterfell.defaultProps = {
   onSubmit: function onSubmit() {},
   onUpdate: function onUpdate() {},
   onSwitchPanel: function onSwitchPanel() {},
