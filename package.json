@@ -29,12 +29,14 @@
     "url": "git://github.com/andrewhathaway/winterfell.git"
   },
   "license": "MIT",
+  "peerDependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
   "dependencies": {
     "babelify": "^6.3.0",
     "keycodez": "^1.0.0",
     "lodash": "^3.10.1",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
     "validator": "^4.0.5"
   },
   "devDependencies": {
