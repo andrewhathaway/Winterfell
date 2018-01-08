@@ -30,8 +30,8 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react": ">= 15.6.1 < 17.0.0-0",
+    "react-dom": ">= 15.6.1 < 17.0.0-0"
   },
   "dependencies": {
     "babelify": "^6.3.0",
