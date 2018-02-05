@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf dist",
+    "build:examples": "gulp build-examples",
     "build": "babel src --out-dir dist && webpack",
     "prepublish": "npm run clean && npm run build"
   },
@@ -46,8 +47,6 @@
     "browserify": "^11.0.1",
     "gulp": "^3.9.0",
     "gulp-uglify": "^1.2.0",
-    "react": "^15.3.0",
-    "react-dom": "^15.3.0",
     "rimraf": "^2.4.3",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
