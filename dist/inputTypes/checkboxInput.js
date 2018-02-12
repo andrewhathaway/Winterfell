@@ -63,6 +63,7 @@ var CheckboxInput = (function (_React$Component) {
             value: this.props.value,
             required: this.props.required ? 'required' : undefined,
             onChange: this.handleChange.bind(this),
+            onFocus: this.props.onFocus.bind(null, this.props.id),
             onBlur: this.props.onBlur.bind(null, this.state.checked ? this.props.value : undefined) }),
           this.props.text
         )

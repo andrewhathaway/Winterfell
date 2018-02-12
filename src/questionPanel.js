@@ -183,6 +183,7 @@ class QuestionPanel extends React.Component {
                      validationErrors={this.state.validationErrors}
                      onAnswerChange={this.handleAnswerChange.bind(this)}
                      onQuestionBlur={this.handleQuestionBlur.bind(this)}
+                     onFocus={this.props.onFocus}
                      onKeyDown={this.handleInputKeyDown.bind(this)} />
       );
     });
@@ -261,6 +262,7 @@ QuestionPanel.defaultProps = {
   onAnswerChange         : () => {},
   onSwitchPanel          : () => {},
   onPanelBack            : () => {},
+  onFocus                : () => {},
   panelHistory           : [],
 };
 

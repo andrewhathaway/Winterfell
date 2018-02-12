@@ -77,6 +77,7 @@ var Question = (function (_React$Component) {
               validationErrors: _this.props.validationErrors,
               onAnswerChange: _this.props.onAnswerChange,
               onQuestionBlur: _this.props.onQuestionBlur,
+              onFocus: _this.props.onFocus,
               onKeyDown: _this.props.onKeyDown }));
           })();
         });
@@ -128,6 +129,7 @@ var Question = (function (_React$Component) {
           classes: this.props.classes,
           onChange: this.handleInputChange.bind(this, this.props.questionId),
           onBlur: this.handleInputBlur.bind(this, this.props.questionId),
+          onFocus: this.props.onFocus,
           onKeyDown: this.props.onKeyDown
         }, typeof this.props.input.props === 'object' ? this.props.input.props : {})),
         !!this.props.postText ? React.createElement(
@@ -175,6 +177,7 @@ Question.defaultProps = {
   onAnswerChange: function onAnswerChange() {},
   onQuestionBlur: function onQuestionBlur() {},
   onKeyDown: function onKeyDown() {},
+  onFocus: function onFocus() {},
   renderError: undefined,
   renderRequiredAsterisk: undefined
 };

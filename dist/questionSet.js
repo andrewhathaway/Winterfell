@@ -45,6 +45,7 @@ var QuestionSet = (function (_React$Component) {
           validationErrors: _this.props.validationErrors,
           onAnswerChange: _this.props.onAnswerChange,
           onQuestionBlur: _this.props.onQuestionBlur,
+          onFocus: _this.props.onFocus,
           onKeyDown: _this.props.onKeyDown });
       });
 
@@ -88,7 +89,8 @@ QuestionSet.defaultProps = {
   renderRequiredAsterisk: undefined,
   onAnswerChange: function onAnswerChange() {},
   onQuestionBlur: function onQuestionBlur() {},
-  onKeyDown: function onKeyDown() {}
+  onKeyDown: function onKeyDown() {},
+  onFocus: function onFocus() {}
 };
 
 module.exports = QuestionSet;

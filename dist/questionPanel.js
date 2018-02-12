@@ -198,6 +198,7 @@ var QuestionPanel = (function (_React$Component) {
           validationErrors: _this3.state.validationErrors,
           onAnswerChange: _this3.handleAnswerChange.bind(_this3),
           onQuestionBlur: _this3.handleQuestionBlur.bind(_this3),
+          onFocus: _this3.props.onFocus,
           onKeyDown: _this3.handleInputKeyDown.bind(_this3) });
       });
 
@@ -267,6 +268,7 @@ QuestionPanel.defaultProps = {
   onAnswerChange: function onAnswerChange() {},
   onSwitchPanel: function onSwitchPanel() {},
   onPanelBack: function onPanelBack() {},
+  onFocus: function onFocus() {},
   panelHistory: []
 };
 

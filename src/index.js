@@ -140,6 +140,7 @@ class Winterfell extends React.Component {
                          renderError={this.props.renderError}
                          renderRequiredAsterisk={this.props.renderRequiredAsterisk}
                          onAnswerChange={this.handleAnswerChange.bind(this)}
+                         onFocus={this.props.onFocus}
                          onPanelBack={this.handleBackButtonClick.bind(this)}
                          onSwitchPanel={this.handleSwitchPanel.bind(this)}
                          onSubmit={this.handleSubmit.bind(this)} />
@@ -179,6 +180,7 @@ Winterfell.defaultProps = {
   renderRequiredAsterisk : undefined,
   onSubmit               : () => {},
   onUpdate               : () => {},
+  onFocus                : () => {},
   onSwitchPanel          : () => {},
   onRender               : () => {}
 };

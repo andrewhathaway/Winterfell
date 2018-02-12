@@ -70,6 +70,7 @@ class Question extends React.Component {
                           validationErrors={this.props.validationErrors}
                           onAnswerChange={this.props.onAnswerChange}
                           onQuestionBlur={this.props.onQuestionBlur}
+                          onFocus={this.props.onFocus}
                           onKeyDown={this.props.onKeyDown} />
               );
             }
@@ -137,6 +138,7 @@ class Question extends React.Component {
                classes={this.props.classes}
                onChange={this.handleInputChange.bind(this, this.props.questionId)}
                onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
+               onFocus={this.props.onFocus}
                onKeyDown={this.props.onKeyDown}
                {...(typeof this.props.input.props === 'object'
                      ? this.props.input.props
@@ -191,6 +193,7 @@ Question.defaultProps = {
   onAnswerChange         : () => {},
   onQuestionBlur         : () => {},
   onKeyDown              : () => {},
+  onFocus                : () => {},
   renderError            : undefined,
   renderRequiredAsterisk : undefined
 };

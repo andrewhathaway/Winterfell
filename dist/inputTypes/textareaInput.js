@@ -42,6 +42,7 @@ var TextareaInput = (function (_React$Component) {
         value: this.state.value,
         required: this.props.required ? 'required' : undefined,
         onChange: this.handleChange.bind(this),
+        onFocus: this.props.onFocus.bind(null, this.props.id),
         onBlur: this.props.onBlur.bind(null, this.state.value) });
     }
   }]);
@@ -58,7 +59,8 @@ TextareaInput.defaultProps = {
   value: '',
   placeholder: '',
   onChange: function onChange() {},
-  onBlur: function onBlur() {}
+  onBlur: function onBlur() {},
+  onFocus: function onFocus() {}
 };
 
 module.exports = TextareaInput;

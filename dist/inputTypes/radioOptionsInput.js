@@ -53,6 +53,7 @@ var RadioOptionsInput = (function (_React$Component) {
                 checked: _this.state.value == opt.value,
                 className: _this.props.classes.radio,
                 required: _this.props.required ? 'required' : undefined,
+                onFocus: _this.props.onFocus.bind(null, _this.props.id),
                 onChange: _this.handleChange.bind(_this, opt.value),
                 onBlur: _this.props.onBlur.bind(null, _this.state.value) }),
               opt.text
