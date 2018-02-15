@@ -198,12 +198,42 @@ var QuestionPanel = (function (_React$Component) {
           validationErrors: _this3.state.validationErrors,
           onAnswerChange: _this3.handleAnswerChange.bind(_this3),
           onQuestionBlur: _this3.handleQuestionBlur.bind(_this3),
+          onFocus: _this3.props.onFocus,
           onKeyDown: _this3.handleInputKeyDown.bind(_this3) });
       });
+
+      var completionPercent = 0;
+      if (typeof this.props.progress !== 'undefined' && this.props.progress.showBar) {
+        completionPercent = Math.floor(10000 / this.props.numPanels * this.props.currentPanelIndex) / 100;
+      }
+      var progressBar = undefined;
+      if (typeof this.props.progress !== 'undefined' && this.props.progress.showBar) {
+        progressBar = React.createElement(
+          'div',
+          null,
+          React.createElement(
+            'div',
+            { className: 'progress-title' },
+            this.props.progress.text
+          ),
+          React.createElement(
+            'div',
+            { className: this.props.classes.progressBarIncomplete },
+            React.createElement('div', { className: this.props.classes.progressBarComplete,
+              style: { width: completionPercent + '%' } }),
+            React.createElement(
+              'div',
+              { className: 'progress-legend' },
+              this.props.progress.showPercent ? completionPercent + '%' : ''
+            )
+          )
+        );
+      }
 
       return React.createElement(
         'div',
         { className: this.props.classes.questionPanel },
+        this.props.progress && this.props.progress.position === 'top' ? progressBar : undefined,
         typeof this.props.panelHeader !== 'undefined' || typeof this.props.panelText !== 'undefined' ? React.createElement(
           'div',
           { className: this.props.classes.questionPanelHeaderContainer },
@@ -223,6 +253,7 @@ var QuestionPanel = (function (_React$Component) {
           { className: this.props.classes.questionSets },
           questionSets
         ),
+        this.props.progress && this.props.progress.position === 'middle' ? progressBar : undefined,
         React.createElement(
           'div',
           { className: this.props.classes.buttonBar },
@@ -232,7 +263,8 @@ var QuestionPanel = (function (_React$Component) {
           !this.props.button.disabled ? React.createElement(Button, { text: this.props.button.text,
             onClick: this.handleMainButtonClick.bind(this),
             className: this.props.classes.controlButton }) : undefined
-        )
+        ),
+        this.props.progress && this.props.progress.position === 'bottom' ? progressBar : undefined
       );
     }
   }]);
@@ -250,6 +282,9 @@ QuestionPanel.defaultProps = {
   panelIndex: undefined,
   panelHeader: undefined,
   panelText: undefined,
+  progress: undefined,
+  numPanels: undefined,
+  currentPanelIndex: undefined,
   action: {
     'default': {},
     conditions: []
@@ -267,6 +302,7 @@ QuestionPanel.defaultProps = {
   onAnswerChange: function onAnswerChange() {},
   onSwitchPanel: function onSwitchPanel() {},
   onPanelBack: function onPanelBack() {},
+  onFocus: function onFocus() {},
   panelHistory: []
 };
 

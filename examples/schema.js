@@ -12,7 +12,11 @@ module.exports = {
     "backButton" : "btn btn-default pull-left",
     "errorMessage" : "alert alert-danger",
     "questionPostText" : "push-top",
-    "buttonBar" : "button-bar"
+    "buttonBar" : "button-bar",
+    "progressBarIncomplete": "progress-incomplete",
+    "progressBarComplete": "progress-complete",
+    "progressBarTitle": "progress-title",
+    "progressBarLegend": "progress-legend",
   },
   "formPanels" : [{
     "index" : 1,
@@ -28,6 +32,12 @@ module.exports = {
     "panelId" : "intro-panel",
     "panelHeader" : "My Awesome Form",
     "panelText" : "Play around a little, you might find some surprises depending on what you answer!",
+    "progress": {
+        "showBar": true,
+        "showPercent": true,
+        "text": "Completed",
+        "position": "middle"
+    },
     "action" : {
       "conditions" : [{
         "questionId" : "existing-user",
@@ -51,6 +61,12 @@ module.exports = {
     "panelId" : "register-panel",
     "panelHeader" : "My Awesome Form",
     "panelText" : "We don't have a survey for you yet, how about we get you subscribed?",
+    "progress": {
+      "showBar": true,
+      "showPercent": true,
+      "text": "Completed",
+      "position": "top"
+    },
     "action" : {
       "conditions" : [],
       "default" : {
@@ -72,6 +88,12 @@ module.exports = {
     "panelId" : "final-panel",
     "panelHeader" : "My Awesome Form",
     "panelText" : "Did you even check the console yet? Keep going though!",
+    "progress": {
+        "showBar": true,
+        "showPercent": true,
+        "text": "Completed",
+        "position": "bottom"
+    },
     "action" : {
       "conditions" : [],
       "default" : {

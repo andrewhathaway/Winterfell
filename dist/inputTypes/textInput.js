@@ -42,6 +42,7 @@ var TextInput = (function (_React$Component) {
         value: this.state.value,
         required: this.props.required ? 'required' : undefined,
         onChange: this.handleChange.bind(this),
+        onFocus: this.props.onFocus.bind(null, this.props.id),
         onBlur: this.props.onBlur.bind(null, this.state.value),
         onKeyDown: this.props.onKeyDown });
     }
@@ -60,7 +61,8 @@ TextInput.defaultProps = {
   placeholder: '',
   onChange: function onChange() {},
   onBlur: function onBlur() {},
-  onKeyDown: function onKeyDown() {}
+  onKeyDown: function onKeyDown() {},
+  onFocus: function onFocus() {}
 };
 
 module.exports = TextInput;

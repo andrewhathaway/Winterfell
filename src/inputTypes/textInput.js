@@ -29,6 +29,7 @@ class TextInput extends React.Component {
                          ? 'required'
                          : undefined}
              onChange={this.handleChange.bind(this)}
+             onFocus={this.props.onFocus.bind(null, this.props.id)}
              onBlur={this.props.onBlur.bind(null, this.state.value)}
              onKeyDown={this.props.onKeyDown} />
     );
@@ -44,7 +45,8 @@ TextInput.defaultProps = {
   placeholder : '',
   onChange    : () => {},
   onBlur      : () => {},
-  onKeyDown   : () => {}
+  onKeyDown   : () => {},
+  onFocus     : () => {}
 };
 
 module.exports = TextInput;

@@ -40,6 +40,7 @@ var FileInput = (function (_React$Component) {
         className: this.props.classes.file,
         required: this.props.required ? 'required' : undefined,
         onChange: this.handleChange.bind(this),
+        onFocus: this.props.onFocus.bind(null, this.props.id),
         onBlur: this.props.onBlur.bind(null, this.state.value) });
     }
   }]);
@@ -55,7 +56,8 @@ FileInput.defaultProps = {
   id: '',
   value: '',
   onChange: function onChange() {},
-  onBlur: function onBlur() {}
+  onBlur: function onBlur() {},
+  onFocus: function onFocus() {}
 };
 
 module.exports = FileInput;

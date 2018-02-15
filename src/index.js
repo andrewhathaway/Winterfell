@@ -118,6 +118,9 @@ class Winterfell extends React.Component {
     var currentPanel = _.find(this.state.schema.questionPanels,
                           panel => panel.panelId == this.state.currentPanel.panelId);
 
+    var numPanels = this.state.schema.questionPanels.length;
+    var currentPanelIndex = _.indexOf(this.state.schema.questionPanels, currentPanel) + 1;
+
     return (
       <form method={this.props.method}
             encType={this.props.encType}
@@ -135,11 +138,15 @@ class Winterfell extends React.Component {
                          button={currentPanel.button}
                          backButton={currentPanel.backButton}
                          questionSets={currentPanel.questionSets}
+                         progress={currentPanel.progress}
+                         numPanels={numPanels}
+                         currentPanelIndex={currentPanelIndex}
                          questionAnswers={this.state.questionAnswers}
                          panelHistory={this.panelHistory}
                          renderError={this.props.renderError}
                          renderRequiredAsterisk={this.props.renderRequiredAsterisk}
                          onAnswerChange={this.handleAnswerChange.bind(this)}
+                         onFocus={this.props.onFocus}
                          onPanelBack={this.handleBackButtonClick.bind(this)}
                          onSwitchPanel={this.handleSwitchPanel.bind(this)}
                          onSubmit={this.handleSubmit.bind(this)} />
@@ -179,6 +186,7 @@ Winterfell.defaultProps = {
   renderRequiredAsterisk : undefined,
   onSubmit               : () => {},
   onUpdate               : () => {},
+  onFocus                : () => {},
   onSwitchPanel          : () => {},
   onRender               : () => {}
 };
