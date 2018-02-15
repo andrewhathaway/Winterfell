@@ -188,8 +188,28 @@ class QuestionPanel extends React.Component {
       );
     });
 
+    var completionPercent = 0;
+    if (typeof this.props.progress !== 'undefined' && this.props.progress.showBar) {
+      completionPercent = Math.floor(10000 / this.props.numPanels * this.props.currentPanelIndex) / 100;
+    }
+    var progressBar = undefined;
+    if(typeof this.props.progress !== 'undefined' && this.props.progress.showBar) {
+        progressBar = (
+        <div>
+            <div className="progress-title">{this.props.progress.text}</div>
+            <div className={this.props.classes.progressBarIncomplete}>
+                <div className={this.props.classes.progressBarComplete}
+                style={{width: `${completionPercent}%`}}></div>
+                <div className="progress-legend">
+                {this.props.progress.showPercent ? `${completionPercent}%` : ''}
+                </div>
+            </div>
+        </div>);
+    }
+
     return (
       <div className={this.props.classes.questionPanel}>
+        { this.props.progress && this.props.progress.position==='top' ? progressBar : undefined }
         {typeof this.props.panelHeader !== 'undefined'
           || typeof this.props.panelText !== 'undefined'
           ? (
@@ -214,6 +234,7 @@ class QuestionPanel extends React.Component {
         <div className={this.props.classes.questionSets}>
           {questionSets}
         </div>
+        { this.props.progress && this.props.progress.position==='middle' ? progressBar : undefined }
         <div className={this.props.classes.buttonBar}>
           {this.props.panelHistory.length > 1
             && !this.props.backButton.disabled
@@ -231,6 +252,7 @@ class QuestionPanel extends React.Component {
               )
             : undefined}
         </div>
+        { this.props.progress && this.props.progress.position==='bottom' ? progressBar : undefined }
       </div>
     );
   }
@@ -245,6 +267,9 @@ QuestionPanel.defaultProps = {
   panelIndex             : undefined,
   panelHeader            : undefined,
   panelText              : undefined,
+  progress               : undefined,
+  numPanels              : undefined,
+  currentPanelIndex      : undefined,
   action                 : {
     default    : {},
     conditions : []

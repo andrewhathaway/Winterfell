@@ -132,6 +132,9 @@ var Winterfell = (function (_React$Component) {
         return panel.panelId == _this2.state.currentPanel.panelId;
       });
 
+      var numPanels = this.state.schema.questionPanels.length;
+      var currentPanelIndex = _.indexOf(this.state.schema.questionPanels, currentPanel) + 1;
+
       return React.createElement(
         'form',
         { method: this.props.method,
@@ -154,6 +157,9 @@ var Winterfell = (function (_React$Component) {
             button: currentPanel.button,
             backButton: currentPanel.backButton,
             questionSets: currentPanel.questionSets,
+            progress: currentPanel.progress,
+            numPanels: numPanels,
+            currentPanelIndex: currentPanelIndex,
             questionAnswers: this.state.questionAnswers,
             panelHistory: this.panelHistory,
             renderError: this.props.renderError,

@@ -328,3 +328,33 @@ pre.line-numbers > code {
       padding-right: 0.8em;
       text-align: right;
     }
+
+.progress-incomplete {
+  height: 20px;
+  background-color: #cecece;
+  position: relative;
+}
+
+.progress-incomplete .progress-complete {
+  height: 20px;
+  background-color: #07a;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress-title {
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.progress-legend {
+  float: left;
+  color: #fff;
+  font-weight: 700;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  text-align: center;
+}
