@@ -1,0 +1,71 @@
+{
+  "extends": [
+    "tslint-config-airbnb",
+    "tslint-react"
+  ],
+  "rules": {
+    ///// General
+    "eofline": true,
+    "trailing-comma": false,
+    "max-line-length": [
+      true,
+      120
+    ],
+    //
+    "brace-style": [
+      true,
+      "1tbs",
+      {
+        "allowSingleLine": false
+      }
+    ],
+    // These don't do what I'd like :(
+    "align": [
+      true,
+      "arguments",
+      "parameters",
+      "statements",
+      "members",
+      "elements"
+    ],
+    "arrow-parens": [
+      true,
+      "ban-single-arg-parens"
+    ],
+    // (1, 2) => {}, 1 => {} are okay. (1) => {} nah
+    "ter-arrow-parens": [
+      true,
+      "as-needed"
+    ],
+    ///// TypeScript Specific
+    "type-literal-delimiter": true,
+    ///// JSX Configuration
+    // For now, I'm okay with this - but we should be aware about it. Ternary's
+    // as props, are sometimes better than having local-scope variables etc.
+    "jsx-no-multiline-js": false,
+    // Also this one could be a weird one to enable
+    "jsx-no-bind": false,
+    // Ban the props we want to
+    "jsx-ban-props": [
+      true,
+      [
+        "dangerouslySetInnerHTML",
+        "This is dangerous. It's in the name."
+      ]
+    ],
+    // Allows us to do <Button danger ></Button>
+    "jsx-boolean-value": [
+      "never"
+    ],
+    // } /> on components
+    "jsx-space-before-trailing-slash": true,
+    // Requires type definitions to exist
+    "typedef": [
+      true,
+      "call-signature",
+      "parameter",
+      "property-declaration",
+      "arrow-call-signature"
+    ]
+  }
+}
