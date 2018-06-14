@@ -19,7 +19,7 @@ export type WinterfellQuestionPanel = {
   panelText: string;
   action: any; // @todo
   button: WinterfellButton;
-  questionSets: WinterfellQuestionSetDescriptor;
+  questionSets: WinterfellQuestionSetDescriptor[];
 };
 
 export type WinterfellButton = {
