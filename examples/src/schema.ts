@@ -1,19 +1,4 @@
-module.exports = {
-  "classes": {
-    "input": "form-control",
-    "select": "form-control",
-    "question": "form-group",
-    "radioListItem": "radio",
-    "radioList": "clean-list",
-    "checkboxInput": "checkbox",
-    "checkboxListItem": "checkbox",
-    "checkboxList": "clean-list",
-    "controlButton": "btn btn-primary pull-right",
-    "backButton": "btn btn-default pull-left",
-    "errorMessage": "alert alert-danger",
-    "questionPostText": "push-top",
-    "buttonBar": "button-bar"
-  },
+const Schema = {
   "formPanels": [{
     "index": 1,
     "panelId": "intro-panel"
@@ -315,3 +300,5 @@ module.exports = {
     }]
   }]
 };
+
+export default Schema;
