@@ -18,17 +18,15 @@ export const {
   Consumer
 } = React.createContext<IWinterfellContext>(null);
 
-export interface IWinterfellContext extends IWinterfellProps {
-
-}
+export interface IWinterfellContext extends IWinterfellProps {}
 
 export interface IWinterfellProps {
   schema: WinterfellSchema;
 
-  encType: string;
-  method: string;
-  action: string;
-  disableSubmit: boolean;
+  encType?: string;
+  method?: string;
+  action?: string;
+  disableSubmit?: boolean;
   className?: string;
 
   currentPanelId: string;
@@ -38,7 +36,9 @@ export interface IWinterfellProps {
 
   renderQuestionPanel(questionPanel: JSX.Element): JSX.Element;
 
-  renderQuestionSet(questionSet: JSX.Element): JSX.Element;
+  renderQuestionSets(questionSets: JSX.Element[]): JSX.Element;
+
+  renderQuestions(questions: JSX.Element[]): JSX.Element;
 
   onSwitchPanel(panelId: string): void;
 }
@@ -56,26 +56,17 @@ class Winterfell extends React.Component<IWinterfellProps> {
           className={this.props.className}
         >
           {questionPanel !== null
-            && this.renderQuestionPanel(questionPanel)}
+            && this.props.renderQuestionPanel(<QuestionPanel questionPanel={questionPanel} />)}
         </form>
       </Provider>
     );
   }
 
-  renderQuestionPanel(questionPanel: WinterfellQuestionPanel): JSX.Element {
-    const questionPanelComponent = <QuestionPanel questionPanel={questionPanel} />;
-
-    return this.props.renderQuestionPanel(questionPanelComponent);
-  }
-
   componentDidMount(): void {
-    if (!this.props.schema) {
-      // @todo throw
-      return;
-    }
-
-    if (this.props.currentPanelId !== null
+    if (!this.props.schema
+      || this.props.currentPanelId !== null
       || this.props.schema.formPanels.length < 1) {
+        // @todo throw
       return;
     }
 
@@ -83,3 +74,5 @@ class Winterfell extends React.Component<IWinterfellProps> {
     this.props.onSwitchPanel(sortedPanels[0].panelId);
   }
 }
+
+export default Winterfell;
