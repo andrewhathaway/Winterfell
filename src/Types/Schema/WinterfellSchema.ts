@@ -39,6 +39,26 @@ export type WinterfellQuestionSet = {
 export type WinterfellQuestion = {
   questionId: string;
   question: string;
-  input: any; // @todo
-  validations: any[]; // @todo
+  input: WinterfellQuestionInput;
+  validateOn?: string;
+  validations: WinterfellValidation[];
+};
+
+export type WinterfellQuestionInput = {
+  type: string;
+  required?: boolean;
+  placeholder?: string;
+  options?: WinterfellQuestionInputOption[];
+};
+
+export type WinterfellQuestionInputOption = {
+  text: string;
+  value: any;
+  conditionalQuestions?: WinterfellQuestion[];
+};
+
+export type WinterfellValidation = {
+  type: string;
+  params: any[];
+  message?: string;
 };

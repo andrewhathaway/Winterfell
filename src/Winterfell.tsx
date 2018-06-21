@@ -3,16 +3,17 @@
  * @author Andrew Hathaway
  */
 import * as React from 'react';
-import { getQuestionPanelById } from './Helpers/Schema';
+import { ComponentType } from 'react';
 
-import {
-  WinterfellSchema,
-  WinterfellQuestionPanel
-} from './Types/Schema/WinterfellSchema';
+import { inputTypeRegistry } from './Registries';
+import { getQuestionPanelById } from './Helpers/Schema';
+import { bindNativeInputTypes } from './Helpers/InputTypes';
+
+import { InputTypeComponent } from './Types/InputTypes';
+import { WinterfellSchema } from './Types/Schema/WinterfellSchema';
 
 import QuestionPanel from './Components/QuestionPanel';
 
-// tslint:disable-next-line:variable-name
 export const {
   Provider,
   Consumer
@@ -34,16 +35,26 @@ export interface IWinterfellProps {
     [questionId: string]: any;
   };
 
+  customInputTypes: {
+    [inputTypeName: string]: InputTypeComponent;
+  };
+
   renderQuestionPanel(questionPanel: JSX.Element): JSX.Element;
 
   renderQuestionSets(questionSets: JSX.Element[]): JSX.Element;
 
   renderQuestions(questions: JSX.Element[]): JSX.Element;
 
+  renderInput(input: JSX.Element): JSX.Element;
+
   onSwitchPanel(panelId: string): void;
 }
 
 class Winterfell extends React.Component<IWinterfellProps> {
+  static defaultProps = {
+    customInputTypes : {}
+  };
+
   render(): JSX.Element {
     const questionPanel = getQuestionPanelById(this.props.schema, this.props.currentPanelId);
 
@@ -70,8 +81,23 @@ class Winterfell extends React.Component<IWinterfellProps> {
       return;
     }
 
+    // Register our customer input types
+    this.registerInputTypes(this.props);
+
     const sortedPanels = this.props.schema.formPanels.sort((a, b) => a.index - b.index);
     this.props.onSwitchPanel(sortedPanels[0].panelId);
+  }
+
+  componentWillReceiveProps(nextProps: IWinterfellProps): void {
+    this.registerInputTypes(nextProps);
+  }
+
+  registerInputTypes(props: IWinterfellProps): void {
+    bindNativeInputTypes();
+
+    Object.keys(props.customInputTypes)
+      .forEach(inputTypeName =>
+        inputTypeRegistry.add(inputTypeName, props.customInputTypes[inputTypeName], true));
   }
 }
 

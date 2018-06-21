@@ -2,7 +2,7 @@
  * @file In Memory key-value store
  * @author Andrew Hathaway
  */
-class MemoryRegistry implements IRegistry {
+class MemoryRegistry<T = any> implements IRegistry<T> {
   private registryItems: {
     [key: string]: any;
   } = {};

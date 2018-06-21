@@ -18,6 +18,7 @@ window.onload = () =>
       renderQuestionPanel={renderQuestionPanel}
       renderQuestionSets={renderQuestionSets}
       renderQuestions={renderQuestions}
+      renderInput={renderInput}
     />,
     document.getElementById('root')
   );
@@ -37,5 +38,11 @@ const renderQuestionSets = (questionSets: JSX.Element[]): JSX.Element => (
 const renderQuestions = (question: JSX.Element[]): JSX.Element => (
   <div className="questions">
     {question}
+  </div>
+);
+
+const renderInput = (input: JSX.Element): JSX.Element => (
+  <div className="input">
+    {input}
   </div>
 );

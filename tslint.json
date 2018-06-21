@@ -39,12 +39,11 @@
     ],
     ///// TypeScript Specific
     "type-literal-delimiter": true,
+
     ///// JSX Configuration
-    // For now, I'm okay with this - but we should be aware about it. Ternary's
-    // as props, are sometimes better than having local-scope variables etc.
     "jsx-no-multiline-js": false,
-    // Also this one could be a weird one to enable
     "jsx-no-bind": false,
+    "jsx-no-lambda": false,
     // Ban the props we want to
     "jsx-ban-props": [
       true,
@@ -53,7 +52,7 @@
         "This is dangerous. It's in the name."
       ]
     ],
-    // Allows us to do <Button danger ></Button>
+    // Allows us to do <Button danger></Button>
     "jsx-boolean-value": [
       "never"
     ],
