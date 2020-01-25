@@ -19,6 +19,12 @@ const radioOptionsInput: React.SFC<InputType> = ({
             name={props.name}
             checked={props.value === opt.value}
             required={props.required}
+            onChange={(): void =>
+              props.onChange(props.questionId, opt.value)}
+            onKeyDown={(): void =>
+              props.onKeyDown(props.questionId)}
+            onBlur={(): void =>
+              props.onBlur(props.questionId)}
           />
           {opt.text}
         </label>

@@ -19,11 +19,13 @@ export type WinterfellQuestionPanel = {
   panelText: string;
   action: any; // @todo
   button: WinterfellButton;
+  backButton: WinterfellButton;
   questionSets: WinterfellQuestionSetDescriptor[];
 };
 
 export type WinterfellButton = {
   text: string;
+  disabled?: boolean;
 };
 
 export type WinterfellQuestionSetDescriptor = {

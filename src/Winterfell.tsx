@@ -3,15 +3,17 @@
  * @author Andrew Hathaway
  */
 import * as React from 'react';
-import { ComponentType } from 'react';
 
 import { inputTypeRegistry } from './Registries';
 import { getQuestionPanelById } from './Helpers/Schema';
 import { bindNativeInputTypes } from './Helpers/InputTypes';
 
+import { RenderQuestionParam } from './Types/Index';
 import { InputTypeComponent } from './Types/InputTypes';
 import { WinterfellSchema } from './Types/Schema/WinterfellSchema';
+import { WinterfellHistory } from './Types/WinterfellHistory';
 
+import Button from './Components/Button';
 import QuestionPanel from './Components/QuestionPanel';
 
 export const {
@@ -34,26 +36,45 @@ export interface IWinterfellProps {
   questionAnswers: {
     [questionId: string]: any;
   };
-
   customInputTypes: {
     [inputTypeName: string]: InputTypeComponent;
   };
+  history: WinterfellHistory;
 
-  renderQuestionPanel(questionPanel: JSX.Element): JSX.Element;
-
+  renderQuestionPanel(
+    questionPanel: JSX.Element,
+    mainButton: JSX.Element,
+    backButton?: JSX.Element
+  ): JSX.Element;
   renderQuestionSets(questionSets: JSX.Element[]): JSX.Element;
-
-  renderQuestions(questions: JSX.Element[]): JSX.Element;
-
+  renderQuestions(
+    questions: RenderQuestionParam[]
+  ): JSX.Element;
   renderInput(input: JSX.Element): JSX.Element;
 
-  onSwitchPanel(panelId: string): void;
+  onSwitchPanel(panelId: string, updateHistory?: boolean): void;
+  onChange(questionId: string, value: any): void;
+  onKeyDown(questionId: string): void;
+  onBlur(questionId: string): void;
 }
 
 class Winterfell extends React.Component<IWinterfellProps> {
   static defaultProps = {
-    customInputTypes : {}
+    customInputTypes: {}
   };
+
+  handleBackClick(): void {
+    // @todo: Removing answers from a previous panel
+    // MAKE THIS AN OPTION! PROP & Schema? just prop?
+
+    const panelHistory = [...this.props.history.panels];
+    if (panelHistory.length === 0) {
+      return;
+    }
+
+    panelHistory.pop();
+    this.props.onSwitchPanel(panelHistory[panelHistory.length - 1], false);
+  }
 
   render(): JSX.Element {
     const questionPanel = getQuestionPanelById(this.props.schema, this.props.currentPanelId);
@@ -67,7 +88,14 @@ class Winterfell extends React.Component<IWinterfellProps> {
           className={this.props.className}
         >
           {questionPanel !== null
-            && this.props.renderQuestionPanel(<QuestionPanel questionPanel={questionPanel} />)}
+            && this.props.renderQuestionPanel(
+              <QuestionPanel questionPanel={questionPanel} />,
+              <div>{'Main Button'}</div>,
+              typeof questionPanel.backButton !== 'undefined'
+                && !questionPanel.backButton.disabled
+                ? <div>{'Back Button'}</div>
+                : undefined
+            )}
         </form>
       </Provider>
     );
@@ -81,9 +109,10 @@ class Winterfell extends React.Component<IWinterfellProps> {
       return;
     }
 
-    // Register our customer input types
+    // Register our standard & custom input types
     this.registerInputTypes(this.props);
 
+    // Sort our questionPanels by index, and set the first one!
     const sortedPanels = this.props.schema.formPanels.sort((a, b) => a.index - b.index);
     this.props.onSwitchPanel(sortedPanels[0].panelId);
   }

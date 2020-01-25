@@ -24,3 +24,15 @@ export const toObject = <T, V>(
 
   return object;
 };
+
+/**
+ * @param  {T[]} array
+ * @param  {T} needle
+ * @returns number
+ */
+export const countOccurrences = <T>(array: T[], needle: T): number =>
+  array.reduce((count, item) =>
+    item === needle
+      ? count + 1
+      : count,
+    0);

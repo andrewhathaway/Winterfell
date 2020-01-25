@@ -5,6 +5,7 @@
 import * as React from 'react';
 import { Consumer } from '../Winterfell';
 
+import { isEnterKey } from '../Helpers/Events';
 import { getQuestionSetsByQuestionPanel } from '../Helpers/Schema';
 import { WinterfellQuestionPanel } from '../Types/Schema/WinterfellSchema';
 
