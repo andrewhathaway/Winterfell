@@ -51,7 +51,8 @@ var Winterfell = (function (_React$Component) {
       schema: schema,
       currentPanel: currentPanel,
       action: props.action,
-      questionAnswers: props.questionAnswers
+      questionAnswers: props.questionAnswers,
+      panelId: props.panelId
     };
   }
 
