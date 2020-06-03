@@ -24,25 +24,6 @@ var Winterfell = (function (_React$Component) {
 
     this.formComponent = null;
 
-    // Set our default values for props.
-    var props = _.extend({
-      schema: {
-        formPanels: [],
-        questionPanels: [],
-        questionSets: [],
-        classes: {}
-      },
-      questionAnswers: {},
-      ref: 'form',
-      encType: 'application/x-www-form-urlencoded',
-      method: 'POST',
-      action: '',
-      panelId: undefined,
-      disableSubmit: false,
-      renderError: undefined,
-      renderRequiredAsterisk: undefined
-    }, this.props);
-
     this.panelHistory = [];
 
     var schema = _.extend({
@@ -77,11 +58,30 @@ var Winterfell = (function (_React$Component) {
   _createClass(Winterfell, [{
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
-      this.setState({
-        action: nextProps.action,
-        schema: nextProps.schema,
-        questionAnswers: nextProps.questionAnswers
-      });
+      if (typeof nextProps.panelId !== 'undefined') {
+        this.setState({
+          action: nextProps.action,
+          schema: nextProps.schema,
+          questionAnswers: nextProps.questionAnswers,
+          panelId: nextProps.panelId
+        });
+
+        var panel = _.find(this.props.schema.formPanels, {
+          panelId: nextProps.panelId
+        });
+
+        if (panel) {
+          this.setState({
+            currentPanel: panel
+          }, this.props.onSwitchPanel.bind(null, panel));
+        }
+      } else {
+        this.setState({
+          action: nextProps.action,
+          schema: nextProps.schema,
+          questionAnswers: nextProps.questionAnswers
+        });
+      }
     }
   }, {
     key: 'handleAnswerChange',
@@ -211,6 +211,14 @@ Winterfell.addValidationMethod = Winterfell.validation.addValidationMethod;
 Winterfell.addValidationMethods = Winterfell.validation.addValidationMethods;
 
 Winterfell.defaultProps = {
+  questionAnswers: {},
+  encType: 'application/x-www-form-urlencoded',
+  method: 'POST',
+  action: '',
+  panelId: undefined,
+  disableSubmit: false,
+  renderError: undefined,
+  renderRequiredAsterisk: undefined,
   onSubmit: function onSubmit() {},
   onUpdate: function onUpdate() {},
   onSwitchPanel: function onSwitchPanel() {},

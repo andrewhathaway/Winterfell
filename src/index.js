@@ -49,11 +49,30 @@ class Winterfell extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      action          : nextProps.action,
-      schema          : nextProps.schema,
-      questionAnswers : nextProps.questionAnswers
-    });
+    if(typeof nextProps.panelId !== 'undefined') {
+      this.setState({
+        action          : nextProps.action,
+        schema          : nextProps.schema,
+        questionAnswers : nextProps.questionAnswers,
+        panelId         : nextProps.panelId
+      });
+
+      var panel = _.find(this.props.schema.formPanels, {
+        panelId: nextProps.panelId
+      });
+  
+      if (panel) {
+        this.setState({
+          currentPanel: panel
+        }, this.props.onSwitchPanel.bind(null, panel));
+      }
+    } else {
+      this.setState({
+        action          : nextProps.action,
+        schema          : nextProps.schema,
+        questionAnswers : nextProps.questionAnswers
+      });
+    }
   }
 
   handleAnswerChange(questionId, questionAnswer) {
