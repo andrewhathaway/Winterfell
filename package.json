@@ -34,20 +34,20 @@
     "react-dom": ">= 15.6.1 < 17.0.0-0"
   },
   "dependencies": {
-    "babelify": "^6.3.0",
     "keycodez": "^1.0.0",
     "lodash": "^4.17.11",
     "validator": "^4.0.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "babel-loader": "^8.1.0",
     "react": ">= 15.6.1 < 17.0.0-0",
     "react-dom": ">= 15.6.1 < 17.0.0-0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "babel-preset-react": "6.24.1",
     "rimraf": "^2.4.3",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "webpack": "^3.10.0"
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   }
 }

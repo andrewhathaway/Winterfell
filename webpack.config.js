@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path    = require('path');
 
 module.exports = {
+  mode: 'production',
   context   : __dirname + '/src',
   entry     : './index.js',
   module    : {
@@ -10,10 +11,7 @@ module.exports = {
       exclude : /node_modules/,
       use: [
         {
-          loader: 'babel-loader',
-          options: {
-            presets: ['react']
-          }
+          loader: 'babel-loader'
         }
       ],
     }],
