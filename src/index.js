@@ -203,4 +203,5 @@ Winterfell.defaultProps = {
   onRender               : () => {}
 };
 
-module.exports = Winterfell;
+//module.exports = Winterfell;
+export default Winterfell;

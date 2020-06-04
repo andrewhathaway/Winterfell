@@ -3,33 +3,39 @@ const path    = require('path');
 
 module.exports = {
   context   : __dirname + '/src',
-  entry     : {
-    javascript : './index.js'
-  },
+  entry     : './index.js',
   module    : {
-    loaders : [{
+    rules : [{
       test    : /\.js$/,
       exclude : /node_modules/,
-      loaders : ['babel-loader'],
+      use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            presets: ['react']
+          }
+        }
+      ],
     }],
   },
   externals : {
     'react'        : 'React',
+    'react-dom' : 'react-dom',
     'react/addons' : 'React'
   },
   output    : {
-    libraryTarget : 'var',
+    libraryTarget : 'commonjs-module',
     library       : 'Winterfell',
     filename      : 'winterfell.min.js',
     path          : __dirname + '/dist'
-  },
-  plugins  : [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress : {
-        warnings : false
-      }
-    })
-  ]
+  }
+  // plugins  : [
+  //   new webpack.optimize.OccurenceOrderPlugin(),
+  //   new webpack.optimize.DedupePlugin(),
+  //   new webpack.optimize.UglifyJsPlugin({
+  //     compress : {
+  //       warnings : false
+  //     }
+  //   })
+  // ]
 };
