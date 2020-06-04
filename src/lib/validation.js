@@ -1,6 +1,6 @@
-var _            = require('lodash').noConflict();
-var Validator    = require('validator');
-var StringParser = require('./stringParser');
+import _            from 'lodash';
+import Validator    from 'validator';
+import StringParser from './stringParser';
 
 var extraValidators = {
 
@@ -222,7 +222,7 @@ var addValidationMethods = (methods) => {
   }
 };
 
-module.exports = {
+export default {
   validateAnswer                     : validateAnswer,
   getActiveQuestions                 : getActiveQuestions,
   getActiveQuestionsFromQuestionSets : getActiveQuestionsFromQuestionSets,

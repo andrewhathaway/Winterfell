@@ -1,7 +1,6 @@
-var React = require('react');
-var _     = require('lodash').noConflict();
-
-var Question = require('./question');
+import React from 'react';
+import _ from 'lodash';
+import Question from './question';
 
 class QuestionSet extends React.Component {
 
@@ -71,4 +70,4 @@ QuestionSet.defaultProps = {
   onKeyDown              : () => {}
 };
 
-module.exports = QuestionSet;
+export default QuestionSet;

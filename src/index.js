@@ -1,8 +1,11 @@
-var React    = require('react');
-var ReactDOM = require('react-dom');
-var _        = require('lodash').noConflict();
+import React from 'react';
+import _ from 'lodash';
+import QuestionPanel from './questionPanel';
+import inputTypes from './inputTypes/index';
+import errorMessages from './lib/errors';
+import * as Validation from './lib/validation';
 
-var QuestionPanel = require('./questionPanel');
+
 
 class Winterfell extends React.Component {
 
@@ -175,9 +178,9 @@ class Winterfell extends React.Component {
 
 };
 
-Winterfell.inputTypes    = require('./inputTypes');
-Winterfell.errorMessages = require('./lib/errors');
-Winterfell.validation    = require('./lib/validation');
+Winterfell.inputTypes    = inputTypes;
+Winterfell.errorMessages = errorMessages;
+Winterfell.validation    = Validation;
 
 Winterfell.addInputType  = Winterfell.inputTypes.addInputType;
 Winterfell.addInputTypes = Winterfell.inputTypes.addInputTypes;
@@ -203,5 +206,4 @@ Winterfell.defaultProps = {
   onRender               : () => {}
 };
 
-module.exports = Winterfell;
-// export default Winterfell;
+export default Winterfell;

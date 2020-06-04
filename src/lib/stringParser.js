@@ -1,4 +1,4 @@
-module.exports = (template, params) => {
+export default (template, params) => {
   template = template || '';
   params   = params || {};
 

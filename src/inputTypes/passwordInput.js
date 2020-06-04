@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 class PasswordInput extends React.Component {
 
@@ -47,4 +47,4 @@ PasswordInput.defaultProps = {
   onKeyDown   : () => {}
 };
 
-module.exports = PasswordInput;
+export default PasswordInput;

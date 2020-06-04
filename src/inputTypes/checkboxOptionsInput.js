@@ -1,6 +1,5 @@
-var React = require('react');
-
-var cloneArray = require('../lib/cloneArray');
+import React from 'react';
+import cloneArray from '../lib/cloneArray';
 
 class CheckboxOptionsInput extends React.Component {
 
@@ -67,4 +66,4 @@ CheckboxOptionsInput.defaultProps = {
   onBlur   : () => {}
 };
 
-module.exports = CheckboxOptionsInput;
+export default CheckboxOptionsInput;

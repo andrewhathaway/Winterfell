@@ -209,4 +209,4 @@ var setErrorMessage = (type, message) => {
   errorMessages[type] = message;
 };
 
-module.exports = errorMessages;
+export default errorMessages;

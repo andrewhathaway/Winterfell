@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 class EmailInput extends React.Component {
 
@@ -47,4 +47,4 @@ EmailInput.defaultProps = {
   onKeyDown   : () => {}
 };
 
-module.exports = EmailInput;
+export default EmailInput;

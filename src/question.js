@@ -1,7 +1,6 @@
-var React = require('react');
-var _     = require('lodash').noConflict();
-
-var InputTypes = require('./inputTypes');
+import React from 'react';
+import _ from 'lodash';
+import inputTypes from './inputTypes/index';
 
 class Question extends React.Component {
 
@@ -24,7 +23,7 @@ class Question extends React.Component {
   }
 
   render() {
-    var Input = InputTypes[this.props.input.type];
+    var Input = inputTypes[this.props.input.type];
     if (!Input) {
       throw new Error('Winterfell: Input Type "' + this.props.input.type +
                       '" not defined as Winterfell Input Type');
@@ -195,4 +194,4 @@ Question.defaultProps = {
   renderRequiredAsterisk : undefined
 };
 
-module.exports = Question;
+export default Question;

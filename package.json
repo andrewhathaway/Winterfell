@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf dist",
-    "build": "webpack",
+    "build": "webpack --display-modules --display-reasons",
     "prepare": "npm run clean && npm run build"
   },
   "keywords": [
@@ -40,6 +40,8 @@
     "validator": "^4.0.5"
   },
   "devDependencies": {
+    "react": ">= 15.6.1 < 17.0.0-0",
+    "react-dom": ">= 15.6.1 < 17.0.0-0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-preset-react": "6.24.1",

@@ -19,13 +19,24 @@ module.exports = {
     }],
   },
   externals : {
-    'react'        : 'React',
-    'react-dom' : 'react-dom',
-    'react/addons' : 'React'
+    // "react"        : 'React',
+    // 'react-dom'    : 'ReactDOM'
+    react: {          
+      commonjs: "react",          
+      commonjs2: "react",          
+      amd: "React",          
+      root: "React"      
+    },      
+    "react-dom": {          
+        commonjs: "react-dom",          
+        commonjs2: "react-dom",          
+        amd: "ReactDOM",          
+        root: "ReactDOM"      
+    }  
   },
   output    : {
-    libraryTarget : 'commonjs-module',
-    library       : 'Winterfell',
+    libraryTarget : 'umd',
+    //library       : 'Winterfell',
     filename      : 'winterfell.min.js',
     path          : __dirname + '/dist'
   }
