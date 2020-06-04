@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 class SelectInput extends React.Component {
 
@@ -64,4 +64,4 @@ SelectInput.defaultProps = {
   onBlur      : () => {}
 };
 
-module.exports = SelectInput;
+export default SelectInput;

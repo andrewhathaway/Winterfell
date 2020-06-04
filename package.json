@@ -6,9 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf dist",
-    "build:examples": "gulp build-examples",
-    "build": "babel src --out-dir dist && webpack",
-    "prepublish": "npm run clean && npm run build"
+    "build": "webpack --display-modules --display-reasons",
+    "prepare": "npm run clean && npm run build"
   },
   "keywords": [
     "winterfell",
@@ -35,21 +34,20 @@
     "react-dom": ">= 15.6.1 < 17.0.0-0"
   },
   "dependencies": {
-    "babelify": "^6.3.0",
     "keycodez": "^1.0.0",
     "lodash": "^4.17.11",
     "validator": "^4.0.5"
   },
   "devDependencies": {
-    "babel": "^5.8.23",
-    "babel-core": "^5.8.23",
-    "babel-loader": "^5.3.2",
-    "browserify": "^11.0.1",
-    "gulp": "^3.9.0",
-    "gulp-uglify": "^1.2.0",
+    "@babel/core": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "babel-loader": "^8.1.0",
+    "react": ">= 15.6.1 < 17.0.0-0",
+    "react-dom": ">= 15.6.1 < 17.0.0-0",
     "rimraf": "^2.4.3",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "webpack": "^1.12.1"
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   }
 }

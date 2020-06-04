@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 class RadioOptionsInput extends React.Component {
 
@@ -53,4 +53,4 @@ RadioOptionsInput.defaultProps = {
   onBlur   : () => {}
 };
 
-module.exports = RadioOptionsInput;
+export default RadioOptionsInput;

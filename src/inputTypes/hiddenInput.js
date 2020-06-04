@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 class HiddenInput extends React.Component {
 
@@ -25,4 +25,4 @@ HiddenInput.defaultProps = {
   value : ''
 };
 
-module.exports = HiddenInput;
+export default HiddenInput;
