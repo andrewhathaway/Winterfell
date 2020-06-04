@@ -18,6 +18,12 @@ module.exports = {
       ],
     }],
   },
+  resolve: {      
+    alias: {          
+        'react': path.resolve(__dirname, './node_modules/react'),
+        'react-dom': path.resolve(__dirname, './node_modules/react-dom'),      
+    }  
+  },  
   externals : {
     // "react"        : 'React',
     // 'react-dom'    : 'ReactDOM'
@@ -32,12 +38,18 @@ module.exports = {
         commonjs2: "react-dom",          
         amd: "ReactDOM",          
         root: "ReactDOM"      
+    },
+    lodash : {
+      commonjs: 'lodash',
+      commonjs2: 'lodash',
+      amd: 'lodash',
+      root: '_' // indicates global variable
     }  
   },
   output    : {
     libraryTarget : 'umd',
-    //library       : 'Winterfell',
-    filename      : 'winterfell.min.js',
+    library       : 'winterfell',
+    filename      : 'index.js',
     path          : __dirname + '/dist'
   }
   // plugins  : [
