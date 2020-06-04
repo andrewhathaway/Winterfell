@@ -23,8 +23,6 @@ module.exports = {
     }  
   },  
   externals : {
-    // "react"        : 'React',
-    // 'react-dom'    : 'ReactDOM'
     react: {          
       commonjs: "react",          
       commonjs2: "react",          
@@ -50,13 +48,4 @@ module.exports = {
     filename      : 'index.js',
     path          : __dirname + '/dist'
   }
-  // plugins  : [
-  //   new webpack.optimize.OccurenceOrderPlugin(),
-  //   new webpack.optimize.DedupePlugin(),
-  //   new webpack.optimize.UglifyJsPlugin({
-  //     compress : {
-  //       warnings : false
-  //     }
-  //   })
-  // ]
 };
