@@ -2,9 +2,12 @@ const webpack = require('webpack');
 const path    = require('path');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   context   : __dirname + '/src',
   entry     : './index.js',
+  optimization: {
+    minimize: false
+  },
   module    : {
     rules : [{
       test    : /\.js$/,

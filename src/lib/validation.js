@@ -85,12 +85,13 @@ var validateAnswer = (value, validationItem, questionAnswers) => {
  * @param  array  activeQuestions
  * @return array                  All active questions
  */
-var getActiveQuestions = (questions, questionAnswers, activeQuestions) => {
+var getActiveQuestions = (questionSetId, questions, questionAnswers, activeQuestions) => {
   activeQuestions = activeQuestions || [];
 
   questions
     .forEach(question => {
       activeQuestions.push({
+        questionSetId: questSetId,
         questionId  : question.questionId,
         validations : question.validations
       });
@@ -110,7 +111,8 @@ var getActiveQuestions = (questions, questionAnswers, activeQuestions) => {
             return;
           }
 
-          activeQuestions = getActiveQuestions(option.conditionalQuestions,
+          activeQuestions = getActiveQuestions(questionSetId,
+                                               option.conditionalQuestions,
                                                questionAnswers,
                                                activeQuestions);
         });
@@ -131,7 +133,7 @@ var getActiveQuestionsFromQuestionSets = (questionSets, questionAnswers) => {
   var questionsToCheck = [];
 
   questionSets
-    .forEach(questionSet => Array.prototype.push.apply(
+    .forEach(questionSet => Array.prototype.push.apply(questionSet.questionSetId,
       questionsToCheck, getActiveQuestions(questionSet.questions, questionAnswers)
     ));
 
