@@ -1725,7 +1725,7 @@ var validateAnswer = (value, validationItem, questionAnswers) => {
  */
 
 
-var getActiveQuestions = (questionSetId, questions, questionAnswers, activeQuestions) => {
+var getActiveQuestions = (questions, questionAnswers, activeQuestions, questionSetId) => {
   activeQuestions = activeQuestions || [];
   questions.forEach(question => {
     activeQuestions.push({

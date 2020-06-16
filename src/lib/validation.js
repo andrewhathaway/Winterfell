@@ -85,7 +85,7 @@ var validateAnswer = (value, validationItem, questionAnswers) => {
  * @param  array  activeQuestions
  * @return array                  All active questions
  */
-var getActiveQuestions = (questionSetId, questions, questionAnswers, activeQuestions) => {
+var getActiveQuestions = (questions, questionAnswers, activeQuestions, questionSetId) => {
   activeQuestions = activeQuestions || [];
   questions.forEach(question => {
     activeQuestions.push({
