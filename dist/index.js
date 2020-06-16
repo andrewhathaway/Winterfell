@@ -1729,9 +1729,9 @@ var getActiveQuestions = (questionSetId, questions, questionAnswers, activeQuest
   activeQuestions = activeQuestions || [];
   questions.forEach(question => {
     activeQuestions.push({
-      questionSetId: questSetId,
       questionId: question.questionId,
-      validations: question.validations
+      validations: question.validations,
+      questionSetId
     });
 
     if (typeof question.input.options === 'undefined' || question.input.options.length === 0) {
@@ -1743,7 +1743,7 @@ var getActiveQuestions = (questionSetId, questions, questionAnswers, activeQuest
         return;
       }
 
-      activeQuestions = getActiveQuestions(questionSetId, option.conditionalQuestions, questionAnswers, activeQuestions);
+      activeQuestions = getActiveQuestions(option.conditionalQuestions, questionAnswers, activeQuestions, questionSetId);
     });
   });
   return activeQuestions;
@@ -1759,7 +1759,9 @@ var getActiveQuestions = (questionSetId, questions, questionAnswers, activeQuest
 
 var getActiveQuestionsFromQuestionSets = (questionSets, questionAnswers) => {
   var questionsToCheck = [];
-  questionSets.forEach(questionSet => Array.prototype.push.apply(questionSet.questionSetId, questionsToCheck, getActiveQuestions(questionSet.questions, questionAnswers)));
+  questionSets.forEach(questionSet => {
+    Array.prototype.push.apply(questionsToCheck, getActiveQuestions(questionSet.questions, questionAnswers, [], questionSet.questionSetId));
+  });
   return questionsToCheck;
 };
 /**
@@ -1772,7 +1774,8 @@ var getActiveQuestionsFromQuestionSets = (questionSets, questionAnswers) => {
 
 
 var getQuestionPanelInvalidQuestions = (questionSets, questionAnswers) => {
-  var questionsToCheck = getActiveQuestionsFromQuestionSets(questionSets, questionAnswers).filter(question => {
+  var masterQuestionsToCheck = getActiveQuestionsFromQuestionSets(questionSets, questionAnswers).slice();
+  var questionsToCheck = masterQuestionsToCheck.slice().filter(question => {
     return question.validations instanceof Array && question.validations.length > 0;
   });
   /*
@@ -1787,7 +1790,8 @@ var getQuestionPanelInvalidQuestions = (questionSets, questionAnswers) => {
   var errors = {};
   questionsToCheck.forEach(({
     questionId,
-    validations
+    validations,
+    questionSetId
   }) => [].forEach.bind(validations, validation => {
     var valid = validateAnswer(questionAnswers[questionId], validation, questionAnswers);
 
@@ -1804,7 +1808,9 @@ var getQuestionPanelInvalidQuestions = (questionSets, questionAnswers) => {
       errors[questionId] = [];
     }
 
-    errors[questionId].push(validation);
+    errors[questionId].push(Object.assign(validation, {
+      questionSetId: questionSetId
+    }));
   })());
   return errors;
 };
