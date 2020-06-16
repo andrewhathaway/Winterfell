@@ -87,38 +87,25 @@ var validateAnswer = (value, validationItem, questionAnswers) => {
  */
 var getActiveQuestions = (questionSetId, questions, questionAnswers, activeQuestions) => {
   activeQuestions = activeQuestions || [];
+  questions.forEach(question => {
+    activeQuestions.push({
+      questionId: question.questionId,
+      validations: question.validations,
+      questionSetId
+    });
 
-  questions
-    .forEach(question => {
-      activeQuestions.push({
-        questionSetId: questSetId,
-        questionId  : question.questionId,
-        validations : question.validations
-      });
+    if (typeof question.input.options === 'undefined' || question.input.options.length === 0) {
+      return;
+    }
 
-      if (typeof question.input.options === 'undefined'
-          || question.input.options.length === 0) {
+    question.input.options.forEach(option => {
+      if (typeof option.conditionalQuestions === 'undefined' || option.conditionalQuestions.length == 0 || questionAnswers[question.questionId] != option.value) {
         return;
       }
 
-      question
-        .input
-        .options
-        .forEach(option => {
-          if (typeof option.conditionalQuestions === 'undefined'
-               || option.conditionalQuestions.length == 0
-               || questionAnswers[question.questionId] != option.value) {
-            return;
-          }
-
-          activeQuestions = getActiveQuestions(questionSetId,
-                                               option.conditionalQuestions,
-                                               questionAnswers,
-                                               activeQuestions);
-        });
-
+      activeQuestions = getActiveQuestions(option.conditionalQuestions, questionAnswers, activeQuestions, questionSetId);
     });
-
+  });
   return activeQuestions;
 };
 
@@ -131,12 +118,8 @@ var getActiveQuestions = (questionSetId, questions, questionAnswers, activeQuest
  */
 var getActiveQuestionsFromQuestionSets = (questionSets, questionAnswers) => {
   var questionsToCheck = [];
-
-  questionSets
-    .forEach(questionSet => Array.prototype.push.apply(questionSet.questionSetId,
-      questionsToCheck, getActiveQuestions(questionSet.questions, questionAnswers)
-    ));
-
+  questionSets.forEach(questionSet => { Array.prototype.push.apply(questionsToCheck, getActiveQuestions(questionSet.questions, questionAnswers, [], questionSet.questionSetId))
+  });
   return questionsToCheck;
 };
 
@@ -148,12 +131,10 @@ var getActiveQuestionsFromQuestionSets = (questionSets, questionAnswers) => {
  * @return object                  Set of questions and their invalidations
  */
 var getQuestionPanelInvalidQuestions = (questionSets, questionAnswers) => {
-  var questionsToCheck = getActiveQuestionsFromQuestionSets(questionSets, questionAnswers)
-                           .filter(question => {
-                             return question.validations instanceof Array
-                                      && question.validations.length > 0;
-                           });
-
+  var masterQuestionsToCheck = getActiveQuestionsFromQuestionSets(questionSets, questionAnswers).slice();
+  var questionsToCheck = masterQuestionsToCheck.slice().filter(question => {
+    return question.validations instanceof Array && question.validations.length > 0;
+  });
   /*
    * Now we run validations for the questions
    * we need to check for errors.
@@ -162,29 +143,30 @@ var getQuestionPanelInvalidQuestions = (questionSets, questionAnswers) => {
    * then run the question and answer through
    * the validation method required.
    */
+
   var errors = {};
-  questionsToCheck
-    .forEach(({questionId, validations}) =>
-      [].forEach.bind(validations, validation => {
-        var valid = validateAnswer(questionAnswers[questionId],
-                                   validation,
-                                   questionAnswers);
-        if (valid) {
-          return;
-        }
+  questionsToCheck.forEach(({
+    questionId,
+    validations,
+    questionSetId
+  }) => [].forEach.bind(validations, validation => {
+    var valid = validateAnswer(questionAnswers[questionId], validation, questionAnswers);
 
-        /*
-         * If we got here, the validation failed. Add
-         * an validation error and continue to the next!
-         */
-        if (typeof errors[questionId] === 'undefined') {
-          errors[questionId] = [];
-        }
+    if (valid) {
+      return;
+    }
+    /*
+     * If we got here, the validation failed. Add
+     * an validation error and continue to the next!
+     */
 
-        errors[questionId].push(validation);
-      }
-    )());
 
+    if (typeof errors[questionId] === 'undefined') {
+      errors[questionId] = [];
+    }
+
+    errors[questionId].push(Object.assign(validation, {questionSetId: questionSetId}));
+  })());
   return errors;
 };
 
