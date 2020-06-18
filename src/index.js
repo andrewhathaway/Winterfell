@@ -48,7 +48,9 @@ class Winterfell extends React.Component {
       currentPanel    : currentPanel,
       action          : props.action,
       questionAnswers : props.questionAnswers,
-      panelId         : props.panelId
+      panelId         : props.panelId,
+      validationErrors: props.validationErrors
+
     };
   }
 
@@ -58,7 +60,8 @@ class Winterfell extends React.Component {
         action          : nextProps.action,
         schema          : nextProps.schema,
         questionAnswers : Object.assign({}, nextProps.questionAnswers, this.state.questionAnswers),
-        panelId         : nextProps.panelId
+        panelId         : nextProps.panelId,
+        validationErrors: nextProps.validationErrors
       });
 
       var panel = _.find(this.props.schema.formPanels, {
@@ -74,6 +77,7 @@ class Winterfell extends React.Component {
       this.setState({
         action          : nextProps.action,
         schema          : nextProps.schema,
+        validationErrors: nextProps.validationErrors,
         questionAnswers : Object.assign({}, nextProps.questionAnswers, this.state.questionAnswers)
       });
     }
@@ -160,6 +164,7 @@ class Winterfell extends React.Component {
                          questionSets={currentPanel.questionSets}
                          questionAnswers={this.state.questionAnswers}
                          panelHistory={this.panelHistory}
+                         validationErrors={this.props.validationErrors}
                          renderError={this.props.renderError}
                          renderRequiredAsterisk={this.props.renderRequiredAsterisk}
                          onAnswerChange={this.handleAnswerChange.bind(this)}
@@ -200,6 +205,7 @@ Winterfell.defaultProps = {
   disableSubmit          : false,
   renderError            : undefined,
   renderRequiredAsterisk : undefined,
+  validationErrors       : {},
   onSubmit               : () => {},
   onUpdate               : () => {},
   onSwitchPanel          : () => {},
