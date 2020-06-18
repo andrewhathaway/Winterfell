@@ -50,7 +50,6 @@ class Winterfell extends React.Component {
       questionAnswers : props.questionAnswers,
       panelId         : props.panelId,
       validationErrors: props.validationErrors
-
     };
   }
 

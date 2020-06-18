@@ -3085,7 +3085,8 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       currentPanel: currentPanel,
       action: props.action,
       questionAnswers: props.questionAnswers,
-      panelId: props.panelId
+      panelId: props.panelId,
+      validationErrors: props.validationErrors
     };
   }
 
@@ -3095,7 +3096,8 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
         action: nextProps.action,
         schema: nextProps.schema,
         questionAnswers: Object.assign({}, nextProps.questionAnswers, this.state.questionAnswers),
-        panelId: nextProps.panelId
+        panelId: nextProps.panelId,
+        validationErrors: nextProps.validationErrors
       });
 
       var panel = external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_default.a.find(this.props.schema.formPanels, {
@@ -3111,6 +3113,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       this.setState({
         action: nextProps.action,
         schema: nextProps.schema,
+        validationErrors: nextProps.validationErrors,
         questionAnswers: Object.assign({}, nextProps.questionAnswers, this.state.questionAnswers)
       });
     }
@@ -3193,6 +3196,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       questionSets: currentPanel.questionSets,
       questionAnswers: this.state.questionAnswers,
       panelHistory: this.panelHistory,
+      validationErrors: this.props.validationErrors,
       renderError: this.props.renderError,
       renderRequiredAsterisk: this.props.renderRequiredAsterisk,
       onAnswerChange: this.handleAnswerChange.bind(this),
@@ -3228,6 +3232,7 @@ index_Winterfell.defaultProps = {
   disableSubmit: false,
   renderError: undefined,
   renderRequiredAsterisk: undefined,
+  validationErrors: {},
   onSubmit: () => {},
   onUpdate: () => {},
   onSwitchPanel: () => {},
