@@ -16,6 +16,12 @@ class QuestionPanel extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      validationErrors: nextProps.validationErrors
+    })
+  }
+
   handleAnswerValidate(questionId, questionAnswer, validations) {
     if (typeof validations === 'undefined'
          || validations.length === 0) {
@@ -158,8 +164,6 @@ class QuestionPanel extends React.Component {
   }
 
   render() {
-    var currentValidationErrors = _.isEmpty(this.state.validationErrors) ? this.props.validationErrors : this.state.validationErrors;
-
     var questionSets = this.props.questionSets.map(questionSetMeta => {
       var questionSet = _.find(this.props.schema.questionSets, {
         questionSetId : questionSetMeta.questionSetId
@@ -180,7 +184,7 @@ class QuestionPanel extends React.Component {
                      questionAnswers={this.props.questionAnswers}
                      renderError={this.props.renderError}
                      renderRequiredAsterisk={this.props.renderRequiredAsterisk}
-                     validationErrors={currentValidationErrors}
+                     validationErrors={this.state.validationErrors}
                      onAnswerChange={this.handleAnswerChange.bind(this)}
                      onQuestionBlur={this.handleQuestionBlur.bind(this)}
                      onKeyDown={this.handleInputKeyDown.bind(this)} />
