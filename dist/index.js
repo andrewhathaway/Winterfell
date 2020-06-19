@@ -2843,6 +2843,12 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      validationErrors: nextProps.validationErrors
+    });
+  }
+
   handleAnswerValidate(questionId, questionAnswer, validations) {
     if (typeof validations === 'undefined' || validations.length === 0) {
       return;
@@ -2971,7 +2977,6 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
   }
 
   render() {
-    var currentValidationErrors = external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_default.a.isEmpty(this.state.validationErrors) ? this.props.validationErrors : this.state.validationErrors;
     var questionSets = this.props.questionSets.map(questionSetMeta => {
       var questionSet = external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_default.a.find(this.props.schema.questionSets, {
         questionSetId: questionSetMeta.questionSetId
@@ -2992,7 +2997,7 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
         questionAnswers: this.props.questionAnswers,
         renderError: this.props.renderError,
         renderRequiredAsterisk: this.props.renderRequiredAsterisk,
-        validationErrors: currentValidationErrors,
+        validationErrors: this.state.validationErrors,
         onAnswerChange: this.handleAnswerChange.bind(this),
         onQuestionBlur: this.handleQuestionBlur.bind(this),
         onKeyDown: this.handleInputKeyDown.bind(this)
