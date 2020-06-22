@@ -24,6 +24,7 @@ class QuestionSet extends React.Component {
                   validationErrors={this.props.validationErrors}
                   onAnswerChange={this.props.onAnswerChange}
                   onQuestionBlur={this.props.onQuestionBlur}
+                  onQuestionFocus={this.props.onQuestionFocus}
                   onKeyDown={this.props.onKeyDown} />
       );
     });
@@ -67,6 +68,7 @@ QuestionSet.defaultProps = {
   renderRequiredAsterisk : undefined,
   onAnswerChange         : () => {},
   onQuestionBlur         : () => {},
+  onQuestionFocus        : () => {},
   onKeyDown              : () => {}
 };
 

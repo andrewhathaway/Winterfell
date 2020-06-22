@@ -34,6 +34,7 @@ class SelectInput extends React.Component {
                           ? 'required'
                           : undefined}
               onChange={this.handleChange.bind(this)}
+              onFocus={this.props.onFocus.bind(this)}
               onBlur={this.props.onBlur.bind(null, this.state.value)}>
         {options}
       </select>
@@ -61,7 +62,8 @@ SelectInput.defaultProps = {
   value       : '',
   options     : [],
   onChange    : () => {},
-  onBlur      : () => {}
+  onBlur      : () => {},
+  onFocus     : () => {}
 };
 
 export default SelectInput;
