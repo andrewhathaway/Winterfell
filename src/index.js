@@ -48,7 +48,8 @@ class Winterfell extends React.Component {
       currentPanel    : currentPanel,
       action          : props.action,
       questionAnswers : props.questionAnswers,
-      panelId         : props.panelId
+      panelId         : props.panelId,
+      validationErrors: props.validationErrors
     };
   }
 
@@ -57,8 +58,9 @@ class Winterfell extends React.Component {
       this.setState({
         action          : nextProps.action,
         schema          : nextProps.schema,
-        questionAnswers : nextProps.questionAnswers,
-        panelId         : nextProps.panelId
+        questionAnswers : Object.assign({}, nextProps.questionAnswers, this.state.questionAnswers),
+        panelId         : nextProps.panelId,
+        validationErrors: nextProps.validationErrors
       });
 
       var panel = _.find(this.props.schema.formPanels, {
@@ -74,7 +76,8 @@ class Winterfell extends React.Component {
       this.setState({
         action          : nextProps.action,
         schema          : nextProps.schema,
-        questionAnswers : nextProps.questionAnswers
+        validationErrors: nextProps.validationErrors,
+        questionAnswers : Object.assign({}, nextProps.questionAnswers, this.state.questionAnswers)
       });
     }
   }
@@ -115,6 +118,11 @@ class Winterfell extends React.Component {
       this, this.panelHistory[this.panelHistory.length - 1], true
     );
   }
+
+  handleQuestionFocus(questionId) {
+    this.props.onQuestionFocus(questionId);
+  }
+
 
   handleSubmit(action) {
     if (this.props.disableSubmit) {
@@ -160,8 +168,10 @@ class Winterfell extends React.Component {
                          questionSets={currentPanel.questionSets}
                          questionAnswers={this.state.questionAnswers}
                          panelHistory={this.panelHistory}
+                         validationErrors={this.props.validationErrors}
                          renderError={this.props.renderError}
                          renderRequiredAsterisk={this.props.renderRequiredAsterisk}
+                         onQuestionFocus={this.handleQuestionFocus.bind(this)}
                          onAnswerChange={this.handleAnswerChange.bind(this)}
                          onPanelBack={this.handleBackButtonClick.bind(this)}
                          onSwitchPanel={this.handleSwitchPanel.bind(this)}
@@ -200,10 +210,13 @@ Winterfell.defaultProps = {
   disableSubmit          : false,
   renderError            : undefined,
   renderRequiredAsterisk : undefined,
+  validationErrors       : {},
   onSubmit               : () => {},
   onUpdate               : () => {},
   onSwitchPanel          : () => {},
-  onRender               : () => {}
+  onRender               : () => {},
+  onQuestionFocus        : () => {}
+
 };
 
 export default Winterfell;

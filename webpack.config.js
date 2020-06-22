@@ -5,6 +5,9 @@ module.exports = {
   mode: 'production',
   context   : __dirname + '/src',
   entry     : './index.js',
+  optimization: {
+    minimize: false
+  },
   module    : {
     rules : [{
       test    : /\.js$/,

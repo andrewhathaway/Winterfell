@@ -46,6 +46,7 @@ class CheckboxOptionsInput extends React.Component {
                                  ? 'required'
                                  : undefined}
                      onChange={this.handleChange.bind(this, opt.value)}
+                     onFocus={this.props.onFocus.bind(this)}
                      onBlur={this.props.onBlur.bind(null, this.state.value)} />
               {opt.text}
             </label>
@@ -63,7 +64,8 @@ CheckboxOptionsInput.defaultProps = {
   value    : [],
   options  : [],
   onChange : () => {},
-  onBlur   : () => {}
+  onBlur   : () => {},
+  onFocus  : () => {}
 };
 
 export default CheckboxOptionsInput;

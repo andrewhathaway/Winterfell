@@ -22,6 +22,10 @@ class Question extends React.Component {
     );
   }
 
+  handleInputFocus(questionId) {
+    this.props.onQuestionFocus(questionId);
+  }
+
   render() {
     var Input = inputTypes[this.props.input.type];
     if (!Input) {
@@ -68,6 +72,7 @@ class Question extends React.Component {
                           questionAnswers={this.props.questionAnswers}
                           validationErrors={this.props.validationErrors}
                           onAnswerChange={this.props.onAnswerChange}
+                          onQuestionFocus={this.props.onQuestionFocus}
                           onQuestionBlur={this.props.onQuestionBlur}
                           onKeyDown={this.props.onKeyDown} />
               );
@@ -135,6 +140,7 @@ class Question extends React.Component {
                required={this.props.input.required}
                classes={this.props.classes}
                onChange={this.handleInputChange.bind(this, this.props.questionId)}
+               onFocus={this.handleInputFocus.bind(this, this.props.questionId)}
                onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
                onKeyDown={this.props.onKeyDown}
                {...(typeof this.props.input.props === 'object'
@@ -189,6 +195,7 @@ Question.defaultProps = {
   validationErrors       : {},
   onAnswerChange         : () => {},
   onQuestionBlur         : () => {},
+  onQuestionFocus        : () => {},
   onKeyDown              : () => {},
   renderError            : undefined,
   renderRequiredAsterisk : undefined

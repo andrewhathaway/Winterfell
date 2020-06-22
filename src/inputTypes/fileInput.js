@@ -26,6 +26,7 @@ class FileInput extends React.Component {
                               ? 'required'
                               : undefined}
                   onChange={this.handleChange.bind(this)}
+                  onFocus={this.props.onFocus.bind(this)}
                   onBlur={this.props.onBlur.bind(null, this.state.value)} />
   }
 
@@ -37,7 +38,8 @@ FileInput.defaultProps = {
   id        : '',
   value     : '',
   onChange  : () => {},
-  onBlur    : () => {}
+  onBlur    : () => {},
+  onFocus   : () => {}
 };
 
 export default FileInput;
