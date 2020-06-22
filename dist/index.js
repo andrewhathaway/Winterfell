@@ -2124,6 +2124,7 @@ class checkboxInput_CheckboxInput extends external_commonjs_react_commonjs2_reac
       value: this.props.value,
       required: this.props.required ? 'required' : undefined,
       onChange: this.handleChange.bind(this),
+      onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.checked ? this.props.value : undefined)
     }), this.props.text));
   }
@@ -2138,7 +2139,8 @@ checkboxInput_CheckboxInput.defaultProps = {
   name: '',
   value: '',
   onChange: () => {},
-  onBlur: () => {}
+  onBlur: () => {},
+  onFocus: () => {}
 };
 /* harmony default export */ var checkboxInput = (checkboxInput_CheckboxInput);
 // CONCATENATED MODULE: ./lib/cloneArray.js
@@ -2189,6 +2191,7 @@ class checkboxOptionsInput_CheckboxOptionsInput extends external_commonjs_react_
       className: this.props.classes.checkbox,
       required: this.props.required ? 'required' : undefined,
       onChange: this.handleChange.bind(this, opt.value),
+      onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value)
     }), opt.text))));
   }
@@ -2202,7 +2205,8 @@ checkboxOptionsInput_CheckboxOptionsInput.defaultProps = {
   value: [],
   options: [],
   onChange: () => {},
-  onBlur: () => {}
+  onBlur: () => {},
+  onFocus: () => {}
 };
 /* harmony default export */ var checkboxOptionsInput = (checkboxOptionsInput_CheckboxOptionsInput);
 // CONCATENATED MODULE: ./inputTypes/emailInput.js
@@ -2233,6 +2237,7 @@ class emailInput_EmailInput extends external_commonjs_react_commonjs2_react_amd_
       value: this.state.value,
       required: this.props.required ? 'required' : undefined,
       onChange: this.handleChange.bind(this),
+      onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value),
       onKeyDown: this.props.onKeyDown
     });
@@ -2249,7 +2254,8 @@ emailInput_EmailInput.defaultProps = {
   placeholder: '',
   onChange: () => {},
   onBlur: () => {},
-  onKeyDown: () => {}
+  onKeyDown: () => {},
+  onFocus: () => {}
 };
 /* harmony default export */ var emailInput = (emailInput_EmailInput);
 // CONCATENATED MODULE: ./inputTypes/fileInput.js
@@ -2278,6 +2284,7 @@ class fileInput_FileInput extends external_commonjs_react_commonjs2_react_amd_Re
       className: this.props.classes.file,
       required: this.props.required ? 'required' : undefined,
       onChange: this.handleChange.bind(this),
+      onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value)
     });
   }
@@ -2291,7 +2298,8 @@ fileInput_FileInput.defaultProps = {
   id: '',
   value: '',
   onChange: () => {},
-  onBlur: () => {}
+  onBlur: () => {},
+  onFocus: () => {}
 };
 /* harmony default export */ var fileInput = (fileInput_FileInput);
 // CONCATENATED MODULE: ./inputTypes/hiddenInput.js
@@ -2349,6 +2357,7 @@ class passwordInput_PasswordInput extends external_commonjs_react_commonjs2_reac
       value: this.state.value,
       required: this.props.required ? 'required' : undefined,
       onChange: this.handleChange.bind(this),
+      onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value),
       onKeyDown: this.props.onKeyDown
     });
@@ -2365,7 +2374,8 @@ passwordInput_PasswordInput.defaultProps = {
   placeholder: '',
   onChange: () => {},
   onBlur: () => {},
-  onKeyDown: () => {}
+  onKeyDown: () => {},
+  onFocus: () => {}
 };
 /* harmony default export */ var passwordInput = (passwordInput_PasswordInput);
 // CONCATENATED MODULE: ./inputTypes/radioOptionsInput.js
@@ -2402,6 +2412,7 @@ class radioOptionsInput_RadioOptionsInput extends external_commonjs_react_common
       className: this.props.classes.radio,
       required: this.props.required ? 'required' : undefined,
       onChange: this.handleChange.bind(this, opt.value),
+      onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value)
     }), opt.text))));
   }
@@ -2415,7 +2426,8 @@ radioOptionsInput_RadioOptionsInput.defaultProps = {
   value: '',
   options: [],
   onChange: () => {},
-  onBlur: () => {}
+  onBlur: () => {},
+  onFocus: () => {}
 };
 /* harmony default export */ var radioOptionsInput = (radioOptionsInput_RadioOptionsInput);
 // CONCATENATED MODULE: ./inputTypes/selectInput.js
@@ -2448,6 +2460,7 @@ class selectInput_SelectInput extends external_commonjs_react_commonjs2_react_am
       ref: "select",
       required: this.props.required ? 'required' : undefined,
       onChange: this.handleChange.bind(this),
+      onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value)
     }, options);
   }
@@ -2474,7 +2487,8 @@ selectInput_SelectInput.defaultProps = {
   value: '',
   options: [],
   onChange: () => {},
-  onBlur: () => {}
+  onBlur: () => {},
+  onFocus: () => {}
 };
 /* harmony default export */ var selectInput = (selectInput_SelectInput);
 // CONCATENATED MODULE: ./inputTypes/textareaInput.js
@@ -2505,6 +2519,7 @@ class textareaInput_TextareaInput extends external_commonjs_react_commonjs2_reac
       value: this.state.value,
       required: this.props.required ? 'required' : undefined,
       onChange: this.handleChange.bind(this),
+      onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value)
     });
   }
@@ -2519,7 +2534,8 @@ textareaInput_TextareaInput.defaultProps = {
   value: '',
   placeholder: '',
   onChange: () => {},
-  onBlur: () => {}
+  onBlur: () => {},
+  onFocus: () => {}
 };
 /* harmony default export */ var textareaInput = (textareaInput_TextareaInput);
 // CONCATENATED MODULE: ./inputTypes/textInput.js
@@ -2551,6 +2567,7 @@ class textInput_TextInput extends external_commonjs_react_commonjs2_react_amd_Re
       required: this.props.required ? 'required' : undefined,
       onChange: this.handleChange.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value),
+      onFocus: this.props.onFocus.bind(this),
       onKeyDown: this.props.onKeyDown
     });
   }
@@ -2566,7 +2583,8 @@ textInput_TextInput.defaultProps = {
   placeholder: '',
   onChange: () => {},
   onBlur: () => {},
-  onKeyDown: () => {}
+  onKeyDown: () => {},
+  onFocus: () => {}
 };
 /* harmony default export */ var textInput = (textInput_TextInput);
 // CONCATENATED MODULE: ./inputTypes/index.js
@@ -2645,6 +2663,10 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     this.props.onQuestionBlur(questionId, value, this.props.validations, this.props.validateOn);
   }
 
+  handleInputFocus(questionId) {
+    this.props.onQuestionFocus(questionId);
+  }
+
   render() {
     var Input = inputTypes_0[this.props.input.type];
 
@@ -2686,6 +2708,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
           questionAnswers: this.props.questionAnswers,
           validationErrors: this.props.validationErrors,
           onAnswerChange: this.props.onAnswerChange,
+          onQuestionFocus: this.props.onQuestionFocus,
           onQuestionBlur: this.props.onQuestionBlur,
           onKeyDown: this.props.onKeyDown
         }));
@@ -2724,6 +2747,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       required: this.props.input.required,
       classes: this.props.classes,
       onChange: this.handleInputChange.bind(this, this.props.questionId),
+      onFocus: this.handleInputFocus.bind(this, this.props.questionId),
       onBlur: this.handleInputBlur.bind(this, this.props.questionId),
       onKeyDown: this.props.onKeyDown
     }, typeof this.props.input.props === 'object' ? this.props.input.props : {})), !!this.props.postText ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
@@ -2762,6 +2786,7 @@ question_Question.defaultProps = {
   validationErrors: {},
   onAnswerChange: () => {},
   onQuestionBlur: () => {},
+  onQuestionFocus: () => {},
   onKeyDown: () => {},
   renderError: undefined,
   renderRequiredAsterisk: undefined
@@ -2793,6 +2818,7 @@ class questionSet_QuestionSet extends external_commonjs_react_commonjs2_react_am
         validationErrors: this.props.validationErrors,
         onAnswerChange: this.props.onAnswerChange,
         onQuestionBlur: this.props.onQuestionBlur,
+        onQuestionFocus: this.props.onQuestionFocus,
         onKeyDown: this.props.onKeyDown
       });
     });
@@ -2823,6 +2849,7 @@ questionSet_QuestionSet.defaultProps = {
   renderRequiredAsterisk: undefined,
   onAnswerChange: () => {},
   onQuestionBlur: () => {},
+  onQuestionFocus: () => {},
   onKeyDown: () => {}
 };
 /* harmony default export */ var questionSet_0 = (questionSet_QuestionSet);
@@ -2969,6 +2996,10 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
     }
   }
 
+  handleQuestionFocus(questionId) {
+    this.props.onQuestionFocus(questionId);
+  }
+
   handleInputKeyDown(e) {
     if (keycodez_default.a[e.keyCode] === 'enter') {
       e.preventDefault();
@@ -2999,6 +3030,7 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
         renderRequiredAsterisk: this.props.renderRequiredAsterisk,
         validationErrors: this.state.validationErrors,
         onAnswerChange: this.handleAnswerChange.bind(this),
+        onQuestionFocus: this.handleQuestionFocus.bind(this),
         onQuestionBlur: this.handleQuestionBlur.bind(this),
         onKeyDown: this.handleInputKeyDown.bind(this)
       });
@@ -3052,6 +3084,7 @@ questionPanel_QuestionPanel.defaultProps = {
   renderError: undefined,
   renderRequiredAsterisk: undefined,
   onAnswerChange: () => {},
+  onQuestionFocus: () => {},
   onSwitchPanel: () => {},
   onPanelBack: () => {},
   panelHistory: []
@@ -3156,6 +3189,10 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
     this.handleSwitchPanel.call(this, this.panelHistory[this.panelHistory.length - 1], true);
   }
 
+  handleQuestionFocus(questionId) {
+    this.props.onQuestionFocus.bind(questionId);
+  }
+
   handleSubmit(action) {
     if (this.props.disableSubmit) {
       this.props.onSubmit(this.state.questionAnswers, action);
@@ -3205,6 +3242,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       validationErrors: this.props.validationErrors,
       renderError: this.props.renderError,
       renderRequiredAsterisk: this.props.renderRequiredAsterisk,
+      onQuestionFocus: this.handleQuestionFocus.bind(this),
       onAnswerChange: this.handleAnswerChange.bind(this),
       onPanelBack: this.handleBackButtonClick.bind(this),
       onSwitchPanel: this.handleSwitchPanel.bind(this),
@@ -3242,7 +3280,8 @@ index_Winterfell.defaultProps = {
   onSubmit: () => {},
   onUpdate: () => {},
   onSwitchPanel: () => {},
-  onRender: () => {}
+  onRender: () => {},
+  onQuestionFocus: () => {}
 };
 /* harmony default export */ var index = __webpack_exports__["default"] = (index_Winterfell);
 
