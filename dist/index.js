@@ -3190,7 +3190,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
   }
 
   handleQuestionFocus(questionId) {
-    this.props.onQuestionFocus.bind(questionId);
+    this.props.onQuestionFocus(questionId);
   }
 
   handleSubmit(action) {
