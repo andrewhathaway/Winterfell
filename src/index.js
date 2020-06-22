@@ -120,7 +120,7 @@ class Winterfell extends React.Component {
   }
 
   handleQuestionFocus(questionId) {
-    this.props.onQuestionFocus.bind(questionId);
+    this.props.onQuestionFocus(questionId);
   }
 
 
