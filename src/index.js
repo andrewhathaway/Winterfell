@@ -126,6 +126,7 @@ class Winterfell extends React.Component {
   handleQuestionClick(questionId) {
     //1. build and test we get here AM
     console.log(questionId);
+    this.props.onQuestionClick(questionId);
   }
 
 
@@ -221,8 +222,8 @@ Winterfell.defaultProps = {
   onUpdate               : () => {},
   onSwitchPanel          : () => {},
   onRender               : () => {},
-  onQuestionFocus        : () => {}
-
+  onQuestionFocus        : () => {},
+  onQuestionClick        : () => {}
 };
 
 export default Winterfell;

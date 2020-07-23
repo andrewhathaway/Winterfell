@@ -2589,7 +2589,36 @@ textInput_TextInput.defaultProps = {
   onFocus: () => {}
 };
 /* harmony default export */ var textInput = (textInput_TextInput);
+// CONCATENATED MODULE: ./inputTypes/buttonInput.js
+
+
+class buttonInput_ButtonInput extends external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Component {
+  handleClick(e, id) {
+    e.preventDefault();
+    this.props.onClick(id);
+  }
+
+  render() {
+    return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("button", {
+      className: this.props.classes.input,
+      onClick: e => this.handleClick.bind(e, this.props.id)
+    }, this.props.text);
+  }
+
+}
+
+;
+buttonInput_ButtonInput.defaultProps = {
+  id: '',
+  icon: '',
+  name: '',
+  text: 'Add',
+  className: undefined,
+  onClick: () => {}
+};
+/* harmony default export */ var buttonInput = (buttonInput_ButtonInput);
 // CONCATENATED MODULE: ./inputTypes/index.js
+
 
 
 
@@ -2611,7 +2640,8 @@ let inputTypes = {
   radioOptionsInput: radioOptionsInput,
   selectInput: selectInput,
   textareaInput: textareaInput,
-  textInput: textInput
+  textInput: textInput,
+  buttonInput: buttonInput
 };
 /**
  * Add an input type
@@ -2669,6 +2699,10 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     this.props.onQuestionFocus(questionId);
   }
 
+  handleInputClick(questionId) {
+    this.props.onQuestionClick(questionId);
+  }
+
   render() {
     var Input = inputTypes_0[this.props.input.type];
 
@@ -2711,6 +2745,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
           validationErrors: this.props.validationErrors,
           onAnswerChange: this.props.onAnswerChange,
           onQuestionFocus: this.props.onQuestionFocus,
+          onQuestionClick: this.props.onQuestionClick,
           onQuestionBlur: this.props.onQuestionBlur,
           onKeyDown: this.props.onKeyDown
         }));
@@ -2750,6 +2785,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       classes: this.props.classes,
       onChange: this.handleInputChange.bind(this, this.props.questionId),
       onFocus: this.handleInputFocus.bind(this, this.props.questionId),
+      onClick: this.handleInputClick.bind(this, this.props.questionId),
       onBlur: this.handleInputBlur.bind(this, this.props.questionId),
       onKeyDown: this.props.onKeyDown
     }, typeof this.props.input.props === 'object' ? this.props.input.props : {})), !!this.props.postText ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
@@ -2821,6 +2857,7 @@ class questionSet_QuestionSet extends external_commonjs_react_commonjs2_react_am
         onAnswerChange: this.props.onAnswerChange,
         onQuestionBlur: this.props.onQuestionBlur,
         onQuestionFocus: this.props.onQuestionFocus,
+        onQuestionClick: this.props.onQuestionClick,
         onKeyDown: this.props.onKeyDown
       });
     });
@@ -2852,6 +2889,7 @@ questionSet_QuestionSet.defaultProps = {
   onAnswerChange: () => {},
   onQuestionBlur: () => {},
   onQuestionFocus: () => {},
+  onQuestionClick: () => {},
   onKeyDown: () => {}
 };
 /* harmony default export */ var questionSet_0 = (questionSet_QuestionSet);
@@ -3002,6 +3040,10 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
     this.props.onQuestionFocus(questionId);
   }
 
+  handleQuestionClick(questionId) {
+    this.props.onQuestionClick(questionId);
+  }
+
   handleInputKeyDown(e) {
     if (keycodez_default.a[e.keyCode] === 'enter') {
       e.preventDefault();
@@ -3033,6 +3075,7 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
         validationErrors: this.state.validationErrors,
         onAnswerChange: this.handleAnswerChange.bind(this),
         onQuestionFocus: this.handleQuestionFocus.bind(this),
+        onQuestionClick: this.handleQuestionClick.bind(this),
         onQuestionBlur: this.handleQuestionBlur.bind(this),
         onKeyDown: this.handleInputKeyDown.bind(this)
       });
@@ -3087,6 +3130,7 @@ questionPanel_QuestionPanel.defaultProps = {
   renderRequiredAsterisk: undefined,
   onAnswerChange: () => {},
   onQuestionFocus: () => {},
+  onQuestionClick: () => {},
   onSwitchPanel: () => {},
   onPanelBack: () => {},
   panelHistory: []
@@ -3195,6 +3239,12 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
     this.props.onQuestionFocus(questionId);
   }
 
+  handleQuestionClick(questionId) {
+    //1. build and test we get here AM
+    console.log(questionId);
+    this.props.onQuestionClick(questionId);
+  }
+
   handleSubmit(action) {
     if (this.props.disableSubmit) {
       this.props.onSubmit(this.state.questionAnswers, action);
@@ -3245,6 +3295,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       renderError: this.props.renderError,
       renderRequiredAsterisk: this.props.renderRequiredAsterisk,
       onQuestionFocus: this.handleQuestionFocus.bind(this),
+      onQuestionClick: this.handleQuestionClick.bind(this),
       onAnswerChange: this.handleAnswerChange.bind(this),
       onPanelBack: this.handleBackButtonClick.bind(this),
       onSwitchPanel: this.handleSwitchPanel.bind(this),
@@ -3283,7 +3334,8 @@ index_Winterfell.defaultProps = {
   onUpdate: () => {},
   onSwitchPanel: () => {},
   onRender: () => {},
-  onQuestionFocus: () => {}
+  onQuestionFocus: () => {},
+  onQuestionClick: () => {}
 };
 /* harmony default export */ var index = __webpack_exports__["default"] = (index_Winterfell);
 
