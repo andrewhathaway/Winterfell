@@ -2,16 +2,17 @@ import React from 'react';
 
 class ButtonInput extends React.Component {
 
-  handleClick(e, id) {
+  handleClick(e) {
+    console.log('clicked button');
     e.preventDefault();
-    this.props.onClick(id);
+    this.props.onClick(this.props.id);
   }
 
   render() {
     return (
       <button
          className={this.props.classes.input}
-         onClick={e => this.handleClick.bind(e, this.props.id)}>
+         onClick={this.handleClick.bind(this)}>
         {this.props.text}
       </button>
     );
@@ -24,7 +25,7 @@ ButtonInput.defaultProps = {
   icon      : '',
   name      : '',
   text      : 'Add',
-  className : undefined,
+  classes   : {},
   onClick   : () => {}
 };
 
