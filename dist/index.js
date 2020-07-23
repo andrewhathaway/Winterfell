@@ -2780,6 +2780,8 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       labelId: labelId,
       value: value,
       text: this.props.input.text,
+      icon: this.props.input.icon,
+      class: this.props.input.class,
       options: this.props.input.options,
       placeholder: this.props.input.placeholder,
       required: this.props.input.required,
