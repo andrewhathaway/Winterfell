@@ -123,6 +123,11 @@ class Winterfell extends React.Component {
     this.props.onQuestionFocus(questionId);
   }
 
+  handleQuestionClick(questionId) {
+    //1. build and test we get here AM
+    console.log(questionId);
+  }
+
 
   handleSubmit(action) {
     if (this.props.disableSubmit) {
@@ -172,6 +177,7 @@ class Winterfell extends React.Component {
                          renderError={this.props.renderError}
                          renderRequiredAsterisk={this.props.renderRequiredAsterisk}
                          onQuestionFocus={this.handleQuestionFocus.bind(this)}
+                         onQuestionClick={this.handleQuestionClick.bind(this)}
                          onAnswerChange={this.handleAnswerChange.bind(this)}
                          onPanelBack={this.handleBackButtonClick.bind(this)}
                          onSwitchPanel={this.handleSwitchPanel.bind(this)}

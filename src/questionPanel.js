@@ -160,6 +160,10 @@ class QuestionPanel extends React.Component {
     this.props.onQuestionFocus(questionId);
   }
 
+  handleQuestionClick(questionId) {
+    this.props.onQuestionClick(questionId);
+  }
+
   handleInputKeyDown(e) {
     if (KeyCodez[e.keyCode] === 'enter') {
       e.preventDefault();
@@ -191,6 +195,7 @@ class QuestionPanel extends React.Component {
                      validationErrors={this.state.validationErrors}
                      onAnswerChange={this.handleAnswerChange.bind(this)}
                      onQuestionFocus={this.handleQuestionFocus.bind(this)}
+                     onQuestionClick={this.handleQuestionClick.bind(this)}
                      onQuestionBlur={this.handleQuestionBlur.bind(this)}
                      onKeyDown={this.handleInputKeyDown.bind(this)} />
       );
@@ -269,6 +274,7 @@ QuestionPanel.defaultProps = {
   renderRequiredAsterisk : undefined,
   onAnswerChange         : () => {},
   onQuestionFocus        : () => {},
+  onQuestionClick        : () => {},
   onSwitchPanel          : () => {},
   onPanelBack            : () => {},
   panelHistory           : [],
