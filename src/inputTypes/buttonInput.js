@@ -11,7 +11,7 @@ class ButtonInput extends React.Component {
   render() {
     return (
       <button
-         className={this.props.classes.buttonInput}
+         className={this.props.class}
          onClick={this.handleClick.bind(this)}>
         {this.props.text}
       </button>
@@ -21,11 +21,10 @@ class ButtonInput extends React.Component {
 };
 
 ButtonInput.defaultProps = {
-  id        : '',  
-  icon      : '',
-  name      : '',
+  id        : undefined,  
+  icon      : undefined,
   text      : 'Add',
-  classes   : '',
+  class     : '',
   onClick   : () => {}
 };
 

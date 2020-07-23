@@ -2601,7 +2601,7 @@ class buttonInput_ButtonInput extends external_commonjs_react_commonjs2_react_am
 
   render() {
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("button", {
-      className: this.props.classes.buttonInput,
+      className: this.props.class,
       onClick: this.handleClick.bind(this)
     }, this.props.text);
   }
@@ -2610,11 +2610,10 @@ class buttonInput_ButtonInput extends external_commonjs_react_commonjs2_react_am
 
 ;
 buttonInput_ButtonInput.defaultProps = {
-  id: '',
-  icon: '',
-  name: '',
+  id: undefined,
+  icon: undefined,
   text: 'Add',
-  classes: '',
+  class: '',
   onClick: () => {}
 };
 /* harmony default export */ var buttonInput = (buttonInput_ButtonInput);
