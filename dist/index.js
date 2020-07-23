@@ -2601,7 +2601,7 @@ class buttonInput_ButtonInput extends external_commonjs_react_commonjs2_react_am
 
   render() {
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("button", {
-      className: this.props.classes.input,
+      className: this.props.classes.buttonInput,
       onClick: this.handleClick.bind(this)
     }, this.props.text);
   }
@@ -2614,7 +2614,7 @@ buttonInput_ButtonInput.defaultProps = {
   icon: '',
   name: '',
   text: 'Add',
-  classes: {},
+  classes: '',
   onClick: () => {}
 };
 /* harmony default export */ var buttonInput = (buttonInput_ButtonInput);
@@ -2818,7 +2818,9 @@ question_Question.defaultProps = {
     default: undefined,
     type: 'textInput',
     limit: undefined,
-    placeholder: undefined
+    placeholder: undefined,
+    icon: undefined,
+    class: undefined
   },
   classes: {},
   questionAnswers: {},
