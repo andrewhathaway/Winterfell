@@ -123,10 +123,8 @@ class Winterfell extends React.Component {
     this.props.onQuestionFocus(questionId);
   }
 
-  handleQuestionClick(questionId) {
-    //1. build and test we get here AM
-    console.log(questionId);
-    this.props.onQuestionClick(questionId);
+  handleQuestionClick(questionSetId) {
+    this.props.onQuestionClick(questionSetId);
   }
 
 

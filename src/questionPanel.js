@@ -160,8 +160,8 @@ class QuestionPanel extends React.Component {
     this.props.onQuestionFocus(questionId);
   }
 
-  handleQuestionClick(questionId) {
-    this.props.onQuestionClick(questionId);
+  handleQuestionClick(questionSetId) {
+    this.props.onQuestionClick(questionSetId);
   }
 
   handleInputKeyDown(e) {

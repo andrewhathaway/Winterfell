@@ -2594,9 +2594,8 @@ textInput_TextInput.defaultProps = {
 
 class buttonInput_ButtonInput extends external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Component {
   handleClick(e) {
-    console.log('clicked button');
     e.preventDefault();
-    this.props.onClick(this.props.id);
+    this.props.onClick(this.props.questionSetId);
   }
 
   render() {
@@ -2610,6 +2609,7 @@ class buttonInput_ButtonInput extends external_commonjs_react_commonjs2_react_am
 
 ;
 buttonInput_ButtonInput.defaultProps = {
+  questionSetId: undefined,
   id: undefined,
   icon: undefined,
   text: 'Add',
@@ -2699,8 +2699,8 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     this.props.onQuestionFocus(questionId);
   }
 
-  handleInputClick(questionId) {
-    this.props.onQuestionClick(questionId);
+  handleInputClick(questionSetId) {
+    this.props.onQuestionClick(questionSetId);
   }
 
   render() {
@@ -2776,6 +2776,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     }, this.props.text) : undefined, validationErrors, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Input, _extends({
       name: this.props.questionId,
       id: this.props.questionId,
+      questionSetId: this.props.questionSetId,
       labelId: labelId,
       value: value,
       text: this.props.input.text,
@@ -2787,7 +2788,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       classes: this.props.classes,
       onChange: this.handleInputChange.bind(this, this.props.questionId),
       onFocus: this.handleInputFocus.bind(this, this.props.questionId),
-      onClick: this.handleInputClick.bind(this, this.props.questionId),
+      onClick: this.handleInputClick.bind(this, this.props.questionSetId),
       onBlur: this.handleInputBlur.bind(this, this.props.questionId),
       onKeyDown: this.props.onKeyDown
     }, typeof this.props.input.props === 'object' ? this.props.input.props : {})), !!this.props.postText ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
@@ -3044,8 +3045,8 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
     this.props.onQuestionFocus(questionId);
   }
 
-  handleQuestionClick(questionId) {
-    this.props.onQuestionClick(questionId);
+  handleQuestionClick(questionSetId) {
+    this.props.onQuestionClick(questionSetId);
   }
 
   handleInputKeyDown(e) {
@@ -3243,10 +3244,8 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
     this.props.onQuestionFocus(questionId);
   }
 
-  handleQuestionClick(questionId) {
-    //1. build and test we get here AM
-    console.log(questionId);
-    this.props.onQuestionClick(questionId);
+  handleQuestionClick(questionSetId) {
+    this.props.onQuestionClick(questionSetId);
   }
 
   handleSubmit(action) {

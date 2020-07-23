@@ -26,8 +26,8 @@ class Question extends React.Component {
     this.props.onQuestionFocus(questionId);
   }
 
-  handleInputClick(questionId) {
-    this.props.onQuestionClick(questionId);
+  handleInputClick(questionSetId) {
+    this.props.onQuestionClick(questionSetId);
   }
 
   render() {
@@ -137,6 +137,7 @@ class Question extends React.Component {
         {validationErrors}
         <Input name={this.props.questionId}
                id={this.props.questionId}
+               questionSetId={this.props.questionSetId}
                labelId={labelId}
                value={value}
                text={this.props.input.text}
@@ -148,7 +149,7 @@ class Question extends React.Component {
                classes={this.props.classes}
                onChange={this.handleInputChange.bind(this, this.props.questionId)}
                onFocus={this.handleInputFocus.bind(this, this.props.questionId)}
-               onClick={this.handleInputClick.bind(this, this.props.questionId)}
+               onClick={this.handleInputClick.bind(this, this.props.questionSetId)}
                onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
                onKeyDown={this.props.onKeyDown}
                {...(typeof this.props.input.props === 'object'

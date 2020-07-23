@@ -3,9 +3,8 @@ import React from 'react';
 class ButtonInput extends React.Component {
 
   handleClick(e) {
-    console.log('clicked button');
     e.preventDefault();
-    this.props.onClick(this.props.id);
+    this.props.onClick(this.props.questionSetId);
   }
 
   render() {
@@ -21,11 +20,12 @@ class ButtonInput extends React.Component {
 };
 
 ButtonInput.defaultProps = {
-  id        : undefined,  
-  icon      : undefined,
-  text      : 'Add',
-  class     : '',
-  onClick   : () => {}
+  questionSetId     : undefined,
+  id                : undefined,  
+  icon              : undefined,
+  text              : 'Add',
+  class             : '',
+  onClick           : () => {}
 };
 
 export default ButtonInput;
