@@ -2593,15 +2593,16 @@ textInput_TextInput.defaultProps = {
 
 
 class buttonInput_ButtonInput extends external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Component {
-  handleClick(e, id) {
+  handleClick(e) {
+    console.log('clicked button');
     e.preventDefault();
-    this.props.onClick(id);
+    this.props.onClick(this.props.id);
   }
 
   render() {
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("button", {
       className: this.props.classes.input,
-      onClick: e => this.handleClick.bind(e, this.props.id)
+      onClick: this.handleClick.bind(this)
     }, this.props.text);
   }
 
@@ -2613,7 +2614,7 @@ buttonInput_ButtonInput.defaultProps = {
   icon: '',
   name: '',
   text: 'Add',
-  className: undefined,
+  classes: {},
   onClick: () => {}
 };
 /* harmony default export */ var buttonInput = (buttonInput_ButtonInput);
