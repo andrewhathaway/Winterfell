@@ -2791,7 +2791,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       classes: this.props.classes,
       onChange: this.handleInputChange.bind(this, this.props.questionId),
       onFocus: this.handleInputFocus.bind(this, this.props.questionId),
-      onClick: this.handleInputClick.bind(this, this.props.questionSetId),
+      onClick: this.handleInputClick.bind(this, this.props.questionSetId, this.props.id),
       onBlur: this.handleInputBlur.bind(this, this.props.questionId),
       onKeyDown: this.props.onKeyDown
     }, typeof this.props.input.props === 'object' ? this.props.input.props : {})), !!this.props.postText ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
@@ -3049,8 +3049,8 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
     this.props.onQuestionFocus(questionId);
   }
 
-  handleQuestionClick(questionSetId, id) {
-    this.props.onQuestionClick(questionSetId, id);
+  handleQuestionClick(questionSetId, questionId) {
+    this.props.onQuestionClick(questionSetId, questionId);
   }
 
   handleInputKeyDown(e) {
@@ -3248,8 +3248,8 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
     this.props.onQuestionFocus(questionId);
   }
 
-  handleQuestionClick(questionSetId, id) {
-    this.props.onQuestionClick(questionSetId, id);
+  handleQuestionClick(questionSetId, questionId) {
+    this.props.onQuestionClick(questionSetId, questionId);
   }
 
   handleSubmit(action) {
