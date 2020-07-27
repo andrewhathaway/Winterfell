@@ -23,7 +23,6 @@ ButtonInput.defaultProps = {
   questionSetId     : undefined,
   id                : undefined,  
   action            : undefined,
-  panelId           : undefined,
   text              : 'Add',
   placeholder       : undefined,
   class             : '',

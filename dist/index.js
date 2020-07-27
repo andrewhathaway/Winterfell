@@ -2612,7 +2612,6 @@ buttonInput_ButtonInput.defaultProps = {
   questionSetId: undefined,
   id: undefined,
   action: undefined,
-  panelId: undefined,
   text: 'Add',
   placeholder: undefined,
   class: '',
@@ -3050,8 +3049,8 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
     this.props.onQuestionFocus(questionId);
   }
 
-  handleQuestionClick(questionSetId, questionId) {
-    this.props.onQuestionClick(questionSetId, questionId);
+  handleQuestionClick(questionSetId, id) {
+    this.props.onQuestionClick(questionSetId, id);
   }
 
   handleInputKeyDown(e) {
@@ -3249,8 +3248,8 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
     this.props.onQuestionFocus(questionId);
   }
 
-  handleQuestionClick(questionSetId, questionId) {
-    this.props.onQuestionClick(questionSetId, questionId);
+  handleQuestionClick(questionSetId, id) {
+    this.props.onQuestionClick(questionSetId, id);
   }
 
   handleSubmit(action) {
