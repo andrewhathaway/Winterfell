@@ -26,8 +26,8 @@ class Question extends React.Component {
     this.props.onQuestionFocus(questionId);
   }
 
-  handleInputClick(questionSetId) {
-    this.props.onQuestionClick(questionSetId);
+  handleInputClick(questionSetId, questionId) {
+    this.props.onQuestionClick(questionSetId, questionId);
   }
 
   render() {
@@ -143,6 +143,7 @@ class Question extends React.Component {
                text={this.props.input.text}
                icon={this.props.input.icon}
                class={this.props.input.class}
+               action={this.props.input.action}
                options={this.props.input.options}
                placeholder={this.props.input.placeholder}
                required={this.props.input.required}
@@ -200,6 +201,7 @@ Question.defaultProps = {
     placeholder : undefined,
     icon        : undefined,
     class       : undefined,
+    action      : undefined
   },
   classes                : {},
   questionAnswers        : {},

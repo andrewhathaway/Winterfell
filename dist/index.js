@@ -2595,7 +2595,7 @@ textInput_TextInput.defaultProps = {
 class buttonInput_ButtonInput extends external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Component {
   handleClick(e) {
     e.preventDefault();
-    this.props.onClick(this.props.questionSetId);
+    this.props.onClick(this.props.questionSetId, this.props.id);
   }
 
   render() {
@@ -2611,9 +2611,12 @@ class buttonInput_ButtonInput extends external_commonjs_react_commonjs2_react_am
 buttonInput_ButtonInput.defaultProps = {
   questionSetId: undefined,
   id: undefined,
-  icon: undefined,
+  action: undefined,
+  panelId: undefined,
   text: 'Add',
+  placeholder: undefined,
   class: '',
+  icon: undefined,
   onClick: () => {}
 };
 /* harmony default export */ var buttonInput = (buttonInput_ButtonInput);
@@ -2699,8 +2702,8 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     this.props.onQuestionFocus(questionId);
   }
 
-  handleInputClick(questionSetId) {
-    this.props.onQuestionClick(questionSetId);
+  handleInputClick(questionSetId, questionId) {
+    this.props.onQuestionClick(questionSetId, questionId);
   }
 
   render() {
@@ -2782,6 +2785,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       text: this.props.input.text,
       icon: this.props.input.icon,
       class: this.props.input.class,
+      action: this.props.input.action,
       options: this.props.input.options,
       placeholder: this.props.input.placeholder,
       required: this.props.input.required,
@@ -2822,7 +2826,8 @@ question_Question.defaultProps = {
     limit: undefined,
     placeholder: undefined,
     icon: undefined,
-    class: undefined
+    class: undefined,
+    action: undefined
   },
   classes: {},
   questionAnswers: {},
@@ -3045,8 +3050,8 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
     this.props.onQuestionFocus(questionId);
   }
 
-  handleQuestionClick(questionSetId) {
-    this.props.onQuestionClick(questionSetId);
+  handleQuestionClick(questionSetId, questionId) {
+    this.props.onQuestionClick(questionSetId, questionId);
   }
 
   handleInputKeyDown(e) {
@@ -3244,8 +3249,8 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
     this.props.onQuestionFocus(questionId);
   }
 
-  handleQuestionClick(questionSetId) {
-    this.props.onQuestionClick(questionSetId);
+  handleQuestionClick(questionSetId, questionId) {
+    this.props.onQuestionClick(questionSetId, questionId);
   }
 
   handleSubmit(action) {
