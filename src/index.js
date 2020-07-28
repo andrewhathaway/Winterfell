@@ -89,7 +89,7 @@ class Winterfell extends React.Component {
 
     this.setState({
       questionAnswers : questionAnswers,
-    }, this.props.onUpdate.bind(null, questionAnswers));
+    }, this.props.onUpdate.bind(null, questionId, questionAnswers));
   }
 
   handleSwitchPanel(panelId, preventHistory) {

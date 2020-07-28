@@ -3218,7 +3218,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
 
     this.setState({
       questionAnswers: questionAnswers
-    }, this.props.onUpdate.bind(null, questionAnswers));
+    }, this.props.onUpdate.bind(null, questionId, questionAnswers));
   }
 
   handleSwitchPanel(panelId, preventHistory) {
