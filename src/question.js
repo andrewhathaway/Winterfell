@@ -91,7 +91,8 @@ class Question extends React.Component {
                   ? this.props.value
                   : typeof this.props.input.default !== 'undefined'
                       ? this.props.input.default
-                      : undefined;
+                      : typeof this.props.questionAnswers[this.props.questionId] !== 'undefined'
+                      ? this.props.questionAnswers[this.props.questionId] : undefined;
 
     // Disable input
     var disabled = typeof this.props.input.disabled !== 'undefined'
