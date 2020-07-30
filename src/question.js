@@ -93,6 +93,11 @@ class Question extends React.Component {
                       ? this.props.input.default
                       : undefined;
 
+    // Disable input
+    var disabled = typeof this.props.input.disabled !== 'undefined'
+                  ? this.props.input.disabled
+                  : false;
+
     // Retrieve the validation errors for the
     // current question and map them in to
     // error-message blocks.
@@ -140,6 +145,7 @@ class Question extends React.Component {
                questionSetId={this.props.questionSetId}
                labelId={labelId}
                value={value}
+               disabled={disabled}
                text={this.props.input.text}
                icon={this.props.input.icon}
                class={this.props.input.class}
@@ -201,7 +207,8 @@ Question.defaultProps = {
     placeholder : undefined,
     icon        : undefined,
     class       : undefined,
-    action      : undefined
+    action      : undefined,
+    disabled    : undefined,
   },
   classes                : {},
   questionAnswers        : {},

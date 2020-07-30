@@ -2220,6 +2220,12 @@ class emailInput_EmailInput extends external_commonjs_react_commonjs2_react_amd_
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) this.setState({
+      value: nextProps.value
+    });
+  }
+
   handleChange(e) {
     this.setState({
       value: e.target.value
@@ -2235,6 +2241,7 @@ class emailInput_EmailInput extends external_commonjs_react_commonjs2_react_amd_
       className: this.props.classes.input,
       placeholder: this.props.placeholder,
       value: this.state.value,
+      disabled: this.props.disabled ? true : undefined,
       required: this.props.required ? 'required' : undefined,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
@@ -2252,6 +2259,7 @@ emailInput_EmailInput.defaultProps = {
   id: '',
   value: '',
   placeholder: '',
+  disabled: undefined,
   onChange: () => {},
   onBlur: () => {},
   onKeyDown: () => {},
@@ -2443,6 +2451,12 @@ class selectInput_SelectInput extends external_commonjs_react_commonjs2_react_am
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) this.setState({
+      value: nextProps.value
+    });
+  }
+
   handleChange(e) {
     this.setState({
       value: e.target.value
@@ -2504,6 +2518,12 @@ class textareaInput_TextareaInput extends external_commonjs_react_commonjs2_reac
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) this.setState({
+      value: nextProps.value
+    });
+  }
+
   handleChange(e) {
     this.setState({
       value: e.target.value
@@ -2519,6 +2539,7 @@ class textareaInput_TextareaInput extends external_commonjs_react_commonjs2_reac
       className: this.props.classes.input,
       placeholder: this.props.placeholder,
       value: this.state.value,
+      disabled: this.props.disabled ? true : undefined,
       required: this.props.required ? 'required' : undefined,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
@@ -2535,6 +2556,7 @@ textareaInput_TextareaInput.defaultProps = {
   id: '',
   value: '',
   placeholder: '',
+  disabled: undefined,
   onChange: () => {},
   onBlur: () => {},
   onFocus: () => {}
@@ -2549,6 +2571,12 @@ class textInput_TextInput extends external_commonjs_react_commonjs2_react_amd_Re
     this.state = {
       value: this.props.value
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) this.setState({
+      value: nextProps.value
+    });
   }
 
   handleChange(e) {
@@ -2566,6 +2594,7 @@ class textInput_TextInput extends external_commonjs_react_commonjs2_react_amd_Re
       className: this.props.classes.input,
       placeholder: this.props.placeholder,
       value: this.state.value,
+      disabled: this.props.disabled ? true : undefined,
       required: this.props.required ? 'required' : undefined,
       onChange: this.handleChange.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value),
@@ -2583,6 +2612,7 @@ textInput_TextInput.defaultProps = {
   id: '',
   value: '',
   placeholder: '',
+  disabled: undefined,
   onChange: () => {},
   onBlur: () => {},
   onKeyDown: () => {},
@@ -2756,7 +2786,9 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     // the default if given.
 
 
-    var value = typeof this.props.value !== 'undefined' ? this.props.value : typeof this.props.input.default !== 'undefined' ? this.props.input.default : undefined; // Retrieve the validation errors for the
+    var value = typeof this.props.value !== 'undefined' ? this.props.value : typeof this.props.input.default !== 'undefined' ? this.props.input.default : undefined; // Disable input
+
+    var disabled = typeof this.props.input.disabled !== 'undefined' ? this.props.input.disabled : false; // Retrieve the validation errors for the
     // current question and map them in to
     // error-message blocks.
 
@@ -2781,6 +2813,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       questionSetId: this.props.questionSetId,
       labelId: labelId,
       value: value,
+      disabled: disabled,
       text: this.props.input.text,
       icon: this.props.input.icon,
       class: this.props.input.class,
@@ -2826,7 +2859,8 @@ question_Question.defaultProps = {
     placeholder: undefined,
     icon: undefined,
     class: undefined,
-    action: undefined
+    action: undefined,
+    disabled: undefined
   },
   classes: {},
   questionAnswers: {},

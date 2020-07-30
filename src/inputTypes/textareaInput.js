@@ -10,6 +10,11 @@ class TextareaInput extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(this.props.value !== nextProps.value)
+    this.setState({value: nextProps.value});
+  }
+
   handleChange(e) {
     this.setState({
       value : e.target.value
@@ -25,6 +30,7 @@ class TextareaInput extends React.Component {
                 className={this.props.classes.input}
                 placeholder={this.props.placeholder}
                 value={this.state.value}
+                disabled={this.props.disabled ? true : undefined}
                 required={this.props.required
                             ? 'required'
                             : undefined}
@@ -42,6 +48,7 @@ TextareaInput.defaultProps = {
   id          : '',
   value       : '',
   placeholder : '',
+  disabled    : undefined,
   onChange    : () => {},
   onBlur      : () => {},
   onFocus     : () => {}
