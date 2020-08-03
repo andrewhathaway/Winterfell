@@ -25,6 +25,7 @@ class QuestionSet extends React.Component {
                   onAnswerChange={this.props.onAnswerChange}
                   onQuestionBlur={this.props.onQuestionBlur}
                   onQuestionFocus={this.props.onQuestionFocus}
+                  onQuestionClick={this.props.onQuestionClick}
                   onKeyDown={this.props.onKeyDown} />
       );
     });
@@ -69,6 +70,7 @@ QuestionSet.defaultProps = {
   onAnswerChange         : () => {},
   onQuestionBlur         : () => {},
   onQuestionFocus        : () => {},
+  onQuestionClick        : () => {},
   onKeyDown              : () => {}
 };
 

@@ -26,6 +26,10 @@ class Question extends React.Component {
     this.props.onQuestionFocus(questionId);
   }
 
+  handleInputClick(questionSetId, questionId) {
+    this.props.onQuestionClick(questionSetId, questionId);
+  }
+
   render() {
     var Input = inputTypes[this.props.input.type];
     if (!Input) {
@@ -73,6 +77,7 @@ class Question extends React.Component {
                           validationErrors={this.props.validationErrors}
                           onAnswerChange={this.props.onAnswerChange}
                           onQuestionFocus={this.props.onQuestionFocus}
+                          onQuestionClick={this.props.onQuestionClick}
                           onQuestionBlur={this.props.onQuestionBlur}
                           onKeyDown={this.props.onKeyDown} />
               );
@@ -86,7 +91,13 @@ class Question extends React.Component {
                   ? this.props.value
                   : typeof this.props.input.default !== 'undefined'
                       ? this.props.input.default
-                      : undefined;
+                      : typeof this.props.questionAnswers[this.props.questionId] !== 'undefined'
+                      ? this.props.questionAnswers[this.props.questionId] : undefined;
+
+    // Disable input
+    var disabled = typeof this.props.input.disabled !== 'undefined'
+                  ? this.props.input.disabled
+                  : false;
 
     // Retrieve the validation errors for the
     // current question and map them in to
@@ -132,15 +143,21 @@ class Question extends React.Component {
         {validationErrors}
         <Input name={this.props.questionId}
                id={this.props.questionId}
+               questionSetId={this.props.questionSetId}
                labelId={labelId}
                value={value}
+               disabled={disabled}
                text={this.props.input.text}
+               icon={this.props.input.icon}
+               class={this.props.input.class}
+               action={this.props.input.action}
                options={this.props.input.options}
                placeholder={this.props.input.placeholder}
                required={this.props.input.required}
                classes={this.props.classes}
                onChange={this.handleInputChange.bind(this, this.props.questionId)}
                onFocus={this.handleInputFocus.bind(this, this.props.questionId)}
+               onClick={this.handleInputClick.bind(this, this.props.questionSetId, this.props.questionId)}
                onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
                onKeyDown={this.props.onKeyDown}
                {...(typeof this.props.input.props === 'object'
@@ -188,7 +205,11 @@ Question.defaultProps = {
     default     : undefined,
     type        : 'textInput',
     limit       : undefined,
-    placeholder : undefined
+    placeholder : undefined,
+    icon        : undefined,
+    class       : undefined,
+    action      : undefined,
+    disabled    : undefined,
   },
   classes                : {},
   questionAnswers        : {},

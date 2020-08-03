@@ -2220,6 +2220,12 @@ class emailInput_EmailInput extends external_commonjs_react_commonjs2_react_amd_
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) this.setState({
+      value: nextProps.value
+    });
+  }
+
   handleChange(e) {
     this.setState({
       value: e.target.value
@@ -2235,6 +2241,7 @@ class emailInput_EmailInput extends external_commonjs_react_commonjs2_react_amd_
       className: this.props.classes.input,
       placeholder: this.props.placeholder,
       value: this.state.value,
+      disabled: this.props.disabled ? true : undefined,
       required: this.props.required ? 'required' : undefined,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
@@ -2252,6 +2259,7 @@ emailInput_EmailInput.defaultProps = {
   id: '',
   value: '',
   placeholder: '',
+  disabled: undefined,
   onChange: () => {},
   onBlur: () => {},
   onKeyDown: () => {},
@@ -2443,6 +2451,12 @@ class selectInput_SelectInput extends external_commonjs_react_commonjs2_react_am
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) this.setState({
+      value: nextProps.value
+    });
+  }
+
   handleChange(e) {
     this.setState({
       value: e.target.value
@@ -2504,6 +2518,12 @@ class textareaInput_TextareaInput extends external_commonjs_react_commonjs2_reac
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) this.setState({
+      value: nextProps.value
+    });
+  }
+
   handleChange(e) {
     this.setState({
       value: e.target.value
@@ -2519,6 +2539,7 @@ class textareaInput_TextareaInput extends external_commonjs_react_commonjs2_reac
       className: this.props.classes.input,
       placeholder: this.props.placeholder,
       value: this.state.value,
+      disabled: this.props.disabled ? true : undefined,
       required: this.props.required ? 'required' : undefined,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
@@ -2535,6 +2556,7 @@ textareaInput_TextareaInput.defaultProps = {
   id: '',
   value: '',
   placeholder: '',
+  disabled: undefined,
   onChange: () => {},
   onBlur: () => {},
   onFocus: () => {}
@@ -2549,6 +2571,12 @@ class textInput_TextInput extends external_commonjs_react_commonjs2_react_amd_Re
     this.state = {
       value: this.props.value
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) this.setState({
+      value: nextProps.value
+    });
   }
 
   handleChange(e) {
@@ -2566,6 +2594,7 @@ class textInput_TextInput extends external_commonjs_react_commonjs2_react_amd_Re
       className: this.props.classes.input,
       placeholder: this.props.placeholder,
       value: this.state.value,
+      disabled: this.props.disabled ? true : undefined,
       required: this.props.required ? 'required' : undefined,
       onChange: this.handleChange.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value),
@@ -2583,13 +2612,45 @@ textInput_TextInput.defaultProps = {
   id: '',
   value: '',
   placeholder: '',
+  disabled: undefined,
   onChange: () => {},
   onBlur: () => {},
   onKeyDown: () => {},
   onFocus: () => {}
 };
 /* harmony default export */ var textInput = (textInput_TextInput);
+// CONCATENATED MODULE: ./inputTypes/buttonInput.js
+
+
+class buttonInput_ButtonInput extends external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Component {
+  handleClick(e) {
+    e.preventDefault();
+    this.props.onClick(this.props.questionSetId, this.props.id);
+  }
+
+  render() {
+    return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("button", {
+      className: this.props.class,
+      onClick: this.handleClick.bind(this)
+    }, this.props.text);
+  }
+
+}
+
+;
+buttonInput_ButtonInput.defaultProps = {
+  questionSetId: undefined,
+  id: undefined,
+  action: undefined,
+  text: 'Add',
+  placeholder: undefined,
+  class: '',
+  icon: undefined,
+  onClick: () => {}
+};
+/* harmony default export */ var buttonInput = (buttonInput_ButtonInput);
 // CONCATENATED MODULE: ./inputTypes/index.js
+
 
 
 
@@ -2611,7 +2672,8 @@ let inputTypes = {
   radioOptionsInput: radioOptionsInput,
   selectInput: selectInput,
   textareaInput: textareaInput,
-  textInput: textInput
+  textInput: textInput,
+  buttonInput: buttonInput
 };
 /**
  * Add an input type
@@ -2669,6 +2731,10 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     this.props.onQuestionFocus(questionId);
   }
 
+  handleInputClick(questionSetId, questionId) {
+    this.props.onQuestionClick(questionSetId, questionId);
+  }
+
   render() {
     var Input = inputTypes_0[this.props.input.type];
 
@@ -2711,6 +2777,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
           validationErrors: this.props.validationErrors,
           onAnswerChange: this.props.onAnswerChange,
           onQuestionFocus: this.props.onQuestionFocus,
+          onQuestionClick: this.props.onQuestionClick,
           onQuestionBlur: this.props.onQuestionBlur,
           onKeyDown: this.props.onKeyDown
         }));
@@ -2719,7 +2786,9 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     // the default if given.
 
 
-    var value = typeof this.props.value !== 'undefined' ? this.props.value : typeof this.props.input.default !== 'undefined' ? this.props.input.default : undefined; // Retrieve the validation errors for the
+    var value = typeof this.props.value !== 'undefined' ? this.props.value : typeof this.props.input.default !== 'undefined' ? this.props.input.default : typeof this.props.questionAnswers[this.props.questionId] !== 'undefined' ? this.props.questionAnswers[this.props.questionId] : undefined; // Disable input
+
+    var disabled = typeof this.props.input.disabled !== 'undefined' ? this.props.input.disabled : false; // Retrieve the validation errors for the
     // current question and map them in to
     // error-message blocks.
 
@@ -2741,15 +2810,21 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     }, this.props.text) : undefined, validationErrors, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Input, _extends({
       name: this.props.questionId,
       id: this.props.questionId,
+      questionSetId: this.props.questionSetId,
       labelId: labelId,
       value: value,
+      disabled: disabled,
       text: this.props.input.text,
+      icon: this.props.input.icon,
+      class: this.props.input.class,
+      action: this.props.input.action,
       options: this.props.input.options,
       placeholder: this.props.input.placeholder,
       required: this.props.input.required,
       classes: this.props.classes,
       onChange: this.handleInputChange.bind(this, this.props.questionId),
       onFocus: this.handleInputFocus.bind(this, this.props.questionId),
+      onClick: this.handleInputClick.bind(this, this.props.questionSetId, this.props.questionId),
       onBlur: this.handleInputBlur.bind(this, this.props.questionId),
       onKeyDown: this.props.onKeyDown
     }, typeof this.props.input.props === 'object' ? this.props.input.props : {})), !!this.props.postText ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
@@ -2781,7 +2856,11 @@ question_Question.defaultProps = {
     default: undefined,
     type: 'textInput',
     limit: undefined,
-    placeholder: undefined
+    placeholder: undefined,
+    icon: undefined,
+    class: undefined,
+    action: undefined,
+    disabled: undefined
   },
   classes: {},
   questionAnswers: {},
@@ -2821,6 +2900,7 @@ class questionSet_QuestionSet extends external_commonjs_react_commonjs2_react_am
         onAnswerChange: this.props.onAnswerChange,
         onQuestionBlur: this.props.onQuestionBlur,
         onQuestionFocus: this.props.onQuestionFocus,
+        onQuestionClick: this.props.onQuestionClick,
         onKeyDown: this.props.onKeyDown
       });
     });
@@ -2852,6 +2932,7 @@ questionSet_QuestionSet.defaultProps = {
   onAnswerChange: () => {},
   onQuestionBlur: () => {},
   onQuestionFocus: () => {},
+  onQuestionClick: () => {},
   onKeyDown: () => {}
 };
 /* harmony default export */ var questionSet_0 = (questionSet_QuestionSet);
@@ -3002,6 +3083,10 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
     this.props.onQuestionFocus(questionId);
   }
 
+  handleQuestionClick(questionSetId, questionId) {
+    this.props.onQuestionClick(questionSetId, questionId);
+  }
+
   handleInputKeyDown(e) {
     if (keycodez_default.a[e.keyCode] === 'enter') {
       e.preventDefault();
@@ -3033,6 +3118,7 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
         validationErrors: this.state.validationErrors,
         onAnswerChange: this.handleAnswerChange.bind(this),
         onQuestionFocus: this.handleQuestionFocus.bind(this),
+        onQuestionClick: this.handleQuestionClick.bind(this),
         onQuestionBlur: this.handleQuestionBlur.bind(this),
         onKeyDown: this.handleInputKeyDown.bind(this)
       });
@@ -3087,6 +3173,7 @@ questionPanel_QuestionPanel.defaultProps = {
   renderRequiredAsterisk: undefined,
   onAnswerChange: () => {},
   onQuestionFocus: () => {},
+  onQuestionClick: () => {},
   onSwitchPanel: () => {},
   onPanelBack: () => {},
   panelHistory: []
@@ -3136,7 +3223,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       this.setState({
         action: nextProps.action,
         schema: nextProps.schema,
-        questionAnswers: Object.assign({}, nextProps.questionAnswers, this.state.questionAnswers),
+        questionAnswers: nextProps.questionAnswers,
         panelId: nextProps.panelId,
         validationErrors: nextProps.validationErrors
       });
@@ -3155,7 +3242,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
         action: nextProps.action,
         schema: nextProps.schema,
         validationErrors: nextProps.validationErrors,
-        questionAnswers: Object.assign({}, nextProps.questionAnswers, this.state.questionAnswers)
+        questionAnswers: nextProps.questionAnswers
       });
     }
   }
@@ -3165,7 +3252,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
 
     this.setState({
       questionAnswers: questionAnswers
-    }, this.props.onUpdate.bind(null, questionAnswers));
+    }, this.props.onUpdate.bind(null, questionId, questionAnswers));
   }
 
   handleSwitchPanel(panelId, preventHistory) {
@@ -3193,6 +3280,10 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
 
   handleQuestionFocus(questionId) {
     this.props.onQuestionFocus(questionId);
+  }
+
+  handleQuestionClick(questionSetId, questionId) {
+    this.props.onQuestionClick(questionSetId, questionId);
   }
 
   handleSubmit(action) {
@@ -3245,6 +3336,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       renderError: this.props.renderError,
       renderRequiredAsterisk: this.props.renderRequiredAsterisk,
       onQuestionFocus: this.handleQuestionFocus.bind(this),
+      onQuestionClick: this.handleQuestionClick.bind(this),
       onAnswerChange: this.handleAnswerChange.bind(this),
       onPanelBack: this.handleBackButtonClick.bind(this),
       onSwitchPanel: this.handleSwitchPanel.bind(this),
@@ -3283,7 +3375,8 @@ index_Winterfell.defaultProps = {
   onUpdate: () => {},
   onSwitchPanel: () => {},
   onRender: () => {},
-  onQuestionFocus: () => {}
+  onQuestionFocus: () => {},
+  onQuestionClick: () => {}
 };
 /* harmony default export */ var index = __webpack_exports__["default"] = (index_Winterfell);
 

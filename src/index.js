@@ -58,7 +58,7 @@ class Winterfell extends React.Component {
       this.setState({
         action          : nextProps.action,
         schema          : nextProps.schema,
-        questionAnswers : Object.assign({}, nextProps.questionAnswers, this.state.questionAnswers),
+        questionAnswers : nextProps.questionAnswers,
         panelId         : nextProps.panelId,
         validationErrors: nextProps.validationErrors
       });
@@ -77,7 +77,7 @@ class Winterfell extends React.Component {
         action          : nextProps.action,
         schema          : nextProps.schema,
         validationErrors: nextProps.validationErrors,
-        questionAnswers : Object.assign({}, nextProps.questionAnswers, this.state.questionAnswers)
+        questionAnswers : nextProps.questionAnswers
       });
     }
   }
@@ -89,7 +89,7 @@ class Winterfell extends React.Component {
 
     this.setState({
       questionAnswers : questionAnswers,
-    }, this.props.onUpdate.bind(null, questionAnswers));
+    }, this.props.onUpdate.bind(null, questionId, questionAnswers));
   }
 
   handleSwitchPanel(panelId, preventHistory) {
@@ -121,6 +121,10 @@ class Winterfell extends React.Component {
 
   handleQuestionFocus(questionId) {
     this.props.onQuestionFocus(questionId);
+  }
+
+  handleQuestionClick(questionSetId, questionId) {
+    this.props.onQuestionClick(questionSetId, questionId);
   }
 
 
@@ -172,6 +176,7 @@ class Winterfell extends React.Component {
                          renderError={this.props.renderError}
                          renderRequiredAsterisk={this.props.renderRequiredAsterisk}
                          onQuestionFocus={this.handleQuestionFocus.bind(this)}
+                         onQuestionClick={this.handleQuestionClick.bind(this)}
                          onAnswerChange={this.handleAnswerChange.bind(this)}
                          onPanelBack={this.handleBackButtonClick.bind(this)}
                          onSwitchPanel={this.handleSwitchPanel.bind(this)}
@@ -215,8 +220,8 @@ Winterfell.defaultProps = {
   onUpdate               : () => {},
   onSwitchPanel          : () => {},
   onRender               : () => {},
-  onQuestionFocus        : () => {}
-
+  onQuestionFocus        : () => {},
+  onQuestionClick        : () => {}
 };
 
 export default Winterfell;
