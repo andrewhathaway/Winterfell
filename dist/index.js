@@ -3223,7 +3223,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       this.setState({
         action: nextProps.action,
         schema: nextProps.schema,
-        questionAnswers: nextProps.questionAnswers,
+        questionAnswers: Object.assign({}, nextProps.questionAnswers, this.state.questionAnswers),
         panelId: nextProps.panelId,
         validationErrors: nextProps.validationErrors
       });
@@ -3242,7 +3242,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
         action: nextProps.action,
         schema: nextProps.schema,
         validationErrors: nextProps.validationErrors,
-        questionAnswers: nextProps.questionAnswers
+        questionAnswers: Object.assign({}, nextProps.questionAnswers, this.state.questionAnswers)
       });
     }
   }
