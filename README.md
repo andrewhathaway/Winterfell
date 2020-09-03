@@ -56,6 +56,7 @@ React.render(
 - Ability to disable buttons
 - Default values
 - Events
+- ReadOnly mode
 
 ## Schema
 
@@ -408,6 +409,7 @@ disableSubmit          | boolean  | Prevent the form from submitting naturally
 questionAnswers        | object   | Existing `questionAnswers`. `questionId` => `answer`
 renderError            | function | Custom validation error render method. Return a React Component Or React Element.
 renderRequiredAsterisk | function | Custom require asterisk rendering method. Return a React Component or React Element.
+readOnly               | boolean  | Puts the generated form into disabled mode for all inputs
 
 ## Events
 
@@ -419,6 +421,8 @@ onRender      | Fired when Winterfell has initially rendered   | N/A
 onUpdate      | Fired when a questions answer has been changed | `questionAnswers`
 onSwitchPanel | Fired when a panel is switched or changed      | `panel`
 onSubmit      | Fired when the form is submitted successfully  | `questionAnswers`, `action`
+onQuestionFocus | Fired when a focus event occurs on an input field | N/A
+onQuestionClick | Fired when a user clicks on a question       | N/A
 
 
 
