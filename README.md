@@ -421,8 +421,8 @@ onRender      | Fired when Winterfell has initially rendered   | N/A
 onUpdate      | Fired when a questions answer has been changed | `questionAnswers`
 onSwitchPanel | Fired when a panel is switched or changed      | `panel`
 onSubmit      | Fired when the form is submitted successfully  | `questionAnswers`, `action`
-onQuestionFocus | Fired when a focus event occurs on an input field | N/A
-onQuestionClick | Fired when a user clicks on a question       | N/A
+onQuestionFocus | Fired when a focus event occurs on an input field | `questionId`
+onQuestionClick | Fired when a user clicks on a question       | `questionSetId, questionId`
 
 
 
