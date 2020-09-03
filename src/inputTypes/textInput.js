@@ -34,6 +34,7 @@ class TextInput extends React.Component {
              required={this.props.required
                          ? 'required'
                          : undefined}
+             disabled={this.props.readOnly ? true : false }
              onChange={this.handleChange.bind(this)}
              onBlur={this.props.onBlur.bind(null, this.state.value)}
              onFocus={this.props.onFocus.bind(this)}
@@ -50,6 +51,7 @@ TextInput.defaultProps = {
   value       : '',
   placeholder : '',
   disabled    : undefined,
+  readOnly    : false,
   onChange    : () => {},
   onBlur      : () => {},
   onKeyDown   : () => {},

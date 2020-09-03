@@ -56,11 +56,11 @@ class Winterfell extends React.Component {
   componentWillReceiveProps(nextProps) {
     if(typeof nextProps.panelId !== 'undefined') {
       this.setState({
-        action          : nextProps.action,
-        schema          : nextProps.schema,
-        questionAnswers : nextProps.questionAnswers,
-        panelId         : nextProps.panelId,
-        validationErrors: nextProps.validationErrors
+        action            : nextProps.action,
+        schema            : nextProps.schema,
+        questionAnswers   : nextProps.questionAnswers,
+        panelId           : nextProps.panelId,
+        validationErrors  : nextProps.validationErrors
       });
 
       var panel = _.find(this.props.schema.formPanels, {
@@ -74,10 +74,10 @@ class Winterfell extends React.Component {
       }
     } else {
       this.setState({
-        action          : nextProps.action,
-        schema          : nextProps.schema,
-        validationErrors: nextProps.validationErrors,
-        questionAnswers : nextProps.questionAnswers
+        action            : nextProps.action,
+        schema            : nextProps.schema,
+        validationErrors  : nextProps.validationErrors,
+        questionAnswers   : nextProps.questionAnswers
       });
     }
   }
@@ -175,6 +175,7 @@ class Winterfell extends React.Component {
                          validationErrors={this.props.validationErrors}
                          renderError={this.props.renderError}
                          renderRequiredAsterisk={this.props.renderRequiredAsterisk}
+                         readOnly={this.props.readOnly}
                          onQuestionFocus={this.handleQuestionFocus.bind(this)}
                          onQuestionClick={this.handleQuestionClick.bind(this)}
                          onAnswerChange={this.handleAnswerChange.bind(this)}
@@ -215,6 +216,7 @@ Winterfell.defaultProps = {
   disableSubmit          : false,
   renderError            : undefined,
   renderRequiredAsterisk : undefined,
+  readOnly               : false,
   validationErrors       : {},
   onSubmit               : () => {},
   onUpdate               : () => {},

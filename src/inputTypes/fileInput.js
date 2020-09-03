@@ -25,6 +25,7 @@ class FileInput extends React.Component {
                   required={this.props.required
                               ? 'required'
                               : undefined}
+                  disabled={this.props.readOnly ? true : false}
                   onChange={this.handleChange.bind(this)}
                   onFocus={this.props.onFocus.bind(this)}
                   onBlur={this.props.onBlur.bind(null, this.state.value)} />
@@ -37,6 +38,7 @@ FileInput.defaultProps = {
   name      : '',
   id        : '',
   value     : '',
+  readOnly  : false,
   onChange  : () => {},
   onBlur    : () => {},
   onFocus   : () => {}

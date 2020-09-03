@@ -45,6 +45,7 @@ class CheckboxOptionsInput extends React.Component {
                      required={this.props.required
                                  ? 'required'
                                  : undefined}
+                     disabled={this.props.readOnly ? true : false}
                      onChange={this.handleChange.bind(this, opt.value)}
                      onFocus={this.props.onFocus.bind(this)}
                      onBlur={this.props.onBlur.bind(null, this.state.value)} />
@@ -63,6 +64,7 @@ CheckboxOptionsInput.defaultProps = {
   name     : '',
   value    : [],
   options  : [],
+  readOnly : false,
   onChange : () => {},
   onBlur   : () => {},
   onFocus  : () => {}

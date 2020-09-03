@@ -2123,6 +2123,7 @@ class checkboxInput_CheckboxInput extends external_commonjs_react_commonjs2_reac
       defaultChecked: this.state.checked,
       value: this.props.value,
       required: this.props.required ? 'required' : undefined,
+      disabled: this.props.readOnly ? true : false,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.checked ? this.props.value : undefined)
@@ -2138,6 +2139,7 @@ checkboxInput_CheckboxInput.defaultProps = {
   classes: {},
   name: '',
   value: '',
+  readOnly: false,
   onChange: () => {},
   onBlur: () => {},
   onFocus: () => {}
@@ -2190,6 +2192,7 @@ class checkboxOptionsInput_CheckboxOptionsInput extends external_commonjs_react_
       checked: this.state.value.indexOf(opt.value) > -1,
       className: this.props.classes.checkbox,
       required: this.props.required ? 'required' : undefined,
+      disabled: this.props.readOnly ? true : false,
       onChange: this.handleChange.bind(this, opt.value),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value)
@@ -2204,6 +2207,7 @@ checkboxOptionsInput_CheckboxOptionsInput.defaultProps = {
   name: '',
   value: [],
   options: [],
+  readOnly: false,
   onChange: () => {},
   onBlur: () => {},
   onFocus: () => {}
@@ -2243,6 +2247,7 @@ class emailInput_EmailInput extends external_commonjs_react_commonjs2_react_amd_
       value: this.state.value,
       disabled: this.props.disabled ? true : undefined,
       required: this.props.required ? 'required' : undefined,
+      disabled: this.props.readOnly ? true : false,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value),
@@ -2260,6 +2265,7 @@ emailInput_EmailInput.defaultProps = {
   value: '',
   placeholder: '',
   disabled: undefined,
+  readOnly: false,
   onChange: () => {},
   onBlur: () => {},
   onKeyDown: () => {},
@@ -2291,6 +2297,7 @@ class fileInput_FileInput extends external_commonjs_react_commonjs2_react_amd_Re
       "aria-labelledby": this.props.labelId,
       className: this.props.classes.file,
       required: this.props.required ? 'required' : undefined,
+      disabled: this.props.readOnly ? true : false,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value)
@@ -2305,6 +2312,7 @@ fileInput_FileInput.defaultProps = {
   name: '',
   id: '',
   value: '',
+  readOnly: false,
   onChange: () => {},
   onBlur: () => {},
   onFocus: () => {}
@@ -2364,6 +2372,7 @@ class passwordInput_PasswordInput extends external_commonjs_react_commonjs2_reac
       placeholder: this.props.placeholder,
       value: this.state.value,
       required: this.props.required ? 'required' : undefined,
+      readOnly: this.props.readOnly ? true : false,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value),
@@ -2380,6 +2389,7 @@ passwordInput_PasswordInput.defaultProps = {
   id: '',
   value: '',
   placeholder: '',
+  readOnly: false,
   onChange: () => {},
   onBlur: () => {},
   onKeyDown: () => {},
@@ -2420,6 +2430,7 @@ class radioOptionsInput_RadioOptionsInput extends external_commonjs_react_common
       checked: this.state.value == opt.value,
       className: this.props.classes.radio,
       required: this.props.required ? 'required' : undefined,
+      disabled: this.props.readOnly ? true : false,
       value: opt.value,
       onChange: this.handleChange.bind(this, opt.value),
       onFocus: this.props.onFocus.bind(this),
@@ -2435,6 +2446,7 @@ radioOptionsInput_RadioOptionsInput.defaultProps = {
   name: '',
   value: '',
   options: [],
+  readOnly: false,
   onChange: () => {},
   onBlur: () => {},
   onFocus: () => {}
@@ -2475,6 +2487,7 @@ class selectInput_SelectInput extends external_commonjs_react_commonjs2_react_am
       value: this.state.value,
       ref: "select",
       required: this.props.required ? 'required' : undefined,
+      disabled: this.props.readOnly ? true : false,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value)
@@ -2502,6 +2515,7 @@ selectInput_SelectInput.defaultProps = {
   id: '',
   value: '',
   options: [],
+  readOnly: false,
   onChange: () => {},
   onBlur: () => {},
   onFocus: () => {}
@@ -2541,6 +2555,7 @@ class textareaInput_TextareaInput extends external_commonjs_react_commonjs2_reac
       value: this.state.value,
       disabled: this.props.disabled ? true : undefined,
       required: this.props.required ? 'required' : undefined,
+      disabled: this.props.readOnly ? true : false,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value)
@@ -2557,6 +2572,7 @@ textareaInput_TextareaInput.defaultProps = {
   value: '',
   placeholder: '',
   disabled: undefined,
+  readOnly: false,
   onChange: () => {},
   onBlur: () => {},
   onFocus: () => {}
@@ -2596,6 +2612,7 @@ class textInput_TextInput extends external_commonjs_react_commonjs2_react_amd_Re
       value: this.state.value,
       disabled: this.props.disabled ? true : undefined,
       required: this.props.required ? 'required' : undefined,
+      disabled: this.props.readOnly ? true : false,
       onChange: this.handleChange.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value),
       onFocus: this.props.onFocus.bind(this),
@@ -2613,6 +2630,7 @@ textInput_TextInput.defaultProps = {
   value: '',
   placeholder: '',
   disabled: undefined,
+  readOnly: false,
   onChange: () => {},
   onBlur: () => {},
   onKeyDown: () => {},
@@ -2631,6 +2649,7 @@ class buttonInput_ButtonInput extends external_commonjs_react_commonjs2_react_am
   render() {
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("button", {
       className: this.props.class,
+      disabled: this.props.readOnly ? true : false,
       onClick: this.handleClick.bind(this)
     }, this.props.text);
   }
@@ -2773,6 +2792,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
           input: conditionalQuestion.input,
           classes: this.props.classes,
           renderError: this.props.renderError,
+          readOnly: this.props.readOnly,
           questionAnswers: this.props.questionAnswers,
           validationErrors: this.props.validationErrors,
           onAnswerChange: this.props.onAnswerChange,
@@ -2821,6 +2841,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       options: this.props.input.options,
       placeholder: this.props.input.placeholder,
       required: this.props.input.required,
+      readOnly: this.props.readOnly,
       classes: this.props.classes,
       onChange: this.handleInputChange.bind(this, this.props.questionId),
       onFocus: this.handleInputFocus.bind(this, this.props.questionId),
@@ -2870,7 +2891,8 @@ question_Question.defaultProps = {
   onQuestionFocus: () => {},
   onKeyDown: () => {},
   renderError: undefined,
-  renderRequiredAsterisk: undefined
+  renderRequiredAsterisk: undefined,
+  readOnly: false
 };
 /* harmony default export */ var question_0 = (question_Question);
 // CONCATENATED MODULE: ./questionSet.js
@@ -2895,6 +2917,7 @@ class questionSet_QuestionSet extends external_commonjs_react_commonjs2_react_am
         classes: this.props.classes,
         renderError: this.props.renderError,
         renderRequiredAsterisk: this.props.renderRequiredAsterisk,
+        readOnly: this.props.readOnly,
         questionAnswers: this.props.questionAnswers,
         validationErrors: this.props.validationErrors,
         onAnswerChange: this.props.onAnswerChange,
@@ -2929,6 +2952,7 @@ questionSet_QuestionSet.defaultProps = {
   validationErrors: {},
   renderError: undefined,
   renderRequiredAsterisk: undefined,
+  readOnly: false,
   onAnswerChange: () => {},
   onQuestionBlur: () => {},
   onQuestionFocus: () => {},
@@ -3115,6 +3139,7 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
         questionAnswers: this.props.questionAnswers,
         renderError: this.props.renderError,
         renderRequiredAsterisk: this.props.renderRequiredAsterisk,
+        readOnly: this.props.readOnly,
         validationErrors: this.state.validationErrors,
         onAnswerChange: this.handleAnswerChange.bind(this),
         onQuestionFocus: this.handleQuestionFocus.bind(this),
@@ -3171,6 +3196,7 @@ questionPanel_QuestionPanel.defaultProps = {
   questionAnswers: {},
   renderError: undefined,
   renderRequiredAsterisk: undefined,
+  readOnly: false,
   onAnswerChange: () => {},
   onQuestionFocus: () => {},
   onQuestionClick: () => {},
@@ -3335,6 +3361,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       validationErrors: this.props.validationErrors,
       renderError: this.props.renderError,
       renderRequiredAsterisk: this.props.renderRequiredAsterisk,
+      readOnly: this.props.readOnly,
       onQuestionFocus: this.handleQuestionFocus.bind(this),
       onQuestionClick: this.handleQuestionClick.bind(this),
       onAnswerChange: this.handleAnswerChange.bind(this),
@@ -3370,6 +3397,7 @@ index_Winterfell.defaultProps = {
   disableSubmit: false,
   renderError: undefined,
   renderRequiredAsterisk: undefined,
+  readOnly: false,
   validationErrors: {},
   onSubmit: () => {},
   onUpdate: () => {},
