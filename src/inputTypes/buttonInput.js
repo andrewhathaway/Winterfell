@@ -11,7 +11,7 @@ class ButtonInput extends React.Component {
     return (
       <button
          className={this.props.class}
-         disabled={this.props.readOnly ? true : false}
+         disabled={this.props.readOnly}
          onClick={this.handleClick.bind(this)}>
         {this.props.text}
       </button>
@@ -28,6 +28,7 @@ ButtonInput.defaultProps = {
   placeholder       : undefined,
   class             : '',
   icon              : undefined,
+  readOnly          : false,
   onClick           : () => {}
 };
 

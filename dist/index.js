@@ -2123,7 +2123,7 @@ class checkboxInput_CheckboxInput extends external_commonjs_react_commonjs2_reac
       defaultChecked: this.state.checked,
       value: this.props.value,
       required: this.props.required ? 'required' : undefined,
-      disabled: this.props.readOnly ? true : false,
+      disabled: this.props.readOnly,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.checked ? this.props.value : undefined)
@@ -2192,7 +2192,7 @@ class checkboxOptionsInput_CheckboxOptionsInput extends external_commonjs_react_
       checked: this.state.value.indexOf(opt.value) > -1,
       className: this.props.classes.checkbox,
       required: this.props.required ? 'required' : undefined,
-      disabled: this.props.readOnly ? true : false,
+      disabled: this.props.readOnly,
       onChange: this.handleChange.bind(this, opt.value),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value)
@@ -2245,9 +2245,8 @@ class emailInput_EmailInput extends external_commonjs_react_commonjs2_react_amd_
       className: this.props.classes.input,
       placeholder: this.props.placeholder,
       value: this.state.value,
-      disabled: this.props.disabled ? true : undefined,
+      disabled: this.props.disabled || this.props.readOnly,
       required: this.props.required ? 'required' : undefined,
-      disabled: this.props.readOnly ? true : false,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value),
@@ -2297,7 +2296,7 @@ class fileInput_FileInput extends external_commonjs_react_commonjs2_react_amd_Re
       "aria-labelledby": this.props.labelId,
       className: this.props.classes.file,
       required: this.props.required ? 'required' : undefined,
-      disabled: this.props.readOnly ? true : false,
+      disabled: this.props.readOnly,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value)
@@ -2372,7 +2371,7 @@ class passwordInput_PasswordInput extends external_commonjs_react_commonjs2_reac
       placeholder: this.props.placeholder,
       value: this.state.value,
       required: this.props.required ? 'required' : undefined,
-      readOnly: this.props.readOnly ? true : false,
+      readOnly: this.props.readOnly,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value),
@@ -2430,7 +2429,7 @@ class radioOptionsInput_RadioOptionsInput extends external_commonjs_react_common
       checked: this.state.value == opt.value,
       className: this.props.classes.radio,
       required: this.props.required ? 'required' : undefined,
-      disabled: this.props.readOnly ? true : false,
+      disabled: this.props.readOnly,
       value: opt.value,
       onChange: this.handleChange.bind(this, opt.value),
       onFocus: this.props.onFocus.bind(this),
@@ -2487,7 +2486,7 @@ class selectInput_SelectInput extends external_commonjs_react_commonjs2_react_am
       value: this.state.value,
       ref: "select",
       required: this.props.required ? 'required' : undefined,
-      disabled: this.props.readOnly ? true : false,
+      disabled: this.props.readOnly,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value)
@@ -2553,9 +2552,8 @@ class textareaInput_TextareaInput extends external_commonjs_react_commonjs2_reac
       className: this.props.classes.input,
       placeholder: this.props.placeholder,
       value: this.state.value,
-      disabled: this.props.disabled ? true : undefined,
+      disabled: this.props.disabled || this.props.readOnly,
       required: this.props.required ? 'required' : undefined,
-      disabled: this.props.readOnly ? true : false,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value)
@@ -2610,9 +2608,8 @@ class textInput_TextInput extends external_commonjs_react_commonjs2_react_amd_Re
       className: this.props.classes.input,
       placeholder: this.props.placeholder,
       value: this.state.value,
-      disabled: this.props.disabled ? true : undefined,
+      disabled: this.props.disabled || this.props.readOnly,
       required: this.props.required ? 'required' : undefined,
-      disabled: this.props.readOnly ? true : false,
       onChange: this.handleChange.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value),
       onFocus: this.props.onFocus.bind(this),
@@ -2649,7 +2646,7 @@ class buttonInput_ButtonInput extends external_commonjs_react_commonjs2_react_am
   render() {
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("button", {
       className: this.props.class,
-      disabled: this.props.readOnly ? true : false,
+      disabled: this.props.readOnly,
       onClick: this.handleClick.bind(this)
     }, this.props.text);
   }
@@ -2665,6 +2662,7 @@ buttonInput_ButtonInput.defaultProps = {
   placeholder: undefined,
   class: '',
   icon: undefined,
+  readOnly: false,
   onClick: () => {}
 };
 /* harmony default export */ var buttonInput = (buttonInput_ButtonInput);
