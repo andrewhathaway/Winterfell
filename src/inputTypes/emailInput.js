@@ -24,20 +24,20 @@ class EmailInput extends React.Component {
   render() {
     return (
       <input type="email"
-             name={this.props.name}
-             id={this.props.id}
-             aria-labelledby={this.props.labelId}
-             className={this.props.classes.input}
-             placeholder={this.props.placeholder}
-             value={this.state.value}
-             disabled={this.props.disabled ? true : undefined}
-             required={this.props.required
-                         ? 'required'
-                         : undefined}
-             onChange={this.handleChange.bind(this)}
-             onFocus={this.props.onFocus.bind(this)}
-             onBlur={this.props.onBlur.bind(null, this.state.value)}
-             onKeyDown={this.props.onKeyDown} />
+              name={this.props.name}
+              id={this.props.id}
+              aria-labelledby={this.props.labelId}
+              className={this.props.classes.input}
+              placeholder={this.props.placeholder}
+              value={this.state.value}
+              disabled={this.props.disabled || this.props.readOnly}
+              required={this.props.required
+                          ? 'required'
+                          : undefined}
+              onChange={this.handleChange.bind(this)}
+              onFocus={this.props.onFocus.bind(this)}
+              onBlur={this.props.onBlur.bind(null, this.state.value)}
+              onKeyDown={this.props.onKeyDown} />
     );
   }
 
@@ -50,6 +50,7 @@ EmailInput.defaultProps = {
   value       : '',
   placeholder : '',
   disabled    : undefined,
+  readOnly    : false,
   onChange    : () => {},
   onBlur      : () => {},
   onKeyDown   : () => {},

@@ -30,7 +30,7 @@ class TextInput extends React.Component {
              className={this.props.classes.input}
              placeholder={this.props.placeholder}
              value={this.state.value}
-             disabled={this.props.disabled ? true : undefined}
+             disabled={this.props.disabled || this.props.readOnly}
              required={this.props.required
                          ? 'required'
                          : undefined}
@@ -50,6 +50,7 @@ TextInput.defaultProps = {
   value       : '',
   placeholder : '',
   disabled    : undefined,
+  readOnly    : false,
   onChange    : () => {},
   onBlur      : () => {},
   onKeyDown   : () => {},

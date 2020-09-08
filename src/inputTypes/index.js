@@ -12,17 +12,17 @@ import TextInput            from './textInput';
 import ButtonInput            from './buttonInput';
 
 let inputTypes = {
-  checkboxInput: CheckboxInput,
-  checkboxOptionsInput : CheckboxOptionsInput,
-  emailInput : EmailInput,
-  fileInput : FileInput,
-  hiddenInput : HiddenInput,
-  passwordInput : PasswordInput,
-  radioOptionsInput : RadioOptionsInput,
-  selectInput : SelectInput,
-  textareaInput : TextareaInput,
-  textInput : TextInput,
-  buttonInput : ButtonInput
+  checkboxInput         : CheckboxInput,
+  checkboxOptionsInput  : CheckboxOptionsInput,
+  emailInput            : EmailInput,
+  fileInput             : FileInput,
+  hiddenInput           : HiddenInput,
+  passwordInput         : PasswordInput,
+  radioOptionsInput     : RadioOptionsInput,
+  selectInput           : SelectInput,
+  textareaInput         : TextareaInput,
+  textInput             : TextInput,
+  buttonInput           : ButtonInput
 };
 
 /**

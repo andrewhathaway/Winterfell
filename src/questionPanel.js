@@ -192,6 +192,7 @@ class QuestionPanel extends React.Component {
                      questionAnswers={this.props.questionAnswers}
                      renderError={this.props.renderError}
                      renderRequiredAsterisk={this.props.renderRequiredAsterisk}
+                     readOnly={this.props.readOnly}
                      validationErrors={this.state.validationErrors}
                      onAnswerChange={this.handleAnswerChange.bind(this)}
                      onQuestionFocus={this.handleQuestionFocus.bind(this)}
@@ -272,6 +273,7 @@ QuestionPanel.defaultProps = {
   questionAnswers        : {},
   renderError            : undefined,
   renderRequiredAsterisk : undefined,
+  readOnly               : false,
   onAnswerChange         : () => {},
   onQuestionFocus        : () => {},
   onQuestionClick        : () => {},

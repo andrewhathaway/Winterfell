@@ -73,6 +73,7 @@ class Question extends React.Component {
                           input={conditionalQuestion.input}
                           classes={this.props.classes}
                           renderError={this.props.renderError}
+                          readOnly={this.props.readOnly}
                           questionAnswers={this.props.questionAnswers}
                           validationErrors={this.props.validationErrors}
                           onAnswerChange={this.props.onAnswerChange}
@@ -154,6 +155,7 @@ class Question extends React.Component {
                options={this.props.input.options}
                placeholder={this.props.input.placeholder}
                required={this.props.input.required}
+               readOnly={this.props.readOnly}
                classes={this.props.classes}
                onChange={this.handleInputChange.bind(this, this.props.questionId)}
                onFocus={this.handleInputFocus.bind(this, this.props.questionId)}
@@ -219,7 +221,8 @@ Question.defaultProps = {
   onQuestionFocus        : () => {},
   onKeyDown              : () => {},
   renderError            : undefined,
-  renderRequiredAsterisk : undefined
+  renderRequiredAsterisk : undefined,
+  readOnly               : false
 };
 
 export default Question;
