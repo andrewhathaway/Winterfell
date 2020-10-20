@@ -3085,7 +3085,6 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
   }
 
   handleAnswerChange(questionId, questionAnswer, validations, validateOn) {
-    this.props.onAnswerChange(questionId, questionAnswer);
     this.setState({
       validationErrors: external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_default.a.chain(this.state.validationErrors).set(questionId, []).value()
     });
@@ -3096,6 +3095,8 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
   }
 
   handleQuestionBlur(questionId, questionAnswer, validations, validateOn) {
+    this.props.onAnswerChange(questionId, questionAnswer);
+
     if (validateOn === 'blur') {
       this.handleAnswerValidate(questionId, questionAnswer, validations);
     }
