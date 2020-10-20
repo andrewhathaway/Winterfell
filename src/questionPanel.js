@@ -137,8 +137,6 @@ class QuestionPanel extends React.Component {
   }
 
   handleAnswerChange(questionId, questionAnswer, validations, validateOn) {
-    this.props.onAnswerChange(questionId, questionAnswer);
-
     this.setState({
       validationErrors : _.chain(this.state.validationErrors)
                           .set(questionId, [])
@@ -151,6 +149,8 @@ class QuestionPanel extends React.Component {
   }
 
   handleQuestionBlur(questionId, questionAnswer, validations, validateOn) {
+    this.props.onAnswerChange(questionId, questionAnswer);
+
     if (validateOn === 'blur') {
       this.handleAnswerValidate(questionId, questionAnswer, validations);
     }
