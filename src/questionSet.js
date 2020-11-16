@@ -17,6 +17,7 @@ class QuestionSet extends React.Component {
                   postText={question.postText}
                   value={this.props.questionAnswers[question.questionId]}
                   input={question.input}
+                  nested={false}
                   classes={this.props.classes}
                   renderError={this.props.renderError}
                   renderRequiredAsterisk={this.props.renderRequiredAsterisk}

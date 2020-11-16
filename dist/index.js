@@ -2916,6 +2916,7 @@ class questionSet_QuestionSet extends external_commonjs_react_commonjs2_react_am
         postText: question.postText,
         value: this.props.questionAnswers[question.questionId],
         input: question.input,
+        nested: false,
         classes: this.props.classes,
         renderError: this.props.renderError,
         renderRequiredAsterisk: this.props.renderRequiredAsterisk,
