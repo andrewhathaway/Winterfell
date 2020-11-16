@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import _ from 'lodash';
 import inputTypes from './inputTypes/index';
 
@@ -123,6 +123,7 @@ class Question extends React.Component {
       <div className={this.props.classes.question}>
         {!!this.props.question
           ? (
+            <Fragment>
               <label className={this.props.classes.label}
                      id={labelId}
                      htmlFor={this.props.questionId}>
@@ -132,6 +133,8 @@ class Question extends React.Component {
                    ? this.props.renderRequiredAsterisk()
                    : undefined}
               </label>
+              <div className="hide">Show box</div>
+            </Fragment>
             )
           : undefined}
         {!!this.props.text
