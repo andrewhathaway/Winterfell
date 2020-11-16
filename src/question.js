@@ -72,6 +72,7 @@ class Question extends React.Component {
                           value={this.props.questionAnswers[conditionalQuestion.questionId]}
                           input={conditionalQuestion.input}
                           classes={this.props.classes}
+                          nested={true}
                           renderError={this.props.renderError}
                           readOnly={this.props.readOnly}
                           questionAnswers={this.props.questionAnswers}
@@ -120,7 +121,7 @@ class Question extends React.Component {
     let labelId = `${this.props.questionId}-label`;
 
     return (
-      <div className={this.props.classes.question}>
+      <div className={nested ? `${this.props.classes.question-nested}` : this.props.class.question}>
         {!!this.props.question
           ? (
             <Fragment>
@@ -133,7 +134,7 @@ class Question extends React.Component {
                    ? this.props.renderRequiredAsterisk()
                    : undefined}
               </label>
-              <div className="hide">Show box</div>
+              <div className={this.props.classes.actionControl}>Show box</div>
             </Fragment>
             )
           : undefined}
@@ -225,7 +226,8 @@ Question.defaultProps = {
   onKeyDown              : () => {},
   renderError            : undefined,
   renderRequiredAsterisk : undefined,
-  readOnly               : false
+  readOnly               : false,
+  nested                 : false
 };
 
 export default Question;

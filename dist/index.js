@@ -2789,6 +2789,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
           value: this.props.questionAnswers[conditionalQuestion.questionId],
           input: conditionalQuestion.input,
           classes: this.props.classes,
+          nested: true,
           renderError: this.props.renderError,
           readOnly: this.props.readOnly,
           questionAnswers: this.props.questionAnswers,
@@ -2818,13 +2819,13 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     }) : [];
     let labelId = `${this.props.questionId}-label`;
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-      className: this.props.classes.question
+      className: nested ? `${this.props.classes.question - nested}` : this.props.class.question
     }, !!this.props.question ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_["Fragment"], null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("label", {
       className: this.props.classes.label,
       id: labelId,
       htmlFor: this.props.questionId
     }, this.props.question, typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required ? this.props.renderRequiredAsterisk() : undefined), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-      className: "hide"
+      className: this.props.classes.actionControl
     }, "Show box")) : undefined, !!this.props.text ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
       className: this.props.classes.questionText
     }, this.props.text) : undefined, validationErrors, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Input, _extends({
@@ -2892,7 +2893,8 @@ question_Question.defaultProps = {
   onKeyDown: () => {},
   renderError: undefined,
   renderRequiredAsterisk: undefined,
-  readOnly: false
+  readOnly: false,
+  nested: false
 };
 /* harmony default export */ var question_0 = (question_Question);
 // CONCATENATED MODULE: ./questionSet.js
