@@ -122,63 +122,63 @@ class Question extends React.Component {
 
     return (
       <div className={this.props.nested ? `${this.props.classes.question}-${this.props.classes.nested}` : this.props.classes.question}>
-        <div className="question-wrap">
-        {!!this.props.question
-          ? (
-            <Fragment>
-              <label className={this.props.classes.label}
-                     id={labelId}
-                     htmlFor={this.props.questionId}>
-                {this.props.question}
-                {typeof this.props.renderRequiredAsterisk !== 'undefined'
-                   && this.props.input.required
-                   ? this.props.renderRequiredAsterisk()
-                   : undefined}
-              </label>
-              <div className={this.props.classes.actionControl}>Show box</div>
-            </Fragment>
-            )
-          : undefined}
-        {!!this.props.text
-          ? (
-              <p className={this.props.classes.questionText}>
-                {this.props.text}
-              </p>
-            )
-          : undefined}
-        {validationErrors}
-        <Input name={this.props.questionId}
-               id={this.props.questionId}
-               questionSetId={this.props.questionSetId}
-               labelId={labelId}
-               value={value}
-               disabled={disabled}
-               text={this.props.input.text}
-               icon={this.props.input.icon}
-               class={this.props.input.class}
-               action={this.props.input.action}
-               options={this.props.input.options}
-               placeholder={this.props.input.placeholder}
-               required={this.props.input.required}
-               readOnly={this.props.readOnly}
-               classes={this.props.classes}
-               onChange={this.handleInputChange.bind(this, this.props.questionId)}
-               onFocus={this.handleInputFocus.bind(this, this.props.questionId)}
-               onClick={this.handleInputClick.bind(this, this.props.questionSetId, this.props.questionId)}
-               onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
-               onKeyDown={this.props.onKeyDown}
-               {...(typeof this.props.input.props === 'object'
-                     ? this.props.input.props
-                     : {})}
-        />
-        {!!this.props.postText
-          ? (
-              <p className={this.props.classes.questionPostText}>
-                {this.props.postText}
-              </p>
-            )
-          : undefined}
-        </div>
+        <div className={this.props.classes.questionWrap}>
+          {!!this.props.question
+            ? (
+              <Fragment>
+                <label className={this.props.classes.label}
+                      id={labelId}
+                      htmlFor={this.props.questionId}>
+                  {this.props.question}
+                  {typeof this.props.renderRequiredAsterisk !== 'undefined'
+                    && this.props.input.required
+                    ? this.props.renderRequiredAsterisk()
+                    : undefined}
+                </label>
+                <div className={this.props.classes.actionControl}>Show box</div>
+              </Fragment>
+              )
+            : undefined}
+          {!!this.props.text
+            ? (
+                <p className={this.props.classes.questionText}>
+                  {this.props.text}
+                </p>
+              )
+            : undefined}
+          {validationErrors}
+          <Input name={this.props.questionId}
+                id={this.props.questionId}
+                questionSetId={this.props.questionSetId}
+                labelId={labelId}
+                value={value}
+                disabled={disabled}
+                text={this.props.input.text}
+                icon={this.props.input.icon}
+                class={this.props.input.class}
+                action={this.props.input.action}
+                options={this.props.input.options}
+                placeholder={this.props.input.placeholder}
+                required={this.props.input.required}
+                readOnly={this.props.readOnly}
+                classes={this.props.classes}
+                onChange={this.handleInputChange.bind(this, this.props.questionId)}
+                onFocus={this.handleInputFocus.bind(this, this.props.questionId)}
+                onClick={this.handleInputClick.bind(this, this.props.questionSetId, this.props.questionId)}
+                onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
+                onKeyDown={this.props.onKeyDown}
+                {...(typeof this.props.input.props === 'object'
+                      ? this.props.input.props
+                      : {})}
+          />
+          {!!this.props.postText
+            ? (
+                <p className={this.props.classes.questionPostText}>
+                  {this.props.postText}
+                </p>
+              )
+            : undefined}
+        </div> 
         {conditionalItems}
       </div>
     );
