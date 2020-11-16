@@ -122,9 +122,10 @@ class Question extends React.Component {
 
     return (
       <div className={this.props.nested ? `${this.props.classes.question}-${this.props.classes.nested}` : this.props.classes.question}>
+        <div className="question-wrap">
         {!!this.props.question
           ? (
-            <div className="question-wrap">
+            <Fragment>
               <label className={this.props.classes.label}
                      id={labelId}
                      htmlFor={this.props.questionId}>
@@ -135,7 +136,7 @@ class Question extends React.Component {
                    : undefined}
               </label>
               <div className={this.props.classes.actionControl}>Show box</div>
-            </div>
+            </Fragment>
             )
           : undefined}
         {!!this.props.text
@@ -177,6 +178,7 @@ class Question extends React.Component {
               </p>
             )
           : undefined}
+        </div>
         {conditionalItems}
       </div>
     );
