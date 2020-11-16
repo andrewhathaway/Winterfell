@@ -121,7 +121,7 @@ class Question extends React.Component {
     let labelId = `${this.props.questionId}-label`;
 
     return (
-      <div className={this.props.nested ? `${this.props.classes.question-this.props.nested}` : this.props.class.question}>
+      <div className={this.props.nested ? `${this.props.classes.question}-${this.classes.nested}` : this.props.classes.question}>
         {!!this.props.question
           ? (
             <Fragment>
