@@ -38,7 +38,7 @@ class RadioOptionsInput extends React.Component {
                      onChange={this.handleChange.bind(this, opt.value)}              
                      onFocus={this.props.onFocus.bind(this)}
                      onBlur={this.props.onBlur.bind(null, this.state.value)} />
-              {opt.text}
+              <span>{opt.text}</span>
             </label>
           </li>
         )}
