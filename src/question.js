@@ -135,7 +135,10 @@ class Question extends React.Component {
                     ? this.props.renderRequiredAsterisk()
                     : undefined}
                 </label>
-                <div className={this.props.classes.actionControl}>Show box</div>
+                <div className={this.props.classes.actionControl}>
+                  <i class="far fa-question-circle"></i>
+                  <i class="fas fa-exclamation-circle"></i>
+                  </div>
               </Fragment>
               )
             : undefined}
