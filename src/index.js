@@ -5,8 +5,6 @@ import inputTypes from './inputTypes/index';
 import errorMessages from './lib/errors';
 import * as Validation from './lib/validation';
 
-
-
 class Winterfell extends React.Component {
 
   constructor(props) {
@@ -21,6 +19,7 @@ class Winterfell extends React.Component {
       formPanels     : [],
       questionPanels : [],
       questionSets   : [],
+      questionActions: []
     }, props.schema);
 
     schema.formPanels = schema.formPanels
@@ -49,7 +48,8 @@ class Winterfell extends React.Component {
       action          : props.action,
       questionAnswers : props.questionAnswers,
       panelId         : props.panelId,
-      validationErrors: props.validationErrors
+      validationErrors: props.validationErrors,
+      questionActions : props.questionActions
     };
   }
 
@@ -60,7 +60,8 @@ class Winterfell extends React.Component {
         schema            : nextProps.schema,
         questionAnswers   : nextProps.questionAnswers,
         panelId           : nextProps.panelId,
-        validationErrors  : nextProps.validationErrors
+        validationErrors  : nextProps.validationErrors,
+        questionActions   : nextProps.questionActions
       });
 
       var panel = _.find(this.props.schema.formPanels, {
@@ -77,7 +78,8 @@ class Winterfell extends React.Component {
         action            : nextProps.action,
         schema            : nextProps.schema,
         validationErrors  : nextProps.validationErrors,
-        questionAnswers   : nextProps.questionAnswers
+        questionAnswers   : nextProps.questionAnswers,
+        questionActions   : nextProps.questionActions
       });
     }
   }
@@ -171,6 +173,7 @@ class Winterfell extends React.Component {
                          backButton={currentPanel.backButton}
                          questionSets={currentPanel.questionSets}
                          questionAnswers={this.state.questionAnswers}
+                         questionActions={this.state.schema.questionActions}
                          panelHistory={this.panelHistory}
                          validationErrors={this.props.validationErrors}
                          renderError={this.props.renderError}
@@ -209,6 +212,7 @@ Winterfell.addValidationMethods = Winterfell.validation.addValidationMethods;
 
 Winterfell.defaultProps = {
   questionAnswers        : {},
+  questionActions        : [],
   encType                : 'application/x-www-form-urlencoded',
   method                 : 'POST',
   action                 : '',

@@ -190,6 +190,7 @@ class QuestionPanel extends React.Component {
                      questions={questionSet.questions}
                      classes={this.props.classes}
                      questionAnswers={this.props.questionAnswers}
+                     questionActions={this.props.questionActions}
                      renderError={this.props.renderError}
                      renderRequiredAsterisk={this.props.renderRequiredAsterisk}
                      readOnly={this.props.readOnly}
@@ -271,6 +272,7 @@ QuestionPanel.defaultProps = {
   },
   questionSets           : [],
   questionAnswers        : {},
+  questionActions        : [],
   renderError            : undefined,
   renderRequiredAsterisk : undefined,
   readOnly               : false,

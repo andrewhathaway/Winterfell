@@ -23,6 +23,7 @@ class QuestionSet extends React.Component {
                   renderRequiredAsterisk={this.props.renderRequiredAsterisk}
                   readOnly={this.props.readOnly}
                   questionAnswers={this.props.questionAnswers}
+                  questionActions={this.props.questionActions}
                   validationErrors={this.props.validationErrors}
                   onAnswerChange={this.props.onAnswerChange}
                   onQuestionBlur={this.props.onQuestionBlur}
@@ -65,6 +66,7 @@ QuestionSet.defaultProps = {
   questionSetText        : undefined,
   questions              : [],
   questionAnswers        : {},
+  questionActions        : [],
   classes                : {},
   validationErrors       : {},
   renderError            : undefined,

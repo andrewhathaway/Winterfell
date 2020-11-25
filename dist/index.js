@@ -2793,6 +2793,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
           renderError: this.props.renderError,
           readOnly: this.props.readOnly,
           questionAnswers: this.props.questionAnswers,
+          questionActions: this.props.questionActions,
           validationErrors: this.props.validationErrors,
           onAnswerChange: this.props.onAnswerChange,
           onQuestionFocus: this.props.onQuestionFocus,
@@ -2817,6 +2818,21 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
         className: this.props.classes.errorMessage
       }, error.message);
     }) : [];
+    var questionActions = typeof this.props.questionActions !== 'undefined' && this.props.quesitonActions.length > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      className: this.props.classes.actionControl
+    }, this.props.questionActions.map(action => {
+      return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+        key: action.key,
+        className: "toolTip"
+      }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
+        className: action.icon,
+        style: {
+          color: action.color
+        }
+      }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
+        class: "toolTipText"
+      }, action.toolTip));
+    })) : '';
     let labelId = `${this.props.questionId}-label`;
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
       className: this.props.nested ? `${this.props.classes.question}-${this.props.classes.nested}` : this.props.classes.question
@@ -2826,13 +2842,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       className: this.props.classes.label,
       id: labelId,
       htmlFor: this.props.questionId
-    }, this.props.question, typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required ? this.props.renderRequiredAsterisk() : undefined), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-      className: this.props.classes.actionControl
-    }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
-      class: "far fa-question-circle"
-    }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
-      class: "fas fa-exclamation-circle"
-    }))) : undefined, !!this.props.text ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
+    }, this.props.question, typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required ? this.props.renderRequiredAsterisk() : undefined), questionActions) : undefined, !!this.props.text ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
       className: this.props.classes.questionText
     }, this.props.text) : undefined, validationErrors, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Input, _extends({
       name: this.props.questionId,
@@ -2892,6 +2902,7 @@ question_Question.defaultProps = {
   },
   classes: {},
   questionAnswers: {},
+  questionActions: [],
   validationErrors: {},
   onAnswerChange: () => {},
   onQuestionBlur: () => {},
@@ -2928,6 +2939,7 @@ class questionSet_QuestionSet extends external_commonjs_react_commonjs2_react_am
         renderRequiredAsterisk: this.props.renderRequiredAsterisk,
         readOnly: this.props.readOnly,
         questionAnswers: this.props.questionAnswers,
+        questionActions: this.props.questionActions,
         validationErrors: this.props.validationErrors,
         onAnswerChange: this.props.onAnswerChange,
         onQuestionBlur: this.props.onQuestionBlur,
@@ -2957,6 +2969,7 @@ questionSet_QuestionSet.defaultProps = {
   questionSetText: undefined,
   questions: [],
   questionAnswers: {},
+  questionActions: [],
   classes: {},
   validationErrors: {},
   renderError: undefined,
@@ -3146,6 +3159,7 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
         questions: questionSet.questions,
         classes: this.props.classes,
         questionAnswers: this.props.questionAnswers,
+        questionActions: this.props.questionActions,
         renderError: this.props.renderError,
         renderRequiredAsterisk: this.props.renderRequiredAsterisk,
         readOnly: this.props.readOnly,
@@ -3203,6 +3217,7 @@ questionPanel_QuestionPanel.defaultProps = {
   },
   questionSets: [],
   questionAnswers: {},
+  questionActions: [],
   renderError: undefined,
   renderRequiredAsterisk: undefined,
   readOnly: false,
@@ -3232,7 +3247,8 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       classes: {},
       formPanels: [],
       questionPanels: [],
-      questionSets: []
+      questionSets: [],
+      questionActions: []
     }, props.schema);
 
     schema.formPanels = schema.formPanels.sort((a, b) => a.index > b.index);
@@ -3249,7 +3265,8 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       action: props.action,
       questionAnswers: props.questionAnswers,
       panelId: props.panelId,
-      validationErrors: props.validationErrors
+      validationErrors: props.validationErrors,
+      questionActions: props.questionActions
     };
   }
 
@@ -3260,7 +3277,8 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
         schema: nextProps.schema,
         questionAnswers: nextProps.questionAnswers,
         panelId: nextProps.panelId,
-        validationErrors: nextProps.validationErrors
+        validationErrors: nextProps.validationErrors,
+        questionActions: nextProps.questionActions
       });
 
       var panel = external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_default.a.find(this.props.schema.formPanels, {
@@ -3277,7 +3295,8 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
         action: nextProps.action,
         schema: nextProps.schema,
         validationErrors: nextProps.validationErrors,
-        questionAnswers: nextProps.questionAnswers
+        questionAnswers: nextProps.questionAnswers,
+        questionActions: nextProps.questionActions
       });
     }
   }
@@ -3366,6 +3385,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       backButton: currentPanel.backButton,
       questionSets: currentPanel.questionSets,
       questionAnswers: this.state.questionAnswers,
+      questionActions: this.state.schema.questionActions,
       panelHistory: this.panelHistory,
       validationErrors: this.props.validationErrors,
       renderError: this.props.renderError,
@@ -3399,6 +3419,7 @@ index_Winterfell.addValidationMethod = index_Winterfell.validation.addValidation
 index_Winterfell.addValidationMethods = index_Winterfell.validation.addValidationMethods;
 index_Winterfell.defaultProps = {
   questionAnswers: {},
+  questionActions: [],
   encType: 'application/x-www-form-urlencoded',
   method: 'POST',
   action: '',

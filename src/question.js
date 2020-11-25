@@ -76,6 +76,7 @@ class Question extends React.Component {
                           renderError={this.props.renderError}
                           readOnly={this.props.readOnly}
                           questionAnswers={this.props.questionAnswers}
+                          questionActions={this.props.questionActions}
                           validationErrors={this.props.validationErrors}
                           onAnswerChange={this.props.onAnswerChange}
                           onQuestionFocus={this.props.onQuestionFocus}
@@ -118,6 +119,23 @@ class Question extends React.Component {
                                    })
                              : [];
 
+
+    var questionActions = typeof this.props.questionActions !== 'undefined' && this.props.quesitonActions.length > 0 ?
+                          (<div className={this.props.classes.actionControl}>
+                            {
+                              this.props.questionActions
+                                .map(action => {
+                                  return (
+                                    <div key={action.key} className="toolTip">
+                                      <i className={action.icon} style={{color: action.color}} />
+                                      <span class="toolTipText">{action.toolTip}</span>
+                                    </div>
+                                  )
+                                })
+                            }
+                          </div>)
+                          : '';
+
     let labelId = `${this.props.questionId}-label`;
 
     return (
@@ -135,10 +153,11 @@ class Question extends React.Component {
                     ? this.props.renderRequiredAsterisk()
                     : undefined}
                 </label>
-                <div className={this.props.classes.actionControl}>
+                {questionActions}
+                {/* <div className={this.props.classes.actionControl}>
                   <i class="far fa-question-circle"></i>
                   <i class="fas fa-exclamation-circle"></i>
-                  </div>
+                  </div> */}
               </Fragment>
               )
             : undefined}
@@ -224,6 +243,7 @@ Question.defaultProps = {
   },
   classes                : {},
   questionAnswers        : {},
+  questionActions        : [],
   validationErrors       : {},
   onAnswerChange         : () => {},
   onQuestionBlur         : () => {},
