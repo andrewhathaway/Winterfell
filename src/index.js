@@ -126,6 +126,10 @@ class Winterfell extends React.Component {
     this.props.onQuestionClick(questionSetId, questionId);
   }
 
+  handleQuestionAction(questionSetId, questionId, key) {
+    this.props.onQuestionAction(questionSetId, questionId, key);
+  }
+
 
   handleSubmit(action) {
     if (this.props.disableSubmit) {
@@ -178,6 +182,7 @@ class Winterfell extends React.Component {
                          readOnly={this.props.readOnly}
                          onQuestionFocus={this.handleQuestionFocus.bind(this)}
                          onQuestionClick={this.handleQuestionClick.bind(this)}
+                         onQuestionAction={this.handleQuestionAction.bind(this)}
                          onAnswerChange={this.handleAnswerChange.bind(this)}
                          onPanelBack={this.handleBackButtonClick.bind(this)}
                          onSwitchPanel={this.handleSwitchPanel.bind(this)}
@@ -223,7 +228,8 @@ Winterfell.defaultProps = {
   onSwitchPanel          : () => {},
   onRender               : () => {},
   onQuestionFocus        : () => {},
-  onQuestionClick        : () => {}
+  onQuestionClick        : () => {},
+  onQuestionAction       : () => {}
 };
 
 export default Winterfell;

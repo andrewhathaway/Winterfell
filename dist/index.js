@@ -2752,6 +2752,10 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     this.props.onQuestionClick(questionSetId, questionId);
   }
 
+  handleQuestionAction(questionSetId = '', questionId = '', key = '') {
+    this.props.onQuestionAction(questionSetId, questionId, key);
+  }
+
   render() {
     var Input = inputTypes_0[this.props.input.type];
 
@@ -2798,6 +2802,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
           onAnswerChange: this.props.onAnswerChange,
           onQuestionFocus: this.props.onQuestionFocus,
           onQuestionClick: this.props.onQuestionClick,
+          onQuestionAction: this.props.onQuestionAction,
           onQuestionBlur: this.props.onQuestionBlur,
           onKeyDown: this.props.onKeyDown
         }));
@@ -2823,14 +2828,15 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     }, this.props.questionActions.map(action => {
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         key: action.key,
-        className: "toolTip"
+        className: `${this.props.classes.toolTip}``${this.props.classes.toolTipTop}`
       }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
         className: action.icon,
         style: {
           color: action.color
-        }
+        },
+        onClick: this.handleQuestionAction(this.props.questionSetId, this.props.questionId, action.key)
       }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
-        class: "toolTipText"
+        className: this.props.classes.toolTipText
       }, action.toolTip));
     })) : '';
     let labelId = `${this.props.questionId}-label`;
@@ -2945,6 +2951,7 @@ class questionSet_QuestionSet extends external_commonjs_react_commonjs2_react_am
         onQuestionBlur: this.props.onQuestionBlur,
         onQuestionFocus: this.props.onQuestionFocus,
         onQuestionClick: this.props.onQuestionClick,
+        onQuestionAction: this.props.onQuestionAction,
         onKeyDown: this.props.onKeyDown
       });
     });
@@ -2979,6 +2986,7 @@ questionSet_QuestionSet.defaultProps = {
   onQuestionBlur: () => {},
   onQuestionFocus: () => {},
   onQuestionClick: () => {},
+  onQuestionAction: () => {},
   onKeyDown: () => {}
 };
 /* harmony default export */ var questionSet_0 = (questionSet_QuestionSet);
@@ -3133,6 +3141,10 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
     this.props.onQuestionClick(questionSetId, questionId);
   }
 
+  handleQuestionAction(questionSetId, questionId, key) {
+    this.props.onQuestionAction(questionSetId, questionId, key);
+  }
+
   handleInputKeyDown(e) {
     if (keycodez_default.a[e.keyCode] === 'enter') {
       e.preventDefault();
@@ -3167,6 +3179,7 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
         onAnswerChange: this.handleAnswerChange.bind(this),
         onQuestionFocus: this.handleQuestionFocus.bind(this),
         onQuestionClick: this.handleQuestionClick.bind(this),
+        onQuestionAction: this.handleQuestionAction.bind(this),
         onQuestionBlur: this.handleQuestionBlur.bind(this),
         onKeyDown: this.handleInputKeyDown.bind(this)
       });
@@ -3224,6 +3237,7 @@ questionPanel_QuestionPanel.defaultProps = {
   onAnswerChange: () => {},
   onQuestionFocus: () => {},
   onQuestionClick: () => {},
+  onQuestionAction: () => {},
   onSwitchPanel: () => {},
   onPanelBack: () => {},
   panelHistory: []
@@ -3337,6 +3351,10 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
     this.props.onQuestionClick(questionSetId, questionId);
   }
 
+  handleQuestionAction(questionSetId, questionId, key) {
+    this.props.onQuestionAction(questionSetId, questionId, key);
+  }
+
   handleSubmit(action) {
     if (this.props.disableSubmit) {
       this.props.onSubmit(this.state.questionAnswers, action);
@@ -3390,6 +3408,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       readOnly: this.props.readOnly,
       onQuestionFocus: this.handleQuestionFocus.bind(this),
       onQuestionClick: this.handleQuestionClick.bind(this),
+      onQuestionAction: this.handleQuestionAction.bind(this),
       onAnswerChange: this.handleAnswerChange.bind(this),
       onPanelBack: this.handleBackButtonClick.bind(this),
       onSwitchPanel: this.handleSwitchPanel.bind(this),
@@ -3430,7 +3449,8 @@ index_Winterfell.defaultProps = {
   onSwitchPanel: () => {},
   onRender: () => {},
   onQuestionFocus: () => {},
-  onQuestionClick: () => {}
+  onQuestionClick: () => {},
+  onQuestionAction: () => {}
 };
 /* harmony default export */ var index = __webpack_exports__["default"] = (index_Winterfell);
 

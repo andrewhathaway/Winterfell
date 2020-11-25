@@ -30,6 +30,10 @@ class Question extends React.Component {
     this.props.onQuestionClick(questionSetId, questionId);
   }
 
+  handleQuestionAction(questionSetId = '', questionId = '', key = '') {
+    this.props.onQuestionAction(questionSetId, questionId, key);
+  }
+
   render() {
     var Input = inputTypes[this.props.input.type];
     if (!Input) {
@@ -81,6 +85,7 @@ class Question extends React.Component {
                           onAnswerChange={this.props.onAnswerChange}
                           onQuestionFocus={this.props.onQuestionFocus}
                           onQuestionClick={this.props.onQuestionClick}
+                          onQuestionAction={this.props.onQuestionAction}
                           onQuestionBlur={this.props.onQuestionBlur}
                           onKeyDown={this.props.onKeyDown} />
               );
@@ -126,9 +131,13 @@ class Question extends React.Component {
                               this.props.questionActions
                                 .map(action => {
                                   return (
-                                    <div key={action.key} className="toolTip">
-                                      <i className={action.icon} style={{color: action.color}} />
-                                      <span class="toolTipText">{action.toolTip}</span>
+                                    <div key={action.key} className={`${this.props.classes.toolTip}` `${this.props.classes.toolTipTop}`}>
+                                      <i 
+                                        className={action.icon} 
+                                        style={{color: action.color}} 
+                                        onClick={this.handleQuestionAction(this.props.questionSetId, this.props.questionId, action.key)}
+                                      />
+                                      <span className={this.props.classes.toolTipText}>{action.toolTip}</span>
                                     </div>
                                   )
                                 })
@@ -154,10 +163,6 @@ class Question extends React.Component {
                     : undefined}
                 </label>
                 {questionActions}
-                {/* <div className={this.props.classes.actionControl}>
-                  <i class="far fa-question-circle"></i>
-                  <i class="fas fa-exclamation-circle"></i>
-                  </div> */}
               </Fragment>
               )
             : undefined}
