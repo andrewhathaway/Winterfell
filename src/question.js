@@ -135,7 +135,7 @@ class Question extends React.Component {
                                       <i 
                                         className={action.icon} 
                                         style={{color: action.color}} 
-                                        onClick={this.handleQuestionAction(this.props.questionSetId, this.props.questionId, action.key)}
+                                        onClick={this.handleQuestionAction.bind(this, this.props.questionSetId, this.props.questionId, action.key)}
                                       />
                                       <span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
                                     </div>

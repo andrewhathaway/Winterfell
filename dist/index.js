@@ -2834,7 +2834,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
         style: {
           color: action.color
         },
-        onClick: this.handleQuestionAction(this.props.questionSetId, this.props.questionId, action.key)
+        onClick: this.handleQuestionAction.bind(this, this.props.questionSetId, this.props.questionId, action.key)
       }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
         className: `${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`
       }, action.toolTip));
