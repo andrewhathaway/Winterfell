@@ -131,7 +131,7 @@ class Question extends React.Component {
                               this.props.questionActions
                                 .map(action => {
                                   return (
-                                    <div key={action.key} className={`${this.props.classes.toolTip}` `${this.props.classes.toolTipTop}`}>
+                                    <div key={action.key} className={`${this.props.classes.toolTip} ${this.props.classes.toolTipTop}`}>
                                       <i 
                                         className={action.icon} 
                                         style={{color: action.color}} 
