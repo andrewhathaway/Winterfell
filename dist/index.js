@@ -2828,7 +2828,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     }, this.props.questionActions.map(action => {
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         key: action.key,
-        className: `${this.props.classes.toolTip} ${this.props.classes.toolTipTop}`
+        className: this.props.classes.toolTip
       }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
         className: action.icon,
         style: {
@@ -2836,7 +2836,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
         },
         onClick: this.handleQuestionAction(this.props.questionSetId, this.props.questionId, action.key)
       }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
-        className: this.props.classes.toolTipText
+        className: `${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`
       }, action.toolTip));
     })) : '';
     let labelId = `${this.props.questionId}-label`;
