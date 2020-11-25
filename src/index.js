@@ -48,8 +48,7 @@ class Winterfell extends React.Component {
       action          : props.action,
       questionAnswers : props.questionAnswers,
       panelId         : props.panelId,
-      validationErrors: props.validationErrors,
-      questionActions : props.questionActions
+      validationErrors: props.validationErrors
     };
   }
 
@@ -60,8 +59,7 @@ class Winterfell extends React.Component {
         schema            : nextProps.schema,
         questionAnswers   : nextProps.questionAnswers,
         panelId           : nextProps.panelId,
-        validationErrors  : nextProps.validationErrors,
-        questionActions   : nextProps.questionActions
+        validationErrors  : nextProps.validationErrors
       });
 
       var panel = _.find(this.props.schema.formPanels, {
@@ -78,8 +76,7 @@ class Winterfell extends React.Component {
         action            : nextProps.action,
         schema            : nextProps.schema,
         validationErrors  : nextProps.validationErrors,
-        questionAnswers   : nextProps.questionAnswers,
-        questionActions   : nextProps.questionActions
+        questionAnswers   : nextProps.questionAnswers
       });
     }
   }
@@ -212,7 +209,6 @@ Winterfell.addValidationMethods = Winterfell.validation.addValidationMethods;
 
 Winterfell.defaultProps = {
   questionAnswers        : {},
-  questionActions        : [],
   encType                : 'application/x-www-form-urlencoded',
   method                 : 'POST',
   action                 : '',

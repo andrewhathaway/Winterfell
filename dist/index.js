@@ -3265,8 +3265,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       action: props.action,
       questionAnswers: props.questionAnswers,
       panelId: props.panelId,
-      validationErrors: props.validationErrors,
-      questionActions: props.questionActions
+      validationErrors: props.validationErrors
     };
   }
 
@@ -3277,8 +3276,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
         schema: nextProps.schema,
         questionAnswers: nextProps.questionAnswers,
         panelId: nextProps.panelId,
-        validationErrors: nextProps.validationErrors,
-        questionActions: nextProps.questionActions
+        validationErrors: nextProps.validationErrors
       });
 
       var panel = external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_default.a.find(this.props.schema.formPanels, {
@@ -3295,8 +3293,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
         action: nextProps.action,
         schema: nextProps.schema,
         validationErrors: nextProps.validationErrors,
-        questionAnswers: nextProps.questionAnswers,
-        questionActions: nextProps.questionActions
+        questionAnswers: nextProps.questionAnswers
       });
     }
   }
@@ -3419,7 +3416,6 @@ index_Winterfell.addValidationMethod = index_Winterfell.validation.addValidation
 index_Winterfell.addValidationMethods = index_Winterfell.validation.addValidationMethods;
 index_Winterfell.defaultProps = {
   questionAnswers: {},
-  questionActions: [],
   encType: 'application/x-www-form-urlencoded',
   method: 'POST',
   action: '',
