@@ -120,7 +120,7 @@ class Question extends React.Component {
                              : [];
 
 
-    var questionActions = typeof this.props.questionActions !== 'undefined' && this.props.quesitonActions.length > 0 ?
+    var questionActions = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ?
                           (<div className={this.props.classes.actionControl}>
                             {
                               this.props.questionActions

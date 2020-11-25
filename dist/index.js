@@ -2818,7 +2818,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
         className: this.props.classes.errorMessage
       }, error.message);
     }) : [];
-    var questionActions = typeof this.props.questionActions !== 'undefined' && this.props.quesitonActions.length > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+    var questionActions = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
       className: this.props.classes.actionControl
     }, this.props.questionActions.map(action => {
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
