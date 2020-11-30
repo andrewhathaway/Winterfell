@@ -24,6 +24,7 @@ class RadioOptionsInput extends React.Component {
               className={this.props.classes.radioListItem}>
             <label className={this.props.classes.radioLabel}
                    id={this.props.labelId}
+                   disabled={this.props.readOnly}
                    onClick={this.handleChange.bind(this, opt.value)}>
               <input type="radio"
                      name={this.props.name}

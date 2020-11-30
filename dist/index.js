@@ -2421,6 +2421,7 @@ class radioOptionsInput_RadioOptionsInput extends external_commonjs_react_common
     }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("label", {
       className: this.props.classes.radioLabel,
       id: this.props.labelId,
+      disabled: this.props.readOnly,
       onClick: this.handleChange.bind(this, opt.value)
     }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("input", {
       type: "radio",
@@ -2434,7 +2435,7 @@ class radioOptionsInput_RadioOptionsInput extends external_commonjs_react_common
       onChange: this.handleChange.bind(this, opt.value),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value)
-    }), opt.text))));
+    }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", null, opt.text)))));
   }
 
 }
