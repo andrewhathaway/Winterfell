@@ -206,17 +206,18 @@ class Question extends React.Component {
                 </p>
               )
             : undefined}
+
+          {typeof this.props.input.questionAlert !== 'undefined' ?
+            <Alert 
+              alert={this.props.input.questionAlert}
+              questionSetId={this.props.questionSetId} 
+              questionId={this.props.questionId}
+              handleQuestionAction={this.handleQuestionAction.bind(this)}
+            />
+            : ''
+          }
         </div> 
         {conditionalItems}
-        {typeof this.props.input.questionAlert !== 'undefined' ?
-          <Alert 
-            alert={this.props.input.questionAlert}
-            questionSetId={this.props.questionSetId} 
-            questionId={this.props.questionId}
-            handleQuestionAction={this.handleQuestionAction.bind(this)}
-          />
-          : ''
-        }
       </div>
     );
   }

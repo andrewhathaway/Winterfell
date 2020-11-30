@@ -2945,12 +2945,12 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       onKeyDown: this.props.onKeyDown
     }, typeof this.props.input.props === 'object' ? this.props.input.props : {})), !!this.props.postText ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
       className: this.props.classes.questionPostText
-    }, this.props.postText) : undefined), conditionalItems, typeof this.props.input.questionAlert !== 'undefined' ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(components_Alert, {
+    }, this.props.postText) : undefined, typeof this.props.input.questionAlert !== 'undefined' ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(components_Alert, {
       alert: this.props.input.questionAlert,
       questionSetId: this.props.questionSetId,
       questionId: this.props.questionId,
       handleQuestionAction: this.handleQuestionAction.bind(this)
-    }) : '');
+    }) : ''), conditionalItems);
   }
 
   componentDidMount() {
