@@ -7,6 +7,11 @@ import _ from 'lodash';
 
 class Alert extends React.Component {
 
+  handleClick = (e, action) => {
+    e.preventDefault();
+    this.props.handleQuestionAction(this.props.questionSetId, this.props.questionId, action)
+  }
+  
   render() {
 
     const { status = '', text = '', options = [] } = this.props.alert;
@@ -23,7 +28,7 @@ class Alert extends React.Component {
         return [...options].map((option) => {
           const {text = '', action = '', icon = ''} = option;
           return (
-            <div onClick={this.props.handleQuestionAction(this.props.questionSetId, this.props.questionId, action)}>
+            <div onClick={e => this.handleClick(e, action)}>
               { !_.isEmpty(icon) ? <i className={icon} /> : ''} <div>{text}</div> 
             </div>
           )
