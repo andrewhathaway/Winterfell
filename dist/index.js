@@ -2420,9 +2420,7 @@ class radioOptionsInput_RadioOptionsInput extends external_commonjs_react_common
       className: this.props.classes.radioListItem
     }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("label", {
       className: this.props.classes.radioLabel,
-      id: this.props.labelId,
-      disabled: this.props.readOnly,
-      onClick: this.handleChange.bind(this, opt.value)
+      id: this.props.labelId
     }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("input", {
       type: "radio",
       name: this.props.name,
