@@ -2944,7 +2944,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       alert: this.props.input.questionAlert,
       questionSetId: this.props.questionSetId,
       questionId: this.props.questionId,
-      onClick: this.handleQuestionAction(this, this.props.questionSetId, this.props.questionId)
+      handleQuestionAction: this.handleQuestionAction(this, this.props.questionSetId, this.props.questionId)
     }) : '');
   }
 
