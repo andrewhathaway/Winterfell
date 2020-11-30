@@ -2119,10 +2119,12 @@ class Alert_Alert extends external_commonjs_react_commonjs2_react_amd_React_root
         return [...options].map(option => {
           const {
             text = '',
-            action,
+            action = '',
             icon = ''
           } = option;
-          return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null, !external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_default.a.isEmpty(icon) ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
+          return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+            onClick: this.props.handleQuestionAction.bind(null, action)
+          }, !external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_default.a.isEmpty(icon) ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
             className: icon
           }) : '', " ", /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null, text));
         });
@@ -2131,7 +2133,9 @@ class Alert_Alert extends external_commonjs_react_commonjs2_react_amd_React_root
 
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
       className: alertClassMapper[status]
-    }, renderIcon(status), " ", text, " ", renderOptions(options));
+    }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      className: "alert-wrap"
+    }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null, renderIcon(status), " ", text), " ", renderOptions(options)));
   }
 
 }

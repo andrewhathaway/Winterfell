@@ -21,9 +21,9 @@ class Alert extends React.Component {
     const renderOptions = (options) => {
       if(!_.isEmpty(options)) {
         return [...options].map((option) => {
-          const {text = '', action, icon = ''} = option;
+          const {text = '', action = '', icon = ''} = option;
           return (
-            <div>
+            <div onClick={this.props.handleQuestionAction.bind(null, action)}>
               { !_.isEmpty(icon) ? <i className={icon} /> : ''} <div>{text}</div> 
             </div>
           )
@@ -32,7 +32,11 @@ class Alert extends React.Component {
     }
     
     return (
-    <div className={alertClassMapper[status]}>{renderIcon(status)} {text} {renderOptions(options)}</div>
+    <div className={alertClassMapper[status]}>
+      <div className="alert-wrap">
+        <div>{renderIcon(status)} {text}</div> {renderOptions(options)}
+      </div>
+    </div>
     );
   }
 }
