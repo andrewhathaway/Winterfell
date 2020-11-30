@@ -7,7 +7,7 @@ import _ from 'lodash';
 
 class Alert extends React.Component {
 
-  handleClick = (e, action) => {
+  handleClick(e, action) {
     e.preventDefault();
     this.props.handleQuestionAction(this.props.questionSetId, this.props.questionId, action)
   }
