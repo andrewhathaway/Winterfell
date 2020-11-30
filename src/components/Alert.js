@@ -23,7 +23,7 @@ class Alert extends React.Component {
         return [...options].map((option) => {
           const {text = '', action = '', icon = ''} = option;
           return (
-            <div onClick={this.props.handleQuestionAction.bind(null, action)}>
+            <div onClick={this.props.handleQuestionAction(null, action)}>
               { !_.isEmpty(icon) ? <i className={icon} /> : ''} <div>{text}</div> 
             </div>
           )

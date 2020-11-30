@@ -2123,7 +2123,7 @@ class Alert_Alert extends external_commonjs_react_commonjs2_react_amd_React_root
             icon = ''
           } = option;
           return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-            onClick: this.props.handleQuestionAction.bind(null, action)
+            onClick: this.props.handleQuestionAction(null, action)
           }, !external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_default.a.isEmpty(icon) ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
             className: icon
           }) : '', " ", /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null, text));
@@ -2943,7 +2943,8 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     }, this.props.postText) : undefined), conditionalItems, typeof this.props.input.questionAlert !== 'undefined' ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(components_Alert, {
       alert: this.props.input.questionAlert,
       questionSetId: this.props.questionSetId,
-      questionId: this.props.questionId
+      questionId: this.props.questionId,
+      onClick: this.handleQuestionAction(this, this.props.questionSetId, this.props.questionId)
     }) : '');
   }
 
