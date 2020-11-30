@@ -9,7 +9,7 @@ class Alert extends React.Component {
 
   render() {
 
-    const { status, text, options } = this.props.questionAlert;
+    const { status = '', text = '', options = [] } = this.props.alert;
 
     const renderIcon = (icon = '') => {
       if(!_.isEmpty(icon)) {
@@ -17,9 +17,22 @@ class Alert extends React.Component {
       }
       return '';
     }
+
+    const renderOptions = (options) => {
+      if(!_.isEmpty(options)) {
+        return [...options].map((option) => {
+          const {text = '', action, icon = ''} = option;
+          return (
+            <div>
+              { !_.isEmpty(icon) ? <i className={icon} /> : ''} <div>{text}</div> 
+            </div>
+          )
+        });
+      }
+    }
     
     return (
-      <div className={alertClassMapper[status]}>{renderIcon(status)} {text}</div>
+    <div className={alertClassMapper[status]}>{renderIcon(status)} {text} {renderOptions(options)}</div>
     );
   }
 }

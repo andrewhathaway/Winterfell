@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import _ from 'lodash';
+import Alert from './components/Alert';
 import inputTypes from './inputTypes/index';
 
 class Question extends React.Component {
@@ -207,6 +208,14 @@ class Question extends React.Component {
             : undefined}
         </div> 
         {conditionalItems}
+        {typeof this.props.input.questionAlert !== 'undefined' ?
+          <Alert 
+            alert={this.props.input.questionAlert}
+            questionSetId={this.props.questionSetId} 
+            questionId={this.props.questionId} 
+          />
+          : ''
+        }
       </div>
     );
   }
@@ -237,14 +246,15 @@ Question.defaultProps = {
   postText               : undefined,
   value                  : undefined,
   input                  : {
-    default     : undefined,
-    type        : 'textInput',
-    limit       : undefined,
-    placeholder : undefined,
-    icon        : undefined,
-    class       : undefined,
-    action      : undefined,
-    disabled    : undefined,
+    default       : undefined,
+    type          : 'textInput',
+    limit         : undefined,
+    placeholder   : undefined,
+    icon          : undefined,
+    class         : undefined,
+    action        : undefined,
+    disabled      : undefined,
+    questionAlert : undefined
   },
   classes                : {},
   questionAnswers        : {},

@@ -2080,6 +2080,68 @@ button_Button.defaultProps = {
   onClick: () => {}
 };
 /* harmony default export */ var button_0 = (button_Button);
+// CONCATENATED MODULE: ./lib/types.js
+const iconMapper = {
+  WARNING: 'fas fa-exclamation-circle',
+  ERROR: 'fas fa-exclamation-circle',
+  SUCCESS: 'fas fa-check'
+};
+const alertClassMapper = {
+  WARNING: 'alert alert-warning',
+  ERROR: 'alert alert-danger',
+  SUCCESS: 'alert alert-success'
+};
+// CONCATENATED MODULE: ./components/Alert.js
+
+
+
+
+class Alert_Alert extends external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Component {
+  render() {
+    const {
+      status = '',
+      text = '',
+      options = []
+    } = this.props.alert;
+
+    const renderIcon = (icon = '') => {
+      if (!external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_default.a.isEmpty(icon)) {
+        return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
+          className: iconMapper[icon]
+        });
+      }
+
+      return '';
+    };
+
+    const renderOptions = options => {
+      if (!external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_default.a.isEmpty(options)) {
+        return [...options].map(option => {
+          const {
+            text = '',
+            action,
+            icon = ''
+          } = option;
+          return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null, !external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_default.a.isEmpty(icon) ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
+            className: icon
+          }) : '', " ", /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null, text));
+        });
+      }
+    };
+
+    return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      className: alertClassMapper[status]
+    }, renderIcon(status), " ", text, " ", renderOptions(options));
+  }
+
+}
+
+Alert_Alert.defaultProps = {
+  status: '',
+  text: '',
+  options: []
+};
+/* harmony default export */ var components_Alert = (Alert_Alert);
 // CONCATENATED MODULE: ./inputTypes/checkboxInput.js
 
 
@@ -2735,6 +2797,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 
+
 class question_Question extends external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Component {
   handleInputChange(questionId, value) {
     this.props.onAnswerChange(questionId, value, this.props.validations, this.props.validateOn);
@@ -2873,7 +2936,11 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       onKeyDown: this.props.onKeyDown
     }, typeof this.props.input.props === 'object' ? this.props.input.props : {})), !!this.props.postText ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
       className: this.props.classes.questionPostText
-    }, this.props.postText) : undefined), conditionalItems);
+    }, this.props.postText) : undefined), conditionalItems, typeof this.props.input.questionAlert !== 'undefined' ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(components_Alert, {
+      alert: this.props.input.questionAlert,
+      questionSetId: this.props.questionSetId,
+      questionId: this.props.questionId
+    }) : '');
   }
 
   componentDidMount() {
@@ -2904,7 +2971,8 @@ question_Question.defaultProps = {
     icon: undefined,
     class: undefined,
     action: undefined,
-    disabled: undefined
+    disabled: undefined,
+    questionAlert: undefined
   },
   classes: {},
   questionAnswers: {},
