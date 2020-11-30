@@ -213,7 +213,7 @@ class Question extends React.Component {
             alert={this.props.input.questionAlert}
             questionSetId={this.props.questionSetId} 
             questionId={this.props.questionId}
-            handleQuestionAction={this.handleQuestionAction(this, this.props.questionSetId, this.props.questionId)}
+            handleQuestionAction={this.handleQuestionAction}
           />
           : ''
         }
