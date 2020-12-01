@@ -31,8 +31,8 @@ class Question extends React.Component {
     this.props.onQuestionClick(questionSetId, questionId);
   }
 
-  handleQuestionAction(questionSetId = '', questionId = '', key = '') {
-    this.props.onQuestionAction(questionSetId, questionId, key);
+  handleQuestionAction(e, questionSetId = '', questionId = '', key = '') {
+    this.props.onQuestionAction(e, questionSetId, questionId, key);
   }
 
   render() {
@@ -136,7 +136,7 @@ class Question extends React.Component {
                                       <i 
                                         className={action.icon} 
                                         style={{color: action.color}} 
-                                        onClick={this.handleQuestionAction.bind(this, this.props.questionSetId, this.props.questionId, action.key)}
+                                        onClick={e => this.handleQuestionAction.bind(this, e,  this.props.questionSetId, this.props.questionId, action.key)}
                                       />
                                       <span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
                                     </div>

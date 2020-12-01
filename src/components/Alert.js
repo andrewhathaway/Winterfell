@@ -9,7 +9,7 @@ class Alert extends React.Component {
 
   handleClick(e, action) {
     e.preventDefault();
-    this.props.handleQuestionAction(this.props.questionSetId, this.props.questionId, action)
+    this.props.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action)
   }
   
   render() {
