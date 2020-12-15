@@ -2083,12 +2083,12 @@ button_Button.defaultProps = {
 // CONCATENATED MODULE: ./lib/types.js
 const iconMapper = {
   WARNING: 'fas fa-exclamation-circle',
-  ERROR: 'fas fa-exclamation-circle',
+  DANGER: 'fas fa-exclamation-circle',
   SUCCESS: 'fas fa-check'
 };
 const alertClassMapper = {
   WARNING: 'alert alert-warning',
-  ERROR: 'alert alert-danger',
+  DANGER: 'alert alert-danger',
   SUCCESS: 'alert alert-success'
 };
 // CONCATENATED MODULE: ./components/Alert.js
@@ -2825,6 +2825,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
   }
 
   handleQuestionAction(e, questionSetId = '', questionId = '', key = '') {
+    e.preventDefault();
     this.props.onQuestionAction(e, questionSetId, questionId, key);
   }
 
@@ -2906,14 +2907,14 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
         style: {
           color: action.color
         },
-        onClick: e => this.handleQuestionAction.bind(this, e, this.props.questionSetId, this.props.questionId, action.key)
+        onClick: e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)
       }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
         className: `${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`
       }, action.toolTip));
     })) : '';
     let labelId = `${this.props.questionId}-label`;
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-      className: this.props.nested ? `${this.props.classes.question}-${this.props.classes.nested}` : this.props.classes.question
+      className: this.props.nested ? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}` : this.props.classes.question
     }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
       className: this.props.classes.questionWrap
     }, !!this.props.question ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_["Fragment"], null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("label", {

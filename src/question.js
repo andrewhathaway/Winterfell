@@ -32,6 +32,7 @@ class Question extends React.Component {
   }
 
   handleQuestionAction(e, questionSetId = '', questionId = '', key = '') {
+    e.preventDefault();
     this.props.onQuestionAction(e, questionSetId, questionId, key);
   }
 
@@ -136,7 +137,7 @@ class Question extends React.Component {
                                       <i 
                                         className={action.icon} 
                                         style={{color: action.color}} 
-                                        onClick={e => this.handleQuestionAction.bind(this, e,  this.props.questionSetId, this.props.questionId, action.key)}
+                                        onClick={e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)}
                                       />
                                       <span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
                                     </div>
@@ -149,7 +150,7 @@ class Question extends React.Component {
     let labelId = `${this.props.questionId}-label`;
 
     return (
-      <div className={this.props.nested ? `${this.props.classes.question}-${this.props.classes.nested}` : this.props.classes.question}>
+      <div className={this.props.nested ? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}` : this.props.classes.question}>
         <div className={this.props.classes.questionWrap}>
           {!!this.props.question
             ? (
