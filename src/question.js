@@ -149,6 +149,8 @@ class Question extends React.Component {
 
     let labelId = `${this.props.questionId}-label`;
 
+    let readOnly = typeof this.props.input.readOnly !== 'undefined' ? this.props.input.readOnly : this.props.readOnly;
+
     return (
       <div className={this.props.nested ? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}` : this.props.classes.question}>
         <div className={this.props.classes.questionWrap}>
@@ -189,7 +191,7 @@ class Question extends React.Component {
                 options={this.props.input.options}
                 placeholder={this.props.input.placeholder}
                 required={this.props.input.required}
-                readOnly={this.props.readOnly}
+                readOnly={readOnly}
                 classes={this.props.classes}
                 onChange={this.handleInputChange.bind(this, this.props.questionId)}
                 onFocus={this.handleInputFocus.bind(this, this.props.questionId)}
@@ -257,7 +259,8 @@ Question.defaultProps = {
     class         : undefined,
     action        : undefined,
     disabled      : undefined,
-    questionAlert : undefined
+    questionAlert : undefined,
+    readOnly      : undefined,
   },
   classes                : {},
   questionAnswers        : {},

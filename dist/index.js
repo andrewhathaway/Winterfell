@@ -2913,6 +2913,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       }, action.toolTip));
     })) : '';
     let labelId = `${this.props.questionId}-label`;
+    let readOnly = typeof this.props.input.readOnly !== 'undefined' ? this.props.input.readOnly : this.props.readOnly;
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
       className: this.props.nested ? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}` : this.props.classes.question
     }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
@@ -2937,7 +2938,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       options: this.props.input.options,
       placeholder: this.props.input.placeholder,
       required: this.props.input.required,
-      readOnly: this.props.readOnly,
+      readOnly: readOnly,
       classes: this.props.classes,
       onChange: this.handleInputChange.bind(this, this.props.questionId),
       onFocus: this.handleInputFocus.bind(this, this.props.questionId),
@@ -2983,7 +2984,8 @@ question_Question.defaultProps = {
     class: undefined,
     action: undefined,
     disabled: undefined,
-    questionAlert: undefined
+    questionAlert: undefined,
+    readOnly: undefined
   },
   classes: {},
   questionAnswers: {},
