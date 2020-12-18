@@ -2232,6 +2232,12 @@ class checkboxOptionsInput_CheckboxOptionsInput extends external_commonjs_react_
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) this.setState({
+      value: nextProps.value
+    });
+  }
+
   handleChange(newVal, e) {
     var currentValue = this.state.value;
 
