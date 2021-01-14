@@ -31,19 +31,19 @@ class RadioOptionsInput extends React.Component {
             <label className={this.props.classes.radioLabel}
                    id={this.props.labelId}>
               <input type="radio"
-                name={this.props.name}
-                aria-labelledby={this.props.labelId}
-                checked={this.state.value == opt.value}
-                className={this.props.classes.radio}
-                required={this.props.required
-                            ? 'required'
-                            : undefined}
-                disabled={this.props.readOnly}
-                value={opt.value}
-                onChange={this.handleChange.bind(this, opt.value)}              
-                onFocus={this.props.onFocus.bind(this)}
-                onBlur={this.props.onBlur.bind(null, this.state.value)} />
-              {opt.text}
+                     name={this.props.name}
+                     aria-labelledby={this.props.labelId}
+                     checked={this.state.value == opt.value}
+                     className={this.props.classes.radio}
+                     required={this.props.required
+                                 ? 'required'
+                                 : undefined}
+                     disabled={this.props.readOnly}
+                     value={opt.value}
+                     onChange={this.handleChange.bind(this, opt.value)}              
+                     onFocus={this.props.onFocus.bind(this)}
+                     onBlur={this.props.onBlur.bind(null, this.state.value)} />
+                <span>{opt.text}</span>
             </label>
           </li>
         )}
