@@ -17,16 +17,19 @@ class QuestionSet extends React.Component {
                   postText={question.postText}
                   value={this.props.questionAnswers[question.questionId]}
                   input={question.input}
+                  nested={false}
                   classes={this.props.classes}
                   renderError={this.props.renderError}
                   renderRequiredAsterisk={this.props.renderRequiredAsterisk}
                   readOnly={this.props.readOnly}
                   questionAnswers={this.props.questionAnswers}
+                  questionActions={this.props.questionActions}
                   validationErrors={this.props.validationErrors}
                   onAnswerChange={this.props.onAnswerChange}
                   onQuestionBlur={this.props.onQuestionBlur}
                   onQuestionFocus={this.props.onQuestionFocus}
                   onQuestionClick={this.props.onQuestionClick}
+                  onQuestionAction={this.props.onQuestionAction}
                   onKeyDown={this.props.onKeyDown} />
       );
     });
@@ -64,6 +67,7 @@ QuestionSet.defaultProps = {
   questionSetText        : undefined,
   questions              : [],
   questionAnswers        : {},
+  questionActions        : [],
   classes                : {},
   validationErrors       : {},
   renderError            : undefined,
@@ -73,6 +77,7 @@ QuestionSet.defaultProps = {
   onQuestionBlur         : () => {},
   onQuestionFocus        : () => {},
   onQuestionClick        : () => {},
+  onQuestionAction        : () => {},
   onKeyDown              : () => {}
 };
 

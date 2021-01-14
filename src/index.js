@@ -5,8 +5,6 @@ import inputTypes from './inputTypes/index';
 import errorMessages from './lib/errors';
 import * as Validation from './lib/validation';
 
-
-
 class Winterfell extends React.Component {
 
   constructor(props) {
@@ -21,6 +19,7 @@ class Winterfell extends React.Component {
       formPanels     : [],
       questionPanels : [],
       questionSets   : [],
+      questionActions: []
     }, props.schema);
 
     schema.formPanels = schema.formPanels
@@ -127,6 +126,10 @@ class Winterfell extends React.Component {
     this.props.onQuestionClick(questionSetId, questionId);
   }
 
+  handleQuestionAction(e, questionSetId, questionId, key) {
+    this.props.onQuestionAction(e, questionSetId, questionId, key);
+  }
+
 
   handleSubmit(action) {
     if (this.props.disableSubmit) {
@@ -171,6 +174,7 @@ class Winterfell extends React.Component {
                          backButton={currentPanel.backButton}
                          questionSets={currentPanel.questionSets}
                          questionAnswers={this.state.questionAnswers}
+                         questionActions={this.state.schema.questionActions}
                          panelHistory={this.panelHistory}
                          validationErrors={this.props.validationErrors}
                          renderError={this.props.renderError}
@@ -178,6 +182,7 @@ class Winterfell extends React.Component {
                          readOnly={this.props.readOnly}
                          onQuestionFocus={this.handleQuestionFocus.bind(this)}
                          onQuestionClick={this.handleQuestionClick.bind(this)}
+                         onQuestionAction={this.handleQuestionAction.bind(this)}
                          onAnswerChange={this.handleAnswerChange.bind(this)}
                          onPanelBack={this.handleBackButtonClick.bind(this)}
                          onSwitchPanel={this.handleSwitchPanel.bind(this)}
@@ -223,7 +228,8 @@ Winterfell.defaultProps = {
   onSwitchPanel          : () => {},
   onRender               : () => {},
   onQuestionFocus        : () => {},
-  onQuestionClick        : () => {}
+  onQuestionClick        : () => {},
+  onQuestionAction       : () => {}
 };
 
 export default Winterfell;

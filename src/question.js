@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import _ from 'lodash';
+import Alert from './components/Alert';
 import inputTypes from './inputTypes/index';
 
 class Question extends React.Component {
@@ -28,6 +29,11 @@ class Question extends React.Component {
 
   handleInputClick(questionSetId, questionId) {
     this.props.onQuestionClick(questionSetId, questionId);
+  }
+
+  handleQuestionAction(e, questionSetId = '', questionId = '', key = '') {
+    e.preventDefault();
+    this.props.onQuestionAction(e, questionSetId, questionId, key);
   }
 
   render() {
@@ -72,13 +78,16 @@ class Question extends React.Component {
                           value={this.props.questionAnswers[conditionalQuestion.questionId]}
                           input={conditionalQuestion.input}
                           classes={this.props.classes}
+                          nested={true}
                           renderError={this.props.renderError}
                           readOnly={this.props.readOnly}
                           questionAnswers={this.props.questionAnswers}
+                          questionActions={this.props.questionActions}
                           validationErrors={this.props.validationErrors}
                           onAnswerChange={this.props.onAnswerChange}
                           onQuestionFocus={this.props.onQuestionFocus}
                           onQuestionClick={this.props.onQuestionClick}
+                          onQuestionAction={this.props.onQuestionAction}
                           onQuestionBlur={this.props.onQuestionBlur}
                           onKeyDown={this.props.onKeyDown} />
               );
@@ -117,62 +126,100 @@ class Question extends React.Component {
                                    })
                              : [];
 
+
+    var questionActions = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ?
+                          (<div className={this.props.classes.actionControl}>
+                            {
+                              this.props.questionActions
+                                .map(action => {
+                                  return (
+                                    <div key={action.key} className={this.props.classes.toolTip}>
+                                      <i 
+                                        className={action.icon} 
+                                        style={{color: action.color}} 
+                                        onClick={e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)}
+                                      />
+                                      <span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
+                                    </div>
+                                  )
+                                })
+                            }
+                          </div>)
+                          : '';
+
     let labelId = `${this.props.questionId}-label`;
 
+    let readOnly = typeof this.props.input.readOnly !== 'undefined' ? this.props.input.readOnly : this.props.readOnly;
+
     return (
-      <div className={this.props.classes.question}>
-        {!!this.props.question
-          ? (
-              <label className={this.props.classes.label}
-                     id={labelId}
-                     htmlFor={this.props.questionId}>
-                {this.props.question}
-                {typeof this.props.renderRequiredAsterisk !== 'undefined'
-                   && this.props.input.required
-                   ? this.props.renderRequiredAsterisk()
-                   : undefined}
-              </label>
-            )
-          : undefined}
-        {!!this.props.text
-          ? (
-              <p className={this.props.classes.questionText}>
-                {this.props.text}
-              </p>
-            )
-          : undefined}
-        {validationErrors}
-        <Input name={this.props.questionId}
-               id={this.props.questionId}
-               questionSetId={this.props.questionSetId}
-               labelId={labelId}
-               value={value}
-               disabled={disabled}
-               text={this.props.input.text}
-               icon={this.props.input.icon}
-               class={this.props.input.class}
-               action={this.props.input.action}
-               options={this.props.input.options}
-               placeholder={this.props.input.placeholder}
-               required={this.props.input.required}
-               readOnly={this.props.readOnly}
-               classes={this.props.classes}
-               onChange={this.handleInputChange.bind(this, this.props.questionId)}
-               onFocus={this.handleInputFocus.bind(this, this.props.questionId)}
-               onClick={this.handleInputClick.bind(this, this.props.questionSetId, this.props.questionId)}
-               onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
-               onKeyDown={this.props.onKeyDown}
-               {...(typeof this.props.input.props === 'object'
-                     ? this.props.input.props
-                     : {})}
-        />
-        {!!this.props.postText
-          ? (
-              <p className={this.props.classes.questionPostText}>
-                {this.props.postText}
-              </p>
-            )
-          : undefined}
+      <div className={this.props.nested ? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}` : this.props.classes.question}>
+        <div className={this.props.classes.questionWrap}>
+          {!!this.props.question
+            ? (
+              <Fragment>
+                <label className={this.props.classes.label}
+                      id={labelId}
+                      htmlFor={this.props.questionId}>
+                  {this.props.question}
+                  {typeof this.props.renderRequiredAsterisk !== 'undefined'
+                    && this.props.input.required
+                    ? this.props.renderRequiredAsterisk()
+                    : undefined}
+                </label>
+                {questionActions}
+              </Fragment>
+              )
+            : undefined}
+          {!!this.props.text
+            ? (
+                <p className={this.props.classes.questionText}>
+                  {this.props.text}
+                </p>
+              )
+            : undefined}
+          {validationErrors}
+          <Input name={this.props.questionId}
+                id={this.props.questionId}
+                questionSetId={this.props.questionSetId}
+                labelId={labelId}
+                value={value}
+                disabled={disabled}
+                text={this.props.input.text}
+                icon={this.props.input.icon}
+                class={this.props.input.class}
+                action={this.props.input.action}
+                options={this.props.input.options}
+                placeholder={this.props.input.placeholder}
+                required={this.props.input.required}
+                readOnly={readOnly}
+                classes={this.props.classes}
+                onChange={this.handleInputChange.bind(this, this.props.questionId)}
+                onFocus={this.handleInputFocus.bind(this, this.props.questionId)}
+                onClick={this.handleInputClick.bind(this, this.props.questionSetId, this.props.questionId)}
+                onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
+                onKeyDown={this.props.onKeyDown}
+                {...(typeof this.props.input.props === 'object'
+                      ? this.props.input.props
+                      : {})}
+          />
+          {!!this.props.postText
+            ? (
+                <p className={this.props.classes.questionPostText}>
+                  {this.props.postText}
+                </p>
+              )
+            : undefined}
+
+          {typeof this.props.input.questionAlert !== 'undefined' ?
+            <Alert 
+              alert={this.props.input.questionAlert}
+              questionSetId={this.props.questionSetId} 
+              questionId={this.props.questionId}
+              handleQuestionAction={this.handleQuestionAction.bind(this)}
+            />
+            : ''
+          }
+        </div> 
         {conditionalItems}
       </div>
     );
@@ -204,17 +251,20 @@ Question.defaultProps = {
   postText               : undefined,
   value                  : undefined,
   input                  : {
-    default     : undefined,
-    type        : 'textInput',
-    limit       : undefined,
-    placeholder : undefined,
-    icon        : undefined,
-    class       : undefined,
-    action      : undefined,
-    disabled    : undefined,
+    default       : undefined,
+    type          : 'textInput',
+    limit         : undefined,
+    placeholder   : undefined,
+    icon          : undefined,
+    class         : undefined,
+    action        : undefined,
+    disabled      : undefined,
+    questionAlert : undefined,
+    readOnly      : undefined,
   },
   classes                : {},
   questionAnswers        : {},
+  questionActions        : [],
   validationErrors       : {},
   onAnswerChange         : () => {},
   onQuestionBlur         : () => {},
@@ -222,7 +272,8 @@ Question.defaultProps = {
   onKeyDown              : () => {},
   renderError            : undefined,
   renderRequiredAsterisk : undefined,
-  readOnly               : false
+  readOnly               : false,
+  nested                 : false
 };
 
 export default Question;

@@ -13,6 +13,11 @@ class CheckboxOptionsInput extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(this.props.value !== nextProps.value)
+      this.setState({value: nextProps.value});
+  }
+
   handleChange(newVal, e) {
     var currentValue = this.state.value;
 

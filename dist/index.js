@@ -2080,6 +2080,77 @@ button_Button.defaultProps = {
   onClick: () => {}
 };
 /* harmony default export */ var button_0 = (button_Button);
+// CONCATENATED MODULE: ./lib/types.js
+const iconMapper = {
+  WARNING: 'fas fa-exclamation-circle',
+  DANGER: 'fas fa-exclamation-circle',
+  SUCCESS: 'fas fa-check'
+};
+const alertClassMapper = {
+  WARNING: 'alert alert-warning',
+  DANGER: 'alert alert-danger',
+  SUCCESS: 'alert alert-success'
+};
+// CONCATENATED MODULE: ./components/Alert.js
+
+
+
+
+class Alert_Alert extends external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Component {
+  handleClick(e, action) {
+    e.preventDefault();
+    this.props.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action);
+  }
+
+  render() {
+    const {
+      status = '',
+      text = '',
+      options = []
+    } = this.props.alert;
+
+    const renderIcon = (icon = '') => {
+      if (!external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_default.a.isEmpty(icon)) {
+        return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
+          className: iconMapper[icon]
+        });
+      }
+
+      return '';
+    };
+
+    const renderOptions = options => {
+      if (!external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_default.a.isEmpty(options)) {
+        return [...options].map(option => {
+          const {
+            text = '',
+            action = '',
+            icon = ''
+          } = option;
+          return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+            onClick: e => this.handleClick(e, action)
+          }, !external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_default.a.isEmpty(icon) ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
+            className: icon
+          }) : '', " ", /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null, text));
+        });
+      }
+    };
+
+    return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      className: alertClassMapper[status]
+    }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      className: "alert-wrap"
+    }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null, renderIcon(status), " ", text), " ", renderOptions(options)));
+  }
+
+}
+
+Alert_Alert.defaultProps = {
+  status: '',
+  text: '',
+  options: []
+};
+/* harmony default export */ var components_Alert = (Alert_Alert);
 // CONCATENATED MODULE: ./inputTypes/checkboxInput.js
 
 
@@ -2159,6 +2230,12 @@ class checkboxOptionsInput_CheckboxOptionsInput extends external_commonjs_react_
     this.state = {
       value: this.props.value.length > 0 ? cloneArray(this.props.value) : []
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) this.setState({
+      value: nextProps.value
+    });
   }
 
   handleChange(newVal, e) {
@@ -2404,6 +2481,12 @@ class radioOptionsInput_RadioOptionsInput extends external_commonjs_react_common
     this.state = {
       value: this.props.value
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) this.setState({
+      value: nextProps.value
+    });
   }
 
   handleChange(value) {
@@ -2734,6 +2817,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 
+
 class question_Question extends external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Component {
   handleInputChange(questionId, value) {
     this.props.onAnswerChange(questionId, value, this.props.validations, this.props.validateOn);
@@ -2749,6 +2833,11 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
 
   handleInputClick(questionSetId, questionId) {
     this.props.onQuestionClick(questionSetId, questionId);
+  }
+
+  handleQuestionAction(e, questionSetId = '', questionId = '', key = '') {
+    e.preventDefault();
+    this.props.onQuestionAction(e, questionSetId, questionId, key);
   }
 
   render() {
@@ -2788,13 +2877,16 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
           value: this.props.questionAnswers[conditionalQuestion.questionId],
           input: conditionalQuestion.input,
           classes: this.props.classes,
+          nested: true,
           renderError: this.props.renderError,
           readOnly: this.props.readOnly,
           questionAnswers: this.props.questionAnswers,
+          questionActions: this.props.questionActions,
           validationErrors: this.props.validationErrors,
           onAnswerChange: this.props.onAnswerChange,
           onQuestionFocus: this.props.onQuestionFocus,
           onQuestionClick: this.props.onQuestionClick,
+          onQuestionAction: this.props.onQuestionAction,
           onQuestionBlur: this.props.onQuestionBlur,
           onKeyDown: this.props.onKeyDown
         }));
@@ -2815,14 +2907,33 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
         className: this.props.classes.errorMessage
       }, error.message);
     }) : [];
+    var questionActions = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      className: this.props.classes.actionControl
+    }, this.props.questionActions.map(action => {
+      return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+        key: action.key,
+        className: this.props.classes.toolTip
+      }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
+        className: action.icon,
+        style: {
+          color: action.color
+        },
+        onClick: e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)
+      }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
+        className: `${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`
+      }, action.toolTip));
+    })) : '';
     let labelId = `${this.props.questionId}-label`;
+    let readOnly = typeof this.props.input.readOnly !== 'undefined' ? this.props.input.readOnly : this.props.readOnly;
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-      className: this.props.classes.question
-    }, !!this.props.question ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("label", {
+      className: this.props.nested ? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}` : this.props.classes.question
+    }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      className: this.props.classes.questionWrap
+    }, !!this.props.question ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_["Fragment"], null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("label", {
       className: this.props.classes.label,
       id: labelId,
       htmlFor: this.props.questionId
-    }, this.props.question, typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required ? this.props.renderRequiredAsterisk() : undefined) : undefined, !!this.props.text ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
+    }, this.props.question, typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required ? this.props.renderRequiredAsterisk() : undefined), questionActions) : undefined, !!this.props.text ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
       className: this.props.classes.questionText
     }, this.props.text) : undefined, validationErrors, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Input, _extends({
       name: this.props.questionId,
@@ -2838,7 +2949,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       options: this.props.input.options,
       placeholder: this.props.input.placeholder,
       required: this.props.input.required,
-      readOnly: this.props.readOnly,
+      readOnly: readOnly,
       classes: this.props.classes,
       onChange: this.handleInputChange.bind(this, this.props.questionId),
       onFocus: this.handleInputFocus.bind(this, this.props.questionId),
@@ -2847,7 +2958,12 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       onKeyDown: this.props.onKeyDown
     }, typeof this.props.input.props === 'object' ? this.props.input.props : {})), !!this.props.postText ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
       className: this.props.classes.questionPostText
-    }, this.props.postText) : undefined, conditionalItems);
+    }, this.props.postText) : undefined, typeof this.props.input.questionAlert !== 'undefined' ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(components_Alert, {
+      alert: this.props.input.questionAlert,
+      questionSetId: this.props.questionSetId,
+      questionId: this.props.questionId,
+      handleQuestionAction: this.handleQuestionAction.bind(this)
+    }) : ''), conditionalItems);
   }
 
   componentDidMount() {
@@ -2878,10 +2994,13 @@ question_Question.defaultProps = {
     icon: undefined,
     class: undefined,
     action: undefined,
-    disabled: undefined
+    disabled: undefined,
+    questionAlert: undefined,
+    readOnly: undefined
   },
   classes: {},
   questionAnswers: {},
+  questionActions: [],
   validationErrors: {},
   onAnswerChange: () => {},
   onQuestionBlur: () => {},
@@ -2889,7 +3008,8 @@ question_Question.defaultProps = {
   onKeyDown: () => {},
   renderError: undefined,
   renderRequiredAsterisk: undefined,
-  readOnly: false
+  readOnly: false,
+  nested: false
 };
 /* harmony default export */ var question_0 = (question_Question);
 // CONCATENATED MODULE: ./questionSet.js
@@ -2911,16 +3031,19 @@ class questionSet_QuestionSet extends external_commonjs_react_commonjs2_react_am
         postText: question.postText,
         value: this.props.questionAnswers[question.questionId],
         input: question.input,
+        nested: false,
         classes: this.props.classes,
         renderError: this.props.renderError,
         renderRequiredAsterisk: this.props.renderRequiredAsterisk,
         readOnly: this.props.readOnly,
         questionAnswers: this.props.questionAnswers,
+        questionActions: this.props.questionActions,
         validationErrors: this.props.validationErrors,
         onAnswerChange: this.props.onAnswerChange,
         onQuestionBlur: this.props.onQuestionBlur,
         onQuestionFocus: this.props.onQuestionFocus,
         onQuestionClick: this.props.onQuestionClick,
+        onQuestionAction: this.props.onQuestionAction,
         onKeyDown: this.props.onKeyDown
       });
     });
@@ -2945,6 +3068,7 @@ questionSet_QuestionSet.defaultProps = {
   questionSetText: undefined,
   questions: [],
   questionAnswers: {},
+  questionActions: [],
   classes: {},
   validationErrors: {},
   renderError: undefined,
@@ -2954,6 +3078,7 @@ questionSet_QuestionSet.defaultProps = {
   onQuestionBlur: () => {},
   onQuestionFocus: () => {},
   onQuestionClick: () => {},
+  onQuestionAction: () => {},
   onKeyDown: () => {}
 };
 /* harmony default export */ var questionSet_0 = (questionSet_QuestionSet);
@@ -3108,6 +3233,10 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
     this.props.onQuestionClick(questionSetId, questionId);
   }
 
+  handleQuestionAction(e, questionSetId, questionId, key) {
+    this.props.onQuestionAction(e, questionSetId, questionId, key);
+  }
+
   handleInputKeyDown(e) {
     if (keycodez_default.a[e.keyCode] === 'enter') {
       e.preventDefault();
@@ -3134,6 +3263,7 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
         questions: questionSet.questions,
         classes: this.props.classes,
         questionAnswers: this.props.questionAnswers,
+        questionActions: this.props.questionActions,
         renderError: this.props.renderError,
         renderRequiredAsterisk: this.props.renderRequiredAsterisk,
         readOnly: this.props.readOnly,
@@ -3141,6 +3271,7 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
         onAnswerChange: this.handleAnswerChange.bind(this),
         onQuestionFocus: this.handleQuestionFocus.bind(this),
         onQuestionClick: this.handleQuestionClick.bind(this),
+        onQuestionAction: this.handleQuestionAction.bind(this),
         onQuestionBlur: this.handleQuestionBlur.bind(this),
         onKeyDown: this.handleInputKeyDown.bind(this)
       });
@@ -3191,12 +3322,14 @@ questionPanel_QuestionPanel.defaultProps = {
   },
   questionSets: [],
   questionAnswers: {},
+  questionActions: [],
   renderError: undefined,
   renderRequiredAsterisk: undefined,
   readOnly: false,
   onAnswerChange: () => {},
   onQuestionFocus: () => {},
   onQuestionClick: () => {},
+  onQuestionAction: () => {},
   onSwitchPanel: () => {},
   onPanelBack: () => {},
   panelHistory: []
@@ -3220,7 +3353,8 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       classes: {},
       formPanels: [],
       questionPanels: [],
-      questionSets: []
+      questionSets: [],
+      questionActions: []
     }, props.schema);
 
     schema.formPanels = schema.formPanels.sort((a, b) => a.index > b.index);
@@ -3309,6 +3443,10 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
     this.props.onQuestionClick(questionSetId, questionId);
   }
 
+  handleQuestionAction(e, questionSetId, questionId, key) {
+    this.props.onQuestionAction(e, questionSetId, questionId, key);
+  }
+
   handleSubmit(action) {
     if (this.props.disableSubmit) {
       this.props.onSubmit(this.state.questionAnswers, action);
@@ -3354,6 +3492,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       backButton: currentPanel.backButton,
       questionSets: currentPanel.questionSets,
       questionAnswers: this.state.questionAnswers,
+      questionActions: this.state.schema.questionActions,
       panelHistory: this.panelHistory,
       validationErrors: this.props.validationErrors,
       renderError: this.props.renderError,
@@ -3361,6 +3500,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       readOnly: this.props.readOnly,
       onQuestionFocus: this.handleQuestionFocus.bind(this),
       onQuestionClick: this.handleQuestionClick.bind(this),
+      onQuestionAction: this.handleQuestionAction.bind(this),
       onAnswerChange: this.handleAnswerChange.bind(this),
       onPanelBack: this.handleBackButtonClick.bind(this),
       onSwitchPanel: this.handleSwitchPanel.bind(this),
@@ -3401,7 +3541,8 @@ index_Winterfell.defaultProps = {
   onSwitchPanel: () => {},
   onRender: () => {},
   onQuestionFocus: () => {},
-  onQuestionClick: () => {}
+  onQuestionClick: () => {},
+  onQuestionAction: () => {}
 };
 /* harmony default export */ var index = __webpack_exports__["default"] = (index_Winterfell);
 

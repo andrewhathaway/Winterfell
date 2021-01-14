@@ -10,6 +10,12 @@ class RadioOptionsInput extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(this.props.value !== nextProps.value)
+      this.setState({value: nextProps.value});
+  }
+
+
   handleChange(value) {
     this.setState({
       value : value
