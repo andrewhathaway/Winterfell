@@ -127,6 +127,7 @@ class Question extends React.Component {
                              : [];
 
 
+                             // this.props.input.questionActions = [{	key: 'guidance',icon: 'far fa-question-circle',color: '#475da7',toolTip: 'Guidance',order: 1, count: 2},]
     var questionActions = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ?
                           (<div className={this.props.classes.actionControl}>
                             {
@@ -139,7 +140,7 @@ class Question extends React.Component {
                                         style={{color: action.color}} 
                                         onClick={e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)}
                                       />
-                                      <div className={'test'}>2</div>
+                                      <div className={this.props.classes.actionCount}>2</div>
                                       <span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
                                     </div>
                                   )
@@ -147,6 +148,7 @@ class Question extends React.Component {
                             }
                           </div>)
                           : '';
+    // let questionNotifications = '';
 
     let labelId = `${this.props.questionId}-label`;
 
@@ -167,6 +169,7 @@ class Question extends React.Component {
                     ? this.props.renderRequiredAsterisk()
                     : undefined}
                 </label>
+                {/* {questionNotifications} */}
                 {questionActions}
               </Fragment>
               )
