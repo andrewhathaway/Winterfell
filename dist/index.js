@@ -2906,7 +2906,8 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
         key: this.props.questionId + 'Error' + error.type,
         className: this.props.classes.errorMessage
       }, error.message);
-    }) : [];
+    }) : []; // this.props.input.questionActions = [{	key: 'guidance',icon: 'far fa-question-circle',color: '#475da7',toolTip: 'Guidance',order: 1, count: 2},]
+
     var questionActions = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
       className: this.props.classes.actionControl
     }, this.props.questionActions.map(action => {
@@ -2920,11 +2921,12 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
         },
         onClick: e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)
       }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-        className: 'test'
+        className: this.props.classes.actionCount
       }, "2"), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
         className: `${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`
       }, action.toolTip));
-    })) : '';
+    })) : ''; // let questionNotifications = '';
+
     let labelId = `${this.props.questionId}-label`;
     let readOnly = typeof this.props.input.readOnly !== 'undefined' ? this.props.input.readOnly : this.props.readOnly;
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
