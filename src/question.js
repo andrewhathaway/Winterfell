@@ -168,13 +168,13 @@ class Question extends React.Component {
                                           />
                                           
                                           <span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
-                                        </div> : <div>DELETE ME</div>}
+                                        </div> : ''}
                                     </Fragment>
                                   )
                                 })
                             }
                           </div>)
-                          : '';
+                          : <div>DELETE ME</div>;
 
 
 

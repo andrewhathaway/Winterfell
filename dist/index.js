@@ -2943,8 +2943,8 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
         onClick: e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)
       }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
         className: `${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`
-      }, action.toolTip)) : /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null, "DELETE ME"));
-    })) : '';
+      }, action.toolTip)) : '');
+    })) : /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null, "DELETE ME");
     let labelId = `${this.props.questionId}-label`;
     let readOnly = typeof this.props.input.readOnly !== 'undefined' ? this.props.input.readOnly : this.props.readOnly;
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
