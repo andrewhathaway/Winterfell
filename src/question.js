@@ -178,21 +178,21 @@ class Question extends React.Component {
 
     if(typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0){
       let displayedQuestionActions = this.props.questionActions.map(action => {
-        return (
-          <Fragment>
-            {action.count > 0 ? 
-              <div key={action.key} className={this.props.classes.toolTip}>
-             <div className={this.props.classes.actionCount}>{action.count}</div>
-                <i 
-                  className={action.icon} 
-                  style={{color: action.color}} 
-                  onClick={e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)}
-                />
-                
-                <span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
-              </div> : ''}
-          </Fragment>
-        )
+        if(action.count > 0){
+          return(
+              <Fragment>
+                <div key={action.key} className={this.props.classes.toolTip}>
+                <div className={this.props.classes.actionCount}>{action.count}</div>
+                    <i 
+                      className={action.icon} 
+                      style={{color: action.color}} 
+                      onClick={e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)}
+                    />
+                    
+                    <span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
+                  </div> 
+                </Fragment>)
+        }
       })
       if(!_.isEmpty(displayedQuestionActions)){
         questionNotifications = <div className={this.props.classes.actionNotifications}>{displayedQuestionActions}</div>
