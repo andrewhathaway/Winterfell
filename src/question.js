@@ -151,8 +151,8 @@ class Question extends React.Component {
                           </div>)
                           : '';
 
-    let questionNotifications = 
-                          <div className={this.props.classes.actionControl}>
+    let questionNotifications = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ?
+                          (<div className={this.props.classes.actionNotications}>
                             {
                               this.props.questionActions
                                 .map(action => {
@@ -160,7 +160,7 @@ class Question extends React.Component {
                                     <Fragment>
                                       {action.count > 0 ? 
                                         <div key={action.key} className={this.props.classes.toolTip}>
-                                        {action.count > 0 ? <div className={this.props.classes.actionCount}>{action.count}</div> : ''}
+                                       <div className={this.props.classes.actionCount}>{action.count}</div>
                                           <i 
                                             className={action.icon} 
                                             style={{color: action.color}} 
@@ -173,8 +173,8 @@ class Question extends React.Component {
                                   )
                                 })
                             }
-                          </div>
-                         
+                          </div>)
+                          : '';
 
 
 
