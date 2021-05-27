@@ -2927,7 +2927,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
         className: `${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`
       }, action.toolTip));
     })) : '';
-    let questionNotifications = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+    let questionNotifications = /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
       className: this.props.classes.actionControl
     }, this.props.questionActions.map(action => {
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_["Fragment"], null, action.count > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
@@ -2944,7 +2944,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
         className: `${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`
       }, action.toolTip)) : '');
-    })) : /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null, "DELETE ME");
+    }));
     let labelId = `${this.props.questionId}-label`;
     let readOnly = typeof this.props.input.readOnly !== 'undefined' ? this.props.input.readOnly : this.props.readOnly;
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
