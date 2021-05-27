@@ -2907,8 +2907,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
         key: this.props.questionId + 'Error' + error.type,
         className: this.props.classes.errorMessage
       }, error.message);
-    }) : []; // this.props.input.questionActions = [{	key: 'guidance',icon: 'far fa-question-circle',color: '#475da7',toolTip: 'Guidance',order: 1, count: 2},]
-
+    }) : [];
     var questionActions = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
       className: this.props.classes.actionControl
     }, this.props.questionActions.map(action => {

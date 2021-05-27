@@ -127,8 +127,6 @@ class Question extends React.Component {
                                    })
                              : [];
 
-
-                             // this.props.input.questionActions = [{	key: 'guidance',icon: 'far fa-question-circle',color: '#475da7',toolTip: 'Guidance',order: 1, count: 2},]
     var questionActions = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ?
                           (<div className={this.props.classes.actionControl}>
                             {
@@ -175,10 +173,6 @@ class Question extends React.Component {
                             }
                           </div>)
                           : '';
-
-
-
-
 
     let labelId = `${this.props.questionId}-label`;
 
