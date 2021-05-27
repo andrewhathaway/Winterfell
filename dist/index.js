@@ -2920,9 +2920,9 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
           color: action.color
         },
         onClick: e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)
-      }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      }), action.count > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: this.props.classes.actionCount
-      }, "2"), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
+      }, action.count) : '', /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
         className: `${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`
       }, action.toolTip));
     })) : ''; // let questionNotifications = '';

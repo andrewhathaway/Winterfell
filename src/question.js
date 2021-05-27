@@ -140,7 +140,9 @@ class Question extends React.Component {
                                         style={{color: action.color}} 
                                         onClick={e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)}
                                       />
-                                      <div className={this.props.classes.actionCount}>2</div>
+                                      
+                                      {action.count > 0 ? <div className={this.props.classes.actionCount}>{action.count}</div> : ''}
+                                      
                                       <span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
                                     </div>
                                   )
@@ -148,7 +150,12 @@ class Question extends React.Component {
                             }
                           </div>)
                           : '';
+
     // let questionNotifications = '';
+
+
+
+
 
     let labelId = `${this.props.questionId}-label`;
 
