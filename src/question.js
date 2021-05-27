@@ -152,7 +152,7 @@ class Question extends React.Component {
                           : '';
 
     let questionNotifications = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ?
-                          (<div className={this.props.classes.actionNotications}>
+                          (<div className={this.props.classes.actionNotifications}>
                             {
                               this.props.questionActions
                                 .map(action => {

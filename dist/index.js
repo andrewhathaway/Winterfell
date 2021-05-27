@@ -2928,7 +2928,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       }, action.toolTip));
     })) : '';
     let questionNotifications = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-      className: this.props.classes.actionNotications
+      className: this.props.classes.actionNotifications
     }, this.props.questionActions.map(action => {
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_["Fragment"], null, action.count > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         key: action.key,
