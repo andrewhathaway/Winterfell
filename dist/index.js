@@ -2925,30 +2925,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
         className: `${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`
       }, action.toolTip));
-    })) : ''; // let questionNotifications = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ?
-    //                       (<div className={this.props.classes.actionNotifications}>
-    //                         {
-    //                           this.props.questionActions
-    //                             .map(action => {
-    //                               return (
-    //                                 <Fragment>
-    //                                   {action.count > 0 ? 
-    //                                     <div key={action.key} className={this.props.classes.toolTip}>
-    //                                    <div className={this.props.classes.actionCount}>{action.count}</div>
-    //                                       <i 
-    //                                         className={action.icon} 
-    //                                         style={{color: action.color}} 
-    //                                         onClick={e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)}
-    //                                       />
-    //                                       <span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
-    //                                     </div> : ''}
-    //                                 </Fragment>
-    //                               )
-    //                             })
-    //                         }
-    //                       </div>)
-    //                       : '';
-
+    })) : '';
     let questionNotifications = '';
 
     if (typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0) {
