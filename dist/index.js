@@ -2952,8 +2952,10 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     let questionNotifications = '';
 
     if (typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0) {
+      let displayIcons = false;
       let displayedQuestionActions = this.props.questionActions.map(action => {
         if (action.count > 0) {
+          displayIcons = true;
           return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_["Fragment"], null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
             key: action.key,
             className: this.props.classes.toolTip
@@ -2971,7 +2973,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
         }
       });
 
-      if (!external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_default.a.isEmpty(displayedQuestionActions)) {
+      if (displayIcons) {
         questionNotifications = /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
           className: this.props.classes.actionNotifications
         }, displayedQuestionActions);

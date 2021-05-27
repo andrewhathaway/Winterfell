@@ -177,8 +177,10 @@ class Question extends React.Component {
     let questionNotifications = '';
 
     if(typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0){
+      let displayIcons = false;
       let displayedQuestionActions = this.props.questionActions.map(action => {
         if(action.count > 0){
+          displayIcons = true;
           return(
               <Fragment>
                 <div key={action.key} className={this.props.classes.toolTip}>
@@ -194,7 +196,7 @@ class Question extends React.Component {
                 </Fragment>)
         }
       })
-      if(!_.isEmpty(displayedQuestionActions)){
+      if(displayIcons){
         questionNotifications = <div className={this.props.classes.actionNotifications}>{displayedQuestionActions}</div>
       }
     }
