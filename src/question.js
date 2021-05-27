@@ -83,6 +83,7 @@ class Question extends React.Component {
                           readOnly={this.props.readOnly}
                           questionAnswers={this.props.questionAnswers}
                           questionActions={this.props.questionActions}
+                          questionNotifications={this.props.questionNotifications}
                           validationErrors={this.props.validationErrors}
                           onAnswerChange={this.props.onAnswerChange}
                           onQuestionFocus={this.props.onQuestionFocus}
@@ -167,7 +168,7 @@ class Question extends React.Component {
                                           />
                                           
                                           <span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
-                                        </div> : ''}
+                                        </div> : <div>DELETE ME</div>}
                                     </Fragment>
                                   )
                                 })
