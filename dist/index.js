@@ -2911,7 +2911,11 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     var questionActions = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
       className: this.props.classes.actionControl
     }, this.props.questionActions.map(action => {
-      return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_["Fragment"], null, action.count > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+        className: this.props.classes.actionCount
+      }, action.count) : /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+        className: this.props.classes.actionCount
+      }, "?"), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         key: action.key,
         className: this.props.classes.toolTip
       }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
@@ -2920,11 +2924,9 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
           color: action.color
         },
         onClick: e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)
-      }), action.count > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-        className: this.props.classes.actionCount
-      }, action.count) : '', /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
+      }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
         className: `${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`
-      }, action.toolTip));
+      }, action.toolTip)));
     })) : ''; // let questionNotifications = '';
 
     let labelId = `${this.props.questionId}-label`;
