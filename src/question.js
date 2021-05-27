@@ -298,6 +298,7 @@ Question.defaultProps = {
   classes                : {},
   questionAnswers        : {},
   questionActions        : [],
+  questionNotifications  : [],
   validationErrors       : {},
   onAnswerChange         : () => {},
   onQuestionBlur         : () => {},
