@@ -134,18 +134,17 @@ class Question extends React.Component {
                               this.props.questionActions
                                 .map(action => {
                                   return (
-                                    <Fragment> 
-                                      {action.count > 0 ? <div className={this.props.classes.actionCount}>{action.count}</div> : <div className={this.props.classes.actionCount}>?</div>}
                                       <div key={action.key} className={this.props.classes.toolTip}>
+                                      {action.count > 0 ? <div className={this.props.classes.actionCount}>{action.count}</div> : <div className={this.props.classes.actionCount}>?</div>}
                                         <i 
                                           className={action.icon} 
                                           style={{color: action.color}} 
                                           onClick={e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)}
                                         />
                                         
+                                        
                                         <span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
                                       </div>
-                                    </Fragment>
                                   )
                                 })
                             }
