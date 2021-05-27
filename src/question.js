@@ -135,13 +135,12 @@ class Question extends React.Component {
                                 .map(action => {
                                   return (
                                       <div key={action.key} className={this.props.classes.toolTip}>
-                                      {action.count > 0 ? <div className={this.props.classes.actionCount}>{action.count}</div> : <div className={this.props.classes.actionCount}>?</div>}
+                                      {action.count > 0 ? <div className={this.props.classes.actionCount}>{action.count}</div> : ''}
                                         <i 
                                           className={action.icon} 
                                           style={{color: action.color}} 
                                           onClick={e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)}
                                         />
-                                        
                                         
                                         <span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
                                       </div>
@@ -151,7 +150,30 @@ class Question extends React.Component {
                           </div>)
                           : '';
 
-    // let questionNotifications = '';
+    let questionNotifications = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ?
+                          (<div className={this.props.classes.actionControl}>
+                            {
+                              this.props.questionActions
+                                .map(action => {
+                                  return (
+                                    <Fragment>
+                                      {action.count > 0 ? 
+                                        <div key={action.key} className={this.props.classes.toolTip}>
+                                        {action.count > 0 ? <div className={this.props.classes.actionCount}>{action.count}</div> : ''}
+                                          <i 
+                                            className={action.icon} 
+                                            style={{color: action.color}} 
+                                            onClick={e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)}
+                                          />
+                                          
+                                          <span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
+                                        </div> : ''}
+                                    </Fragment>
+                                  )
+                                })
+                            }
+                          </div>)
+                          : '';
 
 
 
@@ -176,7 +198,7 @@ class Question extends React.Component {
                     ? this.props.renderRequiredAsterisk()
                     : undefined}
                 </label>
-                {/* {questionNotifications} */}
+                {questionNotifications}
                 {questionActions}
               </Fragment>
               )

@@ -2916,9 +2916,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
         className: this.props.classes.toolTip
       }, action.count > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: this.props.classes.actionCount
-      }, action.count) : /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-        className: this.props.classes.actionCount
-      }, "?"), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
+      }, action.count) : '', /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
         className: action.icon,
         style: {
           color: action.color
@@ -2927,8 +2925,25 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
         className: `${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`
       }, action.toolTip));
-    })) : ''; // let questionNotifications = '';
-
+    })) : '';
+    let questionNotifications = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      className: this.props.classes.actionControl
+    }, this.props.questionActions.map(action => {
+      return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_["Fragment"], null, action.count > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+        key: action.key,
+        className: this.props.classes.toolTip
+      }, action.count > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+        className: this.props.classes.actionCount
+      }, action.count) : '', /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
+        className: action.icon,
+        style: {
+          color: action.color
+        },
+        onClick: e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)
+      }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
+        className: `${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`
+      }, action.toolTip)) : '');
+    })) : '';
     let labelId = `${this.props.questionId}-label`;
     let readOnly = typeof this.props.input.readOnly !== 'undefined' ? this.props.input.readOnly : this.props.readOnly;
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
@@ -2939,7 +2954,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       className: this.props.classes.label,
       id: labelId,
       htmlFor: this.props.questionId
-    }, this.props.question, typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required ? this.props.renderRequiredAsterisk() : undefined), questionActions) : undefined, !!this.props.text ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
+    }, this.props.question, typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required ? this.props.renderRequiredAsterisk() : undefined), questionNotifications, questionActions) : undefined, !!this.props.text ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
       className: this.props.classes.questionText
     }, this.props.text) : undefined, validationErrors, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Input, _extends({
       name: this.props.questionId,
