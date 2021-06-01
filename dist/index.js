@@ -2835,9 +2835,9 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     this.props.onQuestionClick(questionSetId, questionId);
   }
 
-  handleQuestionAction(e, questionSetId = '', questionId = '', key = '') {
+  handleQuestionAction(e, questionSetId = '', questionId = '', key = '', counts = {}) {
     e.preventDefault();
-    this.props.onQuestionAction(e, questionSetId, questionId, key);
+    this.props.onQuestionAction(e, questionSetId, questionId, key, counts);
   }
 
   render() {
@@ -2921,7 +2921,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
         style: {
           color: action.color
         },
-        onClick: e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)
+        onClick: e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key, this.props.counts)
       }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
         className: `${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`
       }, action.toolTip));
@@ -3044,7 +3044,8 @@ question_Question.defaultProps = {
   renderError: undefined,
   renderRequiredAsterisk: undefined,
   readOnly: false,
-  nested: false
+  nested: false,
+  counts: undefined
 };
 /* harmony default export */ var question_0 = (question_Question);
 // CONCATENATED MODULE: ./questionSet.js
@@ -3079,7 +3080,8 @@ class questionSet_QuestionSet extends external_commonjs_react_commonjs2_react_am
         onQuestionFocus: this.props.onQuestionFocus,
         onQuestionClick: this.props.onQuestionClick,
         onQuestionAction: this.props.onQuestionAction,
-        onKeyDown: this.props.onKeyDown
+        onKeyDown: this.props.onKeyDown,
+        counts: question.counts
       });
     });
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
@@ -3268,8 +3270,8 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
     this.props.onQuestionClick(questionSetId, questionId);
   }
 
-  handleQuestionAction(e, questionSetId, questionId, key) {
-    this.props.onQuestionAction(e, questionSetId, questionId, key);
+  handleQuestionAction(e, questionSetId, questionId, key, counts) {
+    this.props.onQuestionAction(e, questionSetId, questionId, key, counts);
   }
 
   handleInputKeyDown(e) {
@@ -3478,8 +3480,8 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
     this.props.onQuestionClick(questionSetId, questionId);
   }
 
-  handleQuestionAction(e, questionSetId, questionId, key) {
-    this.props.onQuestionAction(e, questionSetId, questionId, key);
+  handleQuestionAction(e, questionSetId, questionId, key, counts) {
+    this.props.onQuestionAction(e, questionSetId, questionId, key, counts);
   }
 
   handleSubmit(action) {

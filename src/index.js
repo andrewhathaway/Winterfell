@@ -126,8 +126,8 @@ class Winterfell extends React.Component {
     this.props.onQuestionClick(questionSetId, questionId);
   }
 
-  handleQuestionAction(e, questionSetId, questionId, key) {
-    this.props.onQuestionAction(e, questionSetId, questionId, key);
+  handleQuestionAction(e, questionSetId, questionId, key, counts) {
+    this.props.onQuestionAction(e, questionSetId, questionId, key, counts);
   }
 
 

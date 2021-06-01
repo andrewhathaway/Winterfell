@@ -31,9 +31,9 @@ class Question extends React.Component {
     this.props.onQuestionClick(questionSetId, questionId);
   }
 
-  handleQuestionAction(e, questionSetId = '', questionId = '', key = '') {
+  handleQuestionAction(e, questionSetId = '', questionId = '', key = '', counts = {}) {
     e.preventDefault();
-    this.props.onQuestionAction(e, questionSetId, questionId, key);
+    this.props.onQuestionAction(e, questionSetId, questionId, key, counts);
   }
 
   render() {
@@ -138,7 +138,7 @@ class Question extends React.Component {
                                         <i 
                                           className={action.icon} 
                                           style={{color: action.color}} 
-                                          onClick={e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)}
+                                          onClick={e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key, this.props.counts)}
                                         />
                                         
                                         <span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
@@ -305,7 +305,8 @@ Question.defaultProps = {
   renderError            : undefined,
   renderRequiredAsterisk : undefined,
   readOnly               : false,
-  nested                 : false
+  nested                 : false,
+  counts                 : undefined
 };
 
 export default Question;
