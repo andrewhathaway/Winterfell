@@ -2912,20 +2912,23 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     var questionActions = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
       className: this.props.classes.actionControl
     }, this.props.questionActions.map(action => {
-      let testCount = 0;
-      let testClass = 'toolTip2';
+      let actionCount = 0;
+      let actionClass = 'toolTipHidden';
 
-      if (this.props.counts && this.props.counts.messagesCount > 0) {
-        testCount = this.props.counts.messagesCount;
-        testClass = this.props.classes.toolTip;
+      if (action.key === 'messages' && this.props.counts && this.props.counts.messagesCount > 0) {
+        actionCount = this.props.counts.messagesCount;
+        actionClass = this.props.classes.toolTip;
+      } else if (action.key === 'notes' && this.props.counts && this.props.counts.notesCount > 0) {
+        actionCount = this.props.counts.notesCount;
+        actionClass = this.props.classes.toolTip;
       }
 
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         key: action.key,
-        className: testClass
-      }, testCount > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+        className: actionClass
+      }, actionCount > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: this.props.classes.actionCount
-      }, testCount) : '', /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
+      }, actionCount) : '', /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
         className: action.icon,
         style: {
           color: action.color

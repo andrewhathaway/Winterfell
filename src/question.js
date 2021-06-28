@@ -118,16 +118,19 @@ class Question extends React.Component {
 			typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ? (
 				<div className={this.props.classes.actionControl}>
 					{this.props.questionActions.map(action => {
-						let testCount = 0;
-						let testClass = 'toolTip2';
-						if (this.props.counts && this.props.counts.messagesCount > 0) {
-							testCount = this.props.counts.messagesCount;
-							testClass = this.props.classes.toolTip;
+						let actionCount = 0;
+						let actionClass = 'toolTipHidden';
+						if (action.key === 'messages' && this.props.counts && this.props.counts.messagesCount > 0) {
+							actionCount = this.props.counts.messagesCount;
+							actionClass = this.props.classes.toolTip;
+						} else if (action.key === 'notes' && this.props.counts && this.props.counts.notesCount > 0) {
+							actionCount = this.props.counts.notesCount;
+							actionClass = this.props.classes.toolTip;
 						}
 
 						return (
-							<div key={action.key} className={testClass}>
-								{testCount > 0 ? <div className={this.props.classes.actionCount}>{testCount}</div> : ''}
+							<div key={action.key} className={actionClass}>
+								{actionCount > 0 ? <div className={this.props.classes.actionCount}>{actionCount}</div> : ''}
 								<i
 									className={action.icon}
 									style={{ color: action.color }}
