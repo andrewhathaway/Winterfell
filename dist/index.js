@@ -2914,9 +2914,9 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         key: action.key,
         className: this.props.classes.toolTip
-      }, action.count > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      }, this.props.counts > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: this.props.classes.actionCount
-      }, action.count) : '', /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
+      }, this.props.counts) : '', /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
         className: action.icon,
         style: {
           color: action.color
@@ -2931,14 +2931,14 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     if (typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0) {
       let displayIcons = false;
       let displayedQuestionActions = this.props.questionActions.map(action => {
-        if (action.count > 0) {
+        if (this.props.counts > 0) {
           displayIcons = true;
           return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_["Fragment"], null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
             key: action.key,
             className: this.props.classes.toolTip
           }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
             className: this.props.classes.actionCount
-          }, action.count), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
+          }, this.props.counts), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
             className: action.icon,
             style: {
               color: action.color
@@ -3010,7 +3010,6 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
 
 }
 
-;
 question_Question.defaultProps = {
   questionSetId: undefined,
   questionId: undefined,
