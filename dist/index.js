@@ -2913,16 +2913,17 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       className: this.props.classes.actionControl
     }, this.props.questionActions.map(action => {
       let testCount = 0;
-      let testClass = this.props.classes.toolTip;
+      let testClass = 'toolTip2';
 
-      if (this.props.counts && this.props.counts.messageCount > 0) {
-        testCount = this.props.counts.messageCount;
+      if (this.props.counts && this.props.counts.messagesCount > 0) {
+        testCount = this.props.counts.messagesCount;
+        testClass = this.props.classes.toolTip;
       }
 
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         key: action.key,
         className: testClass
-      }, action.count > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      }, testCount > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: this.props.classes.actionCount
       }, testCount) : '', /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
         className: action.icon,

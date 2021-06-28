@@ -119,14 +119,15 @@ class Question extends React.Component {
 				<div className={this.props.classes.actionControl}>
 					{this.props.questionActions.map(action => {
 						let testCount = 0;
-						let testClass = this.props.classes.toolTip;
-						if (this.props.counts && this.props.counts.messageCount > 0) {
-							testCount = this.props.counts.messageCount;
+						let testClass = 'toolTip2';
+						if (this.props.counts && this.props.counts.messagesCount > 0) {
+							testCount = this.props.counts.messagesCount;
+							testClass = this.props.classes.toolTip;
 						}
 
 						return (
 							<div key={action.key} className={testClass}>
-								{action.count > 0 ? <div className={this.props.classes.actionCount}>{testCount}</div> : ''}
+								{testCount > 0 ? <div className={this.props.classes.actionCount}>{testCount}</div> : ''}
 								<i
 									className={action.icon}
 									style={{ color: action.color }}
