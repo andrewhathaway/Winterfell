@@ -2889,7 +2889,8 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
           onQuestionClick: this.props.onQuestionClick,
           onQuestionAction: this.props.onQuestionAction,
           onQuestionBlur: this.props.onQuestionBlur,
-          onKeyDown: this.props.onKeyDown
+          onKeyDown: this.props.onKeyDown,
+          counts: conditionalQuestion.counts
         }));
       })());
     } // Get the current value. If none is set, then use
@@ -2911,12 +2912,19 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     var questionActions = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
       className: this.props.classes.actionControl
     }, this.props.questionActions.map(action => {
+      let testCount = 0;
+      let testClass = this.props.classes.toolTip;
+
+      if (this.props.counts && this.props.counts.messageCount > 0) {
+        testCount = this.props.counts.messageCount;
+      }
+
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         key: action.key,
-        className: this.props.classes.toolTip
-      }, this.props.counts > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+        className: testClass
+      }, action.count > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: this.props.classes.actionCount
-      }, this.props.counts) : '', /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
+      }, testCount) : '', /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
         className: action.icon,
         style: {
           color: action.color
@@ -2927,35 +2935,30 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       }, action.toolTip));
     })) : '';
     let questionNotifications = '';
-
-    if (typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0) {
-      let displayIcons = false;
-      let displayedQuestionActions = this.props.questionActions.map(action => {
-        if (this.props.counts > 0) {
-          displayIcons = true;
-          return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_["Fragment"], null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-            key: action.key,
-            className: this.props.classes.toolTip
-          }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-            className: this.props.classes.actionCount
-          }, this.props.counts), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
-            className: action.icon,
-            style: {
-              color: action.color
-            },
-            onClick: e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)
-          }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
-            className: `${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`
-          }, action.toolTip)));
-        }
-      });
-
-      if (displayIcons) {
-        questionNotifications = /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-          className: this.props.classes.actionNotifications
-        }, displayedQuestionActions);
-      }
-    }
+    /* if (typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0) {
+    	let displayIcons = false;
+    	let displayedQuestionActions = this.props.questionActions.map(action => {
+    		if (action.count > 0) {
+    			displayIcons = true;
+    			return (
+    				<Fragment>
+    					<div key={action.key} className={this.props.classes.toolTip}>
+    						<div className={this.props.classes.actionCount}>{action.count}</div>
+    						<i
+    							className={action.icon}
+    							style={{ color: action.color }}
+    							onClick={e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)}
+    						/>
+    							<span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
+    					</div>
+    				</Fragment>
+    			);
+    		}
+    	});
+    	if (displayIcons) {
+    		questionNotifications = <div className={this.props.classes.actionNotifications}>{displayedQuestionActions}</div>;
+    	}
+    } */
 
     let labelId = `${this.props.questionId}-label`;
     let readOnly = typeof this.props.input.readOnly !== 'undefined' ? this.props.input.readOnly : this.props.readOnly;

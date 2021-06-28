@@ -77,6 +77,7 @@ class Question extends React.Component {
 								onQuestionAction={this.props.onQuestionAction}
 								onQuestionBlur={this.props.onQuestionBlur}
 								onKeyDown={this.props.onKeyDown}
+								counts={conditionalQuestion.counts}
 							/>
 						);
 					})()
@@ -117,9 +118,15 @@ class Question extends React.Component {
 			typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ? (
 				<div className={this.props.classes.actionControl}>
 					{this.props.questionActions.map(action => {
+						let testCount = 0;
+						let testClass = this.props.classes.toolTip;
+						if (this.props.counts && this.props.counts.messageCount > 0) {
+							testCount = this.props.counts.messageCount;
+						}
+
 						return (
-							<div key={action.key} className={this.props.classes.toolTip}>
-								{this.props.counts > 0 ? <div className={this.props.classes.actionCount}>{this.props.counts}</div> : ''}
+							<div key={action.key} className={testClass}>
+								{action.count > 0 ? <div className={this.props.classes.actionCount}>{testCount}</div> : ''}
 								<i
 									className={action.icon}
 									style={{ color: action.color }}
@@ -139,15 +146,15 @@ class Question extends React.Component {
 
 		let questionNotifications = '';
 
-		if (typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0) {
+		/* if (typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0) {
 			let displayIcons = false;
 			let displayedQuestionActions = this.props.questionActions.map(action => {
-				if (this.props.counts > 0) {
+				if (action.count > 0) {
 					displayIcons = true;
 					return (
 						<Fragment>
 							<div key={action.key} className={this.props.classes.toolTip}>
-								<div className={this.props.classes.actionCount}>{this.props.counts}</div>
+								<div className={this.props.classes.actionCount}>{action.count}</div>
 								<i
 									className={action.icon}
 									style={{ color: action.color }}
@@ -163,7 +170,7 @@ class Question extends React.Component {
 			if (displayIcons) {
 				questionNotifications = <div className={this.props.classes.actionNotifications}>{displayedQuestionActions}</div>;
 			}
-		}
+		} */
 
 		let labelId = `${this.props.questionId}-label`;
 
