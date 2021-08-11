@@ -2835,9 +2835,9 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     this.props.onQuestionClick(questionSetId, questionId);
   }
 
-  handleQuestionAction(e, questionSetId = '', questionId = '', key = '') {
+  handleQuestionAction(e, questionSetId = '', questionId = '', key = '', counts = {}) {
     e.preventDefault();
-    this.props.onQuestionAction(e, questionSetId, questionId, key);
+    this.props.onQuestionAction(e, questionSetId, questionId, key, counts);
   }
 
   render() {
@@ -2882,13 +2882,15 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
           readOnly: this.props.readOnly,
           questionAnswers: this.props.questionAnswers,
           questionActions: this.props.questionActions,
+          questionNotifications: this.props.questionNotifications,
           validationErrors: this.props.validationErrors,
           onAnswerChange: this.props.onAnswerChange,
           onQuestionFocus: this.props.onQuestionFocus,
           onQuestionClick: this.props.onQuestionClick,
           onQuestionAction: this.props.onQuestionAction,
           onQuestionBlur: this.props.onQuestionBlur,
-          onKeyDown: this.props.onKeyDown
+          onKeyDown: this.props.onKeyDown,
+          counts: conditionalQuestion.counts
         }));
       })());
     } // Get the current value. If none is set, then use
@@ -2910,19 +2912,58 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     var questionActions = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
       className: this.props.classes.actionControl
     }, this.props.questionActions.map(action => {
+      let actionCount = 0;
+      let actionClass = 'toolTipHidden';
+
+      if (action.key === 'messages' && this.props.counts && this.props.counts.messagesCount > 0) {
+        actionCount = this.props.counts.messagesCount;
+        actionClass = this.props.classes.toolTip;
+      } else if (action.key === 'notes' && this.props.counts && this.props.counts.notesCount > 0) {
+        actionCount = this.props.counts.notesCount;
+        actionClass = this.props.classes.toolTip;
+      }
+
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         key: action.key,
-        className: this.props.classes.toolTip
-      }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
+        className: actionClass
+      }, actionCount > 0 ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+        className: this.props.classes.actionCount
+      }, actionCount) : '', /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
         className: action.icon,
         style: {
           color: action.color
         },
-        onClick: e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)
+        onClick: e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key, this.props.counts)
       }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
         className: `${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`
       }, action.toolTip));
     })) : '';
+    let questionNotifications = '';
+    /* if (typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0) {
+    	let displayIcons = false;
+    	let displayedQuestionActions = this.props.questionActions.map(action => {
+    		if (action.count > 0) {
+    			displayIcons = true;
+    			return (
+    				<Fragment>
+    					<div key={action.key} className={this.props.classes.toolTip}>
+    						<div className={this.props.classes.actionCount}>{action.count}</div>
+    						<i
+    							className={action.icon}
+    							style={{ color: action.color }}
+    							onClick={e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)}
+    						/>
+    							<span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
+    					</div>
+    				</Fragment>
+    			);
+    		}
+    	});
+    	if (displayIcons) {
+    		questionNotifications = <div className={this.props.classes.actionNotifications}>{displayedQuestionActions}</div>;
+    	}
+    } */
+
     let labelId = `${this.props.questionId}-label`;
     let readOnly = typeof this.props.input.readOnly !== 'undefined' ? this.props.input.readOnly : this.props.readOnly;
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
@@ -2933,7 +2974,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       className: this.props.classes.label,
       id: labelId,
       htmlFor: this.props.questionId
-    }, this.props.question, typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required ? this.props.renderRequiredAsterisk() : undefined), questionActions) : undefined, !!this.props.text ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
+    }, this.props.question, typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required ? this.props.renderRequiredAsterisk() : undefined), questionNotifications, questionActions) : undefined, !!this.props.text ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
       className: this.props.classes.questionText
     }, this.props.text) : undefined, validationErrors, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Input, _extends({
       name: this.props.questionId,
@@ -2976,7 +3017,6 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
 
 }
 
-;
 question_Question.defaultProps = {
   questionSetId: undefined,
   questionId: undefined,
@@ -3001,6 +3041,7 @@ question_Question.defaultProps = {
   classes: {},
   questionAnswers: {},
   questionActions: [],
+  questionNotifications: [],
   validationErrors: {},
   onAnswerChange: () => {},
   onQuestionBlur: () => {},
@@ -3009,7 +3050,8 @@ question_Question.defaultProps = {
   renderError: undefined,
   renderRequiredAsterisk: undefined,
   readOnly: false,
-  nested: false
+  nested: false,
+  counts: undefined
 };
 /* harmony default export */ var question_0 = (question_Question);
 // CONCATENATED MODULE: ./questionSet.js
@@ -3044,7 +3086,8 @@ class questionSet_QuestionSet extends external_commonjs_react_commonjs2_react_am
         onQuestionFocus: this.props.onQuestionFocus,
         onQuestionClick: this.props.onQuestionClick,
         onQuestionAction: this.props.onQuestionAction,
-        onKeyDown: this.props.onKeyDown
+        onKeyDown: this.props.onKeyDown,
+        counts: question.counts
       });
     });
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
@@ -3233,8 +3276,8 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
     this.props.onQuestionClick(questionSetId, questionId);
   }
 
-  handleQuestionAction(e, questionSetId, questionId, key) {
-    this.props.onQuestionAction(e, questionSetId, questionId, key);
+  handleQuestionAction(e, questionSetId, questionId, key, counts) {
+    this.props.onQuestionAction(e, questionSetId, questionId, key, counts);
   }
 
   handleInputKeyDown(e) {
@@ -3443,8 +3486,8 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
     this.props.onQuestionClick(questionSetId, questionId);
   }
 
-  handleQuestionAction(e, questionSetId, questionId, key) {
-    this.props.onQuestionAction(e, questionSetId, questionId, key);
+  handleQuestionAction(e, questionSetId, questionId, key, counts) {
+    this.props.onQuestionAction(e, questionSetId, questionId, key, counts);
   }
 
   handleSubmit(action) {

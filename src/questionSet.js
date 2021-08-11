@@ -30,7 +30,8 @@ class QuestionSet extends React.Component {
                   onQuestionFocus={this.props.onQuestionFocus}
                   onQuestionClick={this.props.onQuestionClick}
                   onQuestionAction={this.props.onQuestionAction}
-                  onKeyDown={this.props.onKeyDown} />
+                  onKeyDown={this.props.onKeyDown} 
+                  counts={question.counts}/>
       );
     });
 
