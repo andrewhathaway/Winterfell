@@ -2880,6 +2880,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
           nested: true,
           renderError: this.props.renderError,
           readOnly: this.props.readOnly,
+          applicationId: this.props.applicationId,
           questionAnswers: this.props.questionAnswers,
           questionActions: this.props.questionActions,
           questionNotifications: this.props.questionNotifications,
@@ -2991,6 +2992,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       placeholder: this.props.input.placeholder,
       required: this.props.input.required,
       readOnly: readOnly,
+      applicationId: this.props.applicationId,
       classes: this.props.classes,
       onChange: this.handleInputChange.bind(this, this.props.questionId),
       onFocus: this.handleInputFocus.bind(this, this.props.questionId),
@@ -3036,7 +3038,8 @@ question_Question.defaultProps = {
     action: undefined,
     disabled: undefined,
     questionAlert: undefined,
-    readOnly: undefined
+    readOnly: undefined,
+    applicationId: ''
   },
   classes: {},
   questionAnswers: {},
@@ -3050,6 +3053,7 @@ question_Question.defaultProps = {
   renderError: undefined,
   renderRequiredAsterisk: undefined,
   readOnly: false,
+  applicationId: '',
   nested: false,
   counts: undefined
 };
@@ -3078,6 +3082,7 @@ class questionSet_QuestionSet extends external_commonjs_react_commonjs2_react_am
         renderError: this.props.renderError,
         renderRequiredAsterisk: this.props.renderRequiredAsterisk,
         readOnly: this.props.readOnly,
+        applicationId: this.props.applicationId,
         questionAnswers: this.props.questionAnswers,
         questionActions: this.props.questionActions,
         validationErrors: this.props.validationErrors,
@@ -3103,7 +3108,6 @@ class questionSet_QuestionSet extends external_commonjs_react_commonjs2_react_am
 
 }
 
-;
 questionSet_QuestionSet.defaultProps = {
   id: undefined,
   name: '',
@@ -3117,6 +3121,7 @@ questionSet_QuestionSet.defaultProps = {
   renderError: undefined,
   renderRequiredAsterisk: undefined,
   readOnly: false,
+  applicationId: '',
   onAnswerChange: () => {},
   onQuestionBlur: () => {},
   onQuestionFocus: () => {},
@@ -3310,6 +3315,7 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
         renderError: this.props.renderError,
         renderRequiredAsterisk: this.props.renderRequiredAsterisk,
         readOnly: this.props.readOnly,
+        applicationId: this.props.applicationId,
         validationErrors: this.state.validationErrors,
         onAnswerChange: this.handleAnswerChange.bind(this),
         onQuestionFocus: this.handleQuestionFocus.bind(this),
@@ -3344,7 +3350,6 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
 
 }
 
-;
 questionPanel_QuestionPanel.defaultProps = {
   validationErrors: {},
   schema: {},
@@ -3369,6 +3374,7 @@ questionPanel_QuestionPanel.defaultProps = {
   renderError: undefined,
   renderRequiredAsterisk: undefined,
   readOnly: false,
+  applicationId: '',
   onAnswerChange: () => {},
   onQuestionFocus: () => {},
   onQuestionClick: () => {},
@@ -3541,6 +3547,7 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       renderError: this.props.renderError,
       renderRequiredAsterisk: this.props.renderRequiredAsterisk,
       readOnly: this.props.readOnly,
+      applicationId: this.props.applicationId,
       onQuestionFocus: this.handleQuestionFocus.bind(this),
       onQuestionClick: this.handleQuestionClick.bind(this),
       onQuestionAction: this.handleQuestionAction.bind(this),
@@ -3558,7 +3565,6 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
 
 }
 
-;
 index_Winterfell.inputTypes = inputTypes_0;
 index_Winterfell.errorMessages = errors;
 index_Winterfell.validation = validation_namespaceObject;
@@ -3579,6 +3585,7 @@ index_Winterfell.defaultProps = {
   renderRequiredAsterisk: undefined,
   readOnly: false,
   validationErrors: {},
+  applicationId: '',
   onSubmit: () => {},
   onUpdate: () => {},
   onSwitchPanel: () => {},
