@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -273,7 +273,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
             if (!validator.isServerSide()) {
                 return;
             }
-            depd = __webpack_require__(6)('validator');
+            depd = __webpack_require__(7)('validator');
         }
         depd(msg);
     };
@@ -1086,7 +1086,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 
 });
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(4)(module), __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(5)(module), __webpack_require__(6)))
 
 /***/ }),
 /* 3 */
@@ -1242,6 +1242,15 @@ module.exports = {
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+if (true) {
+  module.exports = __webpack_require__(8);
+} else {}
+
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -1269,7 +1278,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -1459,7 +1468,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1545,7 +1554,14 @@ function wrapproperty(obj, prop, message) {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+Object.defineProperty(exports,"__esModule",{value:!0});var t=__webpack_require__(0);function i(){return(i=Object.assign||function(t){for(var i=1;i<arguments.length;i++){var s=arguments[i];for(var n in s)Object.prototype.hasOwnProperty.call(s,n)&&(t[n]=s[n])}return t}).apply(this,arguments)}var s=t.createElement("svg",{viewBox:"-2 -5 14 20",height:"100%",width:"100%",style:{position:"absolute",top:0}},t.createElement("path",{d:"M9.9 2.12L7.78 0 4.95 2.828 2.12 0 0 2.12l2.83 2.83L0 7.776 2.123 9.9 4.95 7.07 7.78 9.9 9.9 7.776 7.072 4.95 9.9 2.12",fill:"#fff",fillRule:"evenodd"})),n=t.createElement("svg",{height:"100%",width:"100%",viewBox:"-2 -5 17 21",style:{position:"absolute",top:0}},t.createElement("path",{d:"M11.264 0L5.26 6.004 2.103 2.847 0 4.95l5.26 5.26 8.108-8.107L11.264 0",fill:"#fff",fillRule:"evenodd"}));function o(t){if(7===t.length)return t;for(var i="#",s=1;s<4;s+=1)i+=t[s]+t[s];return i}function h(t,i,s,n,h){return function(t,i,s,n,o){var h=(t-s)/(i-s);if(0===h)return n;if(1===h)return o;for(var e="#",a=1;a<6;a+=2){var r=parseInt(n.substr(a,2),16),l=parseInt(o.substr(a,2),16),u=Math.round((1-h)*r+h*l).toString(16);1===u.length&&(u="0"+u),e+=u}return e}(t,i,s,o(n),o(h))}var e=function(s){function n(t){s.call(this,t);var i=t.height,n=t.width,o=t.checked;this.t=t.handleDiameter||i-2,this.i=Math.max(n-i,n-(i+this.t)/2),this.o=Math.max(0,(i-this.t)/2),this.state={h:o?this.i:this.o},this.l=0,this.u=0,this.p=this.p.bind(this),this.v=this.v.bind(this),this.g=this.g.bind(this),this.k=this.k.bind(this),this.M=this.M.bind(this),this.m=this.m.bind(this),this.T=this.T.bind(this),this.$=this.$.bind(this),this.C=this.C.bind(this),this.D=this.D.bind(this),this.O=this.O.bind(this),this.S=this.S.bind(this)}return s&&(n.__proto__=s),(n.prototype=Object.create(s&&s.prototype)).constructor=n,n.prototype.componentDidMount=function(){this.W=!0},n.prototype.componentDidUpdate=function(t){t.checked!==this.props.checked&&this.setState({h:this.props.checked?this.i:this.o})},n.prototype.componentWillUnmount=function(){this.W=!1},n.prototype.I=function(t){this.H.focus(),this.setState({R:t,j:!0,B:Date.now()})},n.prototype.L=function(t){var i=this.state,s=i.R,n=i.h,o=(this.props.checked?this.i:this.o)+t-s;i.N||t===s||this.setState({N:!0});var h=Math.min(this.i,Math.max(this.o,o));h!==n&&this.setState({h:h})},n.prototype.U=function(t){var i=this.state,s=i.h,n=i.N,o=i.B,h=this.props.checked,e=(this.i+this.o)/2;this.setState({h:this.props.checked?this.i:this.o});var a=Date.now()-o;(!n||a<250||(h&&s<=e||!h&&s>=e))&&this.A(t),this.W&&this.setState({N:!1,j:!1}),this.l=Date.now()},n.prototype.p=function(t){t.preventDefault(),"number"==typeof t.button&&0!==t.button||(this.I(t.clientX),window.addEventListener("mousemove",this.v),window.addEventListener("mouseup",this.g))},n.prototype.v=function(t){t.preventDefault(),this.L(t.clientX)},n.prototype.g=function(t){this.U(t),window.removeEventListener("mousemove",this.v),window.removeEventListener("mouseup",this.g)},n.prototype.k=function(t){this.X=null,this.I(t.touches[0].clientX)},n.prototype.M=function(t){this.L(t.touches[0].clientX)},n.prototype.m=function(t){t.preventDefault(),this.U(t)},n.prototype.$=function(t){Date.now()-this.l>50&&(this.A(t),Date.now()-this.u>50&&this.W&&this.setState({j:!1}))},n.prototype.C=function(){this.u=Date.now()},n.prototype.D=function(){this.setState({j:!0})},n.prototype.O=function(){this.setState({j:!1})},n.prototype.S=function(t){this.H=t},n.prototype.T=function(t){t.preventDefault(),this.H.focus(),this.A(t),this.W&&this.setState({j:!1})},n.prototype.A=function(t){var i=this.props;(0,i.onChange)(!i.checked,t,i.id)},n.prototype.render=function(){var s=this.props,n=s.checked,o=s.disabled,e=s.className,a=s.offColor,r=s.onColor,l=s.offHandleColor,u=s.onHandleColor,c=s.checkedIcon,d=s.uncheckedIcon,f=s.checkedHandleIcon,p=s.uncheckedHandleIcon,b=s.boxShadow,v=s.activeBoxShadow,g=s.height,y=s.width,w=s.borderRadius,k=function(t,i){var s={};for(var n in t)Object.prototype.hasOwnProperty.call(t,n)&&-1===i.indexOf(n)&&(s[n]=t[n]);return s}(s,["checked","disabled","className","offColor","onColor","offHandleColor","onHandleColor","checkedIcon","uncheckedIcon","checkedHandleIcon","uncheckedHandleIcon","boxShadow","activeBoxShadow","height","width","borderRadius","handleDiameter"]),M=this.state,m=M.h,T=M.N,x=M.j,$={position:"relative",display:"inline-block",textAlign:"left",opacity:o?.5:1,direction:"ltr",borderRadius:g/2,WebkitTransition:"opacity 0.25s",MozTransition:"opacity 0.25s",transition:"opacity 0.25s",touchAction:"none",WebkitTapHighlightColor:"rgba(0, 0, 0, 0)",WebkitUserSelect:"none",MozUserSelect:"none",msUserSelect:"none",userSelect:"none"},C={height:g,width:y,margin:Math.max(0,(this.t-g)/2),position:"relative",background:h(m,this.i,this.o,a,r),borderRadius:"number"==typeof w?w:g/2,cursor:o?"default":"pointer",WebkitTransition:T?null:"background 0.25s",MozTransition:T?null:"background 0.25s",transition:T?null:"background 0.25s"},D={height:g,width:Math.min(1.5*g,y-(this.t+g)/2+1),position:"relative",opacity:(m-this.o)/(this.i-this.o),pointerEvents:"none",WebkitTransition:T?null:"opacity 0.25s",MozTransition:T?null:"opacity 0.25s",transition:T?null:"opacity 0.25s"},O={height:g,width:Math.min(1.5*g,y-(this.t+g)/2+1),position:"absolute",opacity:1-(m-this.o)/(this.i-this.o),right:0,top:0,pointerEvents:"none",WebkitTransition:T?null:"opacity 0.25s",MozTransition:T?null:"opacity 0.25s",transition:T?null:"opacity 0.25s"},S={height:this.t,width:this.t,background:h(m,this.i,this.o,l,u),display:"inline-block",cursor:o?"default":"pointer",borderRadius:"number"==typeof w?w-1:"50%",position:"absolute",transform:"translateX("+m+"px)",top:Math.max(0,(g-this.t)/2),outline:0,boxShadow:x?v:b,border:0,WebkitTransition:T?null:"background-color 0.25s, transform 0.25s, box-shadow 0.15s",MozTransition:T?null:"background-color 0.25s, transform 0.25s, box-shadow 0.15s",transition:T?null:"background-color 0.25s, transform 0.25s, box-shadow 0.15s"},W={height:this.t,width:this.t,opacity:Math.max(2*(1-(m-this.o)/(this.i-this.o)-.5),0),position:"absolute",left:0,top:0,pointerEvents:"none",WebkitTransition:T?null:"opacity 0.25s",MozTransition:T?null:"opacity 0.25s",transition:T?null:"opacity 0.25s"},z={height:this.t,width:this.t,opacity:Math.max(2*((m-this.o)/(this.i-this.o)-.5),0),position:"absolute",left:0,top:0,pointerEvents:"none",WebkitTransition:T?null:"opacity 0.25s",MozTransition:T?null:"opacity 0.25s",transition:T?null:"opacity 0.25s"};return t.createElement("div",{className:e,style:$},t.createElement("div",{className:"react-switch-bg",style:C,onClick:o?null:this.T,onMouseDown:function(t){return t.preventDefault()}},c&&t.createElement("div",{style:D},c),d&&t.createElement("div",{style:O},d)),t.createElement("div",{className:"react-switch-handle",style:S,onClick:function(t){return t.preventDefault()},onMouseDown:o?null:this.p,onTouchStart:o?null:this.k,onTouchMove:o?null:this.M,onTouchEnd:o?null:this.m,onTouchCancel:o?null:this.O},p&&t.createElement("div",{style:W},p),f&&t.createElement("div",{style:z},f)),t.createElement("input",i({},{type:"checkbox",role:"switch","aria-checked":n,checked:n,disabled:o,style:{border:0,clip:"rect(0 0 0 0)",height:1,margin:-1,overflow:"hidden",padding:0,position:"absolute",width:1}},k,{ref:this.S,onFocus:this.D,onBlur:this.O,onKeyUp:this.C,onChange:this.$})))},n}(t.Component);e.defaultProps={disabled:!1,offColor:"#888",onColor:"#080",offHandleColor:"#fff",onHandleColor:"#fff",uncheckedIcon:s,checkedIcon:n,boxShadow:null,activeBoxShadow:"0 0 2px 3px #3bf",height:28,width:56},exports.default=e;
+
+
+/***/ }),
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2151,6 +2167,55 @@ Alert_Alert.defaultProps = {
   options: []
 };
 /* harmony default export */ var components_Alert = (Alert_Alert);
+// EXTERNAL MODULE: ../node_modules/react-switch/index.js
+var react_switch = __webpack_require__(4);
+var react_switch_default = /*#__PURE__*/__webpack_require__.n(react_switch);
+
+// CONCATENATED MODULE: ./components/Switch.js
+
+
+
+class Switch_SwitchComponent extends external_commonjs_react_commonjs2_react_amd_React_root_React_["Component"] {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checked: this.props.checked
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(checked) {
+    this.setState({
+      checked
+    });
+  }
+
+  handleChange(checked) {
+    this.setState({
+      checked
+    }, this.props.onChange.bind(null, checked));
+  }
+
+  render() {
+    return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("label", null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(react_switch_default.a, {
+      onChange: this.handleChange,
+      checked: this.state.checked,
+      onColor: "#3db28c",
+      offColor: "#c2303d",
+      handleDiameter: 20,
+      uncheckedIcon: false,
+      checkedIcon: false,
+      height: 26,
+      width: 48
+    }));
+  }
+
+}
+
+Switch_SwitchComponent.defaultProps = {
+  checked: false
+};
+/* harmony default export */ var Switch = (Switch_SwitchComponent);
 // CONCATENATED MODULE: ./inputTypes/checkboxInput.js
 
 
@@ -2818,9 +2883,14 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 
+
 class question_Question extends external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Component {
   handleInputChange(questionId, value) {
     this.props.onAnswerChange(questionId, value, this.props.validations, this.props.validateOn);
+  }
+
+  handleSwitchChange(questionId, value) {
+    this.props.onSwitchChange(questionId, value, this.props.validations, this.props.validateOn);
   }
 
   handleInputBlur(questionId, value) {
@@ -2880,7 +2950,9 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
           nested: true,
           renderError: this.props.renderError,
           readOnly: this.props.readOnly,
+          customiseView: this.props.customiseView,
           questionAnswers: this.props.questionAnswers,
+          questionStatus: this.props.questionStatus,
           questionActions: this.props.questionActions,
           questionNotifications: this.props.questionNotifications,
           validationErrors: this.props.validationErrors,
@@ -2897,7 +2969,9 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     // the default if given.
 
 
-    var value = typeof this.props.value !== 'undefined' ? this.props.value : typeof this.props.input.default !== 'undefined' ? this.props.input.default : typeof this.props.questionAnswers[this.props.questionId] !== 'undefined' ? this.props.questionAnswers[this.props.questionId] : undefined; // Disable input
+    var value = typeof this.props.value !== 'undefined' ? this.props.value : typeof this.props.input.default !== 'undefined' ? this.props.input.default : typeof this.props.questionAnswers[this.props.questionId] !== 'undefined' ? this.props.questionAnswers[this.props.questionId] : undefined;
+    let isQuestionLocked = typeof this.props.questionStatus[this.props.questionId] !== 'undefined' ? this.props.questionStatus[this.props.questionId] === 2 ? true : false : false;
+    let questionStatus = typeof this.props.questionStatus[this.props.questionId] !== 'undefined' ? this.props.questionStatus[this.props.questionId] === 1 ? true : false : false; // Disable input
 
     var disabled = typeof this.props.input.disabled !== 'undefined' ? this.props.input.disabled : false; // Retrieve the validation errors for the
     // current question and map them in to
@@ -2923,6 +2997,14 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
         actionClass = this.props.classes.toolTip;
       }
 
+      if (action.key === 'guidanceEdit' && isQuestionLocked) {
+        return '';
+      }
+
+      if (action.key === 'guidanceLocked' && !isQuestionLocked) {
+        return '';
+      }
+
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         key: action.key,
         className: actionClass
@@ -2939,36 +3021,32 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       }, action.toolTip));
     })) : '';
     let questionNotifications = '';
-    /* if (typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0) {
-    	let displayIcons = false;
-    	let displayedQuestionActions = this.props.questionActions.map(action => {
-    		if (action.count > 0) {
-    			displayIcons = true;
-    			return (
-    				<Fragment>
-    					<div key={action.key} className={this.props.classes.toolTip}>
-    						<div className={this.props.classes.actionCount}>{action.count}</div>
-    						<i
-    							className={action.icon}
-    							style={{ color: action.color }}
-    							onClick={e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)}
-    						/>
-    							<span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
-    					</div>
-    				</Fragment>
-    			);
-    		}
-    	});
-    	if (displayIcons) {
-    		questionNotifications = <div className={this.props.classes.actionNotifications}>{displayedQuestionActions}</div>;
-    	}
-    } */
-
     let labelId = `${this.props.questionId}-label`;
     let readOnly = typeof this.props.input.readOnly !== 'undefined' ? this.props.input.readOnly : this.props.readOnly;
-    return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-      className: this.props.nested ? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}` : this.props.classes.question
-    }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+    const customiseLayoutStyle = {
+      display: 'grid',
+      gridTemplateColumns: '100px 1fr',
+      alignItems: 'center'
+    };
+    return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Fragment, null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      className: this.props.nested ? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}` : this.props.classes.question,
+      style: this.props.customiseView ? customiseLayoutStyle : null
+    }, this.props.customiseView ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      style: {
+        textAlign: 'center',
+        paddingTop: '28px'
+      }
+    }, isQuestionLocked ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
+      className: "fas fa-lock",
+      style: {
+        color: '#868e96',
+        fontSize: '26px'
+      }
+    }) : /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Switch, {
+      checked: questionStatus,
+      className: "react-switch",
+      onChange: this.handleSwitchChange.bind(this, this.props.questionId)
+    })) : '', /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
       className: this.props.classes.questionWrap
     }, !!this.props.question ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_["Fragment"], null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("label", {
       className: this.props.classes.label,
@@ -2982,7 +3060,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       questionSetId: this.props.questionSetId,
       labelId: labelId,
       value: value,
-      disabled: disabled,
+      disabled: this.props.customiseView ? !questionStatus : disabled,
       text: this.props.input.text,
       icon: this.props.input.icon,
       class: this.props.input.class,
@@ -3004,7 +3082,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       questionSetId: this.props.questionSetId,
       questionId: this.props.questionId,
       handleQuestionAction: this.handleQuestionAction.bind(this)
-    }) : ''), conditionalItems);
+    }) : ''), conditionalItems));
   }
 
   componentDidMount() {
@@ -3040,6 +3118,7 @@ question_Question.defaultProps = {
   },
   classes: {},
   questionAnswers: {},
+  questionStatus: {},
   questionActions: [],
   questionNotifications: [],
   validationErrors: {},
@@ -3050,6 +3129,7 @@ question_Question.defaultProps = {
   renderError: undefined,
   renderRequiredAsterisk: undefined,
   readOnly: false,
+  customiseView: false,
   nested: false,
   counts: undefined
 };
@@ -3078,9 +3158,12 @@ class questionSet_QuestionSet extends external_commonjs_react_commonjs2_react_am
         renderError: this.props.renderError,
         renderRequiredAsterisk: this.props.renderRequiredAsterisk,
         readOnly: this.props.readOnly,
+        customiseView: this.props.customiseView,
         questionAnswers: this.props.questionAnswers,
+        questionStatus: this.props.questionStatus,
         questionActions: this.props.questionActions,
         validationErrors: this.props.validationErrors,
+        onSwitchChange: this.props.onSwitchChange,
         onAnswerChange: this.props.onAnswerChange,
         onQuestionBlur: this.props.onQuestionBlur,
         onQuestionFocus: this.props.onQuestionFocus,
@@ -3103,7 +3186,6 @@ class questionSet_QuestionSet extends external_commonjs_react_commonjs2_react_am
 
 }
 
-;
 questionSet_QuestionSet.defaultProps = {
   id: undefined,
   name: '',
@@ -3111,12 +3193,15 @@ questionSet_QuestionSet.defaultProps = {
   questionSetText: undefined,
   questions: [],
   questionAnswers: {},
+  questionStatus: {},
   questionActions: [],
   classes: {},
   validationErrors: {},
   renderError: undefined,
   renderRequiredAsterisk: undefined,
   readOnly: false,
+  customiseView: false,
+  onSwitchChange: () => {},
   onAnswerChange: () => {},
   onQuestionBlur: () => {},
   onQuestionFocus: () => {},
@@ -3149,7 +3234,7 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
   }
 
   handleAnswerValidate(questionId, questionAnswer, validations) {
-    if (typeof validations === 'undefined' || validations.length === 0) {
+    if (typeof validations === 'undefined' || validations.length === 0 || this.props.disableValidation) {
       return;
     }
     /*
@@ -3306,11 +3391,14 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
         questions: questionSet.questions,
         classes: this.props.classes,
         questionAnswers: this.props.questionAnswers,
+        questionStatus: this.props.questionStatus,
         questionActions: this.props.questionActions,
         renderError: this.props.renderError,
         renderRequiredAsterisk: this.props.renderRequiredAsterisk,
         readOnly: this.props.readOnly,
+        customiseView: this.props.customiseView,
         validationErrors: this.state.validationErrors,
+        onSwitchChange: this.props.onSwitchChange,
         onAnswerChange: this.handleAnswerChange.bind(this),
         onQuestionFocus: this.handleQuestionFocus.bind(this),
         onQuestionClick: this.handleQuestionClick.bind(this),
@@ -3344,7 +3432,6 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
 
 }
 
-;
 questionPanel_QuestionPanel.defaultProps = {
   validationErrors: {},
   schema: {},
@@ -3365,10 +3452,14 @@ questionPanel_QuestionPanel.defaultProps = {
   },
   questionSets: [],
   questionAnswers: {},
+  questionStatus: {},
   questionActions: [],
   renderError: undefined,
   renderRequiredAsterisk: undefined,
   readOnly: false,
+  customiseView: false,
+  disableValidation: false,
+  onSwitchChange: () => {},
   onAnswerChange: () => {},
   onQuestionFocus: () => {},
   onQuestionClick: () => {},
@@ -3535,15 +3626,20 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       backButton: currentPanel.backButton,
       questionSets: currentPanel.questionSets,
       questionAnswers: this.state.questionAnswers,
+      questionStatus: this.props.questionStatus,
       questionActions: this.state.schema.questionActions,
       panelHistory: this.panelHistory,
       validationErrors: this.props.validationErrors,
       renderError: this.props.renderError,
       renderRequiredAsterisk: this.props.renderRequiredAsterisk,
       readOnly: this.props.readOnly,
+      customiseView: this.props.customiseView,
+      disableValidation: this.props.disableValidation,
+      questionStatus: this.props.questionStatus,
       onQuestionFocus: this.handleQuestionFocus.bind(this),
       onQuestionClick: this.handleQuestionClick.bind(this),
       onQuestionAction: this.handleQuestionAction.bind(this),
+      onSwitchChange: this.props.onSwitchChange,
       onAnswerChange: this.handleAnswerChange.bind(this),
       onPanelBack: this.handleBackButtonClick.bind(this),
       onSwitchPanel: this.handleSwitchPanel.bind(this),
@@ -3558,7 +3654,6 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
 
 }
 
-;
 index_Winterfell.inputTypes = inputTypes_0;
 index_Winterfell.errorMessages = errors;
 index_Winterfell.validation = validation_namespaceObject;
@@ -3570,6 +3665,7 @@ index_Winterfell.addValidationMethod = index_Winterfell.validation.addValidation
 index_Winterfell.addValidationMethods = index_Winterfell.validation.addValidationMethods;
 index_Winterfell.defaultProps = {
   questionAnswers: {},
+  questionStatus: {},
   encType: 'application/x-www-form-urlencoded',
   method: 'POST',
   action: '',
@@ -3578,7 +3674,9 @@ index_Winterfell.defaultProps = {
   renderError: undefined,
   renderRequiredAsterisk: undefined,
   readOnly: false,
+  customiseView: false,
   validationErrors: {},
+  disableValidation: false,
   onSubmit: () => {},
   onUpdate: () => {},
   onSwitchPanel: () => {},

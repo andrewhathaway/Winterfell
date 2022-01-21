@@ -1,11 +1,16 @@
 import React, { Fragment } from 'react';
 import _ from 'lodash';
 import Alert from './components/Alert';
+import SwitchComponent from './components/Switch';
 import inputTypes from './inputTypes/index';
 
 class Question extends React.Component {
 	handleInputChange(questionId, value) {
 		this.props.onAnswerChange(questionId, value, this.props.validations, this.props.validateOn);
+	}
+
+	handleSwitchChange(questionId, value) {
+		this.props.onSwitchChange(questionId, value, this.props.validations, this.props.validateOn);
 	}
 
 	handleInputBlur(questionId, value) {
@@ -67,7 +72,9 @@ class Question extends React.Component {
 								nested={true}
 								renderError={this.props.renderError}
 								readOnly={this.props.readOnly}
+								customiseView={this.props.customiseView}
 								questionAnswers={this.props.questionAnswers}
+								questionStatus={this.props.questionStatus}
 								questionActions={this.props.questionActions}
 								questionNotifications={this.props.questionNotifications}
 								validationErrors={this.props.validationErrors}
@@ -94,6 +101,19 @@ class Question extends React.Component {
 				: typeof this.props.questionAnswers[this.props.questionId] !== 'undefined'
 				? this.props.questionAnswers[this.props.questionId]
 				: undefined;
+
+		let isQuestionLocked =
+			typeof this.props.questionStatus[this.props.questionId] !== 'undefined'
+				? this.props.questionStatus[this.props.questionId] === 2
+					? true
+					: false
+				: false;
+		let questionStatus =
+			typeof this.props.questionStatus[this.props.questionId] !== 'undefined'
+				? this.props.questionStatus[this.props.questionId] === 1
+					? true
+					: false
+				: false;
 
 		// Disable input
 		var disabled = typeof this.props.input.disabled !== 'undefined' ? this.props.input.disabled : false;
@@ -128,6 +148,14 @@ class Question extends React.Component {
 							actionClass = this.props.classes.toolTip;
 						}
 
+						if (action.key === 'guidanceEdit' && isQuestionLocked) {
+							return '';
+						}
+
+						if (action.key === 'guidanceLocked' && !isQuestionLocked) {
+							return '';
+						}
+
 						return (
 							<div key={action.key} className={actionClass}>
 								{actionCount > 0 ? <div className={this.props.classes.actionCount}>{actionCount}</div> : ''}
@@ -149,97 +177,93 @@ class Question extends React.Component {
 			);
 
 		let questionNotifications = '';
-
-		/* if (typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0) {
-			let displayIcons = false;
-			let displayedQuestionActions = this.props.questionActions.map(action => {
-				if (action.count > 0) {
-					displayIcons = true;
-					return (
-						<Fragment>
-							<div key={action.key} className={this.props.classes.toolTip}>
-								<div className={this.props.classes.actionCount}>{action.count}</div>
-								<i
-									className={action.icon}
-									style={{ color: action.color }}
-									onClick={e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key)}
-								/>
-
-								<span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>{action.toolTip}</span>
-							</div>
-						</Fragment>
-					);
-				}
-			});
-			if (displayIcons) {
-				questionNotifications = <div className={this.props.classes.actionNotifications}>{displayedQuestionActions}</div>;
-			}
-		} */
-
 		let labelId = `${this.props.questionId}-label`;
-
 		let readOnly = typeof this.props.input.readOnly !== 'undefined' ? this.props.input.readOnly : this.props.readOnly;
 
-		return (
-			<div
-				className={
-					this.props.nested
-						? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}`
-						: this.props.classes.question
-				}>
-				<div className={this.props.classes.questionWrap}>
-					{!!this.props.question ? (
-						<Fragment>
-							<label className={this.props.classes.label} id={labelId} htmlFor={this.props.questionId}>
-								{this.props.question}
-								{typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required
-									? this.props.renderRequiredAsterisk()
-									: undefined}
-							</label>
-							{questionNotifications}
-							{questionActions}
-						</Fragment>
-					) : undefined}
-					{!!this.props.text ? <p className={this.props.classes.questionText}>{this.props.text}</p> : undefined}
-					{validationErrors}
-					<Input
-						name={this.props.questionId}
-						id={this.props.questionId}
-						questionSetId={this.props.questionSetId}
-						labelId={labelId}
-						value={value}
-						disabled={disabled}
-						text={this.props.input.text}
-						icon={this.props.input.icon}
-						class={this.props.input.class}
-						action={this.props.input.action}
-						options={this.props.input.options}
-						placeholder={this.props.input.placeholder}
-						required={this.props.input.required}
-						readOnly={readOnly}
-						classes={this.props.classes}
-						onChange={this.handleInputChange.bind(this, this.props.questionId)}
-						onFocus={this.handleInputFocus.bind(this, this.props.questionId)}
-						onClick={this.handleInputClick.bind(this, this.props.questionSetId, this.props.questionId)}
-						onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
-						onKeyDown={this.props.onKeyDown}
-						{...(typeof this.props.input.props === 'object' ? this.props.input.props : {})}
-					/>
-					{!!this.props.postText ? <p className={this.props.classes.questionPostText}>{this.props.postText}</p> : undefined}
+		const customiseLayoutStyle = {
+			display: 'grid',
+			gridTemplateColumns: '100px 1fr',
+			alignItems: 'center',
+		};
 
-					{typeof this.props.input.questionAlert !== 'undefined' ? (
-						<Alert
-							alert={this.props.input.questionAlert}
-							questionSetId={this.props.questionSetId}
-							questionId={this.props.questionId}
-							handleQuestionAction={this.handleQuestionAction.bind(this)}
-						/>
+		return (
+			<>
+				<div
+					className={
+						this.props.nested
+							? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}`
+							: this.props.classes.question
+					}
+					style={this.props.customiseView ? customiseLayoutStyle : null}>
+					{this.props.customiseView ? (
+						<div style={{ textAlign: 'center', paddingTop: '28px' }}>
+							{isQuestionLocked ? (
+								<i className='fas fa-lock' style={{ color: '#868e96', fontSize: '26px' }} />
+							) : (
+								<SwitchComponent
+									checked={questionStatus}
+									className='react-switch'
+									onChange={this.handleSwitchChange.bind(this, this.props.questionId)}
+								/>
+							)}
+						</div>
 					) : (
 						''
 					)}
+					<div className={this.props.classes.questionWrap}>
+						{!!this.props.question ? (
+							<Fragment>
+								<label className={this.props.classes.label} id={labelId} htmlFor={this.props.questionId}>
+									{this.props.question}
+									{typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required
+										? this.props.renderRequiredAsterisk()
+										: undefined}
+								</label>
+								{questionNotifications}
+								{questionActions}
+							</Fragment>
+						) : undefined}
+						{!!this.props.text ? <p className={this.props.classes.questionText}>{this.props.text}</p> : undefined}
+						{validationErrors}
+						<Input
+							name={this.props.questionId}
+							id={this.props.questionId}
+							questionSetId={this.props.questionSetId}
+							labelId={labelId}
+							value={value}
+							disabled={this.props.customiseView ? !questionStatus : disabled}
+							text={this.props.input.text}
+							icon={this.props.input.icon}
+							class={this.props.input.class}
+							action={this.props.input.action}
+							options={this.props.input.options}
+							placeholder={this.props.input.placeholder}
+							required={this.props.input.required}
+							readOnly={readOnly}
+							classes={this.props.classes}
+							onChange={this.handleInputChange.bind(this, this.props.questionId)}
+							onFocus={this.handleInputFocus.bind(this, this.props.questionId)}
+							onClick={this.handleInputClick.bind(this, this.props.questionSetId, this.props.questionId)}
+							onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
+							onKeyDown={this.props.onKeyDown}
+							{...(typeof this.props.input.props === 'object' ? this.props.input.props : {})}
+						/>
+						{!!this.props.postText ? <p className={this.props.classes.questionPostText}>{this.props.postText}</p> : undefined}
+
+						{typeof this.props.input.questionAlert !== 'undefined' ? (
+							<Alert
+								alert={this.props.input.questionAlert}
+								questionSetId={this.props.questionSetId}
+								questionId={this.props.questionId}
+								handleQuestionAction={this.handleQuestionAction.bind(this)}
+							/>
+						) : (
+							''
+						)}
+					</div>
+					{conditionalItems}
 				</div>
-				{conditionalItems}
-			</div>
+			</>
 		);
 	}
 
@@ -278,6 +302,7 @@ Question.defaultProps = {
 	},
 	classes: {},
 	questionAnswers: {},
+	questionStatus: {},
 	questionActions: [],
 	questionNotifications: [],
 	validationErrors: {},
@@ -288,6 +313,7 @@ Question.defaultProps = {
 	renderError: undefined,
 	renderRequiredAsterisk: undefined,
 	readOnly: false,
+	customiseView: false,
 	nested: false,
 	counts: undefined,
 };
