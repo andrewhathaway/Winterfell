@@ -261,7 +261,7 @@ class Question extends React.Component {
                             {...(typeof this.props.input.props === 'object' ? this.props.input.props : {})}
                         />
 
-                        <div key={action.key} className='toolTip'>
+                        <div key={this.props.questionId} className='toolTip'>
                             <i className='far fa-question-circle' style={{ color: 'red' }} />
 
                             <span className={`toolTipText toolTip-top`}>Sample text</span>
