@@ -260,8 +260,14 @@ class Question extends React.Component {
                             onKeyDown={this.props.onKeyDown}
                             {...(typeof this.props.input.props === 'object' ? this.props.input.props : {})}
                         />
-                        {!!this.props.postText ? <p className={this.props.classes.questionPostText}>{this.props.postText}</p> : undefined}
 
+                        <div key={action.key} className='toolTip'>
+                            <i className='far fa-question-circle' style={{ color: 'red' }} />
+
+                            <span className={`toolTipText toolTip-top`}>Sample text</span>
+                        </div>
+
+                        {!!this.props.postText ? <p className={this.props.classes.questionPostText}>{this.props.postText}</p> : undefined}
                         {typeof this.props.input.questionAlert !== 'undefined' ? (
                             <Alert
                                 alert={this.props.input.questionAlert}
