@@ -2884,6 +2884,16 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 
+const isQuestionLocked = ({
+  lockedQuestion
+}) => lockedQuestion;
+
+const isField = ({
+  type
+}) => {
+  return type === 'emailInput' || type === 'fileInput' || type === 'selectInput' || type === 'textInput' || type === 'textareaInput' || type === 'passwordInput';
+};
+
 class question_Question extends external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Component {
   handleInputChange(questionId, value) {
     this.props.onAnswerChange(questionId, value, this.props.validations, this.props.validateOn);
@@ -2908,6 +2918,20 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
   handleQuestionAction(e, questionSetId = '', questionId = '', key = '', counts = {}) {
     e.preventDefault();
     this.props.onQuestionAction(e, questionSetId, questionId, key, counts);
+  }
+
+  handleRefChanged(node) {
+    if (isQuestionLocked(this.props)) {
+      tippy(node, {
+        content: this.props.lockedToolTip || 'This question is mandatory for all applicants and cannot be excluded'
+      });
+    }
+  }
+
+  handleGuidanceRefChanged(node, content) {
+    tippy(node, {
+      content
+    });
   }
 
   render() {
@@ -2963,7 +2987,8 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
           onQuestionAction: this.props.onQuestionAction,
           onQuestionBlur: this.props.onQuestionBlur,
           onKeyDown: this.props.onKeyDown,
-          counts: conditionalQuestion.counts
+          counts: conditionalQuestion.counts,
+          type: "conditionalQuestion"
         }));
       })());
     } // Get the current value. If none is set, then use
@@ -2971,7 +2996,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
 
 
     var value = typeof this.props.value !== 'undefined' ? this.props.value : typeof this.props.input.default !== 'undefined' ? this.props.input.default : typeof this.props.questionAnswers[this.props.questionId] !== 'undefined' ? this.props.questionAnswers[this.props.questionId] : undefined;
-    let isQuestionLocked = typeof this.props.questionStatus[this.props.questionId] !== 'undefined' ? this.props.questionStatus[this.props.questionId] === 2 ? true : false : false;
+    let questionLocked = isQuestionLocked(this.props);
     let questionStatus = typeof this.props.questionStatus[this.props.questionId] !== 'undefined' ? this.props.questionStatus[this.props.questionId] === 1 ? true : false : false; // Disable input
 
     var disabled = typeof this.props.input.disabled !== 'undefined' ? this.props.input.disabled : false; // Retrieve the validation errors for the
@@ -2998,11 +3023,11 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
         actionClass = this.props.classes.toolTip;
       }
 
-      if (action.key === 'guidanceEdit' && isQuestionLocked) {
+      if (action.key === 'guidanceEdit' && questionLocked) {
         return '';
       }
 
-      if (action.key === 'guidanceLocked' && !isQuestionLocked) {
+      if (action.key === 'guidanceLocked' && !questionLocked) {
         return '';
       }
 
@@ -3016,46 +3041,46 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
         style: {
           color: action.color
         },
-        onClick: e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key, this.props.counts)
-      }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
-        className: `${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`
-      }, action.toolTip));
+        onClick: e => this.handleQuestionAction(e, this.props.questionSetId, this.props.questionId, action.key, this.props.counts),
+        ref: node => this.handleGuidanceRefChanged(node, action.toolTip)
+      }));
     })) : '';
     let questionNotifications = '';
     let labelId = `${this.props.questionId}-label`;
     let readOnly = typeof this.props.input.readOnly !== 'undefined' ? this.props.input.readOnly : this.props.readOnly;
     const customiseLayoutStyle = {
       display: 'grid',
-      gridTemplateColumns: '100px 1fr',
-      alignItems: 'center'
+      gridTemplateColumns: '70px 1fr'
     };
-    return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Fragment, null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-      className: this.props.nested ? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}` : this.props.classes.question,
+    console.log('this.props', this.props);
+    const field = isField(this.props.input);
+    return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      className: `${this.props.classes.questionWrap}${this.props.type === 'conditionalQuestion' ? '-nested' : ''}${field ? ' question-field' : ''}`
+    }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      ref: node => this.handleRefChanged(node)
+    }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      className: `${this.props.nested ? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}` : this.props.classes.question} question-icon
+                        `,
       style: this.props.customiseView ? customiseLayoutStyle : null
-    }, this.props.customiseView ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-      style: {
-        textAlign: 'center',
-        paddingTop: '28px'
-      }
-    }, isQuestionLocked ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
+    }, this.props.customiseView && this.props.type !== 'conditionalQuestion' ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null, questionLocked ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
       className: "fas fa-lock",
       style: {
         color: '#868e96',
         fontSize: '26px'
       }
-    }) : /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Switch, {
+    }) : /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
+      className: "question-switch"
+    }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Switch, {
       checked: questionStatus,
       className: "react-switch",
       onChange: this.handleSwitchChange.bind(this, this.props.questionId)
-    })) : '', /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-      className: this.props.classes.questionWrap
-    }, !!this.props.question ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_["Fragment"], null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("label", {
+    }))) : /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null, !!this.props.question && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Fragment, null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("label", {
       className: this.props.classes.label,
       id: labelId,
       htmlFor: this.props.questionId
-    }, this.props.question, typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required ? this.props.renderRequiredAsterisk() : undefined), questionNotifications, questionActions) : undefined, !!this.props.text ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
+    }, this.props.question, typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required ? this.props.renderRequiredAsterisk() : undefined), questionNotifications), !!this.props.text && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
       className: this.props.classes.questionText
-    }, this.props.text) : undefined, validationErrors, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Input, _extends({
+    }, this.props.text), validationErrors, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Input, _extends({
       name: this.props.questionId,
       id: this.props.questionId,
       questionSetId: this.props.questionSetId,
@@ -3077,14 +3102,14 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       onClick: this.handleInputClick.bind(this, this.props.questionSetId, this.props.questionId),
       onBlur: this.handleInputBlur.bind(this, this.props.questionId),
       onKeyDown: this.props.onKeyDown
-    }, typeof this.props.input.props === 'object' ? this.props.input.props : {})), !!this.props.postText ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
+    }, typeof this.props.input.props === 'object' ? this.props.input.props : {})), !!this.props.postText && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
       className: this.props.classes.questionPostText
-    }, this.props.postText) : undefined, typeof this.props.input.questionAlert !== 'undefined' ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(components_Alert, {
+    }, this.props.postText), typeof this.props.input.questionAlert !== 'undefined' && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(components_Alert, {
       alert: this.props.input.questionAlert,
       questionSetId: this.props.questionSetId,
       questionId: this.props.questionId,
       handleQuestionAction: this.handleQuestionAction.bind(this)
-    }) : ''), conditionalItems));
+    })))), conditionalItems, !!this.props.question && questionActions);
   }
 
   componentDidMount() {
@@ -3175,7 +3200,9 @@ class questionSet_QuestionSet extends external_commonjs_react_commonjs2_react_am
         onQuestionClick: this.props.onQuestionClick,
         onQuestionAction: this.props.onQuestionAction,
         onKeyDown: this.props.onKeyDown,
-        counts: question.counts
+        counts: question.counts,
+        lockedToolTip: question.lockedToolTip,
+        lockedQuestion: question.lockedQuestion
       });
     });
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
