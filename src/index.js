@@ -187,7 +187,6 @@ class Winterfell extends React.Component {
                         applicationId={this.props.applicationId}
                         customiseView={this.props.customiseView}
                         disableValidation={this.props.disableValidation}
-                        questionStatus={this.props.questionStatus}
                         onQuestionFocus={this.handleQuestionFocus.bind(this)}
                         onQuestionClick={this.handleQuestionClick.bind(this)}
                         onQuestionAction={this.handleQuestionAction.bind(this)}

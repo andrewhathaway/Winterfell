@@ -4,7 +4,13 @@ import Alert from './components/Alert';
 import SwitchComponent from './components/Switch';
 import inputTypes from './inputTypes/index';
 
-const isQuestionLocked = ({ lockedQuestion }) => lockedQuestion;
+const isQuestionLocked = ({ questionStatus, questionId }) => {
+    return questionStatus[questionId] === 2;
+};
+
+const isQuestionStatus = ({ questionStatus, questionId }) => {
+    return questionStatus[questionId] === 1;
+};
 
 const isField = ({ type }) => {
     return type === 'emailInput' || type === 'fileInput' || type === 'selectInput' || type === 'textInput' || type === 'passwordInput';
@@ -127,12 +133,7 @@ class Question extends React.Component {
                 : undefined;
 
         let questionLocked = isQuestionLocked(this.props);
-        let questionStatus =
-            typeof this.props.questionStatus[this.props.questionId] !== 'undefined'
-                ? this.props.questionStatus[this.props.questionId] === 1
-                    ? true
-                    : false
-                : false;
+        let questionStatus = isQuestionStatus(this.props);
 
         // Disable input
         var disabled = typeof this.props.input.disabled !== 'undefined' ? this.props.input.disabled : false;
@@ -266,7 +267,9 @@ class Question extends React.Component {
                                 questionSetId={this.props.questionSetId}
                                 labelId={labelId}
                                 value={value}
-                                disabled={this.props.customiseView ? !questionStatus : disabled}
+                                disabled={
+                                    this.props.type === 'conditionalQuestion' || this.props.customiseView ? !questionStatus : disabled
+                                }
                                 text={this.props.input.text}
                                 icon={this.props.input.icon}
                                 class={this.props.input.class}

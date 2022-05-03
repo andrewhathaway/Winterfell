@@ -2259,7 +2259,7 @@ class checkboxInput_CheckboxInput extends external_commonjs_react_commonjs2_reac
       defaultChecked: this.state.checked,
       value: this.props.value,
       required: this.props.required ? 'required' : undefined,
-      disabled: this.props.readOnly,
+      disabled: this.props.readOnly || this.props.disabled,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.checked ? this.props.value : undefined)
@@ -2268,7 +2268,6 @@ class checkboxInput_CheckboxInput extends external_commonjs_react_commonjs2_reac
 
 }
 
-;
 checkboxInput_CheckboxInput.defaultProps = {
   text: '',
   defaultChecked: false,
@@ -2318,6 +2317,7 @@ class checkboxOptionsInput_CheckboxOptionsInput extends external_commonjs_react_
   }
 
   render() {
+    console.log('this.props.readOnly', this.props);
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("ul", {
       className: this.props.classes.checkboxList
     }, this.props.options.map(opt => /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("li", {
@@ -2334,7 +2334,7 @@ class checkboxOptionsInput_CheckboxOptionsInput extends external_commonjs_react_
       checked: this.state.value.indexOf(opt.value) > -1,
       className: this.props.classes.checkbox,
       required: this.props.required ? 'required' : undefined,
-      disabled: this.props.readOnly,
+      disabled: this.props.readOnly || this.props.disabled,
       onChange: this.handleChange.bind(this, opt.value),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value)
@@ -2343,7 +2343,6 @@ class checkboxOptionsInput_CheckboxOptionsInput extends external_commonjs_react_
 
 }
 
-;
 checkboxOptionsInput_CheckboxOptionsInput.defaultProps = {
   classes: {},
   name: '',
@@ -2438,7 +2437,7 @@ class fileInput_FileInput extends external_commonjs_react_commonjs2_react_amd_Re
       "aria-labelledby": this.props.labelId,
       className: this.props.classes.file,
       required: this.props.required ? 'required' : undefined,
-      disabled: this.props.readOnly,
+      disabled: this.props.readOnly || this.props.disabled,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value)
@@ -2447,7 +2446,6 @@ class fileInput_FileInput extends external_commonjs_react_commonjs2_react_amd_Re
 
 }
 
-;
 fileInput_FileInput.defaultProps = {
   classes: {},
   name: '',
@@ -2513,7 +2511,7 @@ class passwordInput_PasswordInput extends external_commonjs_react_commonjs2_reac
       placeholder: this.props.placeholder,
       value: this.state.value,
       required: this.props.required ? 'required' : undefined,
-      readOnly: this.props.readOnly,
+      readOnly: this.props.readOnly || this.props.disabled,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value),
@@ -2523,7 +2521,6 @@ class passwordInput_PasswordInput extends external_commonjs_react_commonjs2_reac
 
 }
 
-;
 passwordInput_PasswordInput.defaultProps = {
   classes: {},
   name: '',
@@ -2576,7 +2573,7 @@ class radioOptionsInput_RadioOptionsInput extends external_commonjs_react_common
       checked: this.state.value == opt.value,
       className: this.props.classes.radio,
       required: this.props.required ? 'required' : undefined,
-      disabled: this.props.readOnly,
+      disabled: this.props.readOnly || this.props.disabled,
       value: opt.value,
       onChange: this.handleChange.bind(this, opt.value),
       onFocus: this.props.onFocus.bind(this),
@@ -2586,7 +2583,6 @@ class radioOptionsInput_RadioOptionsInput extends external_commonjs_react_common
 
 }
 
-;
 radioOptionsInput_RadioOptionsInput.defaultProps = {
   classes: {},
   name: '',
@@ -2632,7 +2628,7 @@ class selectInput_SelectInput extends external_commonjs_react_commonjs2_react_am
       className: this.props.classes.select,
       value: this.state.value,
       required: this.props.required ? 'required' : undefined,
-      disabled: this.props.readOnly,
+      disabled: this.props.readOnly || this.props.disabled,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value)
@@ -2697,7 +2693,7 @@ class textareaInput_TextareaInput extends external_commonjs_react_commonjs2_reac
       className: this.props.classes.input,
       placeholder: this.props.placeholder,
       value: this.state.value,
-      disabled: this.props.disabled || this.props.readOnly,
+      disabled: this.props.readOnly || this.props.disabled,
       required: this.props.required ? 'required' : undefined,
       onChange: this.handleChange.bind(this),
       onFocus: this.props.onFocus.bind(this),
@@ -2707,7 +2703,6 @@ class textareaInput_TextareaInput extends external_commonjs_react_commonjs2_reac
 
 }
 
-;
 textareaInput_TextareaInput.defaultProps = {
   classes: {},
   name: '',
@@ -2753,7 +2748,7 @@ class textInput_TextInput extends external_commonjs_react_commonjs2_react_amd_Re
       className: this.props.classes.input,
       placeholder: this.props.placeholder,
       value: this.state.value,
-      disabled: this.props.disabled || this.props.readOnly,
+      disabled: this.props.readOnly || this.props.disabled,
       required: this.props.required ? 'required' : undefined,
       onChange: this.handleChange.bind(this),
       onBlur: this.props.onBlur.bind(null, this.state.value),
@@ -2764,7 +2759,6 @@ class textInput_TextInput extends external_commonjs_react_commonjs2_react_amd_Re
 
 }
 
-;
 textInput_TextInput.defaultProps = {
   classes: {},
   name: '',
@@ -2883,13 +2877,23 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 const isQuestionLocked = ({
-  lockedQuestion
-}) => lockedQuestion;
+  questionStatus,
+  questionId
+}) => {
+  return questionStatus[questionId] === 2;
+};
+
+const isQuestionStatus = ({
+  questionStatus,
+  questionId
+}) => {
+  return questionStatus[questionId] === 1;
+};
 
 const isField = ({
   type
 }) => {
-  return type === 'emailInput' || type === 'fileInput' || type === 'selectInput' || type === 'textInput' || type === 'textareaInput' || type === 'passwordInput';
+  return type === 'emailInput' || type === 'fileInput' || type === 'selectInput' || type === 'textInput' || type === 'passwordInput';
 };
 
 class question_Question extends external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Component {
@@ -2995,7 +2999,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
 
     var value = typeof this.props.value !== 'undefined' ? this.props.value : typeof this.props.input.default !== 'undefined' ? this.props.input.default : typeof this.props.questionAnswers[this.props.questionId] !== 'undefined' ? this.props.questionAnswers[this.props.questionId] : undefined;
     let questionLocked = isQuestionLocked(this.props);
-    let questionStatus = typeof this.props.questionStatus[this.props.questionId] !== 'undefined' ? this.props.questionStatus[this.props.questionId] === 1 ? true : false : false; // Disable input
+    let questionStatus = isQuestionStatus(this.props); // Disable input
 
     var disabled = typeof this.props.input.disabled !== 'undefined' ? this.props.input.disabled : false; // Retrieve the validation errors for the
     // current question and map them in to
@@ -3083,7 +3087,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       questionSetId: this.props.questionSetId,
       labelId: labelId,
       value: value,
-      disabled: this.props.customiseView ? !questionStatus : disabled,
+      disabled: this.props.type === 'conditionalQuestion' || this.props.customiseView ? !questionStatus : disabled,
       text: this.props.input.text,
       icon: this.props.input.icon,
       class: this.props.input.class,
@@ -3668,7 +3672,6 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       applicationId: this.props.applicationId,
       customiseView: this.props.customiseView,
       disableValidation: this.props.disableValidation,
-      questionStatus: this.props.questionStatus,
       onQuestionFocus: this.handleQuestionFocus.bind(this),
       onQuestionClick: this.handleQuestionClick.bind(this),
       onQuestionAction: this.handleQuestionAction.bind(this),
