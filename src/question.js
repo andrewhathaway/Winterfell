@@ -4,6 +4,18 @@ import Alert from './components/Alert';
 import SwitchComponent from './components/Switch';
 import inputTypes from './inputTypes/index';
 
+const isQuestionLocked = ({ questionStatus, questionId }) => {
+    return questionStatus[questionId] === 2;
+};
+
+const isQuestionStatus = ({ questionStatus, questionId }) => {
+    return questionStatus[questionId] === 1;
+};
+
+const isField = ({ type }) => {
+    return type === 'emailInput' || type === 'fileInput' || type === 'selectInput' || type === 'textInput' || type === 'passwordInput';
+};
+
 class Question extends React.Component {
     handleInputChange(questionId, value) {
         this.props.onAnswerChange(questionId, value, this.props.validations, this.props.validateOn);
@@ -28,6 +40,20 @@ class Question extends React.Component {
     handleQuestionAction(e, questionSetId = '', questionId = '', key = '', counts = {}) {
         e.preventDefault();
         this.props.onQuestionAction(e, questionSetId, questionId, key, counts);
+    }
+
+    handleRefChanged(node) {
+        if (isQuestionLocked(this.props)) {
+            tippy(node, {
+                content: this.props.lockedToolTip || 'This question is mandatory for all applicants and cannot be excluded',
+            });
+        }
+    }
+
+    handleGuidanceRefChanged(node, content) {
+        tippy(node, {
+            content,
+        });
     }
 
     render() {
@@ -88,6 +114,7 @@ class Question extends React.Component {
                                 onQuestionBlur={this.props.onQuestionBlur}
                                 onKeyDown={this.props.onKeyDown}
                                 counts={conditionalQuestion.counts}
+                                type='conditionalQuestion'
                             />
                         );
                     })()
@@ -105,18 +132,8 @@ class Question extends React.Component {
                 ? this.props.questionAnswers[this.props.questionId]
                 : undefined;
 
-        let isQuestionLocked =
-            typeof this.props.questionStatus[this.props.questionId] !== 'undefined'
-                ? this.props.questionStatus[this.props.questionId] === 2
-                    ? true
-                    : false
-                : false;
-        let questionStatus =
-            typeof this.props.questionStatus[this.props.questionId] !== 'undefined'
-                ? this.props.questionStatus[this.props.questionId] === 1
-                    ? true
-                    : false
-                : false;
+        let questionLocked = isQuestionLocked(this.props);
+        let questionStatus = isQuestionStatus(this.props);
 
         // Disable input
         var disabled = typeof this.props.input.disabled !== 'undefined' ? this.props.input.disabled : false;
@@ -151,11 +168,11 @@ class Question extends React.Component {
                             actionClass = this.props.classes.toolTip;
                         }
 
-                        if (action.key === 'guidanceEdit' && isQuestionLocked) {
+                        if (action.key === 'guidanceEdit' && questionLocked) {
                             return '';
                         }
 
-                        if (action.key === 'guidanceLocked' && !isQuestionLocked) {
+                        if (action.key === 'guidanceLocked' && !questionLocked) {
                             return '';
                         }
 
@@ -174,11 +191,8 @@ class Question extends React.Component {
                                             this.props.counts
                                         )
                                     }
+                                    ref={node => this.handleGuidanceRefChanged(node, action.toolTip)}
                                 />
-
-                                <span className={`${this.props.classes.toolTipText} ${this.props.classes.toolTipTop}`}>
-                                    {action.toolTip}
-                                </span>
                             </div>
                         );
                     })}
@@ -193,95 +207,103 @@ class Question extends React.Component {
 
         const customiseLayoutStyle = {
             display: 'grid',
-            gridTemplateColumns: '100px 1fr',
-            alignItems: 'center',
+            gridTemplateColumns: '70px 1fr',
         };
 
+        const field = isField(this.props.input);
+
         return (
-            <>
-                <div
-                    className={
-                        this.props.nested
-                            ? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}`
-                            : this.props.classes.question
-                    }
-                    style={this.props.customiseView ? customiseLayoutStyle : null}>
-                    {this.props.customiseView ? (
-                        <div style={{ textAlign: 'center', paddingTop: '28px' }}>
-                            {isQuestionLocked ? (
-                                <i className='fas fa-lock' style={{ color: '#868e96', fontSize: '26px' }} />
-                            ) : (
-                                <SwitchComponent
-                                    checked={questionStatus}
-                                    className='react-switch'
-                                    onChange={this.handleSwitchChange.bind(this, this.props.questionId)}
+            <div
+                className={`${this.props.classes.questionWrap}${this.props.type === 'conditionalQuestion' ? '-nested' : ''}${
+                    field ? ' question-field' : ''
+                }`}>
+                <div ref={node => this.handleRefChanged(node)}>
+                    <div
+                        className={`${
+                            this.props.nested
+                                ? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}`
+                                : this.props.classes.question
+                        }${this.props.customiseView ? ' question-icon' : ''}
+                        `}
+                        style={this.props.customiseView ? customiseLayoutStyle : null}>
+                        {this.props.customiseView && this.props.type !== 'conditionalQuestion' ? (
+                            <div>
+                                {questionLocked ? (
+                                    <i className='fas fa-lock' style={{ color: '#868e96', fontSize: '26px' }} />
+                                ) : (
+                                    <span className='question-switch'>
+                                        <SwitchComponent
+                                            checked={questionStatus}
+                                            className='react-switch'
+                                            onChange={this.handleSwitchChange.bind(this, this.props.questionId)}
+                                        />
+                                    </span>
+                                )}
+                            </div>
+                        ) : (
+                            <div />
+                        )}
+
+                        <div>
+                            {!!this.props.question && (
+                                <>
+                                    <label className={this.props.classes.label} id={labelId} htmlFor={this.props.questionId}>
+                                        {this.props.question}
+                                        {typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required
+                                            ? this.props.renderRequiredAsterisk()
+                                            : undefined}
+                                    </label>
+                                    {questionNotifications}
+                                </>
+                            )}
+
+                            {!!this.props.text && <p className={this.props.classes.questionText}>{this.props.text}</p>}
+
+                            {validationErrors}
+
+                            <Input
+                                name={this.props.questionId}
+                                id={this.props.questionId}
+                                questionSetId={this.props.questionSetId}
+                                labelId={labelId}
+                                value={value}
+                                disabled={
+                                    this.props.type === 'conditionalQuestion' || this.props.customiseView ? !questionStatus : disabled
+                                }
+                                text={this.props.input.text}
+                                icon={this.props.input.icon}
+                                class={this.props.input.class}
+                                action={this.props.input.action}
+                                options={this.props.input.options}
+                                placeholder={this.props.input.placeholder}
+                                required={this.props.input.required}
+                                readOnly={readOnly}
+                                classes={this.props.classes}
+                                applicationId={this.props.applicationId}
+                                onChange={this.handleInputChange.bind(this, this.props.questionId)}
+                                onFocus={this.handleInputFocus.bind(this, this.props.questionId)}
+                                onClick={this.handleInputClick.bind(this, this.props.questionSetId, this.props.questionId)}
+                                onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
+                                onKeyDown={this.props.onKeyDown}
+                                {...(typeof this.props.input.props === 'object' ? this.props.input.props : {})}
+                            />
+
+                            {!!this.props.postText && <p className={this.props.classes.questionPostText}>{this.props.postText}</p>}
+
+                            {typeof this.props.input.questionAlert !== 'undefined' && (
+                                <Alert
+                                    alert={this.props.input.questionAlert}
+                                    questionSetId={this.props.questionSetId}
+                                    questionId={this.props.questionId}
+                                    handleQuestionAction={this.handleQuestionAction.bind(this)}
                                 />
                             )}
                         </div>
-                    ) : (
-                        ''
-                    )}
-                    <div className={this.props.classes.questionWrap}>
-                        {!!this.props.question ? (
-                            <Fragment>
-                                <label className={this.props.classes.label} id={labelId} htmlFor={this.props.questionId}>
-                                    {this.props.question}
-                                    {typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required
-                                        ? this.props.renderRequiredAsterisk()
-                                        : undefined}
-                                </label>
-                                {questionNotifications}
-                                {questionActions}
-                            </Fragment>
-                        ) : undefined}
-                        {!!this.props.text ? <p className={this.props.classes.questionText}>{this.props.text}</p> : undefined}
-                        {validationErrors}
-                        <Input
-                            name={this.props.questionId}
-                            id={this.props.questionId}
-                            questionSetId={this.props.questionSetId}
-                            labelId={labelId}
-                            value={value}
-                            disabled={this.props.customiseView ? !questionStatus : disabled}
-                            text={this.props.input.text}
-                            icon={this.props.input.icon}
-                            class={this.props.input.class}
-                            action={this.props.input.action}
-                            options={this.props.input.options}
-                            placeholder={this.props.input.placeholder}
-                            required={this.props.input.required}
-                            readOnly={readOnly}
-                            classes={this.props.classes}
-                            applicationId={this.props.applicationId}
-                            onChange={this.handleInputChange.bind(this, this.props.questionId)}
-                            onFocus={this.handleInputFocus.bind(this, this.props.questionId)}
-                            onClick={this.handleInputClick.bind(this, this.props.questionSetId, this.props.questionId)}
-                            onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
-                            onKeyDown={this.props.onKeyDown}
-                            {...(typeof this.props.input.props === 'object' ? this.props.input.props : {})}
-                        />
-
-                        <div key={this.props.questionId} className='toolTip'>
-                            <i className='far fa-question-circle' style={{ color: 'red' }} />
-
-                            <span className={`toolTipText toolTip-top`}>Sample text</span>
-                        </div>
-
-                        {!!this.props.postText ? <p className={this.props.classes.questionPostText}>{this.props.postText}</p> : undefined}
-                        {typeof this.props.input.questionAlert !== 'undefined' ? (
-                            <Alert
-                                alert={this.props.input.questionAlert}
-                                questionSetId={this.props.questionSetId}
-                                questionId={this.props.questionId}
-                                handleQuestionAction={this.handleQuestionAction.bind(this)}
-                            />
-                        ) : (
-                            ''
-                        )}
                     </div>
-                    {conditionalItems}
                 </div>
-            </>
+                {conditionalItems}
+                {!!this.props.question && questionActions}
+            </div>
         );
     }
 

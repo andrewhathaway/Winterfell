@@ -36,6 +36,8 @@ class QuestionSet extends React.Component {
                     onQuestionAction={this.props.onQuestionAction}
                     onKeyDown={this.props.onKeyDown}
                     counts={question.counts}
+                    lockedToolTip={question.lockedToolTip}
+                    lockedQuestion={question.lockedQuestion}
                 />
             );
         });
