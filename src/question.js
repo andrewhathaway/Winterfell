@@ -7,14 +7,7 @@ import inputTypes from './inputTypes/index';
 const isQuestionLocked = ({ lockedQuestion }) => lockedQuestion;
 
 const isField = ({ type }) => {
-    return (
-        type === 'emailInput' ||
-        type === 'fileInput' ||
-        type === 'selectInput' ||
-        type === 'textInput' ||
-        type === 'textareaInput' ||
-        type === 'passwordInput'
-    );
+    return type === 'emailInput' || type === 'fileInput' || type === 'selectInput' || type === 'textInput' || type === 'passwordInput';
 };
 
 class Question extends React.Component {
@@ -229,7 +222,7 @@ class Question extends React.Component {
                             this.props.nested
                                 ? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}`
                                 : this.props.classes.question
-                        } question-icon
+                        }${this.props.customiseView ? ' question-icon' : ''}
                         `}
                         style={this.props.customiseView ? customiseLayoutStyle : null}>
                         {this.props.customiseView && this.props.type !== 'conditionalQuestion' ? (

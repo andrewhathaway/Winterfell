@@ -2631,7 +2631,6 @@ class selectInput_SelectInput extends external_commonjs_react_commonjs2_react_am
       id: this.props.id,
       className: this.props.classes.select,
       value: this.state.value,
-      ref: "select",
       required: this.props.required ? 'required' : undefined,
       disabled: this.props.readOnly,
       onChange: this.handleChange.bind(this),
@@ -2647,14 +2646,13 @@ class selectInput_SelectInput extends external_commonjs_react_commonjs2_react_am
      */
     this.handleChange({
       target: {
-        value: this.refs.select.value
+        value: this.props.options[0].value
       }
     });
   }
 
 }
 
-;
 selectInput_SelectInput.defaultProps = {
   classes: {},
   name: '',
@@ -3052,14 +3050,13 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       display: 'grid',
       gridTemplateColumns: '70px 1fr'
     };
-    console.log('this.props', this.props);
     const field = isField(this.props.input);
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
       className: `${this.props.classes.questionWrap}${this.props.type === 'conditionalQuestion' ? '-nested' : ''}${field ? ' question-field' : ''}`
     }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
       ref: node => this.handleRefChanged(node)
     }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-      className: `${this.props.nested ? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}` : this.props.classes.question} question-icon
+      className: `${this.props.nested ? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}` : this.props.classes.question}${this.props.customiseView ? ' question-icon' : ''}
                         `,
       style: this.props.customiseView ? customiseLayoutStyle : null
     }, this.props.customiseView && this.props.type !== 'conditionalQuestion' ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null, questionLocked ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("i", {
