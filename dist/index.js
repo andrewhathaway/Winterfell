@@ -2890,6 +2890,29 @@ const isQuestionStatus = ({
   return questionStatus[questionId] === 1;
 };
 
+const hasConditionalQuestions = ({
+  input: {
+    options
+  }
+}) => {
+  return !!(options || []).filter(option => {
+    return option.conditionalQuestions && option.conditionalQuestions.length > 0;
+  }).length;
+};
+
+const getConditionalQuestions = ({
+  input: {
+    options
+  },
+  value
+}) => {
+  return (options || []).filter(option => {
+    return value instanceof Array ? value.indexOf(option.value) > -1 : value === option.value;
+  }).filter(option => {
+    return option.conditionalQuestions && option.conditionalQuestions.length > 0;
+  });
+};
+
 const isField = ({
   type
 }) => {
@@ -2897,11 +2920,17 @@ const isField = ({
 };
 
 class question_Question extends external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Component {
+  constructor(props) {
+    super(props);
+    this.questionRef = /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createRef();
+  }
+
   handleInputChange(questionId, value) {
     this.props.onAnswerChange(questionId, value, this.props.validations, this.props.validateOn);
   }
 
   handleSwitchChange(questionId, value) {
+    // this.handleRefChanged(this.questionRef);
     this.props.onSwitchChange(questionId, value, this.props.validations, this.props.validateOn);
   }
 
@@ -2923,17 +2952,25 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
   }
 
   handleRefChanged(node) {
+    this.questionRef = node;
+    if (!this.inputTooltip) this.inputTooltip = tippy(node);
+    this.inputTooltip.enable();
+
     if (isQuestionLocked(this.props)) {
-      tippy(node, {
-        content: this.props.lockedToolTip || 'This question is mandatory for all applicants and cannot be excluded'
-      });
+      console.log('Question locked');
+      this.inputTooltip.setContent(this.props.lockedToolTip || 'This question is mandatory for all applicants and cannot be excluded');
+    } else if (isQuestionStatus(this.props) && hasConditionalQuestions(this.props)) {
+      console.log('Conditional questions');
+      this.inputTooltip.setContent(this.props.toggleTooltip || 'This question has dependencies');
+    } else {
+      console.log('Diksablikng');
+      this.inputTooltip.disable();
     }
   }
 
   handleGuidanceRefChanged(node, content) {
-    tippy(node, {
-      content
-    });
+    if (!this.guidanceTooltip) this.guidanceTooltip = tippy(node);
+    this.guidanceTooltip.setContent(content);
   }
 
   render() {
@@ -2942,60 +2979,42 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     if (!Input) {
       throw new Error('Winterfell: Input Type "' + this.props.input.type + '" not defined as Winterfell Input Type');
     }
-    /*
-     * Conditional Questions
-     *
-     * Go through the inputs options and filter them down
-     * to options where the value matches the current questions
-     * value. If we have conditional questions on a given option,
-     * then render this component with the props for the conditional
-     * question.
-     */
-
 
     var conditionalItems = [];
-
-    if (typeof this.props.input.options !== 'undefined') {
-      this.props.input.options.filter(option => {
-        return this.props.value instanceof Array ? this.props.value.indexOf(option.value) > -1 : this.props.value == option.value;
-      }).filter(option => {
-        return typeof option.conditionalQuestions !== 'undefined' && option.conditionalQuestions.length > 0;
-      }).forEach(option => [].forEach.bind(option.conditionalQuestions, conditionalQuestion => {
-        conditionalItems.push( /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(question_Question, {
-          key: conditionalQuestion.questionId,
-          questionSetId: this.props.questionSetId,
-          questionId: conditionalQuestion.questionId,
-          question: conditionalQuestion.question,
-          text: conditionalQuestion.text,
-          postText: conditionalQuestion.postText,
-          validateOn: conditionalQuestion.validateOn,
-          validations: conditionalQuestion.validations,
-          value: this.props.questionAnswers[conditionalQuestion.questionId],
-          input: conditionalQuestion.input,
-          classes: this.props.classes,
-          nested: true,
-          renderError: this.props.renderError,
-          readOnly: this.props.readOnly,
-          customiseView: this.props.customiseView,
-          applicationId: this.props.applicationId,
-          questionAnswers: this.props.questionAnswers,
-          questionStatus: this.props.questionStatus,
-          questionActions: this.props.questionActions,
-          questionNotifications: this.props.questionNotifications,
-          validationErrors: this.props.validationErrors,
-          onAnswerChange: this.props.onAnswerChange,
-          onQuestionFocus: this.props.onQuestionFocus,
-          onQuestionClick: this.props.onQuestionClick,
-          onQuestionAction: this.props.onQuestionAction,
-          onQuestionBlur: this.props.onQuestionBlur,
-          onKeyDown: this.props.onKeyDown,
-          counts: conditionalQuestion.counts,
-          type: "conditionalQuestion"
-        }));
-      })());
-    } // Get the current value. If none is set, then use
+    getConditionalQuestions(this.props).forEach(option => [].forEach.bind(option.conditionalQuestions, conditionalQuestion => {
+      conditionalItems.push( /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(question_Question, {
+        key: conditionalQuestion.questionId,
+        questionSetId: this.props.questionSetId,
+        questionId: conditionalQuestion.questionId,
+        question: conditionalQuestion.question,
+        text: conditionalQuestion.text,
+        postText: conditionalQuestion.postText,
+        validateOn: conditionalQuestion.validateOn,
+        validations: conditionalQuestion.validations,
+        value: this.props.questionAnswers[conditionalQuestion.questionId],
+        input: conditionalQuestion.input,
+        classes: this.props.classes,
+        nested: true,
+        renderError: this.props.renderError,
+        readOnly: this.props.readOnly,
+        customiseView: this.props.customiseView,
+        applicationId: this.props.applicationId,
+        questionAnswers: this.props.questionAnswers,
+        questionStatus: this.props.questionStatus,
+        questionActions: this.props.questionActions,
+        questionNotifications: this.props.questionNotifications,
+        validationErrors: this.props.validationErrors,
+        onAnswerChange: this.props.onAnswerChange,
+        onQuestionFocus: this.props.onQuestionFocus,
+        onQuestionClick: this.props.onQuestionClick,
+        onQuestionAction: this.props.onQuestionAction,
+        onQuestionBlur: this.props.onQuestionBlur,
+        onKeyDown: this.props.onKeyDown,
+        counts: conditionalQuestion.counts,
+        type: "conditionalQuestion"
+      }));
+    })()); // Get the current value. If none is set, then use
     // the default if given.
-
 
     var value = typeof this.props.value !== 'undefined' ? this.props.value : typeof this.props.input.default !== 'undefined' ? this.props.input.default : typeof this.props.questionAnswers[this.props.questionId] !== 'undefined' ? this.props.questionAnswers[this.props.questionId] : undefined;
     let questionLocked = isQuestionLocked(this.props);
