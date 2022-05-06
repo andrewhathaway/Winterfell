@@ -2957,13 +2957,12 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     this.inputTooltip.enable();
 
     if (isQuestionLocked(this.props)) {
-      console.log('Question locked');
       this.inputTooltip.setContent(this.props.lockedToolTip || 'This question is mandatory for all applicants and cannot be excluded');
     } else if (isQuestionStatus(this.props) && hasConditionalQuestions(this.props)) {
-      console.log('Conditional questions');
-      this.inputTooltip.setContent(this.props.toggleTooltip || 'This question has dependencies');
+      const optionalTooltip = document.createElement('div');
+      optionalTooltip.innerHTML = '<p>This question is optional. Click the switch to add or remove from the DAR application form.</p><p>NOTE: This question contains either contextual answers which will be presented to the applicant dependant on their selection or, in some cases, there may be additional fields to be completed.</p><p style="margin-bottom: 0;">The guidance for each contextual answer or additional field(s) is editable. Simply click each option to reveal the field(s) and to edit the guidance.</p>';
+      this.inputTooltip.setContent(this.props.toggleTooltip || optionalTooltip);
     } else {
-      console.log('Diksablikng');
       this.inputTooltip.disable();
     }
   }
