@@ -2883,11 +2883,18 @@ const isQuestionLocked = ({
   return questionStatus[questionId] === 2;
 };
 
-const isQuestionStatus = ({
+const isQuestionOn = ({
   questionStatus,
   questionId
 }) => {
   return questionStatus[questionId] === 1;
+};
+
+const isQuestionOff = ({
+  questionStatus,
+  questionId
+}) => {
+  return questionStatus[questionId] === 0;
 };
 
 const hasConditionalQuestions = ({
@@ -2958,7 +2965,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
 
     if (isQuestionLocked(this.props)) {
       this.inputTooltip.setContent(this.props.lockedToolTip || 'This question is mandatory for all applicants and cannot be excluded');
-    } else if (isQuestionStatus(this.props) && hasConditionalQuestions(this.props)) {
+    } else if (isQuestionOn(this.props) && hasConditionalQuestions(this.props)) {
       const optionalTooltip = document.createElement('div');
       optionalTooltip.innerHTML = '<p>This question is optional. Click the switch to add or remove from the DAR application form.</p><p>NOTE: This question contains either contextual answers which will be presented to the applicant dependant on their selection or, in some cases, there may be additional fields to be completed.</p><p style="margin-bottom: 0;">The guidance for each contextual answer or additional field(s) is editable. Simply click each option to reveal the field(s) and to edit the guidance.</p>';
       this.inputTooltip.setContent(this.props.toggleTooltip || optionalTooltip);
@@ -3017,7 +3024,8 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
 
     var value = typeof this.props.value !== 'undefined' ? this.props.value : typeof this.props.input.default !== 'undefined' ? this.props.input.default : typeof this.props.questionAnswers[this.props.questionId] !== 'undefined' ? this.props.questionAnswers[this.props.questionId] : undefined;
     let questionLocked = isQuestionLocked(this.props);
-    let questionStatus = isQuestionStatus(this.props); // Disable input
+    let questionOn = isQuestionOn(this.props);
+    let questionOff = isQuestionOff(this.props); // Disable input
 
     var disabled = typeof this.props.input.disabled !== 'undefined' ? this.props.input.disabled : false; // Retrieve the validation errors for the
     // current question and map them in to
@@ -3090,7 +3098,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     }) : /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
       className: "question-switch"
     }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Switch, {
-      checked: questionStatus,
+      checked: questionOn,
       className: "react-switch",
       onChange: this.handleSwitchChange.bind(this, this.props.questionId)
     }))) : /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null, !!this.props.question && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Fragment, null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("label", {
@@ -3105,7 +3113,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       questionSetId: this.props.questionSetId,
       labelId: labelId,
       value: value,
-      disabled: this.props.type === 'conditionalQuestion' || this.props.customiseView ? !questionStatus : disabled,
+      disabled: this.props.type === 'conditionalQuestion' || !(this.props.customiseView && !questionOff && hasConditionalQuestions(this.props)) || disabled,
       text: this.props.input.text,
       icon: this.props.input.icon,
       class: this.props.input.class,

@@ -8,8 +8,12 @@ const isQuestionLocked = ({ questionStatus, questionId }) => {
     return questionStatus[questionId] === 2;
 };
 
-const isQuestionStatus = ({ questionStatus, questionId }) => {
+const isQuestionOn = ({ questionStatus, questionId }) => {
     return questionStatus[questionId] === 1;
+};
+
+const isQuestionOff = ({ questionStatus, questionId }) => {
+    return questionStatus[questionId] === 0;
 };
 
 const hasConditionalQuestions = ({ input: { options } }) => {
@@ -77,7 +81,7 @@ class Question extends React.Component {
             this.inputTooltip.setContent(
                 this.props.lockedToolTip || 'This question is mandatory for all applicants and cannot be excluded'
             );
-        } else if (isQuestionStatus(this.props) && hasConditionalQuestions(this.props)) {
+        } else if (isQuestionOn(this.props) && hasConditionalQuestions(this.props)) {
             const optionalTooltip = document.createElement('div');
 
             optionalTooltip.innerHTML =
@@ -153,7 +157,8 @@ class Question extends React.Component {
                 : undefined;
 
         let questionLocked = isQuestionLocked(this.props);
-        let questionStatus = isQuestionStatus(this.props);
+        let questionOn = isQuestionOn(this.props);
+        let questionOff = isQuestionOff(this.props);
 
         // Disable input
         var disabled = typeof this.props.input.disabled !== 'undefined' ? this.props.input.disabled : false;
@@ -253,7 +258,7 @@ class Question extends React.Component {
                                 ) : (
                                     <span className='question-switch'>
                                         <SwitchComponent
-                                            checked={questionStatus}
+                                            checked={questionOn}
                                             className='react-switch'
                                             onChange={this.handleSwitchChange.bind(this, this.props.questionId)}
                                         />
@@ -288,7 +293,9 @@ class Question extends React.Component {
                                 labelId={labelId}
                                 value={value}
                                 disabled={
-                                    this.props.type === 'conditionalQuestion' || this.props.customiseView ? !questionStatus : disabled
+                                    this.props.type === 'conditionalQuestion' ||
+                                    !(this.props.customiseView && !questionOff && hasConditionalQuestions(this.props)) ||
+                                    disabled
                                 }
                                 text={this.props.input.text}
                                 icon={this.props.input.icon}
