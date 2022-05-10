@@ -2965,9 +2965,16 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
 
     if (isQuestionLocked(this.props)) {
       this.inputTooltip.setContent(this.props.lockedToolTip || 'This question is mandatory for all applicants and cannot be excluded');
-    } else if (isQuestionOn(this.props) && hasConditionalQuestions(this.props)) {
-      const optionalTooltip = document.createElement('div');
-      optionalTooltip.innerHTML = '<p>This question is optional. Click the switch to add or remove from the DAR application form.</p><p>NOTE: This question contains either contextual answers which will be presented to the applicant dependant on their selection or, in some cases, there may be additional fields to be completed.</p><p style="margin-bottom: 0;">The guidance for each contextual answer or additional field(s) is editable. Simply click each option to reveal the field(s) and to edit the guidance.</p>';
+    } else if (isQuestionOn(this.props)) {
+      let optionalTooltip;
+
+      if (hasConditionalQuestions(this.props)) {
+        optionalTooltip = document.createElement('div');
+        optionalTooltip.innerHTML = '<p>This question is optional. Click the switch to add or remove from the DAR application form.</p><p>NOTE: This question contains either contextual answers which will be presented to the applicant dependant on their selection or, in some cases, there may be additional fields to be completed.</p><p style="margin-bottom: 0;">The guidance for each contextual answer or additional field(s) is editable. Simply click each option to reveal the field(s) and to edit the guidance.</p>';
+      } else {
+        optionalTooltip = 'The question is optional. Click the switch to add or remove from DAR application form';
+      }
+
       this.inputTooltip.setContent(this.props.toggleTooltip || optionalTooltip);
     } else {
       this.inputTooltip.disable();
