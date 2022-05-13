@@ -1742,6 +1742,7 @@ var validateAnswer = (value, validationItem, questionAnswers) => {
 
 
 var getActiveQuestions = (questions, questionAnswers, activeQuestions, questionSetId) => {
+  console.log('Active questions', questions, questionAnswers, activeQuestions, questionSetId);
   activeQuestions = activeQuestions || [];
   questions.forEach(question => {
     activeQuestions.push({
