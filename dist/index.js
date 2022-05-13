@@ -3114,7 +3114,11 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       htmlFor: this.props.questionId
     }, this.props.question, typeof this.props.renderRequiredAsterisk !== 'undefined' && this.props.input.required ? this.props.renderRequiredAsterisk() : undefined), questionNotifications), !!this.props.text && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
       className: this.props.classes.questionText
-    }, this.props.text), validationErrors, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Input, _extends({
+    }, this.props.text), validationErrors, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      className: "d-flex"
+    }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      className: "flex-grow-1"
+    }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Input, _extends({
       name: this.props.questionId,
       id: this.props.questionId,
       questionSetId: this.props.questionSetId,
@@ -3136,7 +3140,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       onClick: this.handleInputClick.bind(this, this.props.questionSetId, this.props.questionId),
       onBlur: this.handleInputBlur.bind(this, this.props.questionId),
       onKeyDown: this.props.onKeyDown
-    }, typeof this.props.input.props === 'object' ? this.props.input.props : {})), !!this.props.postText && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
+    }, typeof this.props.input.props === 'object' ? this.props.input.props : {}))), this.props.guidanceChanged.includes(this.props.questionId) && 'Changed'), !!this.props.postText && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
       className: this.props.classes.questionPostText
     }, this.props.postText), typeof this.props.input.questionAlert !== 'undefined' && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(components_Alert, {
       alert: this.props.input.questionAlert,
@@ -3157,6 +3161,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
 }
 
 question_Question.defaultProps = {
+  guidanceChanged: [],
   questionSetId: undefined,
   questionId: undefined,
   question: '',
@@ -3236,7 +3241,8 @@ class questionSet_QuestionSet extends external_commonjs_react_commonjs2_react_am
         onKeyDown: this.props.onKeyDown,
         counts: question.counts,
         lockedToolTip: question.lockedToolTip,
-        lockedQuestion: question.lockedQuestion
+        lockedQuestion: question.lockedQuestion,
+        guidanceChanged: this.props.guidanceChanged
       });
     });
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
@@ -3472,7 +3478,8 @@ class questionPanel_QuestionPanel extends external_commonjs_react_commonjs2_reac
         onQuestionClick: this.handleQuestionClick.bind(this),
         onQuestionAction: this.handleQuestionAction.bind(this),
         onQuestionBlur: this.handleQuestionBlur.bind(this),
-        onKeyDown: this.handleInputKeyDown.bind(this)
+        onKeyDown: this.handleInputKeyDown.bind(this),
+        guidanceChanged: this.props.guidanceChanged
       });
     });
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
@@ -3712,7 +3719,8 @@ class index_Winterfell extends external_commonjs_react_commonjs2_react_amd_React
       onAnswerChange: this.handleAnswerChange.bind(this),
       onPanelBack: this.handleBackButtonClick.bind(this),
       onSwitchPanel: this.handleSwitchPanel.bind(this),
-      onSubmit: this.handleSubmit.bind(this)
+      onSubmit: this.handleSubmit.bind(this),
+      guidanceChanged: this.props.guidanceChanged
     })));
   }
 

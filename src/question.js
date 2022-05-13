@@ -291,35 +291,39 @@ class Question extends React.Component {
                             {!!this.props.text && <p className={this.props.classes.questionText}>{this.props.text}</p>}
 
                             {validationErrors}
-
-                            <Input
-                                name={this.props.questionId}
-                                id={this.props.questionId}
-                                questionSetId={this.props.questionSetId}
-                                labelId={labelId}
-                                value={value}
-                                disabled={
-                                    this.props.type === 'conditionalQuestion' ||
-                                    !(this.props.customiseView && !questionOff && hasConditionalQuestions(this.props)) ||
-                                    disabled
-                                }
-                                text={this.props.input.text}
-                                icon={this.props.input.icon}
-                                class={this.props.input.class}
-                                action={this.props.input.action}
-                                options={this.props.input.options}
-                                placeholder={this.props.input.placeholder}
-                                required={this.props.input.required}
-                                readOnly={readOnly}
-                                classes={this.props.classes}
-                                applicationId={this.props.applicationId}
-                                onChange={this.handleInputChange.bind(this, this.props.questionId)}
-                                onFocus={this.handleInputFocus.bind(this, this.props.questionId)}
-                                onClick={this.handleInputClick.bind(this, this.props.questionSetId, this.props.questionId)}
-                                onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
-                                onKeyDown={this.props.onKeyDown}
-                                {...(typeof this.props.input.props === 'object' ? this.props.input.props : {})}
-                            />
+                            <div className='d-flex'>
+                                <div className='flex-grow-1'>
+                                    <Input
+                                        name={this.props.questionId}
+                                        id={this.props.questionId}
+                                        questionSetId={this.props.questionSetId}
+                                        labelId={labelId}
+                                        value={value}
+                                        disabled={
+                                            this.props.type === 'conditionalQuestion' ||
+                                            !(this.props.customiseView && !questionOff && hasConditionalQuestions(this.props)) ||
+                                            disabled
+                                        }
+                                        text={this.props.input.text}
+                                        icon={this.props.input.icon}
+                                        class={this.props.input.class}
+                                        action={this.props.input.action}
+                                        options={this.props.input.options}
+                                        placeholder={this.props.input.placeholder}
+                                        required={this.props.input.required}
+                                        readOnly={readOnly}
+                                        classes={this.props.classes}
+                                        applicationId={this.props.applicationId}
+                                        onChange={this.handleInputChange.bind(this, this.props.questionId)}
+                                        onFocus={this.handleInputFocus.bind(this, this.props.questionId)}
+                                        onClick={this.handleInputClick.bind(this, this.props.questionSetId, this.props.questionId)}
+                                        onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
+                                        onKeyDown={this.props.onKeyDown}
+                                        {...(typeof this.props.input.props === 'object' ? this.props.input.props : {})}
+                                    />
+                                </div>
+                                {this.props.guidanceChanged.includes(this.props.questionId) && 'Changed'}
+                            </div>
 
                             {!!this.props.postText && <p className={this.props.classes.questionPostText}>{this.props.postText}</p>}
 
@@ -353,6 +357,7 @@ class Question extends React.Component {
 }
 
 Question.defaultProps = {
+    guidanceChanged: [],
     questionSetId: undefined,
     questionId: undefined,
     question: '',

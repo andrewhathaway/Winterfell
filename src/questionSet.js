@@ -38,6 +38,7 @@ class QuestionSet extends React.Component {
                     counts={question.counts}
                     lockedToolTip={question.lockedToolTip}
                     lockedQuestion={question.lockedQuestion}
+                    guidanceChanged={this.props.guidanceChanged}
                 />
             );
         });
