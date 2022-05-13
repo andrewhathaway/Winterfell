@@ -291,7 +291,7 @@ class Question extends React.Component {
                             {!!this.props.text && <p className={this.props.classes.questionText}>{this.props.text}</p>}
 
                             {validationErrors}
-                            <div className='d-flex'>
+                            <div className='d-flex align-items-center'>
                                 <div className='flex-grow-1'>
                                     <Input
                                         name={this.props.questionId}
@@ -322,7 +322,11 @@ class Question extends React.Component {
                                         {...(typeof this.props.input.props === 'object' ? this.props.input.props : {})}
                                     />
                                 </div>
-                                {this.props.guidanceChanged.includes(this.props.questionId) && 'Changed'}
+                                {this.props.icons &&
+                                    this.props.icons({
+                                        questionId: this.props.questionId,
+                                        questionStatus: this.props.questionStatus[this.props.questionId],
+                                    })}
                             </div>
 
                             {!!this.props.postText && <p className={this.props.classes.questionPostText}>{this.props.postText}</p>}

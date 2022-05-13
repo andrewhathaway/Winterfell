@@ -198,7 +198,7 @@ class QuestionPanel extends React.Component {
                     onQuestionAction={this.handleQuestionAction.bind(this)}
                     onQuestionBlur={this.handleQuestionBlur.bind(this)}
                     onKeyDown={this.handleInputKeyDown.bind(this)}
-                    guidanceChanged={this.props.guidanceChanged}
+                    icons={this.props.icons}
                 />
             );
         });
