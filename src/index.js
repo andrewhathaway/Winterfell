@@ -195,6 +195,7 @@ class Winterfell extends React.Component {
                         onPanelBack={this.handleBackButtonClick.bind(this)}
                         onSwitchPanel={this.handleSwitchPanel.bind(this)}
                         onSubmit={this.handleSubmit.bind(this)}
+                        icons={this.props.icons}
                     />
                 </div>
             </form>
