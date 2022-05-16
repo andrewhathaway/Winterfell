@@ -322,11 +322,13 @@ class Question extends React.Component {
                                         {...(typeof this.props.input.props === 'object' ? this.props.input.props : {})}
                                     />
                                 </div>
-                                {this.props.icons &&
-                                    this.props.icons({
-                                        questionId: this.props.questionId,
-                                        questionStatus: this.props.questionStatus[this.props.questionId],
-                                    })}
+                                <div style={{ position: 'absolute', right: '-19px' }}>
+                                    {this.props.icons &&
+                                        this.props.icons({
+                                            questionId: this.props.questionId,
+                                            questionStatus: this.props.questionStatus[this.props.questionId],
+                                        })}
+                                </div>
                             </div>
 
                             {!!this.props.postText && <p className={this.props.classes.questionPostText}>{this.props.postText}</p>}

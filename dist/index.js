@@ -3141,10 +3141,15 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       onClick: this.handleInputClick.bind(this, this.props.questionSetId, this.props.questionId),
       onBlur: this.handleInputBlur.bind(this, this.props.questionId),
       onKeyDown: this.props.onKeyDown
-    }, typeof this.props.input.props === 'object' ? this.props.input.props : {}))), this.props.icons && this.props.icons({
+    }, typeof this.props.input.props === 'object' ? this.props.input.props : {}))), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      style: {
+        position: 'absolute',
+        right: '-19px'
+      }
+    }, this.props.icons && this.props.icons({
       questionId: this.props.questionId,
       questionStatus: this.props.questionStatus[this.props.questionId]
-    })), !!this.props.postText && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
+    }))), !!this.props.postText && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
       className: this.props.classes.questionPostText
     }, this.props.postText), typeof this.props.input.questionAlert !== 'undefined' && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(components_Alert, {
       alert: this.props.input.questionAlert,
