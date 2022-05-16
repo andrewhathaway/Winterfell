@@ -108,7 +108,7 @@ class Question extends React.Component {
     render() {
         var Input = inputTypes[this.props.input.type];
         if (!Input) {
-            throw new Error('Winterfell: Input Type "' + this.props.input.type + '" not defined as Winterfell Input Type');
+            throw new Error(`Winterfell: Input Type ${this.props.input.type} not defined as Winterfell Input Type`);
         }
 
         var conditionalItems = [];
