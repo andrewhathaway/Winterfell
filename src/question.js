@@ -287,9 +287,7 @@ class Question extends React.Component {
                                     {questionNotifications}
                                 </>
                             )}
-
                             {!!this.props.text && <p className={this.props.classes.questionText}>{this.props.text}</p>}
-
                             {validationErrors}
                             <div className='d-flex align-items-center'>
                                 <div className='flex-grow-1'>
@@ -300,8 +298,8 @@ class Question extends React.Component {
                                         labelId={labelId}
                                         value={value}
                                         disabled={
-                                            this.props.type === 'conditionalQuestion' ||
-                                            !(this.props.customiseView && !questionOff && hasConditionalQuestions(this.props)) ||
+                                            (this.props.customiseView &&
+                                                (this.props.type === 'conditionalQuestion' || !hasConditionalQuestions(this.props))) ||
                                             disabled
                                         }
                                         text={this.props.input.text}
@@ -330,9 +328,7 @@ class Question extends React.Component {
                                         })}
                                 </div>
                             </div>
-
                             {!!this.props.postText && <p className={this.props.classes.questionPostText}>{this.props.postText}</p>}
-
                             {typeof this.props.input.questionAlert !== 'undefined' && (
                                 <Alert
                                     alert={this.props.input.questionAlert}
