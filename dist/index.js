@@ -2991,7 +2991,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     var Input = inputTypes_0[this.props.input.type];
 
     if (!Input) {
-      throw new Error('Winterfell: Input Type "' + this.props.input.type + '" not defined as Winterfell Input Type');
+      throw new Error(`Winterfell: Input Type ${this.props.input.type} not defined as Winterfell Input Type`);
     }
 
     var conditionalItems = [];
@@ -3125,7 +3125,7 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
       questionSetId: this.props.questionSetId,
       labelId: labelId,
       value: value,
-      disabled: this.props.type === 'conditionalQuestion' || !(this.props.customiseView && !questionOff && hasConditionalQuestions(this.props)) || disabled,
+      disabled: this.props.customiseView && (this.props.type === 'conditionalQuestion' || !hasConditionalQuestions(this.props)) || disabled,
       text: this.props.input.text,
       icon: this.props.input.icon,
       class: this.props.input.class,
