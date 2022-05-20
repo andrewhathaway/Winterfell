@@ -1742,7 +1742,6 @@ var validateAnswer = (value, validationItem, questionAnswers) => {
 
 
 var getActiveQuestions = (questions, questionAnswers, activeQuestions, questionSetId) => {
-  console.log('Active questions', questions, questionAnswers, activeQuestions, questionSetId);
   activeQuestions = activeQuestions || [];
   questions.forEach(question => {
     activeQuestions.push({
@@ -2318,7 +2317,6 @@ class checkboxOptionsInput_CheckboxOptionsInput extends external_commonjs_react_
   }
 
   render() {
-    console.log('this.props.readOnly', this.props);
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("ul", {
       className: this.props.classes.checkboxList
     }, this.props.options.map(opt => /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("li", {

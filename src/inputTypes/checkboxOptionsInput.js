@@ -32,7 +32,6 @@ class CheckboxOptionsInput extends React.Component {
     }
 
     render() {
-        console.log('this.props.readOnly', this.props);
         return (
             <ul className={this.props.classes.checkboxList}>
                 {this.props.options.map(opt => (
