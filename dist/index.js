@@ -3089,9 +3089,8 @@ class question_Question extends external_commonjs_react_commonjs2_react_amd_Reac
     const field = isField(this.props.input);
     return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
       className: `${this.props.classes.questionWrap}${this.props.type === 'conditionalQuestion' ? '-nested' : ''}${field ? ' question-field' : ''}`
-    }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-      ref: node => this.handleRefChanged(node)
-    }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+    }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      ref: node => this.handleRefChanged(node),
       className: `${this.props.nested ? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}` : this.props.classes.question}${this.props.customiseView ? ' question-icon' : ''}
                         `,
       style: this.props.customiseView ? customiseLayoutStyle : null

@@ -248,8 +248,9 @@ class Question extends React.Component {
                 className={`${this.props.classes.questionWrap}${this.props.type === 'conditionalQuestion' ? '-nested' : ''}${
                     field ? ' question-field' : ''
                 }`}>
-                <div ref={node => this.handleRefChanged(node)}>
+                <div>
                     <div
+                        ref={node => this.handleRefChanged(node)}
                         className={`${
                             this.props.nested
                                 ? `${this.props.classes.question} ${this.props.classes.question}-${this.props.classes.nested}`
