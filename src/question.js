@@ -246,8 +246,8 @@ class Question extends React.Component {
         return (
             <div
                 className={`${this.props.classes.questionWrap}${this.props.type === 'conditionalQuestion' ? '-nested' : ''}${
-                    field ? ' question-field' : ''
-                }`}>
+                    hasConditionalQuestions(this.props) ? ` ${this.props.classes.questionWrap}-parent` : ''
+                }${field ? ' question-field' : ''}`}>
                 <div>
                     <div
                         ref={node => this.handleRefChanged(node)}
@@ -321,13 +321,6 @@ class Question extends React.Component {
                                         {...(typeof this.props.input.props === 'object' ? this.props.input.props : {})}
                                     />
                                 </div>
-                                <div style={{ position: 'absolute', right: '-19px' }}>
-                                    {this.props.icons &&
-                                        this.props.icons({
-                                            questionId: this.props.questionId,
-                                            questionStatus: this.props.questionStatus[this.props.questionId],
-                                        })}
-                                </div>
                             </div>
                             {!!this.props.postText && <p className={this.props.classes.questionPostText}>{this.props.postText}</p>}
                             {typeof this.props.input.questionAlert !== 'undefined' && (
@@ -340,6 +333,13 @@ class Question extends React.Component {
                             )}
                         </div>
                     </div>
+                </div>
+                <div className='question-icons'>
+                    {this.props.icons &&
+                        this.props.icons({
+                            questionId: this.props.questionId,
+                            questionStatus: this.props.questionStatus[this.props.questionId],
+                        })}
                 </div>
                 {conditionalItems}
                 {!!this.props.question && questionActions}
