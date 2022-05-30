@@ -1,44 +1,31 @@
-import React, { Component } from 'react';
-import Switch from 'react-switch';
+import React from 'react';
+import ReactSwitch from 'react-switch';
 
-class SwitchComponent extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			checked: this.props.checked,
-		};
-		this.handleChange = this.handleChange.bind(this);
-	}
+const Switch = ({ checked, onChange }) => {
+    const handleChange = checked => {
+        onChange(checked);
+    };
 
-	handleChange(checked) {
-		this.setState({ checked });
-	}
-
-	handleChange(checked) {
-		this.setState({ checked }, this.props.onChange.bind(null, checked));
-	}
-
-	render() {
-		return (
-			<label>
-				<Switch
-					onChange={this.handleChange}
-					checked={this.state.checked}
-					onColor='#3db28c'
-					offColor='#c2303d'
-					handleDiameter={20}
-					uncheckedIcon={false}
-					checkedIcon={false}
-					height={26}
-					width={48}
-				/>
-			</label>
-		);
-	}
-}
-
-SwitchComponent.defaultProps = {
-	checked: false,
+    return (
+        <label>
+            <ReactSwitch
+                onChange={handleChange}
+                checked={checked}
+                onColor='#3db28c'
+                offColor='#c2303d'
+                handleDiameter={20}
+                uncheckedIcon={false}
+                checkedIcon={false}
+                height={26}
+                width={48}
+            />
+        </label>
+    );
 };
 
-export default SwitchComponent;
+Switch.defaultProps = {
+    checked: false,
+    onChnage: () => {},
+};
+
+export default Switch;

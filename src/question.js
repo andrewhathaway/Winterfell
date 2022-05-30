@@ -106,12 +106,12 @@ class Question extends React.Component {
     }
 
     render() {
-        var Input = inputTypes[this.props.input.type];
+        const Input = inputTypes[this.props.input.type];
         if (!Input) {
             throw new Error(`Winterfell: Input Type ${this.props.input.type} not defined as Winterfell Input Type`);
         }
 
-        var conditionalItems = [];
+        const conditionalItems = [];
 
         getConditionalQuestions(this.props).forEach(option =>
             [].forEach.bind(option.conditionalQuestions, conditionalQuestion => {
@@ -128,7 +128,7 @@ class Question extends React.Component {
                         value={this.props.questionAnswers[conditionalQuestion.questionId]}
                         input={conditionalQuestion.input}
                         classes={this.props.classes}
-                        nested={true}
+                        nested
                         renderError={this.props.renderError}
                         readOnly={this.props.readOnly}
                         customiseView={this.props.customiseView}
@@ -153,7 +153,7 @@ class Question extends React.Component {
 
         // Get the current value. If none is set, then use
         // the default if given.
-        var value =
+        const value =
             typeof this.props.value !== 'undefined'
                 ? this.props.value
                 : typeof this.props.input.default !== 'undefined'
@@ -162,30 +162,29 @@ class Question extends React.Component {
                 ? this.props.questionAnswers[this.props.questionId]
                 : undefined;
 
-        let questionLocked = isQuestionLocked(this.props);
-        let questionOn = isQuestionOn(this.props);
-        let questionOff = isQuestionOff(this.props);
+        const questionLocked = isQuestionLocked(this.props);
+        const questionOn = isQuestionOn(this.props);
 
         // Disable input
-        var disabled = typeof this.props.input.disabled !== 'undefined' ? this.props.input.disabled : false;
+        const disabled = typeof this.props.input.disabled !== 'undefined' ? this.props.input.disabled : false;
 
         // Retrieve the validation errors for the
         // current question and map them in to
         // error-message blocks.
-        var validationErrors =
+        const validationErrors =
             typeof this.props.validationErrors[this.props.questionId] !== 'undefined'
                 ? this.props.validationErrors[this.props.questionId].map(error => {
                       return typeof this.props.renderError === 'function' ? (
                           this.props.renderError(error, this.props.questionId)
                       ) : (
-                          <div key={this.props.questionId + 'Error' + error.type} className={this.props.classes.errorMessage}>
+                          <div key={`${this.props.questionId}Error${error.type}`} className={this.props.classes.errorMessage}>
                               {error.message}
                           </div>
                       );
                   })
                 : [];
 
-        var questionActions =
+        const questionActions =
             typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ? (
                 <div className={this.props.classes.actionControl}>
                     {this.props.questionActions.map(action => {
@@ -232,9 +231,9 @@ class Question extends React.Component {
                 ''
             );
 
-        let questionNotifications = '';
-        let labelId = `${this.props.questionId}-label`;
-        let readOnly = typeof this.props.input.readOnly !== 'undefined' ? this.props.input.readOnly : this.props.readOnly;
+        const questionNotifications = '';
+        const labelId = `${this.props.questionId}-label`;
+        const readOnly = typeof this.props.input.readOnly !== 'undefined' ? this.props.input.readOnly : this.props.readOnly;
 
         const customiseLayoutStyle = {
             display: 'grid',

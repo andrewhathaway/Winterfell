@@ -13,7 +13,7 @@ class Winterfell extends React.Component {
 
         this.panelHistory = [];
 
-        var schema = _.extend(
+        const schema = _.extend(
             {
                 classes: {},
                 formPanels: [],
@@ -26,10 +26,10 @@ class Winterfell extends React.Component {
 
         schema.formPanels = schema.formPanels.sort((a, b) => a.index > b.index);
 
-        var panelId =
+        const panelId =
             typeof props.panelId !== 'undefined' ? props.panelId : schema.formPanels.length > 0 ? schema.formPanels[0].panelId : undefined;
 
-        var currentPanel =
+        const currentPanel =
             typeof schema !== 'undefined' && typeof schema.formPanels !== 'undefined' && typeof panelId !== 'undefined'
                 ? _.find(schema.formPanels, panel => panel.panelId == panelId)
                 : undefined;
@@ -39,8 +39,8 @@ class Winterfell extends React.Component {
         }
 
         this.state = {
-            schema: schema,
-            currentPanel: currentPanel,
+            schema,
+            currentPanel,
             action: props.action,
             questionAnswers: props.questionAnswers,
             panelId: props.panelId,
@@ -58,7 +58,7 @@ class Winterfell extends React.Component {
                 validationErrors: nextProps.validationErrors,
             });
 
-            var panel = _.find(this.props.schema.formPanels, {
+            const panel = _.find(this.props.schema.formPanels, {
                 panelId: nextProps.panelId,
             });
 
@@ -81,23 +81,23 @@ class Winterfell extends React.Component {
     }
 
     handleAnswerChange(questionId, questionAnswer) {
-        var questionAnswers = _.chain(this.state.questionAnswers).set(questionId, questionAnswer).value();
+        const questionAnswers = _.chain(this.state.questionAnswers).set(questionId, questionAnswer).value();
 
         this.setState(
             {
-                questionAnswers: questionAnswers,
+                questionAnswers,
             },
             this.props.onUpdate.bind(null, questionId, questionAnswers)
         );
     }
 
     handleSwitchPanel(panelId, preventHistory) {
-        var panel = _.find(this.props.schema.formPanels, {
-            panelId: panelId,
+        const panel = _.find(this.props.schema.formPanels, {
+            panelId,
         });
 
         if (!panel) {
-            throw new Error('Winterfell: Tried to switch to panel "' + panelId + '", which does not exist.');
+            throw new Error(`Winterfell: Tried to switch to panel "${panelId}", which does not exist.`);
         }
 
         if (!preventHistory) {
@@ -142,7 +142,7 @@ class Winterfell extends React.Component {
          */
         this.setState(
             {
-                action: action,
+                action,
             },
             () => {
                 if (!this.formComponent) {
@@ -155,7 +155,7 @@ class Winterfell extends React.Component {
     }
 
     render() {
-        var currentPanel = _.find(this.state.schema.questionPanels, panel => panel.panelId == this.state.currentPanel.panelId);
+        const currentPanel = _.find(this.state.schema.questionPanels, panel => panel.panelId == this.state.currentPanel.panelId);
 
         return (
             <form
