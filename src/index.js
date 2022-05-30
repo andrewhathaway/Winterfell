@@ -163,7 +163,8 @@ class Winterfell extends React.Component {
                 encType={this.props.encType}
                 action={this.state.action}
                 ref={ref => (this.formComponent = ref)}
-                className={this.state.schema.classes.form}>
+                className={this.state.schema.classes.form}
+            >
                 <div className={this.state.schema.classes.questionPanels}>
                     <QuestionPanel
                         schema={this.state.schema}

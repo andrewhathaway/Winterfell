@@ -246,7 +246,8 @@ class Question extends React.Component {
             <div
                 className={`${this.props.classes.questionWrap}${this.props.type === 'conditionalQuestion' ? '-nested' : ''}${
                     hasConditionalQuestions(this.props) ? ` ${this.props.classes.questionWrap}-parent` : ''
-                }${field ? ' question-field' : ''}`}>
+                }${field ? ' question-field' : ''}`}
+            >
                 <div>
                     <div
                         ref={node => this.handleRefChanged(node)}
@@ -256,7 +257,8 @@ class Question extends React.Component {
                                 : this.props.classes.question
                         }${this.props.customiseView ? ' question-icon' : ''}
                         `}
-                        style={this.props.customiseView ? customiseLayoutStyle : null}>
+                        style={this.props.customiseView ? customiseLayoutStyle : null}
+                    >
                         {this.props.customiseView && this.props.type !== 'conditionalQuestion' ? (
                             <div>
                                 {questionLocked ? (

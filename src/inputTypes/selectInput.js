@@ -39,7 +39,8 @@ class SelectInput extends React.Component {
                 disabled={this.props.readOnly || this.props.disabled}
                 onChange={this.handleChange.bind(this)}
                 onFocus={this.props.onFocus.bind(this)}
-                onBlur={this.props.onBlur.bind(null, this.state.value)}>
+                onBlur={this.props.onBlur.bind(null, this.state.value)}
+            >
                 {options}
             </select>
         );
