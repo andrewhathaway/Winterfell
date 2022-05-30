@@ -5,7 +5,7 @@
     "main": "dist/index.js",
     "scripts": {
         "clean": "rm -rf dist",
-        "rollup": "rimraf dist && rollup -c",
+        "build": "rimraf dist && rollup -c",
         "lint": "eslint ./src --ext .js,.jsx",
         "lint:fix": "eslint ./src --ext .js,.jsx --fix",
         "prettier:write": "prettier --write \"./src/**/*.{js,jsx}\""

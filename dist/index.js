@@ -679,6 +679,7 @@ var Button = /*#__PURE__*/function (_React$Component) {
 
   return Button;
 }(React.Component);
+
 Button.defaultProps = {
   text: 'Submit',
   className: undefined,
@@ -762,7 +763,7 @@ var Alert = /*#__PURE__*/function (_React$Component) {
         className: alertClassMapper[status]
       }, /*#__PURE__*/React.createElement("div", {
         className: "alert-wrap"
-      }, /*#__PURE__*/React.createElement("div", null, renderIcon(status), " ", text), " ", renderOptions(options)));
+      }, /*#__PURE__*/React.createElement("div", null, renderIcon(status), " ", text), ' ', renderOptions(options)));
     }
   }]);
 
@@ -775,7 +776,7 @@ Alert.defaultProps = {
   options: []
 };
 
-function Switch(_ref) {
+var Switch = function Switch(_ref) {
   var checked = _ref.checked,
       onChange = _ref.onChange;
 
@@ -794,7 +795,7 @@ function Switch(_ref) {
     height: 26,
     width: 48
   }));
-}
+};
 
 Switch.defaultProps = {
   checked: false,
@@ -1023,6 +1024,7 @@ var EmailInput = /*#__PURE__*/function (_React$Component) {
 
   return EmailInput;
 }(React.Component);
+
 EmailInput.defaultProps = {
   classes: {},
   name: '',
@@ -1123,6 +1125,7 @@ var HiddenInput = /*#__PURE__*/function (_React$Component) {
 
   return HiddenInput;
 }(React.Component);
+
 HiddenInput.defaultProps = {
   name: '',
   value: ''
@@ -1513,6 +1516,7 @@ var ButtonInput = /*#__PURE__*/function (_React$Component) {
 
   return ButtonInput;
 }(React.Component);
+
 ButtonInput.defaultProps = {
   questionSetId: undefined,
   id: undefined,
