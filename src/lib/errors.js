@@ -1,147 +1,140 @@
 var errorMessages = {
+    /*
+     * Fallback Error Message
+     */
+    default: 'Please correct the field below',
 
-  /*
-   * Fallback Error Message
-   */
-  default        : 'Please correct the field below',
+    /*
+     * Min and Max string left message
+     */
+    isLength: validationItem => {
+        switch (validationItem.params.length) {
+            case 1:
+                return `Please enter a value with at least ${validationItem.params[0]} character${
+                    validationItem.params[0] != 1 ? 's' : ''
+                }`;
+                break;
 
-  /*
-   * Min and Max string left message
-   */
-  isLength       : (validationItem) => {
-    switch (validationItem.params.length) {
+            case 2:
+                return `Please enter a value between ${validationItem.params[0]} and ${validationItem.params[1]} characters long`;
+                break;
 
-      case 1:
-        return 'Please enter a value with at least '
-                + validationItem.params[0] + ' character'
-                + (validationItem.params[0] != 1
-                    ? 's'
-                    : '');
-        break;
+            default:
+                return errorMessages.default;
+                break;
+        }
 
-      case 2:
-        return 'Please enter a value between ' + validationItem.params[0]
-               + ' and ' + validationItem.params[1] + ' characters long';
-        break;
+        return errorMessage;
+    },
 
-      default:
-        return errorMessages.default;
-        break;
+    /*
+     * Valid email address
+     */
+    isEmail: 'Please enter a valid email address',
 
-    }
+    /*
+     * String contains seed
+     */
+    contains: validationItem => {
+        return `Please enter a value that contains "${validationItem.params[0]}"`;
+    },
 
-    return errorMessage;
-  },
+    /*
+     * String equals string
+     */
+    equals: validationItem => {
+        return `Value must equal ${validationItem.params[0]}`;
+    },
 
-  /*
-   * Valid email address
-   */
-  isEmail        : 'Please enter a valid email address',
+    /*
+     * Characters A-Z only
+     */
+    isAlpha: 'Please only enter letters',
 
-  /*
-   * String contains seed
-   */
-  contains       : (validationItem) => {
-    return 'Please enter a value that contains "'
-           + validationItem.params[0] + '"';
-  },
+    /*
+     * Characters A-Z and 1-9 only
+     */
+    isAlphanumeric: 'Please only enter letters and numbers',
 
-  /*
-   * String equals string
-   */
-  equals         : (validationItem) => {
-    return 'Value must equal ' + validationItem.params[0];
-  },
+    /*
+     * Credit card
+     */
+    isCreditCard: 'Please enter a valid credit card number',
 
-  /*
-   * Characters A-Z only
-   */
-  isAlpha        : 'Please only enter letters',
+    /*
+     * Currency
+     */
+    isCurrency: 'Please enter a current value only',
 
-  /*
-   * Characters A-Z and 1-9 only
-   */
-  isAlphanumeric : 'Please only enter letters and numbers',
+    /*
+     * Date
+     */
+    isDate: 'Please enter a valid date',
 
-  /*
-   * Credit card
-   */
-  isCreditCard   : 'Please enter a valid credit card number',
+    /*
+     * Decimal value
+     */
+    isDecimal: 'Please enter a decimal value only',
 
-  /*
-   * Currency
-   */
-  isCurrency     : 'Please enter a current value only',
+    /*
+     * Float value
+     */
+    isFloat: 'Please enter a float value only',
 
-  /*
-   * Date
-   */
-  isDate         : 'Please enter a valid date',
+    /*
+     * IP value
+     */
+    isIP: 'Please enter a valid IP address',
 
-  /*
-   * Decimal value
-   */
-  isDecimal      : 'Please enter a decimal value only',
+    /*
+     * isIn array of items
+     */
+    isIn: 'Please enter one of the allowed values',
 
-  /*
-   * Float value
-   */
-  isFloat        : 'Please enter a float value only',
+    /*
+     * isAllIn array of items
+     */
+    isAllIn: 'Please enter one of the allowed values',
 
-  /*
-   * IP value
-   */
-  isIP           : 'Please enter a valid IP address',
+    /*
+     * JSON Value
+     */
+    isJSON: 'Please enter a valid JSON string',
 
-  /*
-   * isIn array of items
-   */
-  isIn           : 'Please enter one of the allowed values',
+    /*
+     * Lowercase values only
+     */
+    isLowercase: 'Please enter lowercase characters only',
 
-  /*
-   * isAllIn array of items
-   */
-  isAllIn        : 'Please enter one of the allowed values',
+    /*
+     * Uppercase values only
+     */
+    isUppercase: 'Please enter uppercase characters only',
 
-  /*
-   * JSON Value
-   */
-  isJSON         : 'Please enter a valid JSON string',
+    /*
+     * Mobile phone
+     */
+    isMobilePhone: 'Please enter a valid mobile number',
 
-  /*
-   * Lowercase values only
-   */
-  isLowercase    : 'Please enter lowercase characters only',
+    /*
+     * MongoId only
+     */
+    isMongoId: 'Please enter a valid MongoId',
 
-  /*
-   * Uppercase values only
-   */
-  isUppercase    : 'Please enter uppercase characters only',
+    /*
+     * Numbers only
+     */
+    isNumeric: 'Please enter numbers only',
 
-  /*
-   * Mobile phone
-   */
-  isMobilePhone  : 'Please enter a valid mobile number',
+    /*
+     * URL Only
+     */
+    isURL: 'Please enter a valid URL',
 
-  /*
-   * MongoId only
-   */
-  isMongoId      : 'Please enter a valid MongoId',
-
-  /*
-   * Numbers only
-   */
-  isNumeric      : 'Please enter numbers only',
-
-  /*
-   * URL Only
-   */
-  isURL          : 'Please enter a valid URL',
-
-  /*
-   * isAccepted - checkbox
-   */
-  isAccepted     : 'Please accept by clicking the checkbox'
+    /*
+     * isAccepted - checkbox
+     */
+    isAccepted: 'Please accept by clicking the checkbox',
 };
 
 /**
@@ -151,18 +144,15 @@ var errorMessages = {
  * @param  string|function message Message or function to get message
  */
 errorMessages.addErrorMessage = (type, message) => {
-  if (typeof type !== 'string') {
-    throw new Error('Winterfell: First parameter of addErrorMessage '
-                    + 'must be of type string');
-  }
+    if (typeof type !== 'string') {
+        throw new Error('Winterfell: First parameter of addErrorMessage ' + 'must be of type string');
+    }
 
-  if (typeof message !== 'function'
-       && typeof message !== 'string') {
-    throw new Error('Winterfell: Second parameter of addErrorMessage '
-                    + 'must be of type function or string');
-  }
+    if (typeof message !== 'function' && typeof message !== 'string') {
+        throw new Error('Winterfell: Second parameter of addErrorMessage ' + 'must be of type function or string');
+    }
 
-  setErrorMessage(type, message);
+    setErrorMessage(type, message);
 };
 
 /**
@@ -170,15 +160,14 @@ errorMessages.addErrorMessage = (type, message) => {
  *
  * @param  object messages Error messages to add. type => func|string
  */
-errorMessages.addErrorMessages = (messages) => {
-  if (typeof messages !== 'object') {
-    throw new Error('Winterfell: First parameter of addErrorMessages '
-                    + 'must be of type object');
-  }
+errorMessages.addErrorMessages = messages => {
+    if (typeof messages !== 'object') {
+        throw new Error('Winterfell: First parameter of addErrorMessages ' + 'must be of type object');
+    }
 
-  for (let type in messages) {
-    errorMessages.addErrorMessage(type, messages[type]);
-  }
+    for (const type in messages) {
+        errorMessages.addErrorMessage(type, messages[type]);
+    }
 };
 
 /**
@@ -187,16 +176,15 @@ errorMessages.addErrorMessages = (messages) => {
  * @param  object  validationItem Validation error item
  * @return string                 Error message to display
  */
-errorMessages.getErrorMessage = (validationItem) => {
-  var errorMessage = typeof validationItem.message !== 'undefined'
-                       ? validationItem.message
-                       : typeof errorMessages[validationItem.type] !== 'undefined'
-                           ? errorMessages[validationItem.type]
-                           : errorMessages.default;
+errorMessages.getErrorMessage = validationItem => {
+    const errorMessage =
+        typeof validationItem.message !== 'undefined'
+            ? validationItem.message
+            : typeof errorMessages[validationItem.type] !== 'undefined'
+            ? errorMessages[validationItem.type]
+            : errorMessages.default;
 
-  return typeof errorMessage === 'function'
-           ? errorMessage(validationItem)
-           : errorMessage;
+    return typeof errorMessage === 'function' ? errorMessage(validationItem) : errorMessage;
 };
 
 /**
@@ -206,7 +194,7 @@ errorMessages.getErrorMessage = (validationItem) => {
  * @param  stirng|function message essage or function to get message
  */
 var setErrorMessage = (type, message) => {
-  errorMessages[type] = message;
+    errorMessages[type] = message;
 };
 
 export default errorMessages;
