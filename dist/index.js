@@ -1659,7 +1659,7 @@ var Question = /*#__PURE__*/function (_React$Component) {
       var questionId = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
       var key = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
       var counts = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
-      e.preventDefault();
+      // e.preventDefault();
       this.props.onQuestionAction(e, questionSetId, questionId, key, counts);
     }
   }, {
@@ -1755,6 +1755,7 @@ var Question = /*#__PURE__*/function (_React$Component) {
           className: _this2.props.classes.errorMessage
         }, error.message);
       }) : [];
+      console.log('this.props.questionActions', this.props.questionActions);
       var questionActions = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ? /*#__PURE__*/React.createElement("div", {
         className: this.props.classes.actionControl
       }, this.props.questionActions.map(function (action) {
@@ -1810,7 +1811,10 @@ var Question = /*#__PURE__*/function (_React$Component) {
           return _this2.handleRefChanged(node);
         },
         className: "".concat(this.props.nested ? "".concat(this.props.classes.question, " ").concat(this.props.classes.question, "-").concat(this.props.classes.nested) : this.props.classes.question).concat(this.props.customiseView ? ' question-icon' : '', "\n                        "),
-        style: this.props.customiseView ? customiseLayoutStyle : null
+        style: this.props.customiseView ? customiseLayoutStyle : null,
+        onClick: function onClick(e) {
+          return _this2.handleQuestionAction(e, _this2.props.questionSetId, _this2.props.questionId, questionLocked ? 'guidanceLocked' : 'guidanceEdit', _this2.props.counts);
+        }
       }, this.props.customiseView && this.props.type !== 'conditionalQuestion' ? /*#__PURE__*/React.createElement("div", null, questionLocked ? /*#__PURE__*/React.createElement("i", {
         className: "fas fa-lock",
         style: {

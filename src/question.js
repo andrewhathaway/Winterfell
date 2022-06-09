@@ -66,7 +66,7 @@ class Question extends React.Component {
     }
 
     handleQuestionAction(e, questionSetId = '', questionId = '', key = '', counts = {}) {
-        e.preventDefault();
+        // e.preventDefault();
         this.props.onQuestionAction(e, questionSetId, questionId, key, counts);
     }
 
@@ -184,6 +184,8 @@ class Question extends React.Component {
                   })
                 : [];
 
+        console.log('this.props.questionActions', this.props.questionActions);
+
         const questionActions =
             typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ? (
                 <div className={this.props.classes.actionControl}>
@@ -246,8 +248,7 @@ class Question extends React.Component {
             <div
                 className={`${this.props.classes.questionWrap}${this.props.type === 'conditionalQuestion' ? '-nested' : ''}${
                     hasConditionalQuestions(this.props) ? ` ${this.props.classes.questionWrap}-parent` : ''
-                }${field ? ' question-field' : ''}`}
-            >
+                }${field ? ' question-field' : ''}`}>
                 <div>
                     <div
                         ref={node => this.handleRefChanged(node)}
@@ -258,7 +259,15 @@ class Question extends React.Component {
                         }${this.props.customiseView ? ' question-icon' : ''}
                         `}
                         style={this.props.customiseView ? customiseLayoutStyle : null}
-                    >
+                        onClick={e =>
+                            this.handleQuestionAction(
+                                e,
+                                this.props.questionSetId,
+                                this.props.questionId,
+                                questionLocked ? 'guidanceLocked' : 'guidanceEdit',
+                                this.props.counts
+                            )
+                        }>
                         {this.props.customiseView && this.props.type !== 'conditionalQuestion' ? (
                             <div>
                                 {questionLocked ? (
