@@ -30,7 +30,7 @@ class QuestionPanel extends React.Component {
          * Run the question through its validations and
          * show any error messages if invalid.
          */
-        var questionValidationErrors = [];
+        const questionValidationErrors = [];
         validations.forEach(validation => {
             if (Validation.validateAnswer(questionAnswer, validation, this.props.questionAnswers)) {
                 return;
@@ -42,37 +42,37 @@ class QuestionPanel extends React.Component {
             });
         });
 
-        var validationErrors = _.chain(this.state.validationErrors).set(questionId, questionValidationErrors).value();
+        const validationErrors = _.chain(this.state.validationErrors).set(questionId, questionValidationErrors).value();
 
         this.setState({
-            validationErrors: validationErrors,
+            validationErrors,
         });
     }
 
     handleMainButtonClick() {
-        var action = this.props.action.default;
-        var conditions = this.props.action.conditions || [];
+        let action = this.props.action.default;
+        const conditions = this.props.action.conditions || [];
 
         /*
          * We need to get all the question sets for this panel.
          * Collate a list of the question set IDs required
          * and run through the schema to grab the question sets.
          */
-        var questionSetIds = this.props.questionSets.map(qS => qS.questionSetId);
-        var questionSets = _.chain(this.props.schema.questionSets)
+        const questionSetIds = this.props.questionSets.map(qS => qS.questionSetId);
+        const questionSets = _.chain(this.props.schema.questionSets)
             .filter(qS => questionSetIds.indexOf(qS.questionSetId) > -1)
             .value();
 
         /*
          * Get any incorrect fields that need error messages.
          */
-        var invalidQuestions = Validation.getQuestionPanelInvalidQuestions(questionSets, this.props.questionAnswers);
+        const invalidQuestions = Validation.getQuestionPanelInvalidQuestions(questionSets, this.props.questionAnswers);
 
         /*
          * If the panel isn't valid...
          */
         if (Object.keys(invalidQuestions).length > 0) {
-            var validationErrors = _.mapValues(invalidQuestions, validations => {
+            const validationErrors = _.mapValues(invalidQuestions, validations => {
                 return validations.map(validation => {
                     return {
                         type: validation.type,
@@ -82,7 +82,7 @@ class QuestionPanel extends React.Component {
             });
 
             this.setState({
-                validationErrors: validationErrors,
+                validationErrors,
             });
             return;
         }
@@ -92,7 +92,7 @@ class QuestionPanel extends React.Component {
          * Check our conditions and act upon them, or the default.
          */
         conditions.forEach(condition => {
-            var answer = this.props.questionAnswers[condition.questionId];
+            const answer = this.props.questionAnswers[condition.questionId];
 
             action =
                 answer == condition.value
@@ -164,8 +164,8 @@ class QuestionPanel extends React.Component {
     }
 
     render() {
-        var questionSets = this.props.questionSets.map(questionSetMeta => {
-            var questionSet = _.find(this.props.schema.questionSets, {
+        const questionSets = this.props.questionSets.map(questionSetMeta => {
+            const questionSet = _.find(this.props.schema.questionSets, {
                 questionSetId: questionSetMeta.questionSetId,
             });
 
@@ -184,6 +184,7 @@ class QuestionPanel extends React.Component {
                     classes={this.props.classes}
                     questionAnswers={this.props.questionAnswers}
                     questionStatus={this.props.questionStatus}
+                    questionSetStatus={this.props.questionSetStatus}
                     questionActions={this.props.questionActions}
                     renderError={this.props.renderError}
                     renderRequiredAsterisk={this.props.renderRequiredAsterisk}
@@ -192,6 +193,8 @@ class QuestionPanel extends React.Component {
                     customiseView={this.props.customiseView}
                     validationErrors={this.state.validationErrors}
                     onSwitchChange={this.props.onSwitchChange}
+                    onQuestionsetSwitchChange={this.props.onQuestionsetSwitchChange}
+                    exclude={questionSet.exclude}
                     onAnswerChange={this.handleAnswerChange.bind(this)}
                     onQuestionFocus={this.handleQuestionFocus.bind(this)}
                     onQuestionClick={this.handleQuestionClick.bind(this)}

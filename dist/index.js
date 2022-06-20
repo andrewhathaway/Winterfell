@@ -686,6 +686,32 @@ Button.defaultProps = {
   onClick: function onClick() {}
 };
 
+var Switch = function Switch(_ref) {
+  var checked = _ref.checked,
+      onChange = _ref.onChange;
+
+  var handleChange = function handleChange(checked) {
+    onChange(checked);
+  };
+
+  return /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement(ReactSwitch, {
+    onChange: handleChange,
+    checked: checked,
+    onColor: "#3db28c",
+    offColor: "#c2303d",
+    handleDiameter: 20,
+    uncheckedIcon: false,
+    checkedIcon: false,
+    height: 26,
+    width: 48
+  }));
+};
+
+Switch.defaultProps = {
+  checked: false,
+  onChnage: function onChnage() {}
+};
+
 var iconMapper = {
   WARNING: 'fas fa-exclamation-circle',
   DANGER: 'fas fa-exclamation-circle',
@@ -774,32 +800,6 @@ Alert.defaultProps = {
   status: '',
   text: '',
   options: []
-};
-
-var Switch = function Switch(_ref) {
-  var checked = _ref.checked,
-      onChange = _ref.onChange;
-
-  var handleChange = function handleChange(checked) {
-    onChange(checked);
-  };
-
-  return /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement(ReactSwitch, {
-    onChange: handleChange,
-    checked: checked,
-    onColor: "#3db28c",
-    offColor: "#c2303d",
-    handleDiameter: 20,
-    uncheckedIcon: false,
-    checkedIcon: false,
-    height: 26,
-    width: 48
-  }));
-};
-
-Switch.defaultProps = {
-  checked: false,
-  onChnage: function onChnage() {}
 };
 
 var CheckboxInput = /*#__PURE__*/function (_React$Component) {
@@ -1582,23 +1582,31 @@ var isQuestionLocked = function isQuestionLocked(_ref) {
       questionId = _ref.questionId;
   return questionStatus[questionId] === 2;
 };
-
 var isQuestionOn = function isQuestionOn(_ref2) {
   var questionStatus = _ref2.questionStatus,
       questionId = _ref2.questionId;
   return questionStatus[questionId] === 1;
 };
+var isOptionalQuestions = function isOptionalQuestions(questions, questionStatus) {
+  return !questions.filter(function (_ref4) {
+    var questionId = _ref4.questionId;
+    return isQuestionLocked({
+      questionStatus: questionStatus,
+      questionId: questionId
+    });
+  }).length;
+};
 
-var hasConditionalQuestions = function hasConditionalQuestions(_ref4) {
-  var options = _ref4.input.options;
+var hasConditionalQuestions = function hasConditionalQuestions(_ref) {
+  var options = _ref.input.options;
   return !!(options || []).filter(function (option) {
     return option.conditionalQuestions && option.conditionalQuestions.length > 0;
   }).length;
 };
 
-var getConditionalQuestions = function getConditionalQuestions(_ref5) {
-  var options = _ref5.input.options,
-      value = _ref5.value;
+var getConditionalQuestions = function getConditionalQuestions(_ref2) {
+  var options = _ref2.input.options,
+      value = _ref2.value;
   return (options || []).filter(function (option) {
     return value instanceof Array ? value.indexOf(option.value) > -1 : value === option.value;
   }).filter(function (option) {
@@ -1606,8 +1614,8 @@ var getConditionalQuestions = function getConditionalQuestions(_ref5) {
   });
 };
 
-var isField = function isField(_ref6) {
-  var type = _ref6.type;
+var isField = function isField(_ref3) {
+  var type = _ref3.type;
   return type === 'emailInput' || type === 'fileInput' || type === 'selectInput' || type === 'textInput' || type === 'passwordInput';
 };
 
@@ -1755,7 +1763,6 @@ var Question = /*#__PURE__*/function (_React$Component) {
           className: _this2.props.classes.errorMessage
         }, error.message);
       }) : [];
-      console.log('this.props.questionActions', this.props.questionActions);
       var questionActions = typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ? /*#__PURE__*/React.createElement("div", {
         className: this.props.classes.actionControl
       }, this.props.questionActions.map(function (action) {
@@ -1945,6 +1952,7 @@ var QuestionSet = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
+      console.log('This.props', this.props.included);
       var questions = this.props.questions.map(function (question) {
         return /*#__PURE__*/React.createElement(Question, {
           key: question.questionId,
@@ -1985,12 +1993,18 @@ var QuestionSet = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/React.createElement("div", {
         className: this.props.classes.questionSet
       }, typeof this.props.questionSetHeader !== 'undefined' || typeof this.props.questionSetText !== 'undefined' ? /*#__PURE__*/React.createElement("div", {
-        className: this.props.classes.questionSetHeaderContainer
-      }, typeof this.props.questionSetHeader !== 'undefined' ? /*#__PURE__*/React.createElement("h4", {
+        className: "".concat(this.props.classes.questionSetHeaderContainer, " questionset-heading")
+      }, this.props.questionSetHeader && /*#__PURE__*/React.createElement("h4", {
         className: this.props.classes.questionSetHeader
-      }, this.props.questionSetHeader) : undefined, typeof this.props.questionSetText !== 'undefined' ? /*#__PURE__*/React.createElement("p", {
+      }, this.props.questionSetHeader), this.props.questionSetText && /*#__PURE__*/React.createElement("p", {
         className: this.props.classes.questionSetText
-      }, this.props.questionSetText) : undefined) : undefined, questions);
+      }, this.props.questionSetText), this.props.customiseView && isOptionalQuestions(this.props.questions, this.props.questionStatus) && /*#__PURE__*/React.createElement(Switch, {
+        checked: !!this.props.questionSetStatus[this.props.id],
+        className: "react-switch",
+        onChange: function onChange(e) {
+          return _this.props.onQuestionsetSwitchChange(e, _this.props.id);
+        }
+      })) : undefined, questions);
     }
   }]);
 
@@ -2019,7 +2033,8 @@ QuestionSet.defaultProps = {
   onQuestionFocus: function onQuestionFocus() {},
   onQuestionClick: function onQuestionClick() {},
   onQuestionAction: function onQuestionAction() {},
-  onKeyDown: function onKeyDown() {}
+  onKeyDown: function onKeyDown() {},
+  onQuestionsetSwitchChange: function onQuestionsetSwitchChange() {}
 };
 
 var QuestionPanel = /*#__PURE__*/function (_React$Component) {
@@ -2226,6 +2241,7 @@ var QuestionPanel = /*#__PURE__*/function (_React$Component) {
           classes: _this4.props.classes,
           questionAnswers: _this4.props.questionAnswers,
           questionStatus: _this4.props.questionStatus,
+          questionSetStatus: _this4.props.questionSetStatus,
           questionActions: _this4.props.questionActions,
           renderError: _this4.props.renderError,
           renderRequiredAsterisk: _this4.props.renderRequiredAsterisk,
@@ -2234,6 +2250,8 @@ var QuestionPanel = /*#__PURE__*/function (_React$Component) {
           customiseView: _this4.props.customiseView,
           validationErrors: _this4.state.validationErrors,
           onSwitchChange: _this4.props.onSwitchChange,
+          onQuestionsetSwitchChange: _this4.props.onQuestionsetSwitchChange,
+          exclude: questionSet.exclude,
           onAnswerChange: _this4.handleAnswerChange.bind(_this4),
           onQuestionFocus: _this4.handleQuestionFocus.bind(_this4),
           onQuestionClick: _this4.handleQuestionClick.bind(_this4),
@@ -2489,6 +2507,7 @@ var Winterfell = /*#__PURE__*/function (_React$Component) {
         questionSets: currentPanel.questionSets,
         questionAnswers: this.state.questionAnswers,
         questionStatus: this.props.questionStatus,
+        questionSetStatus: this.props.questionSetStatus,
         questionActions: this.state.schema.questionActions,
         panelHistory: this.panelHistory,
         validationErrors: this.props.validationErrors,
@@ -2505,6 +2524,7 @@ var Winterfell = /*#__PURE__*/function (_React$Component) {
         onAnswerChange: this.handleAnswerChange.bind(this),
         onPanelBack: this.handleBackButtonClick.bind(this),
         onSwitchPanel: this.handleSwitchPanel.bind(this),
+        onQuestionsetSwitchChange: this.props.onQuestionsetSwitchChange,
         onSubmit: this.handleSubmit.bind(this),
         icons: this.props.icons
       })));

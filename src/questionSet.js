@@ -1,10 +1,13 @@
 import React from 'react';
 import _ from 'lodash';
+import SwitchComponent from './components/Switch';
 import Question from './question';
+import { isOptionalQuestions } from './lib/utils';
 
 class QuestionSet extends React.Component {
     render() {
-        var questions = this.props.questions.map(question => {
+        console.log('This.props', this.props.included);
+        const questions = this.props.questions.map(question => {
             return (
                 <Question
                     key={question.questionId}
@@ -47,13 +50,20 @@ class QuestionSet extends React.Component {
         return (
             <div className={this.props.classes.questionSet}>
                 {typeof this.props.questionSetHeader !== 'undefined' || typeof this.props.questionSetText !== 'undefined' ? (
-                    <div className={this.props.classes.questionSetHeaderContainer}>
-                        {typeof this.props.questionSetHeader !== 'undefined' ? (
+                    <div className={`${this.props.classes.questionSetHeaderContainer} questionset-heading`}>
+                        {this.props.questionSetHeader && (
                             <h4 className={this.props.classes.questionSetHeader}>{this.props.questionSetHeader}</h4>
-                        ) : undefined}
-                        {typeof this.props.questionSetText !== 'undefined' ? (
-                            <p className={this.props.classes.questionSetText}>{this.props.questionSetText}</p>
-                        ) : undefined}
+                        )}
+
+                        {this.props.questionSetText && <p className={this.props.classes.questionSetText}>{this.props.questionSetText}</p>}
+
+                        {this.props.customiseView && isOptionalQuestions(this.props.questions, this.props.questionStatus) && (
+                            <SwitchComponent
+                                checked={!!this.props.questionSetStatus[this.props.id]}
+                                className='react-switch'
+                                onChange={e => this.props.onQuestionsetSwitchChange(e, this.props.id)}
+                            />
+                        )}
                     </div>
                 ) : undefined}
                 {questions}
@@ -85,6 +95,7 @@ QuestionSet.defaultProps = {
     onQuestionClick: () => {},
     onQuestionAction: () => {},
     onKeyDown: () => {},
+    onQuestionsetSwitchChange: () => {},
 };
 
 export default QuestionSet;
