@@ -178,6 +178,7 @@ class Winterfell extends React.Component {
                         questionSets={currentPanel.questionSets}
                         questionAnswers={this.state.questionAnswers}
                         questionStatus={this.props.questionStatus}
+                        messageOptionalQuestionSet={this.props.messageOptionalQuestionSet}
                         questionSetStatus={this.props.questionSetStatus}
                         questionActions={this.state.schema.questionActions}
                         panelHistory={this.panelHistory}
@@ -224,6 +225,7 @@ Winterfell.addValidationMethod = Winterfell.validation.addValidationMethod;
 Winterfell.addValidationMethods = Winterfell.validation.addValidationMethods;
 
 Winterfell.defaultProps = {
+    messageOptionalQuestionSet: null,
     questionAnswers: {},
     questionStatus: {},
     encType: 'application/x-www-form-urlencoded',

@@ -189,6 +189,7 @@ class QuestionPanel extends React.Component {
                     renderError={this.props.renderError}
                     renderRequiredAsterisk={this.props.renderRequiredAsterisk}
                     readOnly={this.props.readOnly}
+                    messageOptionalQuestionSet={this.props.messageOptionalQuestionSet}
                     applicationId={this.props.applicationId}
                     customiseView={this.props.customiseView}
                     validationErrors={this.state.validationErrors}

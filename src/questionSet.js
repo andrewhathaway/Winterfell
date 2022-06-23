@@ -50,21 +50,35 @@ class QuestionSet extends React.Component {
         return (
             <div className={this.props.classes.questionSet}>
                 {typeof this.props.questionSetHeader !== 'undefined' || typeof this.props.questionSetText !== 'undefined' ? (
-                    <div className={`${this.props.classes.questionSetHeaderContainer} questionset-heading`}>
-                        {this.props.questionSetHeader && (
-                            <h4 className={this.props.classes.questionSetHeader}>{this.props.questionSetHeader}</h4>
-                        )}
+                    <>
+                        <div className={`${this.props.classes.questionSetHeaderContainer} questionset-heading`}>
+                            {this.props.questionSetHeader && (
+                                <h4 className={this.props.classes.questionSetHeader}>{this.props.questionSetHeader}</h4>
+                            )}
 
-                        {this.props.questionSetText && <p className={this.props.classes.questionSetText}>{this.props.questionSetText}</p>}
+                            {this.props.questionSetText && (
+                                <p className={this.props.classes.questionSetText}>{this.props.questionSetText}</p>
+                            )}
 
+                            {this.props.customiseView && isOptionalQuestions(this.props.questions, this.props.questionStatus) && (
+                                <>
+                                    <div className='question-switch'>
+                                        <SwitchComponent
+                                            checked={!!this.props.questionSetStatus[this.props.id]}
+                                            className='react-switch'
+                                            onChange={e => this.props.onQuestionsetSwitchChange(e, this.props.id)}
+                                        />
+                                        This section is optional
+                                    </div>
+                                </>
+                            )}
+                        </div>
                         {this.props.customiseView && isOptionalQuestions(this.props.questions, this.props.questionStatus) && (
-                            <SwitchComponent
-                                checked={!!this.props.questionSetStatus[this.props.id]}
-                                className='react-switch'
-                                onChange={e => this.props.onQuestionsetSwitchChange(e, this.props.id)}
-                            />
+                            <div className='question-wrap'>
+                                {this.props.messageOptionalQuestionSet({ on: !!this.props.questionSetStatus[this.props.id] })}
+                            </div>
                         )}
-                    </div>
+                    </>
                 ) : undefined}
                 {questions}
             </div>

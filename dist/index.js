@@ -1992,19 +1992,25 @@ var QuestionSet = /*#__PURE__*/function (_React$Component) {
       });
       return /*#__PURE__*/React.createElement("div", {
         className: this.props.classes.questionSet
-      }, typeof this.props.questionSetHeader !== 'undefined' || typeof this.props.questionSetText !== 'undefined' ? /*#__PURE__*/React.createElement("div", {
+      }, typeof this.props.questionSetHeader !== 'undefined' || typeof this.props.questionSetText !== 'undefined' ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
         className: "".concat(this.props.classes.questionSetHeaderContainer, " questionset-heading")
       }, this.props.questionSetHeader && /*#__PURE__*/React.createElement("h4", {
         className: this.props.classes.questionSetHeader
       }, this.props.questionSetHeader), this.props.questionSetText && /*#__PURE__*/React.createElement("p", {
         className: this.props.classes.questionSetText
-      }, this.props.questionSetText), this.props.customiseView && isOptionalQuestions(this.props.questions, this.props.questionStatus) && /*#__PURE__*/React.createElement(Switch, {
+      }, this.props.questionSetText), this.props.customiseView && isOptionalQuestions(this.props.questions, this.props.questionStatus) && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+        className: "question-switch"
+      }, /*#__PURE__*/React.createElement(Switch, {
         checked: !!this.props.questionSetStatus[this.props.id],
         className: "react-switch",
         onChange: function onChange(e) {
           return _this.props.onQuestionsetSwitchChange(e, _this.props.id);
         }
-      })) : undefined, questions);
+      }), "This section is optional"))), this.props.customiseView && isOptionalQuestions(this.props.questions, this.props.questionStatus) && /*#__PURE__*/React.createElement("div", {
+        className: "question-wrap"
+      }, this.props.messageOptionalQuestionSet({
+        on: !!this.props.questionSetStatus[this.props.id]
+      }))) : undefined, questions);
     }
   }]);
 
@@ -2246,6 +2252,7 @@ var QuestionPanel = /*#__PURE__*/function (_React$Component) {
           renderError: _this4.props.renderError,
           renderRequiredAsterisk: _this4.props.renderRequiredAsterisk,
           readOnly: _this4.props.readOnly,
+          messageOptionalQuestionSet: _this4.props.messageOptionalQuestionSet,
           applicationId: _this4.props.applicationId,
           customiseView: _this4.props.customiseView,
           validationErrors: _this4.state.validationErrors,
@@ -2507,6 +2514,7 @@ var Winterfell = /*#__PURE__*/function (_React$Component) {
         questionSets: currentPanel.questionSets,
         questionAnswers: this.state.questionAnswers,
         questionStatus: this.props.questionStatus,
+        messageOptionalQuestionSet: this.props.messageOptionalQuestionSet,
         questionSetStatus: this.props.questionSetStatus,
         questionActions: this.state.schema.questionActions,
         panelHistory: this.panelHistory,
@@ -2550,6 +2558,7 @@ Winterfell.addErrorMessages = Winterfell.errorMessages.addErrorMessages;
 Winterfell.addValidationMethod = Winterfell.validation.addValidationMethod;
 Winterfell.addValidationMethods = Winterfell.validation.addValidationMethods;
 Winterfell.defaultProps = {
+  messageOptionalQuestionSet: null,
   questionAnswers: {},
   questionStatus: {},
   encType: 'application/x-www-form-urlencoded',
