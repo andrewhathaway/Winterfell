@@ -1,20 +1,8 @@
-import React, { Fragment } from 'react';
-import _, { isEmpty } from 'lodash';
+import React from 'react';
 import Alert from './components/Alert';
 import SwitchComponent from './components/Switch';
 import inputTypes from './inputTypes/index';
-
-const isQuestionLocked = ({ questionStatus, questionId }) => {
-    return questionStatus[questionId] === 2;
-};
-
-const isQuestionOn = ({ questionStatus, questionId }) => {
-    return questionStatus[questionId] === 1;
-};
-
-const isQuestionOff = ({ questionStatus, questionId }) => {
-    return questionStatus[questionId] === 0;
-};
+import { isQuestionLocked, isQuestionOn } from './lib/utils';
 
 const hasConditionalQuestions = ({ input: { options } }) => {
     return !!(options || []).filter(option => {
@@ -183,8 +171,6 @@ class Question extends React.Component {
                       );
                   })
                 : [];
-
-        console.log('this.props.questionActions', this.props.questionActions);
 
         const questionActions =
             typeof this.props.questionActions !== 'undefined' && this.props.questionActions.length > 0 ? (

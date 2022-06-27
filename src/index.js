@@ -163,8 +163,7 @@ class Winterfell extends React.Component {
                 encType={this.props.encType}
                 action={this.state.action}
                 ref={ref => (this.formComponent = ref)}
-                className={this.state.schema.classes.form}
-            >
+                className={this.state.schema.classes.form}>
                 <div className={this.state.schema.classes.questionPanels}>
                     <QuestionPanel
                         schema={this.state.schema}
@@ -179,6 +178,8 @@ class Winterfell extends React.Component {
                         questionSets={currentPanel.questionSets}
                         questionAnswers={this.state.questionAnswers}
                         questionStatus={this.props.questionStatus}
+                        messageOptionalQuestionSet={this.props.messageOptionalQuestionSet}
+                        questionSetStatus={this.props.questionSetStatus}
                         questionActions={this.state.schema.questionActions}
                         panelHistory={this.panelHistory}
                         validationErrors={this.props.validationErrors}
@@ -195,6 +196,7 @@ class Winterfell extends React.Component {
                         onAnswerChange={this.handleAnswerChange.bind(this)}
                         onPanelBack={this.handleBackButtonClick.bind(this)}
                         onSwitchPanel={this.handleSwitchPanel.bind(this)}
+                        onQuestionsetSwitchChange={this.props.onQuestionsetSwitchChange}
                         onSubmit={this.handleSubmit.bind(this)}
                         icons={this.props.icons}
                     />
@@ -223,6 +225,7 @@ Winterfell.addValidationMethod = Winterfell.validation.addValidationMethod;
 Winterfell.addValidationMethods = Winterfell.validation.addValidationMethods;
 
 Winterfell.defaultProps = {
+    messageOptionalQuestionSet: null,
     questionAnswers: {},
     questionStatus: {},
     encType: 'application/x-www-form-urlencoded',
