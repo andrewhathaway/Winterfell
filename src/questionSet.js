@@ -6,7 +6,6 @@ import { isOptionalQuestions } from './lib/utils';
 
 class QuestionSet extends React.Component {
     render() {
-        console.log('This.props', this.props.included);
         const questions = this.props.questions.map(question => {
             return (
                 <Question
@@ -71,6 +70,11 @@ class QuestionSet extends React.Component {
                                         This section is optional
                                     </div>
                                 </>
+                            )}
+                            {this.props.customiseView && !isOptionalQuestions(this.props.questions, this.props.questionStatus) && (
+                                <div className='question-switch'>
+                                    This section must be included <i className='far fa-question-circle' />
+                                </div>
                             )}
                         </div>
                         {this.props.customiseView && isOptionalQuestions(this.props.questions, this.props.questionStatus) && (
