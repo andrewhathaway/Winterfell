@@ -1952,7 +1952,6 @@ var QuestionSet = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      console.log('This.props', this.props.included);
       var questions = this.props.questions.map(function (question) {
         return /*#__PURE__*/React.createElement(Question, {
           key: question.questionId,
@@ -2006,7 +2005,11 @@ var QuestionSet = /*#__PURE__*/function (_React$Component) {
         onChange: function onChange(e) {
           return _this.props.onQuestionsetSwitchChange(e, _this.props.id);
         }
-      }), "This section is optional"))), this.props.customiseView && isOptionalQuestions(this.props.questions, this.props.questionStatus) && /*#__PURE__*/React.createElement("div", {
+      }), "This section is optional")), this.props.customiseView && !isOptionalQuestions(this.props.questions, this.props.questionStatus) && /*#__PURE__*/React.createElement("div", {
+        className: "question-switch"
+      }, "This section must be included ", /*#__PURE__*/React.createElement("i", {
+        className: "far fa-question-circle"
+      }))), this.props.customiseView && isOptionalQuestions(this.props.questions, this.props.questionStatus) && /*#__PURE__*/React.createElement("div", {
         className: "question-wrap"
       }, this.props.messageOptionalQuestionSet({
         on: !!this.props.questionSetStatus[this.props.id]
