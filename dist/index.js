@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import _ from 'lodash';
 import KeyCodez from 'keycodez';
 import Validator from 'validator';
@@ -139,6 +139,10 @@ function _createSuper(Derived) {
   };
 }
 
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+
 function _toConsumableArray(arr) {
   return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
 }
@@ -147,8 +151,42 @@ function _arrayWithoutHoles(arr) {
   if (Array.isArray(arr)) return _arrayLikeToArray(arr);
 }
 
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
 function _iterableToArray(iter) {
   if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+}
+
+function _iterableToArrayLimit(arr, i) {
+  var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+
+  if (_i == null) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+
+  var _s, _e;
+
+  try {
+    for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
 }
 
 function _unsupportedIterableToArray(o, minLen) {
@@ -170,6 +208,10 @@ function _arrayLikeToArray(arr, len) {
 
 function _nonIterableSpread() {
   throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
 var StringParser = (function (template, params) {
@@ -1936,89 +1978,93 @@ Question.defaultProps = {
   counts: undefined
 };
 
-var QuestionSet = /*#__PURE__*/function (_React$Component) {
-  _inherits(QuestionSet, _React$Component);
+var QuestionSet = function QuestionSet(props) {
+  var iconRef = useRef(null);
 
-  var _super = _createSuper(QuestionSet);
+  var _useState = useState(),
+      _useState2 = _slicedToArray(_useState, 2),
+      tooltip = _useState2[0],
+      setTooltip = _useState2[1];
 
-  function QuestionSet() {
-    _classCallCheck(this, QuestionSet);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(QuestionSet, [{
-    key: "render",
-    value: function render() {
-      var _this = this;
-
-      var questions = this.props.questions.map(function (question) {
-        return /*#__PURE__*/React.createElement(Question, {
-          key: question.questionId,
-          questionSetId: _this.props.id,
-          questionId: question.questionId,
-          question: question.question,
-          validateOn: question.validateOn,
-          validations: question.validations,
-          text: question.text,
-          postText: question.postText,
-          value: _this.props.questionAnswers[question.questionId],
-          input: question.input,
-          nested: false,
-          classes: _this.props.classes,
-          renderError: _this.props.renderError,
-          renderRequiredAsterisk: _this.props.renderRequiredAsterisk,
-          readOnly: _this.props.readOnly,
-          applicationId: _this.props.applicationId,
-          customiseView: _this.props.customiseView,
-          questionAnswers: _this.props.questionAnswers,
-          questionStatus: _this.props.questionStatus,
-          questionActions: _this.props.questionActions,
-          validationErrors: _this.props.validationErrors,
-          onSwitchChange: _this.props.onSwitchChange,
-          onAnswerChange: _this.props.onAnswerChange,
-          onQuestionBlur: _this.props.onQuestionBlur,
-          onQuestionFocus: _this.props.onQuestionFocus,
-          onQuestionClick: _this.props.onQuestionClick,
-          onQuestionAction: _this.props.onQuestionAction,
-          onKeyDown: _this.props.onKeyDown,
-          counts: question.counts,
-          lockedToolTip: question.lockedToolTip,
-          lockedQuestion: question.lockedQuestion,
-          defaultQuestion: question.defaultQuestion,
-          icons: _this.props.icons
-        });
-      });
-      return /*#__PURE__*/React.createElement("div", {
-        className: this.props.classes.questionSet
-      }, typeof this.props.questionSetHeader !== 'undefined' || typeof this.props.questionSetText !== 'undefined' ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-        className: "".concat(this.props.classes.questionSetHeaderContainer, " questionset-heading")
-      }, this.props.questionSetHeader && /*#__PURE__*/React.createElement("h4", {
-        className: this.props.classes.questionSetHeader
-      }, this.props.questionSetHeader), this.props.questionSetText && /*#__PURE__*/React.createElement("p", {
-        className: this.props.classes.questionSetText
-      }, this.props.questionSetText), this.props.customiseView && isOptionalQuestions(this.props.questions, this.props.questionStatus) && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-        className: "question-switch"
-      }, /*#__PURE__*/React.createElement(Switch, {
-        checked: !!this.props.questionSetStatus[this.props.id],
-        className: "react-switch",
-        onChange: function onChange(e) {
-          return _this.props.onQuestionsetSwitchChange(e, _this.props.id);
-        }
-      }), "This section is optional")), this.props.customiseView && !isOptionalQuestions(this.props.questions, this.props.questionStatus) && /*#__PURE__*/React.createElement("div", {
-        className: "question-switch"
-      }, "This section must be included ", /*#__PURE__*/React.createElement("i", {
-        className: "far fa-question-circle"
-      }))), this.props.customiseView && isOptionalQuestions(this.props.questions, this.props.questionStatus) && /*#__PURE__*/React.createElement("div", {
-        className: "question-wrap"
-      }, this.props.messageOptionalQuestionSet({
-        on: !!this.props.questionSetStatus[this.props.id]
-      }))) : undefined, questions);
+  var questions = props.questions.map(function (question) {
+    return /*#__PURE__*/React.createElement(Question, {
+      key: question.questionId,
+      questionSetId: props.id,
+      questionId: question.questionId,
+      question: question.question,
+      validateOn: question.validateOn,
+      validations: question.validations,
+      text: question.text,
+      postText: question.postText,
+      value: props.questionAnswers[question.questionId],
+      input: question.input,
+      nested: false,
+      classes: props.classes,
+      renderError: props.renderError,
+      renderRequiredAsterisk: props.renderRequiredAsterisk,
+      readOnly: props.readOnly,
+      applicationId: props.applicationId,
+      customiseView: props.customiseView,
+      questionAnswers: props.questionAnswers,
+      questionStatus: props.questionStatus,
+      questionActions: props.questionActions,
+      validationErrors: props.validationErrors,
+      onSwitchChange: props.onSwitchChange,
+      onAnswerChange: props.onAnswerChange,
+      onQuestionBlur: props.onQuestionBlur,
+      onQuestionFocus: props.onQuestionFocus,
+      onQuestionClick: props.onQuestionClick,
+      onQuestionAction: props.onQuestionAction,
+      onKeyDown: props.onKeyDown,
+      counts: question.counts,
+      lockedToolTip: question.lockedToolTip,
+      lockedQuestion: question.lockedQuestion,
+      defaultQuestion: question.defaultQuestion,
+      icons: props.icons
+    });
+  });
+  React.useEffect(function () {
+    if (iconRef === null || iconRef === void 0 ? void 0 : iconRef.current) {
+      var iconTooltip = tippy(iconRef.current);
+      iconTooltip.enable();
+      iconTooltip.setContent('This section contains mandatory questions, so it cannot be excluded from this application');
+      setTooltip(iconTooltip);
     }
-  }]);
 
-  return QuestionSet;
-}(React.Component);
+    return function () {
+      if (tooltip) {
+        tooltip.disable();
+        setTooltip(null);
+      }
+    };
+  }, [iconRef]);
+  return /*#__PURE__*/React.createElement("div", {
+    className: props.classes.questionSet
+  }, typeof props.questionSetHeader !== 'undefined' || typeof props.questionSetText !== 'undefined' ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "".concat(props.classes.questionSetHeaderContainer, " questionset-heading")
+  }, props.questionSetHeader && /*#__PURE__*/React.createElement("h4", {
+    className: props.classes.questionSetHeader
+  }, props.questionSetHeader), props.questionSetText && /*#__PURE__*/React.createElement("p", {
+    className: props.classes.questionSetText
+  }, props.questionSetText), props.customiseView && isOptionalQuestions(props.questions, props.questionStatus) && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "question-switch"
+  }, /*#__PURE__*/React.createElement(Switch, {
+    checked: !!props.questionSetStatus[props.id],
+    className: "react-switch",
+    onChange: function onChange(e) {
+      return props.onQuestionsetSwitchChange(e, props.id);
+    }
+  }), "This section is optional")), props.customiseView && !isOptionalQuestions(props.questions, props.questionStatus) && /*#__PURE__*/React.createElement("div", {
+    className: "question-switch"
+  }, "This section must be included", /*#__PURE__*/React.createElement("i", {
+    className: "far fa-question-circle",
+    ref: iconRef
+  }))), props.customiseView && isOptionalQuestions(props.questions, props.questionStatus) && /*#__PURE__*/React.createElement("div", {
+    className: "question-wrap"
+  }, props.messageOptionalQuestionSet({
+    on: !!props.questionSetStatus[props.id]
+  }))) : undefined, questions);
+};
 
 QuestionSet.defaultProps = {
   id: undefined,
