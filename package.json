@@ -1,54 +1,69 @@
 {
-  "name": "winterfell",
-  "version": "1.1.4",
-  "description": "Generate complex, validated and extendable JSON-based forms in React",
-  "main": "dist/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rimraf dist",
-    "build": "webpack --display-modules --display-reasons",
-    "prepare": "npm run clean && npm run build"
-  },
-  "keywords": [
-    "winterfell",
-    "form",
-    "forms",
-    "engine",
-    "react",
-    "validation",
-    "complex",
-    "extendable",
-    "customisable",
-    "conditional",
-    "questions",
-    "react-component"
-  ],
-  "author": "Andrew Hathaway <andrew@andrewhathaway.net>",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/andrewhathaway/winterfell.git"
-  },
-  "license": "MIT",
-  "peerDependencies": {
-    "react": ">= 15.6.1 < 17.0.0-0",
-    "react-dom": ">= 15.6.1 < 17.0.0-0"
-  },
-  "dependencies": {
-    "keycodez": "^1.0.0",
-    "lodash": "^4.17.21",
-    "validator": "^4.0.5"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.10.2",
-    "@babel/preset-react": "^7.10.1",
-    "@svgr/webpack": "^5.5.0",
-    "babel-loader": "^8.1.0",
-    "react": ">= 15.6.1 < 17.0.0-0",
-    "react-dom": ">= 15.6.1 < 17.0.0-0",
-    "rimraf": "^2.4.3",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11"
-  }
+    "name": "winterfell",
+    "version": "1.1.4",
+    "description": "Generate complex, validated and extendable JSON-based forms in React",
+    "main": "dist/index.js",
+    "scripts": {
+        "clean": "rm -rf dist",
+        "build": "rimraf dist && rollup -c",
+        "build:noclean": "rollup -c",
+        "lint": "eslint ./src --ext .js,.jsx",
+        "lint:fix": "eslint ./src --ext .js,.jsx --fix",
+        "prettier:write": "prettier --write \"./src/**/*.{js,jsx}\""
+    },
+    "keywords": [
+        "winterfell",
+        "form",
+        "forms",
+        "engine",
+        "react",
+        "validation",
+        "complex",
+        "extendable",
+        "customisable",
+        "conditional",
+        "questions",
+        "react-component"
+    ],
+    "author": "Andrew Hathaway <andrew@andrewhathaway.net>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/HDRUK/Winterfell"
+    },
+    "module": "dist/index.js",
+    "files": [
+        "dist"
+    ],
+    "license": "MIT",
+    "peerDependencies": {
+        "react": ">= 15.6.1 < 17.0.0-0",
+        "react-dom": ">= 15.6.1 < 17.0.0-0"
+    },
+    "dependencies": {
+        "keycodez": "^1.0.0",
+        "lodash": "^4.17.21",
+        "react-switch": "^6.0.0",
+        "validator": "^4.0.5"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.17.10",
+        "@babel/core": "^7.18.2",
+        "@babel/preset-env": "^7.10.2",
+        "@rollup/plugin-babel": "^5.3.1",
+        "@rollup/plugin-commonjs": "^22.0.0",
+        "babel-preset-react-app": "^9.1.2",
+        "cross-env": "^7.0.3",
+        "eslint": "^7.32.0",
+        "eslint-config-airbnb": "18.2.1",
+        "eslint-config-prettier": "^8.4.0",
+        "eslint-plugin-import": "2.22.1",
+        "eslint-plugin-jest": "^26.1.1",
+        "eslint-plugin-jsx-a11y": "6.4.1",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-react": "7.21.5",
+        "eslint-plugin-react-hooks": "1.7.0",
+        "prettier": "^2.5.1",
+        "react-scripts": "3.4.4",
+        "rollup": "^2.75.3"
+    }
 }

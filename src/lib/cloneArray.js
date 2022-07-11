@@ -1,4 +1,3 @@
-
-export default (array) => {
-  return array.slice(0);
+export default array => {
+    return array.slice(0);
 };

@@ -1,0 +1,27 @@
+{
+    "env": {
+        "browser": true,
+        "jest": true
+    },
+    "extends": ["airbnb", "prettier"],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": ["prettier"],
+    "rules": {
+        "indent": ["error", 4],
+        "prettier/prettier": ["error", { "endOfLine": "auto" }],
+        "react/jsx-props-no-spreading": "off",
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [".js", ".jsx", ".tsx"]
+            }
+        ],
+        "arrow-body-style": "off"
+    }
+}
