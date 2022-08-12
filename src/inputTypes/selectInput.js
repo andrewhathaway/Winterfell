@@ -46,18 +46,18 @@ class SelectInput extends React.Component {
         );
     }
 
-    componentDidMount() {
-        /*
-         * Selects automatically pick the first item, so
-         * make sure we set it.
-         */
-        this.handleChange();
-        // this.handleChange({
-        //     target: {
-        //         value: this.props.options[0].value,
-        //     },
-        // });
-    }
+    // componentDidMount() {
+    //     /*
+    //      * Selects automatically pick the first item, so
+    //      * make sure we set it.
+    //      */
+    //     this.handleChange();
+    //     // this.handleChange({
+    //     //     target: {
+    //     //         value: this.props.options[0].value,
+    //     //     },
+    //     // });
+    // }
 }
 
 SelectInput.defaultProps = {
