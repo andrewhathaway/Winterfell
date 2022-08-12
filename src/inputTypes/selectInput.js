@@ -51,11 +51,12 @@ class SelectInput extends React.Component {
          * Selects automatically pick the first item, so
          * make sure we set it.
          */
-        this.handleChange({
-            target: {
-                value: this.props.options[0].value,
-            },
-        });
+        this.handleChange();
+        // this.handleChange({
+        //     target: {
+        //         value: this.props.options[0].value,
+        //     },
+        // });
     }
 }
 
