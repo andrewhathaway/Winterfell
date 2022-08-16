@@ -1371,7 +1371,7 @@ var SelectInput = /*#__PURE__*/function (_React$Component) {
        */
       this.handleChange({
         target: {
-          value: this.props.options[0].value
+          value: this.state.value
         }
       });
     }
