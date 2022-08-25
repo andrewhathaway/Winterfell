@@ -1672,7 +1672,7 @@ var Question = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Question);
 
     _this = _super.call(this, props);
-    _this.questionRef = /*#__PURE__*/React.createRef();
+    _this.questionRef = React.createRef();
     return _this;
   }
 
@@ -1833,15 +1833,15 @@ var Question = /*#__PURE__*/function (_React$Component) {
         }, actionCount > 0 ? /*#__PURE__*/React.createElement("div", {
           className: _this2.props.classes.actionCount
         }, actionCount) : '', /*#__PURE__*/React.createElement("i", {
-          className: action.icon,
+          className: "fas fa-pencil-alt",
           style: {
             color: action.color
           },
           onClick: function onClick(e) {
-            return _this2.handleQuestionAction(e, _this2.props.questionSetId, _this2.props.questionId, action.key, _this2.props.counts);
+            return _this2.handleQuestionAction(e, _this2.props.questionSetId, _this2.props.questionId, 'guidanceEdit', _this2.props.counts);
           },
           ref: function ref(node) {
-            return _this2.handleGuidanceRefChanged(node, action.toolTip);
+            return _this2.handleGuidanceRefChanged(node, 'Guidance');
           }
         }));
       })) : '';
@@ -2024,7 +2024,7 @@ var QuestionSet = function QuestionSet(props) {
     });
   });
   React.useEffect(function () {
-    if (iconRef === null || iconRef === void 0 ? void 0 : iconRef.current) {
+    if (iconRef !== null && iconRef !== void 0 && iconRef.current) {
       var iconTooltip = tippy(iconRef.current);
       iconTooltip.enable();
       iconTooltip.setContent('This section contains mandatory questions, so it cannot be excluded from this application');

@@ -198,18 +198,18 @@ class Question extends React.Component {
                             <div key={action.key} className={actionClass}>
                                 {actionCount > 0 ? <div className={this.props.classes.actionCount}>{actionCount}</div> : ''}
                                 <i
-                                    className={action.icon}
+                                    className='fas fa-pencil-alt'
                                     style={{ color: action.color }}
                                     onClick={e =>
                                         this.handleQuestionAction(
                                             e,
                                             this.props.questionSetId,
                                             this.props.questionId,
-                                            action.key,
+                                            'guidanceEdit',
                                             this.props.counts
                                         )
                                     }
-                                    ref={node => this.handleGuidanceRefChanged(node, action.toolTip)}
+                                    ref={node => this.handleGuidanceRefChanged(node, 'Guidance')}
                                 />
                             </div>
                         );
